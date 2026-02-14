@@ -1,0 +1,39 @@
+@import url(tokens.css);
+/* Son roles de la interfaz */
+
+ :root {
+
+    /* ====BRAND==== */
+
+    --color-brand:       var(--color-primary-700);
+    --color-brand-hover: var(--color-primary-900); /* Generalmente es un toino mas alto que el brand*/
+    --color-brand-soft:  var(--color-primary-100);
+
+    /* ======BACKGROOND====== */
+
+    --color-backgroond:     var(--color-basic-white);/*Fondo de toda la aplicacion*/
+    --color-surface:        var(--color-basic-600); /*Fondo de modales,cards,conteiners */
+    --color-surface-muted:  var(--color-secondary-300); /*Zonas secundarias con menos importancia*/
+
+    /* ====== TEXT ====== */
+
+    --color-text-primary:   var(--color-basic-black);   /*Color principal de lectura, titulos,texto base del documento*/
+    --color-text-secundary: var(--color-basic-white); /*Textos menos dominantes*/
+    --color-text-muted:     var(--color-basic-500); /*Texto desabilitado */
+    --color-text-inverse:   var(--color-basic-50); /*Texto invertido */
+
+    /* =====BORDER===== */
+
+    --color-border: var(--color-basic-200); /*Borde principal de todos los componentes*/
+    --color-border-strong:  var(--color-basic-400); /*Bordes mas potentes */
+
+    /* =======STATE====== */
+
+    --color-warning:var(--color-secondary-400);
+
+    /* ===================================================================================== */
+    /*                      YA NO DEPENDEMOS DE NOMBRES DE COLOR,
+                                DEPENDEMOS DE INTENCION */
+    /* ===================================================================================== */
+
+ }
