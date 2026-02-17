@@ -1,8 +1,9 @@
+import './styles/global.css'
 // Creacion de componente input
 
 export default function Input({label, type = "text", ...props}){
     return (
-      <div className="w-^[320px]">
+      <div className="w-[320px]">
         {/* Label */}
         {label && (
           <label
@@ -47,7 +48,7 @@ export default function Input({label, type = "text", ...props}){
             relative
             w-full
             h-8
-            rounded-b-md
+            rounded-md
             border
             border-gray-300
             px-4
