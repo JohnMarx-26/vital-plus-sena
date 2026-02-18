@@ -56,8 +56,8 @@ export default function Input({label, type = "text", ...props}){
             
             focus:outline-none
             focus:ring-2
-            focus:ring-blue-500
-            focus:border-blue-500
+            focus:ring-[var(--color-primary-400)]
+            focus:border-[var(--color-primary-400)]
             "
             {...props}
           />

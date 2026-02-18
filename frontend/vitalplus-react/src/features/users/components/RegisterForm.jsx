@@ -1,8 +1,13 @@
 import Input from "../../../shared/components/Input";
 
-export default function LoginForm() {
+export default function RegisterForm() {
   return (
     <form className="flex flex-col gap-4">
+      <Input
+        label="Nombre de usuario"
+        type="text"
+        placeholder="Ingrese su nombre de usuario"
+      />
 
       <Input
         label="Correo electrónico"
@@ -16,6 +21,12 @@ export default function LoginForm() {
         placeholder="Ingrese su contraseña"
       />
 
+      <Input
+        label="Repetir contraseña"
+        type="password"
+        placeholder="Repita su contraseña"
+      />
+
       <button
         className="
           bg-[var(--color-primary-400)]
@@ -25,9 +36,8 @@ export default function LoginForm() {
           hover:bg-[var(--color-primary-400)]
         "
       >
-        Iniciar sesión
+        Crear cuenta
       </button>
-
     </form>
   );
 }
