@@ -2,8 +2,7 @@ import Input from "../../../shared/components/Input";
 
 export default function LoginForm() {
   return (
-    <form className="flex flex-col gap-4">
-
+    <form className="flex flex-col items-center gap-4">
       <Input
         label="Correo electrónico"
         type="email"
@@ -16,18 +15,47 @@ export default function LoginForm() {
         placeholder="Ingrese su contraseña"
       />
 
-      <button
+      
+
+      {/* No es botón, solo texto con estilo */}
+      <p className="text-xs text-gray-500 text-center">
+        ¿Olvidaste tu contraseña?
+      </p>
+
+      {/* No son botones: son contenedores con estilo */}
+      <div
+        role="button"
+        tabIndex={0}
         className="
-          bg-blue-600
-          text-white
+          w-[320px]
+          bg-[var(--color-primary-700)]
+          text-[var(--color-basic-white)]
           py-2
           rounded-md
-          hover:bg-blue-700
+          text-center
+          cursor-pointer
+          select-none
         "
       >
         Iniciar sesión
-      </button>
+      </div>
 
+      <div
+        role="button"
+        tabIndex={0}
+        className="
+          w-[320px]
+          bg-[var(--color-primary-700)]
+          text-[var(--color-basic-white)]
+          py-2
+          rounded-md
+          text-center
+          cursor-pointer
+          select-none
+        "
+      >
+        Crear Cuenta
+      </div>
     </form>
   );
 }

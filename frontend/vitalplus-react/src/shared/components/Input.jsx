@@ -1,4 +1,4 @@
-import './styles/global.css'
+// import './styles/global.css'
 // Creacion de componente input
 
 export default function Input({label, type = "text", ...props}){
@@ -11,7 +11,7 @@ export default function Input({label, type = "text", ...props}){
                 block
                 text-[8px]
                 mb-1
-                text-gray-600
+                text-[var(--color-basic-500)]
                 "
           >
             {label}
@@ -50,14 +50,14 @@ export default function Input({label, type = "text", ...props}){
             h-8
             rounded-md
             border
-            border-gray-300
+            border-var(--color-basic-200)
             px-4
             text-base
             
             focus:outline-none
             focus:ring-2
-            focus:ring-blue-500
-            focus:border-blue-500
+            focus:ring-var(--color-primary-600)
+            focus:border-var(--color-primary-600)
             "
             {...props}
           />
