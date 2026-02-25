@@ -1,4 +1,3 @@
-// import './styles/global.css'
 // Creacion de componente input
 
 export default function Input({label, type = "text", ...props}){

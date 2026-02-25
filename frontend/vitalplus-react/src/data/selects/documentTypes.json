@@ -1,0 +1,23 @@
+[
+    {
+        "id": "C.C",
+        "label": "Cedula de ciudadania"
+
+    },
+    {
+        "id": "T.I",
+        "label": "Targeta de identidad"
+
+    },
+    {
+        "id": "PPT",
+        "label": "Permiso de proteccion temporal"
+
+    },
+    {
+        "id": "PEP",
+        "label": "Permiso especial de permanencia"
+
+    }
+
+]

@@ -1,4 +1,6 @@
 import UserForm from "../features/users/components/UserForm"
+import DeleteCounter from "../shared/components/DeleteCounter"
+import DeleteUseEffect from "../shared/components/DeleteUseEffect"
 
 // import LoginForm from "../features/users/components/LoginForm"
 
@@ -14,7 +16,9 @@ export default function App(){
 
       <UserForm></UserForm>
       {/* <LoginForm></LoginForm> */}
-
+      <DeleteCounter></DeleteCounter>
+      <DeleteUseEffect></DeleteUseEffect>
+      
     </div>
   )
 }
