@@ -1,23 +1,22 @@
-import UserForm from "../features/users/components/UserForm"
-import DeleteCounter from "../shared/components/DeleteCounter"
-import DeleteUseEffect from "../shared/components/DeleteUseEffect"
-
-// import LoginForm from "../features/users/components/LoginForm"
+// import UserForm from "../features/users/components/UserForm"
+// import DeleteCounter from "../shared/components/DeleteCounter"
+// import DeleteUseEffect from "../shared/components/DeleteUseEffect"
+import CreateRoleForm from "../features/users/components/CreateRolForm"
+import LoginForm from "../features/users/components/LoginForm"
 
 // codigo Original
 
 export default function App(){
   return(
     <div className="grid grid-cols-1 gap-6 justify-items-center">
-      <h1 className="bg-brand text-brand-soft text-2xl font-Helvetica">
-        
-          Vital-Plus
-      </h1>
-
-      <UserForm></UserForm>
-      {/* <LoginForm></LoginForm> */}
-      <DeleteCounter></DeleteCounter>
-      <DeleteUseEffect></DeleteUseEffect>
+     <h1 className="bg-brand text-brand-soft text-2xl font-sans">
+     Vital-Plus
+     </h1>
+      <CreateRoleForm/>
+      {/* <UserForm/> */}
+      {/* <LoginForm/> */}
+      {/* <DeleteCounter/> */}
+      {/* <DeleteUseEffect/> */}
       
     </div>
   )

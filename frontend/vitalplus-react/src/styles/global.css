@@ -3,11 +3,19 @@
 @import "tailwindcss";
 
 @theme {
+  /* ===== COLORES (desde semantics.css) ===== */
   --color-brand: var(--semantic-brand);
   --color-brand-hover: var(--semantic-brand-hover);
   --color-brand-soft: var(--semantic-brand-soft);
 
   --color-border: var(--semantic-border);
+
+  --color-text-primary: var(--semantic-text-primary);
   --color-text-muted: var(--semantic-text-muted);
+  --color-text-inverse: var(--semantic-text-inverse);
+
   --color-background: var(--semantic-backgroond);
+
+  /* ===== TIPOGRAFÍA (desde tokens.css) ===== */
+  --font-sans: var(--main-font);
 }

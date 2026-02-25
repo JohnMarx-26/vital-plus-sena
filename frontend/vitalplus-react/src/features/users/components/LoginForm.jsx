@@ -15,8 +15,6 @@ export default function LoginForm() {
         placeholder="Ingrese su contraseña"
       />
 
-      
-
       {/* No es botón, solo texto con estilo */}
       <p className="text-xs text-gray-500 text-center">
         ¿Olvidaste tu contraseña?
