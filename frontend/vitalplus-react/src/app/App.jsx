@@ -1,10 +1,15 @@
-import CreateRoleForm from "../features/users/components/CreateRolForm";
+// import CreateRoleForm from "../features/users/components/CreateRolForm";
 // import LoginForm from "../features/users/components/LoginForm";
 // import EventosReact from "../features/users/components/EventosReact";
+
+import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 
 // import UserForm from "../features/users/components/UserForm";
 // import DeleteCounter from "../shared/components/DeleteCounter";
 // import DeleteUseEffect from "../shared/components/DeleteUseEffect";
+// import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
+
+
 
 export default function App() {
   return (
@@ -13,8 +18,11 @@ export default function App() {
         Vital-Plus
       </h1>
       {/* <EventosReact/> */}
-      <CreateRoleForm />
-      
+      {/* <CreateRoleForm /> */}
+      {/* <ForgotPasswordPage/> */}
+      <ResetPasswordPage/>
+
+
       {/* Otros componentes */}
 
       {/* <LoginForm /> */}
