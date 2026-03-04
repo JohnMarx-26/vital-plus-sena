@@ -1,10 +1,9 @@
 // import CreateRoleForm from "../features/users/components/CreateRolForm";
-// import LoginForm from "../features/users/components/LoginForm";
 // import EventosReact from "../features/users/components/EventosReact";
 // import UserForm from "../features/users/components/UserForm";
-// import LoginPage from "../features/users/pages/LoginPage";
 // import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
-import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
+import LoginPage from "../features/auth/pages/LoginPage";
+// import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 
 
 
@@ -18,8 +17,8 @@ export default function App() {
       {/* <EventosReact/> */}
       {/* <CreateRoleForm /> */}
       {/* <ForgotPasswordPage/> */}
-      {/* <LoginPage/> */}
-      <ResetPasswordPage/>
+      <LoginPage/>
+      {/* <ResetPasswordPage/> */}
 
 
       {/* Otros componentes */}
