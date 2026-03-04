@@ -1,7 +1,15 @@
 //Pagina publica
-
+import { useState, useEffect } from "react";
+import Modal from "@/shared/components/Modal";
+import imagenPrueba from "@/assets/images/imagen-prueba.png";
 import heroBg from "@/assets/images/imagen-hero.jpg"
+
 export default function HomePage(){
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        setOpen(true);
+    }, []);
     return (
         <section className="relative min-h-screen w-full flex items-center justify-center text-black" 
         style={
@@ -19,6 +27,14 @@ export default function HomePage(){
                     Aprende segun tus gustos, desde panaderia hasta control numerico.
                 </p>
             </div>
+                        <Modal
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                title="Bienvenido"
+                image={imagenPrueba}
+            >
+                <p>Tu farmacia de confianza, VitalPlus</p>
+            </Modal>
         </section>
     )
 

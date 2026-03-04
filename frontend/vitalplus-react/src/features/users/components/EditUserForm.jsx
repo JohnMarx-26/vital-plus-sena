@@ -3,20 +3,28 @@ import Input from "./../../../shared/components/Input";
 import Select from "../../../shared/components/Select";
 import Button from "./../../../shared/components/Button";
 import { getDocumentTypes } from "../services/selectService";
+import { getUserTypes } from "../services/selectService2"; 
 
-export default function UserForm() {
+export default function EditUserForm() {
   const [documentTypes, setDocumentTypes] = useState([]);
+  const [userTypes, setUserTypes] = useState([]); 
+  const [userStatus, setUserStatus] = useState("Activo");
 
   useEffect(() => {
     getDocumentTypes().then(setDocumentTypes);
+    getUserTypes().then(setUserTypes); 
   }, []);
+
+  const toggleStatus = () => {
+    setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
+  };
 
   return (
     <div className="w-full flex justify-center">
       <div className="w-full max-w-[1200px] px-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-semibold text-text-primary">
-            Crear cuenta
+            Editar usuario
           </h2>
 
           <Button
@@ -25,23 +33,31 @@ export default function UserForm() {
             className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md shadow-md transition duration-200"
             onClick={(e) => {
               e.preventDefault();
-              console.log("Guardar");
+              console.log("Actualizar usuario");
             }}
           >
-            Guardar
+            Actualizar
           </Button>
         </div>
 
         <div className="flex gap-16 items-start">
-
           <form className="flex-1">
-
             <div className="flex flex-wrap gap-x-12 gap-y-6">
+
+              {/* Tipo de documento */}
               <div className="w-[320px]">
                 <Select
                   label="Tipo de documento"
                   name="documentType"
                   options={documentTypes}
+                />
+              </div>
+
+              <div className="w-[320px]">
+                <Select
+                  label="Tipo de usuario"
+                  name="userType"
+                  options={userTypes}
                 />
               </div>
 
@@ -55,6 +71,12 @@ export default function UserForm() {
                 label="Número telefónico"
                 name="phone"
                 placeholder="Ingrese número telefónico"
+              />
+
+              <Input
+                label="Número adicional"
+                name="extraPhone"
+                placeholder="Ingrese número adicional"
               />
 
               <Input
@@ -83,18 +105,35 @@ export default function UserForm() {
               />
 
               <Input
-                label="Contraseña"
-                type="password"
-                name="password"
-                placeholder="Ingrese contraseña"
+                label="Fecha de creación"
+                type="date"
+                name="createdAt"
+                disabled
               />
 
               <Input
-                label="Confirmar contraseña"
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirmar contraseña"
+                label="Fecha de deshabilitación"
+                type="date"
+                name="disabledAt"
+                disabled
               />
+            </div>
+
+            <div className="mt-8">
+              <Button
+                type="button"
+                size="md"
+                className={`px-6 py-2 rounded-md shadow-md transition duration-200 text-white ${
+                  userStatus === "Activo"
+                    ? "bg-gray-500 hover:bg-gray-700"
+                    : "bg-blue-400 hover:bg-blue-600"
+                }`}
+                onClick={toggleStatus}
+              >
+                {userStatus === "Activo"
+                  ? "Usuario Inactivo"
+                  : "Usuario Activo"}
+              </Button>
             </div>
           </form>
 
@@ -107,7 +146,7 @@ export default function UserForm() {
               htmlFor="avatar"
               className="bg-brand text-brand-soft px-4 py-2 rounded-md cursor-pointer"
             >
-              Cargar imagen
+              Cambiar imagen
             </label>
 
             <input id="avatar" type="file" className="hidden" />
