@@ -3,16 +3,16 @@ import Input from "./../../../shared/components/Input";
 import Select from "../../../shared/components/Select";
 import Button from "./../../../shared/components/Button";
 import { getDocumentTypes } from "../services/selectService";
-import { getUserTypes } from "../services/selectService2"; 
+import { getUserTypes } from "../services/selectService2";
 
 export default function EditUserForm() {
   const [documentTypes, setDocumentTypes] = useState([]);
-  const [userTypes, setUserTypes] = useState([]); 
+  const [userTypes, setUserTypes] = useState([]);
   const [userStatus, setUserStatus] = useState("Activo");
 
   useEffect(() => {
     getDocumentTypes().then(setDocumentTypes);
-    getUserTypes().then(setUserTypes); 
+    getUserTypes().then(setUserTypes);
   }, []);
 
   const toggleStatus = () => {
@@ -20,17 +20,21 @@ export default function EditUserForm() {
   };
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-[1200px] px-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-text-primary">
+    <div className="w-full flex justify-center py-10">
+
+      <div className="w-full max-w-[1400px] px-8">
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+
+          <h2 className="text-xl font-semibold text-black">
             Editar usuario
           </h2>
 
           <Button
             variant="primary"
             size="md"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md shadow-md transition duration-200"
+            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md shadow-md"
             onClick={(e) => {
               e.preventDefault();
               console.log("Actualizar usuario");
@@ -38,14 +42,16 @@ export default function EditUserForm() {
           >
             Actualizar
           </Button>
+
         </div>
 
-        <div className="flex gap-16 items-start">
-          <form className="flex-1">
-            <div className="flex flex-wrap gap-x-12 gap-y-6">
+        <div className="flex gap-20 items-start">
 
-              {/* Tipo de documento */}
-              <div className="w-[320px]">
+          <form className="flex-1">
+
+            <div className="grid grid-cols-3 flex-wrap items-end gap-x-12 gap-y-6">
+
+              <div className="w-full">
                 <Select
                   label="Tipo de documento"
                   name="documentType"
@@ -53,7 +59,7 @@ export default function EditUserForm() {
                 />
               </div>
 
-              <div className="w-[320px]">
+              <div className="w-full">
                 <Select
                   label="Tipo de usuario"
                   name="userType"
@@ -117,16 +123,18 @@ export default function EditUserForm() {
                 name="disabledAt"
                 disabled
               />
+
             </div>
 
-            <div className="mt-8">
+            <div className="mt-10">
+
               <Button
                 type="button"
                 size="md"
-                className={`px-6 py-2 rounded-md shadow-md transition duration-200 text-white ${
+                className={`px-6 py-2 rounded-md shadow-md text-white ${
                   userStatus === "Activo"
                     ? "bg-gray-500 hover:bg-gray-700"
-                    : "bg-blue-400 hover:bg-blue-600"
+                    : "bg-blue-500 hover:bg-blue-600"
                 }`}
                 onClick={toggleStatus}
               >
@@ -134,24 +142,30 @@ export default function EditUserForm() {
                   ? "Usuario Inactivo"
                   : "Usuario Activo"}
               </Button>
+
             </div>
+
           </form>
 
           <div className="w-[320px] flex flex-col items-center gap-6">
-            <div className="w-44 h-44 rounded-full border border-border flex items-center justify-center">
-              <span className="text-text-muted">Foto</span>
+
+            <div className="w-44 h-44 rounded-full border border-gray-400 flex items-center justify-center">
+              <span className="text-gray-500">Foto</span>
             </div>
 
             <label
               htmlFor="avatar"
-              className="bg-brand text-brand-soft px-4 py-2 rounded-md cursor-pointer"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md cursor-pointer shadow"
             >
               Cambiar imagen
             </label>
 
             <input id="avatar" type="file" className="hidden" />
+
           </div>
+
         </div>
+
       </div>
     </div>
   );
