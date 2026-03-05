@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Input from "./../../../shared/components/Input";
-import Select from "../../../shared/components/Select";
-import Button from "./../../../shared/components/Button";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
+import Button from "@/shared/components/Button";
 import { getDocumentTypes } from "../services/selectService";
 import { getUserTypes } from "../services/selectService2";
 
@@ -20,21 +20,17 @@ export default function EditUserForm() {
   };
 
   return (
-    <div className="w-full flex justify-center py-10">
-
-      <div className="w-full max-w-[1400px] px-8">
-
+    <div className="w-full">
+      <div className="mx-auto max-w-7xl px-6 py-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-
-          <h2 className="text-xl font-semibold text-black">
+          <h2 className="text-xl font-semibold text-text-primary">
             Editar usuario
           </h2>
 
           <Button
             variant="primary"
             size="md"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md shadow-md"
             onClick={(e) => {
               e.preventDefault();
               console.log("Actualizar usuario");
@@ -42,30 +38,24 @@ export default function EditUserForm() {
           >
             Actualizar
           </Button>
-
         </div>
 
-        <div className="flex gap-20 items-start">
+        {/* Layout: form + foto */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 items-start">
+          {/* FORM */}
+          <form>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              <Select
+                label="Tipo de documento"
+                name="documentType"
+                options={documentTypes}
+              />
 
-          <form className="flex-1">
-
-            <div className="grid grid-cols-3 flex-wrap items-end gap-x-12 gap-y-6">
-
-              <div className="w-full">
-                <Select
-                  label="Tipo de documento"
-                  name="documentType"
-                  options={documentTypes}
-                />
-              </div>
-
-              <div className="w-full">
-                <Select
-                  label="Tipo de usuario"
-                  name="userType"
-                  options={userTypes}
-                />
-              </div>
+              <Select
+                label="Tipo de usuario"
+                name="userType"
+                options={userTypes}
+              />
 
               <Input
                 label="N° documento de identidad"
@@ -110,62 +100,39 @@ export default function EditUserForm() {
                 placeholder="Ingrese dirección"
               />
 
-              <Input
-                label="Fecha de creación"
-                type="date"
-                name="createdAt"
-                disabled
-              />
-
-              <Input
-                label="Fecha de deshabilitación"
-                type="date"
-                name="disabledAt"
-                disabled
-              />
-
+              <Input label="Fecha de creación" type="date" name="createdAt" disabled />
+              <Input label="Fecha de deshabilitación" type="date" name="disabledAt" disabled />
             </div>
 
-            <div className="mt-10">
-
+            <div className="mt-8">
               <Button
                 type="button"
+                variant={userStatus === "Activo" ? "secondary" : "primary"}
                 size="md"
-                className={`px-6 py-2 rounded-md shadow-md text-white ${
-                  userStatus === "Activo"
-                    ? "bg-gray-500 hover:bg-gray-700"
-                    : "bg-blue-500 hover:bg-blue-600"
-                }`}
                 onClick={toggleStatus}
               >
-                {userStatus === "Activo"
-                  ? "Usuario Inactivo"
-                  : "Usuario Activo"}
+                {userStatus === "Activo" ? "Usuario Inactivo" : "Usuario Activo"}
               </Button>
-
             </div>
-
           </form>
 
-          <div className="w-[320px] flex flex-col items-center gap-6">
-
-            <div className="w-44 h-44 rounded-full border border-gray-400 flex items-center justify-center">
-              <span className="text-gray-500">Foto</span>
+          {/* FOTO */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-44 h-44 rounded-full border border-border flex items-center justify-center">
+              <span className="text-text-muted">Foto</span>
             </div>
 
             <label
               htmlFor="avatar"
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md cursor-pointer shadow"
+              className="inline-flex items-center justify-center h-10 px-4 rounded-md cursor-pointer
+                         border border-border bg-brand text-text-inverse hover:bg-brand-hover transition-colors"
             >
               Cambiar imagen
             </label>
 
             <input id="avatar" type="file" className="hidden" />
-
           </div>
-
         </div>
-
       </div>
     </div>
   );

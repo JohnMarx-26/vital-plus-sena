@@ -37,7 +37,7 @@ export default function Button({
 
         relative
         inline-flex items-center justify-center
-        rounded-md
+        rounded-lg
         transition-colors
         cursor-pointer
         disabled:opacity-50 disabled:cursor-not-allowed

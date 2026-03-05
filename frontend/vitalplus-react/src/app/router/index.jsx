@@ -10,48 +10,38 @@ import LoginPage from "@/features/auth/pages/LoginPage";
 import ForgotPasswordPage from "@/features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "@/features/auth/pages/ResetPasswordPage";
 
+import CreateUserPage from "@/features/users/pages/CreateUserPage";
+import EditUserForm from "@/features/users/components/EditUserForm";
+
+import DashboardPage from "@/features/dashboard/pages/DashboardPage";
+
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      {
-        path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "cursos",
-        element: <h1 className="p-4">Cursos</h1>,
-      },
-      {
-        path: "contacto",
-        element: <h1 className="p-4">Contacto</h1>,
-      },
-      {
-        path: "videos",
-        element: <h1 className="p-4">Videos</h1>,
-      },
-      {
-        path: "perfil",
-        element: <ProfilePage />,
-      },
+      { path: "/", element: <HomePage /> },
+
+      // ✅ NUEVA: home logeado
+      { path: "/dashboard", element: <DashboardPage /> },
+
+      { path: "cursos", element: <h1 className="p-4">Cursos</h1> },
+      { path: "contacto", element: <h1 className="p-4">Contacto</h1> },
+      { path: "videos", element: <h1 className="p-4">Videos</h1> },
+
+      { path: "perfil", element: <ProfilePage /> },
+
+      // ✅ Usuarios (para que existan y puedas probar)
+      { path: "usuarios/crear", element: <CreateUserPage /> },
+      { path: "usuarios/editar", element: <EditUserForm /> },
     ],
   },
 
   {
     element: <AuthLayout />,
     children: [
-      {
-        path: "/login",
-        element: <LoginPage />,
-      },
-      {
-        path: "/forgot-password",
-        element: <ForgotPasswordPage />,
-      },
-      {
-        path: "/reset-password",
-        element: <ResetPasswordPage />,
-      },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/forgot-password", element: <ForgotPasswordPage /> },
+      { path: "/reset-password", element: <ResetPasswordPage /> },
     ],
   },
 ]);

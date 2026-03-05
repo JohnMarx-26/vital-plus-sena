@@ -16,7 +16,7 @@ export default function MainLayout() {
       {isHome ? (
         <Outlet />
       ) : (
-        <main className="mx-auto max-w-7xl px-4 py-6">
+        <main className="mx-auto max-w-7xl px-4 pt-2 pb-6">
           <Outlet />
         </main>
       )}
