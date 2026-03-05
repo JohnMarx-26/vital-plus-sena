@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "../../../shared/components/Input";
 import Button from "../../../shared/components/Button";
+import { UserForm } from "@/features";
 
 export default function ResetPasswordForm() {
   const params = new URLSearchParams(window.location.search);
@@ -80,6 +81,9 @@ export default function ResetPasswordForm() {
       <Button variant="primary" size="md" type="submit">
         Restablecer contraseña
       </Button>
+
+      {/* Solo para evidenciar el encapsulamiento */}
+      <UserForm />
 
     </form>
   );

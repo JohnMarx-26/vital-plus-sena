@@ -1,0 +1,37 @@
+[
+
+    {"titulo": "Usuarios",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Usuario"},
+            {"id": 2, "nombre": "Modificar Usuario"},
+            {"id": 3, "nombre": "Visualizar Usuario"},
+            {"id": 4, "nombre": "Listar Usuario"}
+        ]
+    },
+
+        {"titulo": "Ventas",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Venta"},
+            {"id": 2, "nombre": "Visualizar Venta"},
+            {"id": 3, "nombre": "Listar Ventas"},
+            {"id": 4, "nombre": "Listar Usuario"}
+        ]
+    },
+    {"titulo": "Medicamentos",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Medicamento"},
+            {"id": 2, "nombre": "Modificar Medicamentos"},
+            {"id": 3, "nombre": "Visualizar Medicamento"},
+            {"id": 4, "nombre": "Listar Medicamento"}
+        ]
+    },
+    {"titulo": "Proveedores",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Proveedores"},
+            {"id": 2, "nombre": "Modificar Proveedores"},
+            {"id": 3, "nombre": "Visualizar Proveedores"},
+            {"id": 4, "nombre": "Listar Proveedores"}
+        ]
+    }
+
+]
