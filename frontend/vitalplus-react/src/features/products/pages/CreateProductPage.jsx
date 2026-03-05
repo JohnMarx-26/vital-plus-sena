@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Input from "./../../../shared/components/Input";
+import Input from "../../../shared/components/Input";
 import Select from "../../../shared/components/Select";
-import Button from "./../../../shared/components/Button";
-import { getFormaTypes } from "../services/selectFormaFarmaceutica";
-import { getViaTypes } from "../services/selectViaAdministracion";
+import Button from "../../../shared/components/Button";
+import { getFormaTypes } from "../../users/services/selectFormaFarmaceutica";
+import { getViaTypes } from "../../users/services/selectViaAdministracion";
 
 export default function ProductForm() {
   const [FormaTypes, setFormaTypes] = useState([]);

@@ -1,9 +1,9 @@
 // import { RouterProvider } from "react-router-dom";
 // import router from "@/app/router/index";
 // import UserForm from "../features/users/pages/CreateUserPage";
-import EditUserForm from "../features/users/components/EditUserForm"
+// import EditUserForm from "../features/users/components/EditUserForm"
 // import UserForm from "../features/users/pages/CreateUserPage"
-import ProductForm from "../features/users/pages/CreateProductPage"
+import ProductForm from "@/features/products/pages/CreateProductPage"
 
 export default function App() {
   return (
