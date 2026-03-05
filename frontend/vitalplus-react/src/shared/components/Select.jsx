@@ -17,7 +17,7 @@ export default function Select({
             
 
             <select name={name} className="w-full h-12 rounded-md border border-border px4">
-                <option value="">Seleccione un tipo de documento
+                <option value="">Seleccione una opción
                 </option>
 
                 {options.map((option) =>(

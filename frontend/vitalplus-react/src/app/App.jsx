@@ -3,7 +3,8 @@
 // import UserForm from "../features/users/pages/CreateUserPage";
 // import EditUserForm from "../features/users/components/EditUserForm"
 // import UserForm from "../features/users/pages/CreateUserPage"
-import ProductForm from "@/features/products/pages/CreateProductPage"
+// import ProductForm from "@/features/products/pages/CreateProductPage"
+import EditProductForm from "../features/products/components/EditProductForm"
 
 export default function App() {
   return (
@@ -11,10 +12,12 @@ export default function App() {
       <h1 className="bg-brand text-brand-soft text-2xl font-bold">
         Vital-Plus
       </h1>
-    <ProductForm></ProductForm>
+    {/* <ProductForm></ProductForm> */}
     {/* <EditUserForm/> */}
-    {/* // <UserForm/>
-  // <RouterProvider router={router} /> */}
+    {/* <UserForm/> */}
+    <EditProductForm/>
+  
+    {/* <RouterProvider router={router} />  */}
     </div>
     )
   }

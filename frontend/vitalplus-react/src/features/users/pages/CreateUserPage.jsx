@@ -12,32 +12,51 @@ export default function UserForm() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-[1200px] px-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-text-primary">
+    <div className="w-full flex justify-center py-10">
+
+      <div className="w-full max-w-[1500px] px-10 py-8 relative overflow-hidden">
+
+        <div className="flex items-center justify-between mb-8 relative z-10">
+
+          <h2 className="text-xl font-semibold text-black">
             Crear cuenta
           </h2>
 
-          <Button
-            variant="primary"
-            size="md"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md shadow-md transition duration-200"
-            onClick={(e) => {
-              e.preventDefault();
-              console.log("Guardar");
-            }}
-          >
-            Guardar
-          </Button>
+          <div className="flex gap-4">
+
+            <Button
+              size="md"
+              className="px-6 py-2 rounded-md border border-gray-400 text-gray-700 hover:bg-gray-100"
+              onClick={(e) => {
+                e.preventDefault();
+                console.log("Retroceder");
+              }}
+            >
+              Retroceder
+            </Button>
+
+            <Button
+              variant="primary"
+              size="md"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md shadow-md"
+              onClick={(e) => {
+                e.preventDefault();
+                console.log("Guardar");
+              }}
+            >
+              Guardar
+            </Button>
+
+          </div>
         </div>
 
-        <div className="flex gap-16 items-start">
+        <div className="flex gap-24 items-start relative z-10">
 
           <form className="flex-1">
 
-            <div className="flex flex-wrap gap-x-12 gap-y-6">
-              <div className="w-[320px]">
+            <div className="grid grid-cols-3 flex-wrap items-end gap-x-12 gap-y-6">
+
+              <div className="w-full">
                 <Select
                   label="Tipo de documento"
                   name="documentType"
@@ -95,24 +114,30 @@ export default function UserForm() {
                 name="confirmPassword"
                 placeholder="Confirmar contraseña"
               />
+
             </div>
+
           </form>
 
           <div className="w-[320px] flex flex-col items-center gap-6">
-            <div className="w-44 h-44 rounded-full border border-border flex items-center justify-center">
-              <span className="text-text-muted">Foto</span>
+
+            <div className="w-56 h-56 rounded-full border border-gray-400 flex items-center justify-center">
+              <span className="text-gray-500">Foto</span>
             </div>
 
             <label
               htmlFor="avatar"
-              className="bg-brand text-brand-soft px-4 py-2 rounded-md cursor-pointer"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md cursor-pointer shadow"
             >
               Cargar imagen
             </label>
 
             <input id="avatar" type="file" className="hidden" />
+
           </div>
+
         </div>
+
       </div>
     </div>
   );
