@@ -9,6 +9,7 @@ export default function Button({
     primary: "border border-border bg-brand text-text-inverse hover:bg-brand-hover",
     secondary:
       "border border-border bg-background text-text-primary hover:bg-brand-soft",
+
   };
 
   const sizes = {
@@ -28,10 +29,12 @@ export default function Button({
   const variantClass = variants[variant] || variants.primary;
   const sizeClass = sizes[size] || sizes.md;
 
+
   return (
     <button
       type={type}
       className={`
+
         relative
         inline-flex items-center justify-center
         rounded-md
@@ -41,6 +44,7 @@ export default function Button({
         ${variantClass}
         ${sizeClass}
       `}
+
       {...props}
     >
       {children}

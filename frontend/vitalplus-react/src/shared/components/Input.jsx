@@ -29,7 +29,7 @@ export default function Input({ label, type = "text", id, name, ...props }) {
           items-center
         "
       >
-        {/* Area interactiva invisible(48px) */}
+        {/* Area interactiva invisible (48px) */}
         <div
           className="
             absolute
@@ -37,7 +37,7 @@ export default function Input({ label, type = "text", id, name, ...props }) {
           "
           onMouseDown={(e) => {
             e.preventDefault();
-            e.currentTarget.nextSibling.focus();
+            e.currentTarget.nextSibling?.focus();
           }}
         />
 
@@ -55,7 +55,6 @@ export default function Input({ label, type = "text", id, name, ...props }) {
             border-border
             px-4
             text-base
-
             focus:outline-none
             focus:ring-2
             focus:ring-brand
