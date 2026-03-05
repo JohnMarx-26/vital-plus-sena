@@ -12,7 +12,7 @@ export default function Input({ label, type = "text", id, name, ...props }) {
           className="
             block
             text-[8px]
-            mb-1
+            mb-[-6px]
             text-text-muted
           "
         >
