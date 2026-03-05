@@ -1,8 +1,11 @@
-import Input from "../../../shared/components/Input";
+import Input from "@/shared/components/Input";
+import Button from "@/shared/components/Button";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   return (
     <form className="flex flex-col items-center gap-4">
+
       <Input
         label="Correo electrónico"
         type="email"
@@ -19,35 +22,31 @@ export default function LoginForm() {
         autoComplete="current-password"
       />
 
-      <p className="text-xs text-gray-500 text-center">
+      <Link
+        to="/forgot-password"
+        className="text-xs text-text-muted hover:underline"
+      >
         ¿Olvidaste tu contraseña?
-      </p>
+      </Link>
 
-      <button
+      <Button
         type="submit"
-        className="
-          w-[320px]
-          bg-[var(--color-primary-700)]
-          text-[var(--color-basic-white)]
-          py-2
-          rounded-md
-        "
+        variant="primary"
+        size="md"
+        className="w-[320px]"
       >
         Iniciar sesión
-      </button>
+      </Button>
 
-      <button
+      <Button
         type="button"
-        className="
-          w-[320px]
-          bg-[var(--color-primary-700)]
-          text-[var(--color-basic-white)]
-          py-2
-          rounded-md
-        "
+        variant="secondary"
+        size="md"
+        className="w-[320px]"
       >
         Crear Cuenta
-      </button>
+      </Button>
+
     </form>
   );
 }

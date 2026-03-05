@@ -1,5 +1,5 @@
-export async function getUserTypes () {
-    const response = await fetch ("/src/data/selects/documentTypesForRegister.json");
+import userTypes from "@/data/selects/documentTypesForRegister.json";
 
-    return response.json();
+export async function getUserTypes() {
+  return userTypes;
 }

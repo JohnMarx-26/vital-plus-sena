@@ -39,7 +39,7 @@ export default function Modal({
           className="
             relative
             w-[400px]
-            bg-white
+            bg-background
             rounded-xl
             shadow-2xl
             overflow-hidden
@@ -58,8 +58,8 @@ export default function Modal({
             onClick={onClose}
             className="
               absolute top-3 right-3
-              text-black
-              hover:text-white
+              text-text-primary
+              hover:text-text-inverse
               transition
             "
           >

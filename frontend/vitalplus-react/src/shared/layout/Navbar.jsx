@@ -2,91 +2,98 @@ import { Search, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Navbar = ({variant = "transparent"}) => {
+const Navbar = ({ variant = "solid" }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className= {`w-full border-b transition-colors duration-300"
-      ${ variant === "transparent" 
-      ? "bg-transparent border-transparent absolute top-0 left-0 z-30"
-      : "bg-background border-border"
-
-    }`}>
-
+    <nav
+      className={`w-full border-b transition-colors duration-300 ${
+        variant === "transparent"
+          ? "bg-transparent border-transparent absolute top-0 left-0 z-30"
+          : "bg-background border-border"
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo de marca */}
+
+          {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="text-xl font-bold">
               Rico Programar
             </Link>
           </div>
 
-          {/* Links de navegación */}
+          {/* Links */}
           <ul className="hidden md:flex items-center gap-6">
             <li>
-              <Link to="/" className="hover:text-primary transition">
+              <Link to="/" className="hover:text-brand transition">
                 Inicio
               </Link>
             </li>
             <li>
-              <Link to="/cursos" className="hover:text-primary transition">
+              <Link to="/cursos" className="hover:text-brand transition">
                 Cursos
               </Link>
             </li>
             <li>
-              <Link to="/contacto" className="hover:text-primary transition">
+              <Link to="/contacto" className="hover:text-brand transition">
                 Contacto
               </Link>
             </li>
             <li>
-              <Link to="/videos" className="hover:text-primary transition">
-                Videos
+              <Link to="/videos" className="hover:text-brand transition">
+                Video
               </Link>
             </li>
           </ul>
 
-          {/* Sección derecha: búsqueda + usuario */}
+          {/* Right section */}
           <div className="flex items-center gap-4">
-            {/* Buscador */}
+
+            {/* Search */}
             <div className="relative hidden sm:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-text-muted" />
 
               <input
                 type="text"
                 placeholder="Buscar..."
-                className="pl-9 pr-4
-                 py-2.5 border rounded-lg text-body focus:outline-none focus:ring-2 focus:ring-primary"
+                className="pl-9 pr-4 py-2 border border-border rounded-lg text-body focus:outline-none focus:ring-2 focus:ring-brand"
               />
             </div>
 
-            {/* Icono de usuario */}
-            {/* <button className="flex items-center justify-center size-10 rounded-full border hover:bg-gray-100 transition">
-              <User className="size-5" />
-            </button> */}
-
-            {/* Usuario */}
+            {/* User menu */}
             <div className="relative">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-center size-10 rounded-full border hover:bg-surface transition"
+                className="flex items-center justify-center size-10 rounded-full border border-border hover:bg-surface transition"
               >
                 <User className="size-5" />
               </button>
 
               {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-lg border bg-background shadow-lg">
+                <div className="absolute right-0 mt-2 w-48 rounded-lg border border-border bg-background shadow-lg">
                   <ul className="py-2 text-sm">
+
                     <li>
                       <Link
-                        to="/login"
-                          className="block px-4 py-2 grid-cols-1 gap-6 bg-white/50 dark:bg-neutral-800/20 backdrop-blur-sm shadow-xl ring-1 rounded-xs"
-                        // className="block px-4 py-2 hover:bg-surface transition"
+                        to="/perfil"
+                        className="block px-4 py-2 hover:bg-surface transition"
                         onClick={() => setIsOpen(false)}
                       >
                         Perfil
                       </Link>
                     </li>
+
+                    <li>
+                      <Link
+                        to="/login"
+                        className="block px-4 py-2 hover:bg-surface transition"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Iniciar sesión
+                      </Link>
+                    </li>
+
                     <li>
                       <button
                         className="w-full text-left px-4 py-2 hover:bg-surface transition"
@@ -98,11 +105,14 @@ const Navbar = ({variant = "transparent"}) => {
                         Cerrar sesión
                       </button>
                     </li>
+
                   </ul>
                 </div>
               )}
             </div>
+
           </div>
+
         </div>
       </div>
     </nav>
@@ -110,7 +120,3 @@ const Navbar = ({variant = "transparent"}) => {
 };
 
 export default Navbar;
-
-// Para dirigirme o navegar a una ruta uso Link
-// ====
-// Para  ejecutar logica se utiliza button

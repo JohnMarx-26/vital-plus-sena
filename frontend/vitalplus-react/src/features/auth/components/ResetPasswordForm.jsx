@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Input from "../../../shared/components/Input";
-import Button from "../../../shared/components/Button";
-import { UserForm } from "@/features";
+import Input from "@/shared/components/Input";
+import Button from "@/shared/components/Button";
 
 export default function ResetPasswordForm() {
   const params = new URLSearchParams(window.location.search);
@@ -43,22 +42,17 @@ export default function ResetPasswordForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-text-primary">
           Nueva Contraseña
         </h3>
-        <p className="text-sm text-text-secondary mt-2">
+        <p className="text-sm text-text-muted mt-2">
           Ingresa y confirma tu nueva contraseña.
         </p>
-        <div className="mt-4 h-[1px] bg-[color:var(--color-basic-200)] w-full" />
+        <div className="mt-4 h-px bg-border w-full" />
       </div>
 
-      {error && (
-        <p className="text-red-500 text-sm text-center">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
       <Input
         label="Nueva contraseña"
@@ -81,10 +75,6 @@ export default function ResetPasswordForm() {
       <Button variant="primary" size="md" type="submit">
         Restablecer contraseña
       </Button>
-
-      {/* Solo para evidenciar el encapsulamiento */}
-      <UserForm />
-
     </form>
   );
 }
