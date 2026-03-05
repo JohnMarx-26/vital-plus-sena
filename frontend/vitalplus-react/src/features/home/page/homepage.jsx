@@ -1,45 +1,65 @@
-// Pagina publica
+//Pagina publica
 import { useState, useEffect } from "react";
 import Modal from "@/shared/components/Modal";
-import imagenPrueba from "@/assets/images/imagen-prueba.png";
-import heroBg from "@/assets/images/imagen-hero.jpg";
+import MenuBar from "@/features/home/components/MenuBar";
+import Carousels from "@/features/home/components/Carousel";
+// import img1 from "@/assets/imagen-1.jpg";
+import img1 from "@/assets/imagen-2.png";
+import img2 from "@/assets/imagen-3.png";
 
-export default function HomePage() {
-  const [open, setOpen] = useState(false);
+// import Navbar from "@/shared/layout/Navbar";
 
-  useEffect(() => {
-    setOpen(true);
-  }, []);
+export default function HomePage(){
+    const [open, setOpen] = useState(false);
 
-  return (
-    <section
-      className="relative min-h-screen w-full flex items-center justify-center text-text-primary"
-      style={{
-        backgroundImage: `url(${heroBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Overlay/filtro */}
-      <div className="absolute inset-0 bg-white/60" />
+    useEffect(() => {
+        setOpen(true);
+    },[]);
+// 
+    //constantes para el slide importando las imagenes
+    const slides = [img1,img2]
 
-      {/* Contenido */}
-      <div className="relative z-10 text-center">
-        <h1 className="text-h1 font-bold">Bienvenido al Sena</h1>
-        <p className="text-body">
-          Aprende segun tus gustos, desde panaderia hasta control numerico.
-        </p>
-      </div>
+    return (
+        <section>
+            
+            {/* carousel  */}
+            <div className=" flex w-full  justify-evenly p-1">
+                {/* carousel 1 */}
+                <div className="w-1/2 h-[350px]">
+                    <Carousels autoSlide={true} autoSlideInterval={5000}>
+                        {slides.map((s) => (
+                            <img src={s} className="w-full h-full object-cover"/>
+                        ))}
+                    </Carousels>
+                </div>
+                {/* carousel 2 */}
+                <div className="w-1/2 h-[350px]">
+                    <Carousels autoSlide={true} autoSlideInterval={5000}>
+                        {slides.map((s) => (
+                            <img src={s} className="w-full h-full object-cover"/>
+                        ))}
+                    </Carousels>
+                </div>
+            </div>
+            {/* Espaciado de la Pagina */}
+            <div className="h-5 min-w-full"></div>
+            
+            {/* menu de navegacion del home */}
+            {/* <div className="relative z-10 text-center ">*/}
+            <div>
+                <MenuBar />
+            </div>
 
-      {/* Modal */}
-      <Modal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        title="Bienvenido"
-        image={imagenPrueba}
-      >
-        <p>Tu farmacia de confianza, VitalPlus</p>
-      </Modal>
-    </section>
-  );
+                <Modal
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                title="Bienvenido"
+                // image={imagenPrueba}
+            >
+                <p>Tu farmacia de confianza, VitalPlus</p>
+                </Modal>
+        </section>
+    )
+
+
 }
