@@ -6,13 +6,17 @@ export default function LoginForm() {
       <Input
         label="Correo electrónico"
         type="email"
+        name="email"
         placeholder="Ingrese su correo"
+        autoComplete="email"
       />
 
       <Input
         label="Contraseña"
         type="password"
+        name="password"
         placeholder="Ingrese su contraseña"
+        autoComplete="current-password"
       />
 
       <p className="text-xs text-gray-500 text-center">
