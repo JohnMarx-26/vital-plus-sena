@@ -8,23 +8,26 @@ export default function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+   
     localStorage.setItem("token", "demo-token");
     localStorage.setItem("userName", "John");
     window.dispatchEvent(new Event("auth-changed"));
 
+   
     navigate("/dashboard");
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-text-primary">
           Iniciar sesión
         </h3>
+
         <p className="text-sm text-text-muted mt-2">
           Ingresa tus credenciales para continuar
         </p>
+
         <div className="mt-4 h-px bg-border w-full" />
       </div>
 
@@ -32,14 +35,14 @@ export default function LoginForm() {
         label="Correo electrónico"
         type="email"
         name="email"
-        placeholder="Ingrese su correo"
+        placeholder="Ingresa tu correo"
       />
 
       <Input
         label="Contraseña"
         type="password"
         name="password"
-        placeholder="Ingrese su contraseña"
+        placeholder="Ingresa tu contraseña"
       />
 
       <Link
@@ -49,37 +52,21 @@ export default function LoginForm() {
         ¿Olvidaste tu contraseña?
       </Link>
 
-      <Button
-        type="submit"
-        className="
-          w-full
-          h-12
-          rounded-xl
-          bg-[color:var(--color-primary-700)]
-          hover:bg-[color:var(--color-primary-600)]
-          text-white
-          font-medium
-        "
-      >
+      {/* ✅ Botón azul dentro de la card */}
+      <Button variant="primary" size="md" type="submit" className="w-full">
         Iniciar sesión
       </Button>
 
+      {/* ✅ Ruta original crear cuenta */}
       <Button
+        variant="primary"
+        size="md"
         type="button"
-        className="
-          w-full
-          h-12
-          rounded-xl
-          bg-[color:var(--color-primary-700)]
-          hover:bg-[color:var(--color-primary-600)]
-          text-white
-          font-medium
-        "
+        className="w-full"
         onClick={() => navigate("/usuarios/crear")}
       >
-        Crear Cuenta
+        Crear cuenta
       </Button>
-
     </form>
   );
 }

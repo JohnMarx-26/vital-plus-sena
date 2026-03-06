@@ -1,4 +1,5 @@
 // ===============================
+export {default as Card} from ""
 // AUTH (pages)
 // ===============================
 export { default as LoginPage } from "./auth/pages/LoginPage";
