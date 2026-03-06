@@ -1,43 +1,34 @@
 export default function Select({
   label,
   name,
-  id,
   options = [],
-  placeholder = "Seleccione una opción",
-  ...props
 }) {
-  // Si no viene id, usamos el name como id (mejor para formularios)
-  const selectId = id || name;
-
   return (
-    <div className="w-[320px]">
+    <div className="w-full">
+
       {/* Label */}
       {label && (
-        <label
-          htmlFor={selectId}
-          className="block text-[8px] mb-1 text-text-muted"
-        >
+        <label className="block text-caption mb-1 text-text-muted">
           {label}
         </label>
       )}
 
-      {/* Select visual */}
       <select
-        id={selectId}
         name={name}
-        className="w-full h-8 rounded-md border border-border px-4"
-        {...props}
+        className="w-full h-8 rounded-md border border-border px-4 bg-background text-text-primary focus:outline-none focus:ring-2 focus:ring-brand"
       >
-        {/* Opción por defecto */}
-        <option value="">{placeholder}</option>
+        <option value="">
+          Seleccione un tipo de documento
+        </option>
 
-        {/* Opciones dinámicas */}
-        {options.map((opt) => (
-          <option key={opt.id} value={opt.id}>
-            {opt.label}
+        {options.map((option) => (
+          <option key={option.id} value={option.id}>
+            {option.label}
           </option>
         ))}
+
       </select>
+
     </div>
   );
 }

@@ -1,23 +1,19 @@
 import { Outlet } from "react-router-dom";
-import UserForm from "@/features/users/components/UserForm";
+import authBg from "@/assets/images/prueba.jpg";
 
 export default function AuthLayout() {
-
-    return(
-<div
-    className="relative min-h-screen w-full flex items-center justify-center text-black"
-    // style={{
-    //     backgroundSize: "cover",
-    //     backgroundPosition: "center",
-    // }}
+  return (
+    <div
+      className="relative min-h-screen w-full flex items-center justify-center text-black"
+      style={{
+        backgroundImage: `url(${authBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-    {/* <div className="absolute inset-0 -z-10  bg-white/60" /> */}
-
-    {/* Contenido externo que se inyecta  */}
-    <main className="mx-auto">
+      <main className="mx-auto max-w-7xl px-4 py-6 w-full">
         <Outlet />
-        <UserForm/>
-    </main>
-</div>
-    )
+      </main>
+    </div>
+  );
 }

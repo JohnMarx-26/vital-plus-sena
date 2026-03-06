@@ -1,0 +1,22 @@
+[
+    {
+        "id": "ESP",
+        "label": "Especial"
+    },
+    {
+        "id": "LIQ",
+        "label": "Liquidas"
+    },
+    {
+        "id": "GAS",
+        "label": "Gaseosas"
+    },
+    {
+        "id": "SEMS",
+        "label": "Semisolidas"
+    },
+    {
+        "id": "SOLI",
+        "label": "Solidas"
+    }
+]
