@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import img1 from "@/assets/img-acne.png";
-import img2 from "@/assets/img-aseo.png";
-import img3 from "@/assets/img-fash.png";
-import img4 from "@/assets/img-mama.png";
-import img5 from "@/assets/img-med.png";
-import img6 from "@/assets/img-ofertas.png";
+import img1 from "@/assets/images/img-acne.png";
+import img2 from "@/assets/images/img-aseo.png";
+import img3 from "@/assets/images/img-fash.png";
+import img4 from "@/assets/images/img-mama.png";
+import img5 from "@/assets/images/img-med.png";
+import img6 from "@/assets/images/img-ofertas.png";
 
 export default function MenuBar(){
     return(

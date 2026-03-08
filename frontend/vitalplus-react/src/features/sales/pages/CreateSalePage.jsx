@@ -2,7 +2,7 @@
 import Header from "@/shared/components/Header";
 import VentasForm from "@/features/Sales/components/SalesForm";
 
-export default function CrearProveedor() {
+export default function CreateSale() {
     return (
         <div className="min-h-screen flex flex-col">
         {/* Header menu */}

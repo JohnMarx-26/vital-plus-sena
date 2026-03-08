@@ -7,12 +7,14 @@
     --semantic-brand: var(--color-primary-700);
     --semantic-brand-hover: var(--color-primary-800); /*generalmente es de un tono mas alto que el brand */
     --semantic-brand-soft: var(--color-primary-400);
+    --semantic-brand-light: var(--color-primary-200);
     
     /* ===== BackGround ===== */
     
     --semantic-background: var(--color-white); /*Fondo para toda la aplicacion*/
     --semantic-surface: var(--color-gray-600); /*Fondo para modales, cards, containers*/
     --semantic-surface-muted: var(--color-gray-200); /*Zonas secundarias, con menos importancia*/
+    --semantic-background-sidebar: var(--color-primary-100); /*color de fondo para el Sidebar de Main*/
     
     /*  ====== Text ======*/
     --semantic-text-primary: var(--color-gray-900); /*Color principal de lectura, titulos, texto base del documento*/

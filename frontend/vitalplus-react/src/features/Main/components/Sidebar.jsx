@@ -1,26 +1,31 @@
 import { useEffect, useState } from "react";
 import SelectMenu from "@/shared/components/MenuSelectUser";
 import { getMenuOptions } from "@/services/selectOptionService.js";
+import { Outlet } from "react-router-dom";
+
 
 export default function Sidebar(){
 
-    const[menuOptions, setMenuOptions] = useState();
-    useEffect(()=> {
-        getMenuOptions().then((data)=> setMenuOptions(data));
-    }, []);
-        return(
-            <div className="sidebar">
+    const[menuOptions, setMenuOptions] = useState([]);
 
-                
+    useEffect(()=> {
+        getMenuOptions().then(setMenuOptions).catch(console.error);
+    }, []);
+
+
+        return(
+            <div className="sidebar">          
                 <div className="w-[240px] space-y-4">
-                    {menuOptions && menuOptions.map((menu, titulo) => (
+                    {menuOptions && menuOptions.map((menu, index) => (
                     <SelectMenu
-                    key={titulo}
+                    key={index}
                     titulo={menu.titulo}
                     opciones={menu.opciones}
                     />
                     ))}
+                    
                 </div>
             </div>
         )
 }; 
+

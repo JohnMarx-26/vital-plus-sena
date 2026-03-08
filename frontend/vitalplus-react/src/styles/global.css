@@ -10,6 +10,7 @@
   --color-brand-soft: var(--semantic-brand-soft);
   --color-brand-light: var(--semantic-brand-light);
   
+  
 
   --color-border: var(--semantic-border);
 
@@ -19,6 +20,7 @@
   --color-text-secundary: var(--semantic-text-secundary);
 
   --color-background: var(--semantic-background);
+  --color-background-sidebar: var(--semantic-background-sidebar)
 
   /* ===== TIPOGRAFÍA ===== */
   --font-sans: var(--main-font);

@@ -54,7 +54,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-         
           <ul className="hidden md:flex items-center gap-6">
             <li>
               <Link to="/" className="hover:opacity-90 transition">
@@ -80,7 +79,7 @@ const Navbar = () => {
 
           
           <div className="flex items-center gap-4">
-           
+
             <div className="relative hidden sm:block">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-white/80" />
               <input

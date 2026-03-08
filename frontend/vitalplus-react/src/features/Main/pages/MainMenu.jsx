@@ -1,13 +1,14 @@
 import Sidebar from "@/features/Main/components/Sidebar.jsx"
 import logo from "@/assets/images/logo-sfondo.png"
-import fondo from "@/assets/images/wallpaper-main.jpg" 
+import fondo from "@/assets/images/fondo-main.jpg" 
+import { Outlet } from "react-router-dom";
 
 export default function Menu(){
 
     return (
     <div className="flex h-screen w-screen">
       {/* Sidebar */}
-    <div className="w-60 bg-blue-300 flex flex-col p-4 justify-center">
+    <div className="w-60 bg-background-sidebar flex flex-col p-4 justify-center">
         {/* logo */}
         <div className="w-60 h-20  mx-auto "> 
             <img src={logo} alt="Vital Plus" className= "w-full h-full object-contain"/>
@@ -15,10 +16,13 @@ export default function Menu(){
         <div className=" h-10"></div>
         <Sidebar />
     </div>
-
+    {/* <Outlet /> */}
+        <main>
+            <Outlet />
+        </main>
      {/* fondo de pantalla */}
     <div className="flex-1 bg-cover ">
-        <img src={fondo} alt="Vital Plus" className= "w-full h-full object-contain"/>
+        <img src={fondo} alt="Vital Plus"/>
     </div>
     </div>
     );

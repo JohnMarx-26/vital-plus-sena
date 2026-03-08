@@ -14,6 +14,7 @@ export default function LoginForm() {
     window.dispatchEvent(new Event("auth-changed"));
 
     navigate("/dashboard");
+
   };
 
   return (
@@ -43,6 +44,7 @@ export default function LoginForm() {
         type="password"
         name="password"
         placeholder="Ingrese su contraseña"
+        id="password"
       />
 
       <Link
@@ -57,7 +59,7 @@ export default function LoginForm() {
         variant="primary"
         size="md"
         type="submit"
-        className="w-full"
+        className="w-full "
       >
         Iniciar sesión
       </Button>
