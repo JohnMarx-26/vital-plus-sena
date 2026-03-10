@@ -6,7 +6,6 @@ import retroceder from "@/assets/svg/icono-retroceder.svg"
 import { SquarePen } from "lucide-react"
 import FormLayout from "@/shared/layout/FormLayout";
 
-
     /*se crea una arrow function para los botones del formulario
     a esta funcion se le realiza un callback cuando se ejecuta
     el FormLayout, dentro de esta funcion esta la logica de los botones
@@ -16,7 +15,7 @@ import FormLayout from "@/shared/layout/FormLayout";
         return ( 
             <div className="flex w-full justify-between px-10">
 
-                <div className="justify-left ">
+                <div>
                     {/* Boton Retroceder */}
                     <Button
                         variant="secondary"
@@ -28,7 +27,7 @@ import FormLayout from "@/shared/layout/FormLayout";
                         Retroceder
                     </Button>
                 </div>
-                <div className="flex w-60 justify-right  px-1 gap-3">
+                <div className="flex w-60 px-1 gap-3">
                     {/* Boton modificar */}
                     <Button
                         variant="secondary"

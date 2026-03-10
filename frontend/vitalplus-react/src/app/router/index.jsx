@@ -18,9 +18,9 @@ import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
 //MENU DE ADMINISTRACIÓN  
 import { MainMenu } from "@/features/Main";
-import CreateSalePage from "@/features/sales/pages/CreateSalePage";
-import CreateProductPage from "@/features/products/pages/CreateProductPage";
-import CreateSupplierPage from "@/features/suppliers/pages/CreateSupplierPage";
+import { CreateSalePage } from "@/features/sales";
+import { CreateProductPage } from "@/features/products";
+import { CreateSupplierPage } from "@/features/suppliers";
 
 
 const router = createBrowserRouter([
