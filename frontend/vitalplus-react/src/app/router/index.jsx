@@ -18,7 +18,6 @@ import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
 //MENU DE ADMINISTRACIÓN  
 import { MainMenu } from "@/features/Main";
-// import Menu from "@/features/Main/pages/MainMenu"
 import CreateSalePage from "@/features/sales/pages/CreateSalePage";
 import CreateProductPage from "@/features/products/pages/CreateProductPage";
 import CreateSupplierPage from "@/features/suppliers/pages/CreateSupplierPage";

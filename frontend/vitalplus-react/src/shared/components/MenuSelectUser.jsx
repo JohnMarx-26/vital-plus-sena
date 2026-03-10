@@ -26,7 +26,7 @@ export default function SelectMenu({
                     border
                     border-brand
                     bg-brand
-                    text
+                    text-text-dropdowns
                     hover:bg-brand-hover
                 "
             >

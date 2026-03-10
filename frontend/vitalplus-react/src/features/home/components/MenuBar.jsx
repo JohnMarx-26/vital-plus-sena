@@ -10,7 +10,7 @@ export default function MenuBar(){
     return(
         <div className=" min-w-full h-40 bg-brand">
 
-            <ul className="hidden md:flex items-center gap-6 justify-center">
+            <ul className="hidden md:flex items-center gap-20 justify-center">
                 <li>
                     <Link to="/ofertas" className="hover:text-primary transition flex flex-col items-center gap-2  py-4">
                         <img src={img6} alt="Ofertas" className="w-20 h-20" />

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import SelectMenu from "@/shared/components/MenuSelectUser";
 import { getMenuOptions } from "@/services/selectOptionService.js";
-import { Outlet } from "react-router-dom";
 
 
 export default function Sidebar(){

@@ -125,7 +125,7 @@ export default function EditUserForm() {
             <label
               htmlFor="avatar"
               className="inline-flex items-center justify-center h-10 px-4 rounded-md cursor-pointer
-                         border border-border bg-brand text-text-inverse hover:bg-brand-hover transition-colors"
+                  border border-border bg-brand text-text-inverse hover:bg-brand-hover transition-colors"
             >
               Cambiar imagen
             </label>

@@ -38,8 +38,8 @@ const Navbar = () => {
       className="
         w-full
         border-b
-        border-[color:var(--color-primary-800)]
-        bg-[color:var(--color-primary-700)]
+        border-border-brand]
+        bg-brand
         text-[color:var(--color-basic-white)]
         relative
         z-50
