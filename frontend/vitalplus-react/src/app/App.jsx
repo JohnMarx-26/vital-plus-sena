@@ -4,7 +4,8 @@
 // import EditUserForm from "../features/users/components/EditUserForm"
 // import UserForm from "../features/users/pages/CreateUserPage"
 // import ProductForm from "@/features/products/pages/CreateProductPage"
-import EditProductForm from "../features/products/components/EditProductForm"
+// import EditProductForm from "../features/products/components/EditProductForm"
+import ProfileUserPage from "@/features/users/pages/ProfileUserPage"
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
     {/* <ProductForm></ProductForm> */}
     {/* <EditUserForm/> */}
     {/* <UserForm/> */}
-    <EditProductForm/>
+    {/* <EditProductForm/> */}
+    <ProfileUserPage/>
   
     {/* <RouterProvider router={router} />  */}
     </div>
