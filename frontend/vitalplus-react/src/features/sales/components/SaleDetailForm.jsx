@@ -1,7 +1,6 @@
-import { useState } from "react";
 import Button from "@/shared/components/Button";
-import { SquarePen } from "lucide-react"
-import usuario from "@/assets/svg/icono-usu-dark.svg"
+import { FileDown} from "lucide-react"
+import usuario from "@/assets/svg/icono-ventas.svg"
 
 
 
@@ -13,77 +12,65 @@ export default function SaleDetailForm () {
         facturaDeVenta: 415003,
         fechaEmision: "11/03/2026",
         documentNumber: "1090074404",
-        userType: "Proovedor",
+        userType: "cliente",
         email: "Bayer26@gmail.com",
         phone: "3152405454",
-        address: "Antioquia Medellín",
-        createdAt: "2025/12/15",
-        password: "*************",
+        userSeller: "Farmaceuta002",
+        subTotal: 35500.00,
+        IVA: "19%",
+        Descuentos: "10%",
+        Total: 38020.05,
+        TipoPago: "Tarjeta DEBITO-MAESTRO",
     };
 
-    //  se usa un estado para que dependiendo el click muestre un estado u otro en el boton
-    const [userStatus, setUserStatus] = useState("Activo");
-    const toggleStatus = () => {
-        setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
-    };
 
     // array de objetos para renderizar dinamicamente con map lo que seria (label y value)
     const userDetails = [
         { label: "Factura de Venta N° ", value: userData.facturaDeVenta },
-        { label: "Número de documento", value: userData.fechaEmision },
-        { label: "Tipo de usuario", value: userData.userType },
+        { label: "Fecha de emision ", value: userData.fechaEmision },
+        { label: "N° de documento ", value: userData.documentNumber },
+        { label: "Tipo de usuario ", value: userData.userType },
         { label: "Correo electrónico", value: userData.email },
         { label: "Número celular", value: userData.phone },
-        { label: "Dirección", value: userData.address },
-        { label: "Fecha creación cuenta", value: userData.createdAt },
-        { label: "Contraseña", value: userData.password },
+        { label: "Vendedor ", value: userData.userSeller },
+        { label: "Subtotal ", value: userData.subTotal },
+        { label: "IVA ", value: userData.IVA },
+        { label: "Descuento", value: userData.Descuentos },
+        { label: "Total", value: userData.Total },
+        { label: "Medio de Pago ", value: userData.TipoPago },
     ];
 
     return (
             // SECCION PADRE 
-        <section className="w-full px-6 py-8">
+        <section className="w-full px-6 py-4">
                 
             <div className="flex w-full max-w-7xl gap-12 justify-center">
 
                     {/* contenedor 1 - Imagen y botones */}
-                <div className="rounded-2xl border border-background-muted bg-background p-6 shadow-sm">
-                    <div className="mb-6 flex justify-center">
-                    <h1 className="border-b-2 border-text-secundary pb-1 text-font-md font-medium text-slate-900">
-                        Opciones de Proveedores
+                <div className="rounded-2xl border border-background-muted bg-background p-6 shadow-sm  ">
+                    <div className="mb-6 flex items-center justify-center">
+                    <h1 className="border-b-2 border-text-secundary pb-1 text-font-md font-medium text-slate-900 mt-20">
+                        Detalles de Venta
                     </h1>
                     </div>
 
                     {/* Imagen Proovedor */}
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center ">
                     <div className="flex h-32 w-32 items-center justify-center">
-                        <img src={usuario} alt="Logo Inicio Sesion" className="h-32 border-border z-10"/>
+                        <img src={usuario} alt="Logo Inicio Sesion" className="h-40 border-border z-10"/>
                     </div>
 
                     {/* Nombre del Provedor */}
                     <div className="mt-6 w-full max-w-xs border-b border-background-muted pb-3 text-center">
                         <p className="text-sm font-medium text-text-secundary">
-                        {userData.fullName}
+                        {userData.facturaDeVenta}
                         </p>
                     </div>
 
                     <div className="mt-5 flex w-full flex-col items-center gap-4">
                         <div className="flex flex-wrap items-center justify-center gap-3">
 
-                            {/* Boton Estado */}
-                        <Button
-                            type="button"
-                            size="md"
-                            className={`px-6 py-2 rounded-md shadow-md text-background ${
-                            userStatus === "Activo"
-                                ? "bg-background-md hover:bg-border"
-                                : "bg-brand hover:bg-brand-hover"
-                            }`}
-                            onClick={toggleStatus}
-                        >
-                            {userStatus === "Activo"
-                            ? "Usuario Inactivo"
-                            : "Usuario Activo"}
-                        </Button>
+                        
 
                         {/* Boton modificar */}
                     <Button
@@ -92,8 +79,8 @@ export default function SaleDetailForm () {
                         type="button"
                         // onClick={() => console.log("Oprimió cancelar")}
                     >
-                        <SquarePen className="w-5 h-5"/>
-                        Modificar
+                        <FileDown className="w-5 h-5"/>
+                        Descargar factura
                     </Button>
                         </div>
 
