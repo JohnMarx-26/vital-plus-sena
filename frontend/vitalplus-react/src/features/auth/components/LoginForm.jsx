@@ -59,7 +59,8 @@ export default function LoginForm() {
         size="md"
         type="button"
         className="w-full"
-        onClick={() => navigate("/usuarios/crear")}
+        onClick={() => navigate("/main")}
+        // "/usuarios/crear"
       >
         Crear cuenta
       </Button>

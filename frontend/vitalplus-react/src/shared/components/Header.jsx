@@ -1,6 +1,6 @@
 import logo from "@/assets/svg/logo-Header.svg";
 import campana from "@/assets/svg/campana.svg";
-import usuario from "@/assets/svg/icono-usuario.svg"
+import usuario from "@/assets/svg/icono-usu-light.svg"
 
 export default function Header(){
 
@@ -12,8 +12,9 @@ export default function Header(){
                 {/* ubicacion para el logo */}
                 <img src={logo} alt="Logo VitalPlus" className="h-10 border-border"/>
 
-                <div className="flex px-10 gap-44 ">
+                <div className="flex px-10 gap-4 ">
                     <img src={usuario} alt="Logo Inicio Sesion" className="h-8 border-border"/>
+                    <p className="text-background">Admin</p> 
                     <img src={campana} alt="Logo notificaciones" className="h-6 border-border"/>
                 </div>
         </div>

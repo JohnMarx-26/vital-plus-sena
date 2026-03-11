@@ -21,6 +21,7 @@ import { MainMenu } from "@/features/Main";
 import { CreateSalePage } from "@/features/sales";
 import { CreateProductPage } from "@/features/products";
 import { CreateSupplierPage } from "@/features/suppliers";
+import { SupplierDetailPage } from "@/features/suppliers";
 
 
 const router = createBrowserRouter([
@@ -75,9 +76,9 @@ const router = createBrowserRouter([
 
       // PROOVEDORES
       { path: "/proveedores/crear", element: <CreateSupplierPage/>},
-      // {path: "proveedores/modificar", element: < />},
-      // {path: "proveedores/visualizar" element: < />},
-      // {path: "proveedores/listar" element: < />},
+      // {path: "proveedores/modificar", element: </>},
+      {path: "proveedores/visualizar", element: <SupplierDetailPage/>},
+      // {path: "proveedores/listar", element: < />},
 ]);
 
 export default router;

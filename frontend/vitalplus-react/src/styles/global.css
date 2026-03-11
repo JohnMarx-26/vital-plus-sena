@@ -19,8 +19,11 @@
   --color-text-dropdowns: var(--semantic-text-dropdowns);
 
   --color-background: var(--semantic-background);
-  --color-background-sidebar: var(--semantic-background-sidebar)
+  --color-background-muted: var(--semantic-surface-muted);
+  --color-background-md: var(--semantic-text-muted);
+  --color-background-sidebar: var(--semantic-background-sidebar);
 
   /* ===== TIPOGRAFÍA ===== */
+  --font-md: var(--fs-md: 1.5rem)
   --font-sans: var(--main-font);
-}
+}    
