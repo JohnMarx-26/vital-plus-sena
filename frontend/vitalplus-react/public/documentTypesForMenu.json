@@ -1,0 +1,35 @@
+[
+
+    {"titulo": "Usuarios",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Usuario", "ruta": "/usuarios/crear"},
+            {"id": 2, "nombre": "Modificar Usuario", "ruta": "/usuarios/modificar"},
+            {"id": 3, "nombre": "Visualizar Usuario", "ruta": "/usuarios/visualizar"},
+            {"id": 4, "nombre": "Listar Usuario", "ruta": "/usuarios/listar"}
+        ]
+    },
+
+        {"titulo": "Ventas",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Venta", "ruta": "/ventas/crear"},
+            {"id": 2, "nombre": "Visualizar Venta", "ruta": "/ventas/modificar"},
+            {"id": 3, "nombre": "Listar Ventas", "ruta": "/ventas/listar"}
+        ]
+    },
+    {"titulo": "Medicamentos",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Medicamento", "ruta": "/medicamentos/crear"},
+            {"id": 2, "nombre": "Modificar Medicamentos", "ruta": "/Medicamentos/modificar"},
+            {"id": 3, "nombre": "Visualizar Medicamento", "ruta": "/Medicamentos/visualizar"},
+            {"id": 4, "nombre": "Listar Medicamento", "ruta": "/Medicamentos/listar"}
+        ]
+    },
+    {"titulo": "Proveedores",
+        "opciones": [ 
+            {"id": 1, "nombre": "Crear Proveedores", "ruta": "/proveedores/crear"},
+            {"id": 2, "nombre": "Modificar Proveedores", "ruta": "/proveedores/modificar"},
+            {"id": 3, "nombre": "Visualizar Proveedores", "ruta": "/proveedores/visualizar"},
+            {"id": 4, "nombre": "Listar Proveedores", "ruta": "/proveedores/listar"}
+        ]
+    }
+]

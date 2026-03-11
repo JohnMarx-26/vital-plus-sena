@@ -1,0 +1,30 @@
+[
+    {
+        "id": "BUC",
+        "label": "Bucal"
+    },
+    {
+        "id": "CUT",
+        "label": "Cutánea"
+    },
+    {
+        "id": "INHA",
+        "label": "Inhalatoria"
+    },
+    {
+        "id": "INTRADER",
+        "label": "Intrádermica"
+    },
+    {
+        "id": "INTRAMUSC",
+        "label": "Intramuscular"
+    },
+    {
+        "id": "INTRAVEN",
+        "label": "Intravenosa"
+    },
+    {
+        "id": "NAS",
+        "label": "Nasal"
+    }
+]

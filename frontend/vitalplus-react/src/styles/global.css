@@ -1,21 +1,26 @@
 @import url(tokens.css);
-@import url(semantics.css);
+@import url(semantic.css);
 @import "tailwindcss";
 
 @theme {
-  /* ===== COLORES (desde semantics.css) ===== */
+
+  /* ===== COLORES ===== */
   --color-brand: var(--semantic-brand);
   --color-brand-hover: var(--semantic-brand-hover);
   --color-brand-soft: var(--semantic-brand-soft);
+  --color-brand-light: var(--semantic-brand-light);
 
   --color-border: var(--semantic-border);
 
   --color-text-primary: var(--semantic-text-primary);
   --color-text-muted: var(--semantic-text-muted);
   --color-text-inverse: var(--semantic-text-inverse);
+  --color-text-secundary: var(--semantic-text-secundary);
+  --color-text-dropdowns: var(--semantic-text-dropdowns);
 
-  --color-background: var(--semantic-backgroond);
+  --color-background: var(--semantic-background);
+  --color-background-sidebar: var(--semantic-background-sidebar)
 
-  /* ===== TIPOGRAFÍA (desde tokens.css) ===== */
+  /* ===== TIPOGRAFÍA ===== */
   --font-sans: var(--main-font);
 }

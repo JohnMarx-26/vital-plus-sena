@@ -1,93 +1,69 @@
-/*
-useEffect
-UseEffect es hook que permite ejecutar efectos secundarios en compónentes funcionales .
-Un efecto secundario es cualquier operacion que: 
-1-Ocurre fuera del render
-2-Interactua con el mundo exterior al componente 
+// UseEffect
+// Es un hook que permite ejecutar efectos secundarios en componentes funcionales.
+// Un efecto secundario es cualquier operacion que:
+// 1- Ocurre fuera del render
+// 2- Interactua con el mundo exterior al componente
+// Ejemplos:
+// - Llamadas a APIs
+// - Manipulacion del DOM
+// - Actualizar un titulo del navegador
 
-Ejemplos:
--Llamadas a APIs
--Manipulacion del DOM
--Actualizar un titulo del navegador
-
-============SINTAXIS=============================
-
-useEffect(() => {
-        efecto *                            - Codigo que se ejecuta 
-    }), [];                                 - En los corchetes se colocan el arreglo de dependencias *
-
-
-
-*/
+// ====== SINTAXIS =======
+// useEfecct(() => {
+//      efecto *                                                 - Codigo que se ejecuta
+// },[]) ;                                                       - En los corchetes se colocan los arreglos de dependencias
 
 // import { useEffect, useState } from "react";
 
-// // ============= Efecto con array vacio =======
+// =========== Efecto con array vacio ===========
 
-// function DeleteUseEffect () {
+// function DeleteUseEfecct() {
+//   const [message, setMessage] = useState("Cargando...");
 
-//     const [message, setMesssage] = useState("Cargando")
+//   useEffect(() => {
+//     setTimeout(() => {
+//       setMessage("Se acaba de ejecutar el efecto");
+//     }, 3000);
+//   }, []);
 
-//     useEffect(()=> {
+//   return <h1>{message}</h1>;
+// }
 
-//         setTimeout(() => {
-//             setMesssage("Se acaba de ejecutar el efecto")
-//         }, 3000);
-//     },[]);
-//     return (
-//         <h1>{message}</h1>
-//     );
+// export default DeleteUseEfecct;
 
-// };
+// =====================================================
 
-// export  default DeleteUseEffect;
+// Hook useEffect con una dependencia
 
+// Entender que useEffect se vuelve a ejecutar cuando cambia una dependencia
+// - useEffect puede ejecutarse otra vez si algo cambia
+// - Ese algo se declara en el array de dependencias
 
-/*
-Hook useEffect con una dependencia 
+import { useEffect, useState } from "react";
 
-Entender que useEffect se vuelve a ejecutar cuando cambia  una dependencia 
+function DeleteUseEfecct() {
+  const [count, setCount] = useState(0);
+  const [message, setMessage] = useState("El contador No ha cambiado");
 
--Use effect puede ejecutarse otra vez ssi algo cambia 
--Ese algo se declara en el array de dependencias
-*/ 
+  useEffect(() => {
+    setMessage(`El contador cambio a ${count}`)
+  },[count]);
 
-import { useEffect,useState } from "react";
+  return (
+    <>
+      <h2>{count}</h2>
+      <p>{message}</p>
 
-function DeleteUseEffect (){
-    const [count, setCount] = useState(0);
-    const[message, setMesssage] = useState("El contador No ha cambiado");
+      <button className="border border-border p-2" onClick={() => setCount(count+1)}>Botón de incremento</button>
+    </>
+  );
+}
 
-    useEffect(() => {
-        setMesssage(`El contador cambio a ${count}`)
-    },[count]);
+export default DeleteUseEfecct;
 
+// ============================
+// ======== IMPORTANTE ========
+// - Si una dependencia cambia el efecto se ejecuta
+// - Si no cambia, el efecto no se ejecuta
+// -------------
 
-    return(
-        <>
-            <h2>{count}</h2>
-            <p>{message}</p>
-
-            <button className="border border-border p-2" onClick={() =>setCount(count + 1)}>
-                Boton de Incremento
-            </button>
-
-        
-        </>
-
-    );
-
-};
-
-export default DeleteUseEffect
-
-/*
-IMPORTANTE
--Si una dependencia cambia el efecto se ejecuta 
--Si no cambia, el efecto no se ejecuta
--
-
-
-
-
-*/
