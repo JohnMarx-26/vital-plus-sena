@@ -3,7 +3,7 @@ import UserForm from "@/features/users/components/UserForm";
 import Button from "@/shared/components/Button";
 import guardar from "@/assets/svg/icono-guardar.svg";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
-import { SquarePen } from "lucide-react";
+// import { SquarePen } from "lucide-react";
 import FormLayout from "@/shared/layout/FormLayout";
 
 /*

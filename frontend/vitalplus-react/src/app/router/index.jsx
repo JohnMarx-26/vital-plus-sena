@@ -21,6 +21,8 @@ import { MainMenu } from "@/features/Main";
 import { CreateSalePage } from "@/features/sales";
 import { CreateProductPage } from "@/features/products";
 import { CreateSupplierPage } from "@/features/suppliers";
+import ProductDetailPage from "@/features/products/pages/ProductDetailPage";
+import ProfileUserPage from "@/features/users/pages/ProfileUserPage";
 
 
 const router = createBrowserRouter([
@@ -29,7 +31,6 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage/> },
 
-      // ✅ NUEVA: home logeado
       { path: "/dashboard", element: <DashboardPage /> },
 
       { path: "cursos", element: <h1 className="p-4">Cursos</h1> },
@@ -38,7 +39,6 @@ const router = createBrowserRouter([
 
       { path: "perfil", element: <ProfilePage /> },
 
-      // ✅ Usuarios (para que existan y puedas probar)
       // { path: "usuarios/crear", element: <CreateUserPage /> },
       { path: "usuarios/editar", element: <EditUserForm />},    
 
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       // USUARIOS
       { path: "/usuarios/crear", element: <CreateUserPage/>},
       // {path: "usuarios/modificar", element: < />},
-      // {path: "usuarios/visualizar" element: < />},
+      {path: "/usuarios/visualizar", element: < ProfileUserPage/>},
       // {path: "usuarios/listar" element: < />}
 
       // VENTAS
@@ -67,11 +67,11 @@ const router = createBrowserRouter([
       // {path: "ventas/modificar", element: < />},
       // {path: "ventas/listar" element: < />},
     
-      // MEDICAMENTOS
-      { path: "/medicamentos/crear", element: <CreateProductPage/>},
-      // {path: "medicamentos/modificar", element: < />},
-      // {path: "medicamentos/visualizar" element: < />},
-      // {path: "medicamentos/listar" element: < />},
+      // PRODUCTOS
+      { path: "/Productos/crear", element: <CreateProductPage/>},
+      // {path: "Productos/modificar", element: < />},
+      {path: "/Productos/visualizar", element: <ProductDetailPage/>},
+      // {path: "Productos/listar" element: < />},
 
       // PROOVEDORES
       { path: "/proveedores/crear", element: <CreateSupplierPage/>},
