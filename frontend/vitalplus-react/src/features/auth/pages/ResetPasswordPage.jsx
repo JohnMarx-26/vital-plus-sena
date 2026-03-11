@@ -1,4 +1,4 @@
-import ResetPasswordForm from "../components/ResetPasswordForm";
+import { ResetPasswordForm } from "@/features/auth";
 
 export default function ResetPasswordPage() {
 
@@ -8,7 +8,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="
       min-h-screen
-      bg-[color:var(--semantic-backgroond)]
+      bg-[color:var(--semantic-backgrond)]
       flex
       flex-col
       items-center

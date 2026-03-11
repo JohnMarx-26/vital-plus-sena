@@ -2,29 +2,33 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "@/shared/components/Input";
 import Button from "@/shared/components/Button";
 
-export default function LoginForm() {
+export default function LoginForm({
+  title = "Iniciar sesión",
+  description = "Ingresa tus credenciales para continuar",
+  redirectTo = "/dashboard",
+  showCreateAccount = true,
+  createAccountPath = "/usuarios/crear",
+  forgotPasswordPath = "/forgot-password",
+  userName = "John",
+}) {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     localStorage.setItem("token", "demo-token");
-    localStorage.setItem("userName", "John");
+    localStorage.setItem("userName", userName);
     window.dispatchEvent(new Event("auth-changed"));
 
-    navigate("/dashboard");
+    navigate(redirectTo);
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
       <div className="text-center">
-        <h3 className="text-2xl font-semibold text-text-primary">
-          Iniciar sesión
-        </h3>
+        <h3 className="text-2xl font-semibold text-text-primary">{title}</h3>
 
-        <p className="text-sm text-text-muted mt-2">
-          Ingresa tus credenciales para continuar
-        </p>
+        <p className="text-sm text-text-muted mt-2">{description}</p>
 
         <div className="mt-4 h-px bg-border w-full" />
       </div>
@@ -44,7 +48,7 @@ export default function LoginForm() {
       />
 
       <Link
-        to="/forgot-password"
+        to={forgotPasswordPath}
         className="text-xs text-text-muted hover:underline text-center"
       >
         ¿Olvidaste tu contraseña?
@@ -54,15 +58,17 @@ export default function LoginForm() {
         Iniciar sesión
       </Button>
 
-      <Button
-        variant="primary"
-        size="md"
-        type="button"
-        className="w-full"
-        onClick={() => navigate("/usuarios/crear")}
-      >
-        Crear cuenta
-      </Button>
+      {showCreateAccount && (
+        <Button
+          variant="primary"
+          size="md"
+          type="button"
+          className="w-full"
+          onClick={() => navigate(createAccountPath)}
+        >
+          Crear cuenta
+        </Button>
+      )}
     </form>
   );
 }
