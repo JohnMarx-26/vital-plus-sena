@@ -8,12 +8,10 @@ export default function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-   
     localStorage.setItem("token", "demo-token");
     localStorage.setItem("userName", "John");
     window.dispatchEvent(new Event("auth-changed"));
 
-   
     navigate("/dashboard");
   };
 
@@ -52,12 +50,10 @@ export default function LoginForm() {
         ¿Olvidaste tu contraseña?
       </Link>
 
-      {/* ✅ Botón azul dentro de la card */}
       <Button variant="primary" size="md" type="submit" className="w-full">
         Iniciar sesión
       </Button>
 
-      {/* ✅ Ruta original crear cuenta */}
       <Button
         variant="primary"
         size="md"
