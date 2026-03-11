@@ -23,8 +23,8 @@ import { MainMenu } from "@/features/Main";
 import { CreateSalePage } from "@/features/sales";
 import { CreateProductPage } from "@/features/products";
 import { CreateSupplierPage } from "@/features/suppliers";
-import ProductDetailPage from "@/features/products/pages/ProductDetailPage";
-import ProfileUserPage from "@/features/users/pages/ProfileUserPage";
+import { ProductDetailPage } from "@/features/products";
+import { ProfileUserPage } from "@/features/users";
 
 const router = createBrowserRouter([
   {
