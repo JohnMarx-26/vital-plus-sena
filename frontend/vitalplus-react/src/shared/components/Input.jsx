@@ -2,7 +2,7 @@ export default function Input({ label, type = "text", id, name, ...props }) {
   const inputId = id || name;
 
   return (
-    <div className="w-full min-w-[220px]">
+    <div className="w-full min-w-[320px]">
       {label && (
         <label
           htmlFor={inputId}

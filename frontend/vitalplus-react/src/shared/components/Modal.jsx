@@ -33,7 +33,6 @@ export default function Modal({
         onClick={onClose}
       />
 
-     
       <div className="relative flex items-center justify-center min-h-screen">
         <div
           className="

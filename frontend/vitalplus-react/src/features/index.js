@@ -21,7 +21,7 @@ export { default as HomePage } from "./home/page/homepage";
 // ===============================
 // USERS (pages)
 // ===============================
-export { default as CreateUserPage } from "./users/pages/CreateUserPage";
+// export { default as CreateUserPage } from "./users/pages/CreateUserPage";
 export { default as ProfilePage } from "./users/pages/ProfilePage";
 
 // ===============================

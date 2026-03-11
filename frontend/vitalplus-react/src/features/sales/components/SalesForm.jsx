@@ -3,7 +3,7 @@ import Input from "@/shared/components/Input";
 export default function VentasForm(){
     return (
         // CONTENEDOR PADRE
-        <div className=" flex w-1200px h-800px justify-center items-center">
+        <div className=" flex w-1200px h-800px justify-center items-center mt-15">
             {/* // FORMULARIO */}
             <form className="grid grid-cols-3 gap-4">
                 <div>

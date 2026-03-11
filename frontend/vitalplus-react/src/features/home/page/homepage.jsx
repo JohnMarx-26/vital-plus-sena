@@ -3,8 +3,8 @@ import Modal from "@/shared/components/Modal";
 import MenuBar from "@/features/home/components/MenuBar";
 import Carousel from "@/features/home/components/Carousel";
 
-import img1 from "@/assets/imagen-2.png";
-import img2 from "@/assets/imagen-3.png";
+import img1 from "@/assets/images/imagen-2.png";
+import img2 from "@/assets/images/imagen-3.png";
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
