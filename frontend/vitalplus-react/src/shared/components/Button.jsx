@@ -1,8 +1,8 @@
 export default function Button({
-  variant = "primary", //define el estilo visual
+  variant = "primary", 
   size = "md",
   type = "button",
-  children, //contenido del boton
+  children,
   ...props
 }) {
   const variants = {
@@ -25,7 +25,7 @@ export default function Button({
     `,
   };
 
-  // Fallbacks por si envían un variant/size inválido
+
   const variantClass = variants[variant] || variants.primary;
   const sizeClass = sizes[size] || sizes.md;
 

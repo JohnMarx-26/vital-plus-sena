@@ -17,10 +17,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    // Al cargar
     syncAuth();
 
-    // Cuando el login “avisa”
     const handler = () => syncAuth();
     window.addEventListener("auth-changed", handler);
 
@@ -49,14 +47,14 @@ const Navbar = () => {
     >
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+          
           <div className="flex items-center">
             <Link to="/" className="text-xl font-bold">
               Vital-Plus
             </Link>
           </div>
 
-          {/* Links */}
+         
           <ul className="hidden md:flex items-center gap-6">
             <li>
               <Link to="/" className="hover:opacity-90 transition">
@@ -80,9 +78,9 @@ const Navbar = () => {
             </li>
           </ul>
 
-          {/* Right */}
+          
           <div className="flex items-center gap-4">
-            {/* Search */}
+           
             <div className="relative hidden sm:block">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-white/80" />
               <input
@@ -101,7 +99,7 @@ const Navbar = () => {
               />
             </div>
 
-            {/* User menu */}
+            
             <div className="relative">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -120,7 +118,7 @@ const Navbar = () => {
                   </div>
 
                   <ul className="py-2 text-sm">
-                    {/* ✅ Por defecto SOLO login (si no hay sesión) */}
+                    
                     {!isAuth ? (
                       <li>
                         <Link

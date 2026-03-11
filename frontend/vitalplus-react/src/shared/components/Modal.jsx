@@ -33,7 +33,7 @@ export default function Modal({
         onClick={onClose}
       />
 
-      {/* Contenedor centrado */}
+     
       <div className="relative flex items-center justify-center min-h-screen">
         <div
           className="

@@ -8,7 +8,6 @@ export default function MainLayout() {
   return (
     <div className="min-h-screen text-text-primary">
 
-      {/* Navbar */}
       <header>
         <Navbar variant={isHome ? "transparent" : "solid"} />
       </header>
