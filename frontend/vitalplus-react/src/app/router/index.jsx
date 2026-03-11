@@ -1,5 +1,4 @@
-//importaciones BASE DE REACT
-import { createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import MainLayout from "@/shared/layout/MainLayout";
 import AuthLayout from "@/shared/layout/AuthLayout";
@@ -7,23 +6,25 @@ import AuthLayout from "@/shared/layout/AuthLayout";
 import HomePage from "@/features/home/page/homepage";
 import ProfilePage from "@/features/users/pages/ProfilePage";
 
-import LoginPage from "@/features/auth/pages/LoginPage";
-import ForgotPasswordPage from "@/features/auth/pages/ForgotPasswordPage";
-import ResetPasswordPage from "@/features/auth/pages/ResetPasswordPage";
+import {
+  LoginPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  AdminLoginPage,
+} from "@/features/auth";
 
 import CreateUserPage from "@/features/users/pages/CreateUserPage";
 import EditUserForm from "@/features/users/components/EditUserForm";
 
 import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
-//MENU DE ADMINISTRACIÓN  
+// MENU DE ADMINISTRACIÓN
 import { MainMenu } from "@/features/Main";
 import { CreateSalePage } from "@/features/sales";
 import { CreateProductPage } from "@/features/products";
 import { CreateSupplierPage } from "@/features/suppliers";
 import ProductDetailPage from "@/features/products/pages/ProductDetailPage";
 import ProfileUserPage from "@/features/users/pages/ProfileUserPage";
-
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
     element: <AuthLayout />,
     children: [
       { path: "/login", element: <LoginPage /> },
+      { path: "/admin/login", element: <AdminLoginPage /> },
       { path: "/forgot-password", element: <ForgotPasswordPage /> },
       { path: "/reset-password", element: <ResetPasswordPage /> },
     ],

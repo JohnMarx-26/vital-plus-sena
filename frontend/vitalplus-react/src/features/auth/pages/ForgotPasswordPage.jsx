@@ -1,4 +1,4 @@
-import ForgotPasswordForm from "../components/ForgotPasswordForm";
+import { ForgotPasswordForm } from "@/features/auth";
 
 export default function ForgotPasswordPage() {
 
@@ -8,7 +8,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="
       min-h-screen
-      bg-[color:var(--semantic-backgroond)]
+      bg-[color:var(--semantic-background)]
       flex
       flex-col
       items-center
