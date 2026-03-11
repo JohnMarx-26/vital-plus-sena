@@ -2,33 +2,38 @@ export default function Select({
   label,
   name,
   options = [],
+  value = "",
+  onChange,
 }) {
   return (
-    <div className="w-full">
-
-      {/* Label */}
+    <div className="w-[320px]">
       {label && (
-        <label className="block text-caption mb-1 text-text-muted">
+        <label
+          className="
+            block
+            text-[8px]
+            mb-1
+            text-text-primary
+          "
+        >
           {label}
         </label>
       )}
 
       <select
         name={name}
-        className="w-full h-8 rounded-md border border-border px-4 bg-background text-text-primary focus:outline-none focus:ring-2 focus:ring-brand"
+        value={value}
+        onChange={onChange}
+        className="w-full h-12 rounded-md border border-border px-4 text-body"
       >
-        <option value="">
-          Seleccione un tipo de documento
-        </option>
+        <option value="">Seleccione una opción</option>
 
         {options.map((option) => (
           <option key={option.id} value={option.id}>
             {option.label}
           </option>
         ))}
-
       </select>
-
     </div>
   );
 }
