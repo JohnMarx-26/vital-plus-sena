@@ -1,19 +1,21 @@
 import { useState } from "react";
 import Button from "../../../shared/components/Button";
 import { SquarePen } from "lucide-react";
-import usuario from "@/assets/svg/icono-usuario-new.svg";
+import medicamento from "@/assets/svg/Rectangle-63.svg";
 
-export default function ProfileUserPage() {
+export default function ProductDetailPage() {
   const userData = {
-    fullName: "Brahian Estiwen Galeano Pinzón",
-    documentType: "Cédula de ciudadanía",
-    documentNumber: "1090074404",
-    userType: "Usuario",
-    email: "brahiagaleano@gmail.com",
-    phone: "3152405454",
-    address: "Risaralda, Pereira, El Japón Mz 10",
-    createdAt: "2025/12/15",
-    password: "************",
+    idMedicamento: "43443",
+    nombreMedicamento: "Noraver Gripa",
+    formaFarmaceutica: "Solida",
+    presentacion: "Capsula",
+    viaAdministracion: "Oral",
+    laboratorio: "Risaralda, Pereira, El Japon Mz 10",
+    fechaFabricacion: "2025/12/15",
+    fechaVencimiento: "2026/03/18",
+    proveedor: "Farma S.o.s",
+    requiereFormula: "No",
+    descripcion: "Producto para curar el malestar de la gripe",
   };
 
   const [userStatus, setUserStatus] = useState("Activo");
@@ -23,18 +25,21 @@ export default function ProfileUserPage() {
   };
 
   const userDetails = [
-    { label: "Tipo de documento", value: userData.documentType },
-    { label: "Número de documento", value: userData.documentNumber },
-    { label: "Tipo de usuario", value: userData.userType },
-    { label: "Correo electrónico", value: userData.email },
-    { label: "Número celular", value: userData.phone },
-    { label: "Dirección", value: userData.address },
-    { label: "Fecha creación cuenta", value: userData.createdAt },
-    { label: "Contraseña", value: userData.password },
+    { label: "ID Medicamento", value: userData.idMedicamento },
+    { label: "Nombre del medicamento", value: userData.nombreMedicamento },
+    { label: "Forma farmacéutica", value: userData.formaFarmaceutica },
+    { label: "Presentación medicamento", value: userData.presentacion },
+    { label: "Vía de administración", value: userData.viaAdministracion },
+    { label: "Laboratorio", value: userData.laboratorio },
+    { label: "Fecha fabricación", value: userData.fechaFabricacion },
+    { label: "Fecha vencimiento", value: userData.fechaVencimiento },
+    { label: "Proveedor", value: userData.proveedor },
+    { label: "Requiere formula", value: userData.requiereFormula },
+    { label: "Descripción medicamento", value: userData.descripcion },
   ];
 
   const handleEdit = () => {
-    console.log("Modificar usuario");
+    console.log("Modificar producto");
   };
 
   return (
@@ -44,24 +49,22 @@ export default function ProfileUserPage() {
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="mb-6 flex justify-center">
               <h1 className="border-b-2 border-slate-900 pb-1 text-xl font-medium text-slate-900">
-                Opciones de usuario
+                Opciones de producto
               </h1>
             </div>
 
             <div className="flex flex-col items-center">
-
-              {/* ICONO CAMBIADO */}
               <div className="flex h-52 w-52 items-center justify-center">
                 <img
-                  src={usuario}
-                  alt="Icono usuario"
+                  src={medicamento}
+                  alt="Icono medicamento"
                   className="h-36 w-36"
                 />
               </div>
 
               <div className="mt-6 w-full max-w-xs border-b border-slate-400 pb-3 text-center">
                 <p className="text-sm font-medium text-slate-800">
-                  {userData.fullName}
+                  {userData.nombreMedicamento}
                 </p>
               </div>
 
@@ -78,11 +81,10 @@ export default function ProfileUserPage() {
                     onClick={toggleStatus}
                   >
                     {userStatus === "Activo"
-                      ? "Usuario Inactivo"
-                      : "Usuario Activo"}
+                      ? "Producto Inactivo"
+                      : "Producto Activo"}
                   </Button>
 
-                  {/* BOTON MODIFICAR CAMBIADO */}
                   <Button
                     variant="secondary"
                     size="sm"
@@ -92,7 +94,6 @@ export default function ProfileUserPage() {
                     <SquarePen className="w-5 h-5" />
                     Modificar
                   </Button>
-
                 </div>
               </div>
             </div>

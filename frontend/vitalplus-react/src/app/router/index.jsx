@@ -23,12 +23,15 @@ import { MainMenu } from "@/features/Main";
 import { CreateSalePage } from "@/features/sales";
 import { CreateProductPage } from "@/features/products";
 import { CreateSupplierPage } from "@/features/suppliers";
+import { ProductDetailPage } from "@/features/products";
+import { ProfileUserPage } from "@/features/users";
 
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      { path: "/", element: <HomePage /> },
+      { path: "/", element: <HomePage/> },
+
       { path: "/dashboard", element: <DashboardPage /> },
 
       { path: "cursos", element: <h1 className="p-4">Cursos</h1> },
@@ -36,7 +39,11 @@ const router = createBrowserRouter([
       { path: "videos", element: <h1 className="p-4">Videos</h1> },
 
       { path: "perfil", element: <ProfilePage /> },
-      { path: "usuarios/editar", element: <EditUserForm /> },
+
+      // { path: "usuarios/crear", element: <CreateUserPage /> },
+      { path: "usuarios/editar", element: <EditUserForm />},    
+
+      
     ],
   },
 
@@ -50,11 +57,29 @@ const router = createBrowserRouter([
     ],
   },
 
-  { path: "/main", element: <MainMenu /> },
-  { path: "/usuarios/crear", element: <CreateUserPage /> },
-  { path: "/ventas/crear", element: <CreateSalePage /> },
-  { path: "/medicamentos/crear", element: <CreateProductPage /> },
-  { path: "/proveedores/crear", element: <CreateSupplierPage /> },
+    {path: "/main", element: <MainMenu/>},
+      // USUARIOS
+      { path: "/usuarios/crear", element: <CreateUserPage/>},
+      // {path: "usuarios/modificar", element: < />},
+      {path: "/usuarios/visualizar", element: < ProfileUserPage/>},
+      // {path: "usuarios/listar" element: < />}
+
+      // VENTAS
+      { path: "/ventas/crear", element: <CreateSalePage/>},
+      // {path: "ventas/modificar", element: < />},
+      // {path: "ventas/listar" element: < />},
+    
+      // PRODUCTOS
+      { path: "/Productos/crear", element: <CreateProductPage/>},
+      // {path: "Productos/modificar", element: < />},
+      {path: "/Productos/visualizar", element: <ProductDetailPage/>},
+      // {path: "Productos/listar" element: < />},
+
+      // PROOVEDORES
+      { path: "/proveedores/crear", element: <CreateSupplierPage/>},
+      // {path: "proveedores/modificar", element: < />},
+      // {path: "proveedores/visualizar" element: < />},
+      // {path: "proveedores/listar" element: < />},
 ]);
 
 export default router;
