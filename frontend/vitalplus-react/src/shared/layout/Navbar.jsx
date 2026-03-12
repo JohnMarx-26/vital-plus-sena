@@ -38,7 +38,7 @@ const Navbar = () => {
       className="
         w-full
         border-b
-        border-border-brand]
+        border-border
         bg-brand
         text-[color:var(--color-basic-white)]
         relative
@@ -46,59 +46,38 @@ const Navbar = () => {
       "
     >
       <div className="mx-auto max-w-7xl px-4">
-        <div className="flex h-16 items-center justify-between">
-          
-          <div className="flex items-center">
+        <div className="flex h-16 items-center gap-4">
+          {/* Logo */}
+          <div className="w-40 shrink-0 flex items-center">
             <Link to="/" className="text-xl font-bold">
               Vital-Plus
             </Link>
           </div>
 
-          <ul className="hidden md:flex items-center gap-6">
-            <li>
-              <Link to="/" className="hover:opacity-90 transition">
-                Inicio
-              </Link>
-            </li>
-            <li>
-              <Link to="/cursos" className="hover:opacity-90 transition">
-                Cursos
-              </Link>
-            </li>
-            <li>
-              <Link to="/contacto" className="hover:opacity-90 transition">
-                Contacto
-              </Link>
-            </li>
-            <li>
-              <Link to="/videos" className="hover:opacity-90 transition">
-                Video
-              </Link>
-            </li>
-          </ul>
-
-          
-          <div className="flex items-center gap-4">
-
-            <div className="relative hidden sm:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-white/80" />
+          {/* Search centered */}
+          <div className="flex-1 flex justify-center">
+            <div className="relative w-full max-w-xl">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-500" />
               <input
                 type="text"
                 placeholder="Buscar..."
                 className="
-                  pl-9 pr-4 py-2
-                  rounded-lg
+                  w-full
+                  pl-10 pr-4 py-2
+                  rounded-full
                   border border-white/30
-                  bg-white/10
-                  text-white
-                  placeholder:text-white/70
+                  bg-white
+                  text-slate-700
+                  placeholder:text-slate-400
                   focus:outline-none
                   focus:ring-2 focus:ring-white/60
                 "
               />
             </div>
+          </div>
 
-            
+          {/* User menu */}
+          <div className="w-40 shrink-0 flex items-center justify-end">
             <div className="relative">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -117,7 +96,6 @@ const Navbar = () => {
                   </div>
 
                   <ul className="py-2 text-sm">
-                    
                     {!isAuth ? (
                       <li>
                         <Link

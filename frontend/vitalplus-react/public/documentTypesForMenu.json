@@ -16,12 +16,12 @@
             {"id": 3, "nombre": "Listar Ventas", "ruta": "/ventas/listar"}
         ]
     },
-    {"titulo": "Medicamentos",
+    {"titulo": "Productos",
         "opciones": [ 
-            {"id": 1, "nombre": "Crear Medicamento", "ruta": "/medicamentos/crear"},
-            {"id": 2, "nombre": "Modificar Medicamentos", "ruta": "/Medicamentos/modificar"},
-            {"id": 3, "nombre": "Visualizar Medicamento", "ruta": "/Medicamentos/visualizar"},
-            {"id": 4, "nombre": "Listar Medicamento", "ruta": "/Medicamentos/listar"}
+            {"id": 1, "nombre": "Crear Producto", "ruta": "/productos/crear"},
+            {"id": 2, "nombre": "Modificar Productos", "ruta": "/productos/modificar"},
+            {"id": 3, "nombre": "Visualizar Productos", "ruta": "/productos/visualizar"},
+            {"id": 4, "nombre": "Listar Productos", "ruta": "/productos/listar"}
         ]
     },
     {"titulo": "Proveedores",
