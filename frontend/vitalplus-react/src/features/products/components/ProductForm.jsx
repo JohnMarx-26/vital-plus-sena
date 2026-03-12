@@ -3,6 +3,7 @@ import Select from "@/shared/components/Select";
 import { useEffect, useState } from "react";
 import { getFormaTypes } from "../../users/services/selectFormaFarmaceutica";
 import { getViaTypes } from "../../users/services/selectViaAdministracion";
+import { AvatarUploader } from "@/features/users";
 
 export default function ProductForm(){
 
@@ -15,98 +16,108 @@ export default function ProductForm(){
   }, []);
 
   return (
+
     // CONTENEDOR PADRE
-    <div className="flex w-1200px h-800px justify-center items-center mt-20">
+    <div className="w-full h-full">
 
-      {/* FORMULARIO */}
-      <form className="grid grid-cols-3 gap-4">
+      {/* SUBIR IMAGEN */}
+      <div className="flex h-36 justify-center gap-8">
+        <AvatarUploader/>
+      </div>
 
-        {/* COLUMNA 1 */}
-        <div>
+      {/* CONTENEDOR FORMULARIO */}
+      <div className="flex w-1200px h-800px justify-center items-center mt-20">
 
-          <Input
-            label="ID del producto"
-            type="text"
-            placeholder="Ingrese el ID del producto"
-          />
+        {/* FORMULARIO */}
+        <form className="grid grid-cols-3 gap-4">
 
-          <Input
-            label="Nombre del producto"
-            type="text"
-            placeholder="Ingrese el nombre del producto"
-          />
+          {/* COLUMNA 1 */}
+          <div>
 
-          <Select
-            label="Forma farmacéutica"
-            name="formaFarmaceutica"
-            options={FormaTypes}
-          />
+            <Input
+              label="ID del producto"
+              type="text"
+              placeholder="Ingrese el ID del producto"
+            />
 
-          <Input
-            label="Número de lote"
-            type="text"
-            placeholder="Ingrese el número de lote"
-          />
+            <Input
+              label="Nombre del producto"
+              type="text"
+              placeholder="Ingrese el nombre del producto"
+            />
 
-        </div>
+            <Select
+              label="Forma farmacéutica"
+              name="formaFarmaceutica"
+              options={FormaTypes}
+            />
 
-        {/* COLUMNA 2 */}
-        <div>
+            <Input
+              label="Número de lote"
+              type="text"
+              placeholder="Ingrese el número de lote"
+            />
 
-          <Select
-            label="Vía de administración"
-            name="viaAdministracion"
-            options={ViaTypes}
-          />
+          </div>
 
-          <Input
-            label="Número de stock"
-            type="text"
-            placeholder="Ingrese el número de stock"
-          />
+          {/* COLUMNA 2 */}
+          <div>
 
-          <Input
-            label="Fecha de fabricación"
-            type="date"
-          />
+            <Select
+              label="Vía de administración"
+              name="viaAdministracion"
+              options={ViaTypes}
+            />
 
-          <Input
-            label="Fecha de vencimiento"
-            type="date"
-          />
+            <Input
+              label="Número de stock"
+              type="text"
+              placeholder="Ingrese el número de stock"
+            />
 
-        </div>
+            <Input
+              label="Fecha de fabricación"
+              type="date"
+            />
 
-        {/* COLUMNA 3 */}
-        <div>
+            <Input
+              label="Fecha de vencimiento"
+              type="date"
+            />
 
-          <Input
-            label="Requiere fórmula"
-            type="text"
-            placeholder="Indique si requiere fórmula (Sí o No)"
-          />
+          </div>
 
-          <Input
-            label="Precio de compra"
-            type="number"
-            placeholder="Ingrese el precio de compra"
-          />
+          {/* COLUMNA 3 */}
+          <div>
 
-          <Input
-            label="Precio de venta"
-            type="number"
-            placeholder="Ingrese el precio de venta"
-          />
+            <Input
+              label="Requiere fórmula"
+              type="text"
+              placeholder="Indique si requiere fórmula (Sí o No)"
+            />
 
-          <Input
-            label="Descripción del producto"
-            type="text"
-            placeholder="Ingrese la descripción del producto"
-          />
+            <Input
+              label="Precio de compra"
+              type="number"
+              placeholder="Ingrese el precio de compra"
+            />
 
-        </div>
+            <Input
+              label="Precio de venta"
+              type="number"
+              placeholder="Ingrese el precio de venta"
+            />
 
-      </form>
+            <Input
+              label="Descripción del producto"
+              type="text"
+              placeholder="Ingrese la descripción del producto"
+            />
+
+          </div>
+
+        </form>
+      </div>
     </div>
   );
 }

@@ -27,6 +27,7 @@ import { useNavigate } from "react-router-dom";
                         type="button"
                         //para devolverme al apartado del menu del administrador
                         onClick={() => navigate(-1)}
+                        className="flex items-center gap-2"
                     >
                         <img src={retroceder} alt="icono-retroceder" className="w-5 h-5"/>
                         Retroceder
@@ -39,6 +40,7 @@ import { useNavigate } from "react-router-dom";
                         size="sm"
                         type="button"
                         onClick={() => alert("Venta registrada con Exito")}
+                        className="flex items-center gap-2"
                     >
                         {/* Se pone padding en X de 2 px porque el icono estaba muy pegado al texto */}
                         <img src={guardar} alt="icono-modificar" className="w-5 h-5 px-[2px]"/>

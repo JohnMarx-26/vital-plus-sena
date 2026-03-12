@@ -6,7 +6,7 @@ import AuthLayout from "@/shared/layout/AuthLayout";
 import HomePage from "@/features/home/page/homepage";
 import ProfilePage from "@/features/users/pages/ProfilePage";
 import CreateUserPage from "@/features/users/pages/CreateUserPage";
-import EditUserForm from "@/features/users/components/EditUserForm";
+import EditUserPage from "@/features/users/pages/EditUserPage";
 
 import {
   LoginPage,
@@ -38,7 +38,6 @@ const router = createBrowserRouter([
       { path: "videos", element: <h1 className="p-4">Videos</h1> },
 
       { path: "perfil", element: <ProfilePage /> },
-      { path: "usuarios/editar", element: <EditUserForm /> },
     ],
   },
 
@@ -58,6 +57,7 @@ const router = createBrowserRouter([
   // USUARIOS
   { path: "/usuarios/crear", element: <CreateUserPage /> },
   { path: "/usuarios/visualizar", element: <ProfileUserPage /> },
+  { path: "/usuarios/modificar", element: <EditUserPage /> },
 
   // VENTAS
   { path: "/ventas/crear", element: <CreateSalePage /> },

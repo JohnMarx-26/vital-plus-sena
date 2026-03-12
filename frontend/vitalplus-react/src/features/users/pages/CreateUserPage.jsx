@@ -29,6 +29,7 @@ const Botones = () => {
                     type="button"
                     //para devolverme al apartado del menu del administrador
                     onClick={() => navigate(-1)}
+                    className="flex items-center gap-2"
                 >
                     <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
                     Retroceder
@@ -43,6 +44,7 @@ const Botones = () => {
                     size="sm"
                     type="button"
                     onClick={() => alert("Usuario creado con Exito")}
+                    className="flex items-center gap-2"
                 >
                     {/* padding en X porque el icono estaba muy pegado */}
                     <img src={guardar} alt="icono-modificar" className="w-5 h-5 px-[2px]" />

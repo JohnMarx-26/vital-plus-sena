@@ -26,6 +26,7 @@ const Botones = () => {
                     type="button"
                     //para devolverme al apartado del menu del administrador
                     onClick={() => navigate(-1)}
+                    className="flex items-center gap-2"
                 >
                     <img src={retroceder} alt="icono-retroceder" className="w-5 h-5"/>
                     Retroceder

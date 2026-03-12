@@ -74,6 +74,7 @@ export default function SaleDetailForm () {
                         variant="secondary"
                         size="sm"
                         type="button"
+                        className="flex items-center gap-2"
                         // onClick={() => console.log("Oprimió cancelar")}
                     >
                         <FileDown className="w-5 h-5"/>
