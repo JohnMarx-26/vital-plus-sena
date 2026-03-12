@@ -5,6 +5,8 @@ import AuthLayout from "@/shared/layout/AuthLayout";
 
 import HomePage from "@/features/home/page/homepage";
 import ProfilePage from "@/features/users/pages/ProfilePage";
+import CreateUserPage from "@/features/users/pages/CreateUserPage";
+import EditUserForm from "@/features/users/components/EditUserForm";
 
 import {
   LoginPage,
@@ -13,25 +15,20 @@ import {
   AdminLoginPage,
 } from "@/features/auth";
 
-import CreateUserPage from "@/features/users/pages/CreateUserPage";
-import EditUserForm from "@/features/users/components/EditUserForm";
-
 import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
 // MENU DE ADMINISTRACIÓN
 import { MainMenu } from "@/features/Main";
 import { CreateSalePage } from "@/features/sales";
-import { CreateProductPage } from "@/features/products";
+import { CreateProductPage, ProductDetailPage } from "@/features/products";
 import { CreateSupplierPage } from "@/features/suppliers";
-import { ProductDetailPage } from "@/features/products";
 import { ProfileUserPage } from "@/features/users";
 
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      { path: "/", element: <HomePage/> },
-
+      { path: "/", element: <HomePage /> },
       { path: "/dashboard", element: <DashboardPage /> },
 
       { path: "cursos", element: <h1 className="p-4">Cursos</h1> },
@@ -39,11 +36,7 @@ const router = createBrowserRouter([
       { path: "videos", element: <h1 className="p-4">Videos</h1> },
 
       { path: "perfil", element: <ProfilePage /> },
-
-      // { path: "usuarios/crear", element: <CreateUserPage /> },
-      { path: "usuarios/editar", element: <EditUserForm />},    
-
-      
+      { path: "usuarios/editar", element: <EditUserForm /> },
     ],
   },
 
@@ -57,29 +50,21 @@ const router = createBrowserRouter([
     ],
   },
 
-    {path: "/main", element: <MainMenu/>},
-      // USUARIOS
-      { path: "/usuarios/crear", element: <CreateUserPage/>},
-      // {path: "usuarios/modificar", element: < />},
-      {path: "/usuarios/visualizar", element: < ProfileUserPage/>},
-      // {path: "usuarios/listar" element: < />}
+  { path: "/main", element: <MainMenu /> },
 
-      // VENTAS
-      { path: "/ventas/crear", element: <CreateSalePage/>},
-      // {path: "ventas/modificar", element: < />},
-      // {path: "ventas/listar" element: < />},
-    
-      // PRODUCTOS
-      { path: "/Productos/crear", element: <CreateProductPage/>},
-      // {path: "Productos/modificar", element: < />},
-      {path: "/Productos/visualizar", element: <ProductDetailPage/>},
-      // {path: "Productos/listar" element: < />},
+  // USUARIOS
+  { path: "/usuarios/crear", element: <CreateUserPage /> },
+  { path: "/usuarios/visualizar", element: <ProfileUserPage /> },
 
-      // PROOVEDORES
-      { path: "/proveedores/crear", element: <CreateSupplierPage/>},
-      // {path: "proveedores/modificar", element: < />},
-      // {path: "proveedores/visualizar" element: < />},
-      // {path: "proveedores/listar" element: < />},
+  // VENTAS
+  { path: "/ventas/crear", element: <CreateSalePage /> },
+
+  // PRODUCTOS
+  { path: "/productos/crear", element: <CreateProductPage /> },
+  { path: "/productos/visualizar", element: <ProductDetailPage /> },
+
+  // PROVEEDORES
+  { path: "/proveedores/crear", element: <CreateSupplierPage /> },
 ]);
 
 export default router;

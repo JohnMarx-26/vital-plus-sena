@@ -18,10 +18,10 @@
     },
     {"titulo": "Productos",
         "opciones": [ 
-            {"id": 1, "nombre": "Crear Producto", "ruta": "/Productos/crear"},
-            {"id": 2, "nombre": "Modificar Productos", "ruta": "/Productos/modificar"},
-            {"id": 3, "nombre": "Visualizar Productos", "ruta": "/Productos/visualizar"},
-            {"id": 4, "nombre": "Listar Productos", "ruta": "/Productos/listar"}
+            {"id": 1, "nombre": "Crear Producto", "ruta": "/productos/crear"},
+            {"id": 2, "nombre": "Modificar Productos", "ruta": "/productos/modificar"},
+            {"id": 3, "nombre": "Visualizar Productos", "ruta": "/productos/visualizar"},
+            {"id": 4, "nombre": "Listar Productos", "ruta": "/productos/listar"}
         ]
     },
     {"titulo": "Proveedores",
