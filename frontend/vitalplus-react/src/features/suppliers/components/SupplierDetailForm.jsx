@@ -90,6 +90,7 @@ export default function SupplierDetailForm () {
                         variant="secondary"
                         size="sm"
                         type="button"
+                        className="flex items-center gap-2"
                         // onClick={() => console.log("Oprimió cancelar")}
                     >
                         <SquarePen className="w-5 h-5"/>
@@ -104,6 +105,7 @@ export default function SupplierDetailForm () {
                         size="sm"
                         type="button"
                         onClick={() => alert("Proovedor Eliminado con Exito")}
+                        className="flex items-center gap-2"
                     >
                         <Delete className="w-6 h-6 mx-1"/>
                         Eliminar Proveedor

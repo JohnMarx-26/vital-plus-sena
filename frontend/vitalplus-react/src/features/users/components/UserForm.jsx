@@ -2,6 +2,7 @@ import Input from "@/shared/components/Input";
 import { useEffect, useState } from "react";
 import { getDocumentTypes } from "../services/selectService";
 import Select from "@/shared/components/Select";
+import { AvatarUploader } from "@/features/users";
 
 
 export default function UserForm(){
@@ -11,77 +12,88 @@ export default function UserForm(){
     useEffect(() => {
         getDocumentTypes().then(setDocumentTypes);
     }, []);
+
     return (
+
         // CONTENEDOR PADRE
-        <div className="flex w-1200px h-800px justify-center items-center mt-20">
-            
-            {/* FORMULARIO */}
-            <form className="grid grid-cols-3 gap-4">
+        <div className="w-full h-full">
 
-                {/* COLUMNA 1 */}
-                <div>
-                    <Select
-                        label="Tipo de documento"
-                        name="documentType"
-                        options={documentTypes}
-                    />
+            {/* CARGAR IMAGEN */}
+            <div className="flex h-36 justify-center gap-8">
+                <AvatarUploader/>
+            </div>
 
-                    <Input
-                        label="Nombres"
-                        type="text"
-                        placeholder="Ingrese los nombres del usuario"
-                    />
+            {/* CONTENEDOR FORMULARIO */}
+            <div className="flex w-1200px h-800px justify-center items-center mt-20">
 
-                    <Input
-                        label="Correo electrónico"
-                        type="email"
-                        placeholder="Ingrese el correo electrónico"
-                    />
-                </div>
+                {/* FORMULARIO */}
+                <form className="grid grid-cols-3 gap-4">
 
-                {/* COLUMNA 2 */}
-                <div>
-                    <Input
-                        label="Número de documento"
-                        type="text"
-                        placeholder="Ingrese el número de documento"
-                    />
+                    {/* COLUMNA 1 */}
+                    <div>
+                        <Select
+                            label="Tipo de documento"
+                            name="documentType"
+                            options={documentTypes}
+                        />
 
-                    <Input
-                        label="Apellidos"
-                        type="text"
-                        placeholder="Ingrese los apellidos del usuario"
-                    />
+                        <Input
+                            label="Nombres"
+                            type="text"
+                            placeholder="Ingrese los nombres del usuario"
+                        />
 
-                    <Input
-                        label="Teléfono"
-                        type="tel"
-                        placeholder="Ingrese el número de teléfono"
-                    />
-                </div>
+                        <Input
+                            label="Correo electrónico"
+                            type="email"
+                            placeholder="Ingrese el correo electrónico"
+                        />
+                    </div>
 
-                {/* COLUMNA 3 */}
-                <div>
-                    <Input
-                        label="Dirección"
-                        type="text"
-                        placeholder="Ingrese la dirección del usuario"
-                    />
+                    {/* COLUMNA 2 */}
+                    <div>
+                        <Input
+                            label="Número de documento"
+                            type="text"
+                            placeholder="Ingrese el número de documento"
+                        />
 
-                    <Input
-                        label="Contraseña"
-                        type="password"
-                        placeholder="Ingrese la contraseña"
-                    />
+                        <Input
+                            label="Apellidos"
+                            type="text"
+                            placeholder="Ingrese los apellidos del usuario"
+                        />
 
-                    <Input
-                        label="Confirmar contraseña"
-                        type="password"
-                        placeholder="Confirme la contraseña"
-                    />
-                </div>
+                        <Input
+                            label="Teléfono"
+                            type="tel"
+                            placeholder="Ingrese el número de teléfono"
+                        />
+                    </div>
 
-            </form>
+                    {/* COLUMNA 3 */}
+                    <div>
+                        <Input
+                            label="Dirección"
+                            type="text"
+                            placeholder="Ingrese la dirección del usuario"
+                        />
+
+                        <Input
+                            label="Contraseña"
+                            type="password"
+                            placeholder="Ingrese la contraseña"
+                        />
+
+                        <Input
+                            label="Confirmar contraseña"
+                            type="password"
+                            placeholder="Confirme la contraseña"
+                        />
+                    </div>
+
+                </form>
+            </div>
         </div>
     );
 }

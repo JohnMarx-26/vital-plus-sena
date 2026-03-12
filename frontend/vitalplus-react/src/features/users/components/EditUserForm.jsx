@@ -1,139 +1,110 @@
-import { useEffect, useState } from "react";
 import Input from "@/shared/components/Input";
-import Select from "@/shared/components/Select";
-import Button from "@/shared/components/Button";
+import { useEffect, useState } from "react";
 import { getDocumentTypes } from "../services/selectService";
 import { getUserTypes } from "../services/selectService2";
+import Select from "@/shared/components/Select";
+import { AvatarUploader } from "@/features/users";
 
-export default function EditUserForm() {
-  const [documentTypes, setDocumentTypes] = useState([]);
-  const [userTypes, setUserTypes] = useState([]);
-  const [userStatus, setUserStatus] = useState("Activo");
+export default function EditUserForm(){
 
-  useEffect(() => {
-    getDocumentTypes().then(setDocumentTypes);
-    getUserTypes().then(setUserTypes);
-  }, []);
+    const [documentTypes, setDocumentTypes] = useState([]);
+    const [userTypes, setUserTypes] = useState([]);
 
-  const toggleStatus = () => {
-    setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
-  };
+    useEffect(() => {
+        getDocumentTypes().then(setDocumentTypes);
+        getUserTypes().then(setUserTypes);
+    }, []);
 
-  return (
-    <div className="w-full">
-      <div className="mx-auto max-w-7xl px-6 py-10">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-xl font-semibold text-text-primary">
-            Editar usuario
-          </h2>
+    return (
 
-          <Button
-            variant="primary"
-            size="md"
-            onClick={(e) => {
-              e.preventDefault();
-              console.log("Actualizar usuario");
-            }}
-          >
-            Actualizar
-          </Button>
+        // CONTENEDOR PADRE
+        <div className="w-full h-full">
+
+            {/* CARGAR IMAGEN */}
+            <div className="flex h-36 justify-center gap-8">
+                <AvatarUploader/>
+            </div>
+
+            {/* CONTENEDOR FORMULARIO */}
+            <div className="flex w-1200px h-800px justify-center items-center mt-20">
+
+                {/* FORMULARIO */}
+                <form className="grid grid-cols-3 gap-4">
+
+                    {/* COLUMNA 1 */}
+                    <div>
+
+                        <Select
+                            label="Tipo de usuario"
+                            name="userType"
+                            options={userTypes}
+                        />
+
+                        <Select
+                            label="Tipo de documento"
+                            name="documentType"
+                            options={documentTypes}
+                        />
+
+                        <Input
+                            label="Nombres"
+                            type="text"
+                            placeholder="Ingrese los nombres del usuario"
+                        />
+
+                        <Input
+                            label="Correo electrónico"
+                            type="email"
+                            placeholder="Ingrese el correo electrónico"
+                        />
+                    </div>
+
+                    {/* COLUMNA 2 */}
+                    <div>
+
+                        <Input
+                            label="Número de documento"
+                            type="text"
+                            placeholder="Ingrese el número de documento"
+                        />
+
+                        <Input
+                            label="Apellidos"
+                            type="text"
+                            placeholder="Ingrese los apellidos del usuario"
+                        />
+
+                        <Input
+                            label="Teléfono"
+                            type="tel"
+                            placeholder="Ingrese el número de teléfono"
+                        />
+                    </div>
+
+                    {/* COLUMNA 3 */}
+                    <div>
+
+                        <Input
+                            label="Dirección"
+                            type="text"
+                            placeholder="Ingrese la dirección del usuario"
+                        />
+
+                        <Input
+                            label="Contraseña"
+                            type="password"
+                            placeholder="Ingrese la contraseña"
+                        />
+
+                        <Input
+                            label="Confirmar contraseña"
+                            type="password"
+                            placeholder="Confirme la contraseña"
+                        />
+                    </div>
+
+                </form>
+            </div>
         </div>
-
-        {/* Layout: form + foto */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 items-start">
-          {/* FORM */}
-          <form>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              <Select
-                label="Tipo de documento"
-                name="documentType"
-                options={documentTypes}
-              />
-
-              <Select
-                label="Tipo de usuario"
-                name="userType"
-                options={userTypes}
-              />
-
-              <Input
-                label="N° documento de identidad"
-                name="documentNumber"
-                placeholder="Ingrese número de documento"
-              />
-
-              <Input
-                label="Número telefónico"
-                name="phone"
-                placeholder="Ingrese número telefónico"
-              />
-
-              <Input
-                label="Número adicional"
-                name="extraPhone"
-                placeholder="Ingrese número adicional"
-              />
-
-              <Input
-                label="Nombres"
-                name="firstName"
-                placeholder="Ingrese nombres"
-              />
-
-              <Input
-                label="Apellidos"
-                name="lastName"
-                placeholder="Ingrese apellidos"
-              />
-
-              <Input
-                label="Correo electrónico"
-                type="email"
-                name="email"
-                placeholder="Ingrese su correo electrónico"
-              />
-
-              <Input
-                label="Dirección"
-                name="address"
-                placeholder="Ingrese dirección"
-              />
-
-              <Input label="Fecha de creación" type="date" name="createdAt" disabled />
-              <Input label="Fecha de deshabilitación" type="date" name="disabledAt" disabled />
-            </div>
-
-            <div className="mt-8">
-              <Button
-                type="button"
-                variant={userStatus === "Activo" ? "secondary" : "primary"}
-                size="md"
-                onClick={toggleStatus}
-              >
-                {userStatus === "Activo" ? "Usuario Inactivo" : "Usuario Activo"}
-              </Button>
-            </div>
-          </form>
-
-          {/* FOTO */}
-          <div className="flex flex-col items-center gap-6">
-            <div className="w-44 h-44 rounded-full border border-border flex items-center justify-center">
-              <span className="text-text-muted">Foto</span>
-            </div>
-
-            <label
-              htmlFor="avatar"
-              className="inline-flex items-center justify-center h-10 px-4 rounded-md cursor-pointer
-                  border border-border bg-brand text-text-inverse hover:bg-brand-hover transition-colors"
-            >
-              Cambiar imagen
-            </label>
-
-            <input id="avatar" type="file" className="hidden" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
