@@ -25,7 +25,7 @@ export default function SupplierDetailForm () {
     //  se usa un estado para que dependiendo el click muestre un estado u otro en el boton
     const [userStatus, setUserStatus] = useState("Activo");
     const toggleStatus = () => {
-        setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
+    setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
     };
 
     // array de objetos para renderizar dinamicamente con map lo que seria (label y value)
@@ -42,10 +42,9 @@ export default function SupplierDetailForm () {
 
     return (
             // SECCION PADRE 
-        <section className="w-full px-6 py-8">
-                
-            <div className="flex w-full max-w-7xl gap-12 justify-center">
-
+        <section className="w-full px-6  pl-16 py-8 mt-5">
+            <div className="mx-auto flex w-full max-w-7xl gap-12 justify-center">
+                <aside className="w-full lg:max-w-sm">
                     {/* contenedor 1 - Imagen y botones */}
                 <div className="rounded-2xl border border-background-muted bg-background p-6 shadow-sm">
                     <div className="mb-6 flex justify-center">
@@ -61,7 +60,7 @@ export default function SupplierDetailForm () {
                     </div>
 
                     {/* Nombre del Provedor */}
-                    <div className="mt-6 w-full max-w-xs border-b border-background-muted pb-3 text-center">
+                    <div className="mt-2 w-full max-w-xs border-b border-background-muted pb-1 text-center">
                         <p className="text-sm font-medium text-text-secundary">
                         {userData.fullName}
                         </p>
@@ -74,11 +73,11 @@ export default function SupplierDetailForm () {
                         <Button
                             type="button"
                             size="md"
-                            className={`px-6 py-2 rounded-md shadow-md text-background ${
+                            className={`px-6 py-2 rounded-md shadow-md text-dropdowns ${
                             userStatus === "Activo"
-                                ? "bg-background-md hover:bg-border"
+                                ? "bg-gray-500 hover:bg-gray-700"
                                 : "bg-brand hover:bg-brand-hover"
-                            }`}
+                            }`} 
                             onClick={toggleStatus}
                         >
                             {userStatus === "Activo"
@@ -113,6 +112,7 @@ export default function SupplierDetailForm () {
                     </div>
                     </div>
                 </div>
+            </aside>    
 
             {/* contenedor 2 - informacion */}
             <div className="w-[600px] items-center mt-5">

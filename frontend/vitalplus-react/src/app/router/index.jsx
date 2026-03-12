@@ -21,6 +21,7 @@ import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 // MENU DE ADMINISTRACIÓN
 import { MainMenu } from "@/features/Main";
 import { CreateSalePage, SaleDetailPage } from "@/features/sales";
+
 import { CreateProductPage, ProductDetailPage } from "@/features/products";
 import { CreateSupplierPage, SupplierDetailPage } from "@/features/suppliers";
 import { ProfileUserPage } from "@/features/users";
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
   // VENTAS
   { path: "/ventas/crear", element: <CreateSalePage /> },
   { path: "/ventas/modificar", element: <SaleDetailPage /> },
+
 
   // PRODUCTOS
   { path: "/productos/crear", element: <CreateProductPage /> },

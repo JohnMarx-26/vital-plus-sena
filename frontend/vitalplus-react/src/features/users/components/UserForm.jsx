@@ -6,10 +6,10 @@ import Select from "@/shared/components/Select";
 
 export default function UserForm(){
 
-  const [documentTypes, setDocumentTypes] = useState([]);
+    const [documentTypes, setDocumentTypes] = useState([]);
 
     useEffect(() => {
-      getDocumentTypes().then(setDocumentTypes);
+        getDocumentTypes().then(setDocumentTypes);
     }, []);
     return (
         // CONTENEDOR PADRE

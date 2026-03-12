@@ -1,6 +1,7 @@
 import { Search, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import logo from "@/assets/svg/logo-Header.svg";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -49,8 +50,9 @@ const Navbar = () => {
         <div className="flex h-16 items-center gap-4">
           {/* Logo */}
           <div className="w-40 shrink-0 flex items-center">
-            <Link to="/" className="text-xl font-bold">
-              Vital-Plus
+            <Link to="/" className="flex items-center gap-1 text-xl font-bold">
+              <img src={logo} alt="Logo-vitalPlus" className="w-10 h-10" />
+              <span>Vital-Plus</span>
             </Link>
           </div>
 

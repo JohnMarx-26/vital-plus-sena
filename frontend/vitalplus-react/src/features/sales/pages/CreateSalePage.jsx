@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
         return ( 
             <div className="flex w-full justify-between px-10">
 
-                <div className="justify-left ">
+                <div >
                     {/* Boton Retroceder */}
                     <Button
                         variant="secondary"
@@ -32,7 +32,7 @@ import { useNavigate } from "react-router-dom";
                         Retroceder
                     </Button>
                 </div>
-                <div className="flex w-60 justify-right  px-1 gap-3">
+                <div className="flex w-60 px-1 gap-3">
                     {/* Boton Guardar  */}
                     <Button
                         variant="secondary"
