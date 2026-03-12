@@ -16,7 +16,7 @@ export default function VentasForm(){
                     <Input
                             label="Fecha y hora de venta"
                             type="text"
-                            placeholder="IFecha y hora de la venta Automatico"
+                            placeholder="Fecha y hora de la venta Automatico"
                         />
                     <Input
                             label="Cliente"

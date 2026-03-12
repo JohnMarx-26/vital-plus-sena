@@ -2,7 +2,7 @@ import Sidebar from "@/features/Main/components/Sidebar.jsx";
 import logo from "@/assets/svg/logo-Header.svg";
 import fondo from "@/assets/images/fondo-main.jpg";
 import campana from "@/assets/svg/campana.svg";
-import usuario from "@/assets/svg/icono-usuario.svg"
+import usuario from "@/assets/svg/icono-usu-light.svg"
 import { Search } from "lucide-react"; 
 
 
@@ -49,7 +49,7 @@ export default function Menu(){
                 {/* iconos de usurio y notificaciones */}
                 <div className="flex px-10 gap-4 items-center">
                     <img src={usuario} alt="Logo Inicio Sesion" className="h-8 border-border"/>
-                    <p>Admin</p> 
+                    <p className="text-background">Admin</p> 
                     <img src={campana} alt="Logo notificaciones" className="h-6 border-border"/>
                 </div>
             </div>

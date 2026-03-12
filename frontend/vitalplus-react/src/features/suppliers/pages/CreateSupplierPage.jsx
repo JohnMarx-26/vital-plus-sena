@@ -1,10 +1,11 @@
 // importaciones
 import ProveedorForm from "@/features/suppliers/components/SupplierForm";
-import Button from "@/shared/components/Button" 
-import guardar from "@/assets/svg/icono-guardar.svg"
-import retroceder from "@/assets/svg/icono-retroceder.svg"
-import { SquarePen } from "lucide-react"
+import Button from "@/shared/components/Button" ;
+import guardar from "@/assets/svg/icono-guardar.svg";
+import retroceder from "@/assets/svg/icono-retroceder.svg";
+// import { SquarePen } from "lucide-react";
 import FormLayout from "@/shared/layout/FormLayout";
+import { useNavigate } from "react-router-dom";
 
     /*se crea una arrow function para los botones del formulario
     a esta funcion se le realiza un callback cuando se ejecuta
@@ -12,7 +13,11 @@ import FormLayout from "@/shared/layout/FormLayout";
     y sus estilos*/
 
     const Botones = () => {
-        return ( 
+
+        const navigate = useNavigate()
+
+        return (
+
             <div className="flex w-full justify-between px-10">
 
                 <div>
@@ -21,14 +26,15 @@ import FormLayout from "@/shared/layout/FormLayout";
                         variant="secondary"
                         size="sm"
                         type="button"
-                        // onClick={() => console.log("Oprimió cancelar")}
+                        //para devolverme al apartado del menu del administrador
+                        onClick={() => navigate(-1)}
                     >
                         <img src={retroceder} alt="icono-retroceder" className="w-5 h-5"/>
                         Retroceder
                     </Button>
                 </div>
                 <div className="flex w-60 px-1 gap-3">
-                    {/* Boton modificar */}
+                    {/* Boton modificar
                     <Button
                         variant="secondary"
                         size="sm"
@@ -37,13 +43,13 @@ import FormLayout from "@/shared/layout/FormLayout";
                     >
                         <SquarePen className="w-5 h-5"/>
                         Modificar
-                    </Button>
+                    </Button> */}
                     {/* Boton Guardar  */}
                     <Button
                         variant="secondary"
                         size="sm"
                         type="button"
-                        // onClick={() => console.log("Oprimió cancelar")}
+                        onClick={() => alert("Proovedor creado con Exito")}
                     >
                         {/* Se pone padding en X de 2 px porque el icono estaba muy pegado al texto */}
                         <img src={guardar} alt="icono-modificar" className="w-5 h-5 px-[2px]"/>
@@ -59,7 +65,7 @@ return (
 
         <FormLayout>
             <Botones />
-                <ProveedorForm />
+            <ProveedorForm />
         </FormLayout>
     );
 }

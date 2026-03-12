@@ -15,7 +15,7 @@ export default function ProveedorForm(){
                         />
                     <Input
                             label="Nombre contacto (representante)"
-                            // type="text"
+                            type="text"
                             placeholder="Ingrese el nombre del contacto"
                         />
                     <Input
@@ -31,7 +31,7 @@ export default function ProveedorForm(){
                     <Input
                             label="NIT"
                             type="text"
-                            placeholder="Ingrese el numero de telefono"
+                            placeholder="Ingrese el NIT "
                         />
                     <Input
                             label="Telefono contacto"

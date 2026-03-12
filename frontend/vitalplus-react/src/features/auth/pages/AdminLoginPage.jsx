@@ -28,8 +28,7 @@ export default function AdminLoginPage() {
           <LoginForm
             title="Iniciar sesión administrador"
             description="Ingresa tus credenciales de administrador"
-            redirectTo="/admin/dashboard"
-            showCreateAccount={false}
+            isAdmin={true}
             userName="Admin"
           />
         </div>

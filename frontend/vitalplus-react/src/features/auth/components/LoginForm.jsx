@@ -6,6 +6,8 @@ export default function LoginForm({
   title = "Iniciar sesión",
   description = "Ingresa tus credenciales para continuar",
   redirectTo = "/dashboard",
+  redirectToAdmin ="/main",
+  isAdmin = false,
   showCreateAccount = true,
   createAccountPath = "/usuarios/crear",
   forgotPasswordPath = "/forgot-password",
@@ -20,7 +22,7 @@ export default function LoginForm({
     localStorage.setItem("userName", userName);
     window.dispatchEvent(new Event("auth-changed"));
 
-    navigate(redirectTo);
+    navigate(isAdmin ? redirectToAdmin : redirectTo);
   };
 
   return (
