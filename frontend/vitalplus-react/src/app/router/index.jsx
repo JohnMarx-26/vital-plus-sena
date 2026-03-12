@@ -5,6 +5,8 @@ import AuthLayout from "@/shared/layout/AuthLayout";
 
 import HomePage from "@/features/home/page/homepage";
 import ProfilePage from "@/features/users/pages/ProfilePage";
+import CreateUserPage from "@/features/users/pages/CreateUserPage";
+import EditUserForm from "@/features/users/components/EditUserForm";
 
 import {
   LoginPage,
@@ -13,16 +15,14 @@ import {
   AdminLoginPage,
 } from "@/features/auth";
 
-import CreateUserPage from "@/features/users/pages/CreateUserPage";
-import EditUserForm from "@/features/users/components/EditUserForm";
-
 import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
 // MENU DE ADMINISTRACIÓN
 import { MainMenu } from "@/features/Main";
 import { CreateSalePage, SaleDetailPage } from "@/features/sales";
-import { CreateProductPage } from "@/features/products";
+import { CreateProductPage, ProductDetailPage } from "@/features/products";
 import { CreateSupplierPage, SupplierDetailPage } from "@/features/suppliers";
+import { ProfileUserPage } from "@/features/users";
 
 const router = createBrowserRouter([
   {
@@ -52,12 +52,22 @@ const router = createBrowserRouter([
 
 
   { path: "/main", element: <MainMenu /> },
+
+  // USUARIOS
   { path: "/usuarios/crear", element: <CreateUserPage /> },
+  { path: "/usuarios/visualizar", element: <ProfileUserPage /> },
+
+  // VENTAS
   { path: "/ventas/crear", element: <CreateSalePage /> },
   { path: "/ventas/modificar", element: <SaleDetailPage /> },
-  { path: "/medicamentos/crear", element: <CreateProductPage /> },
+
+  // PRODUCTOS
+  { path: "/productos/crear", element: <CreateProductPage /> },
+  { path: "/productos/visualizar", element: <ProductDetailPage /> },
+
+  // PROVEEDORES
   { path: "/proveedores/crear", element: <CreateSupplierPage /> },
-  { path: "/proveedores/visualizar", element: <SupplierDetailPage />},
+  { path: "/proveedores/visualizar", element: <SupplierDetailPage /> },
 
 ]);
 

@@ -6,7 +6,7 @@ export default function Input({ label, type = "text", id, name, ...props }) {
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-[12px] mb-1 text-text-muted"
+          className="block text-[8px] mb-1 text-text-muted"
         >
           {label}
         </label>

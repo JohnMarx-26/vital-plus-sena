@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
             <div className="flex w-full justify-between px-10">
 
                 <div>
-                    {/* Boton Retroceder */}
+                    {/* Boton Retroceder */} 
                     <Button
                         variant="secondary"
                         size="sm"

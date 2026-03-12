@@ -8,7 +8,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="
       min-h-screen
-      bg-[color:var(--semantic-backgrond)]
+      bg-[color:var(--semantic-background)]
       flex
       flex-col
       items-center
