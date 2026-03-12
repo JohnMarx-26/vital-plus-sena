@@ -19,8 +19,8 @@
   --color-text-dropdowns: var(--semantic-text-dropdowns);
 
   --color-background: var(--semantic-background);
-  --color-background-muted: var(--semantic-surface-muted);
-  --color-background-md: var(--semantic-text-muted);
+  --color-background-md: var(--semantic-surface);
+  --color-background-muted: var( --semantic-surface-muted);
   --color-background-sidebar: var(--semantic-background-sidebar);
 
   /* ===== TIPOGRAFÍA ===== */

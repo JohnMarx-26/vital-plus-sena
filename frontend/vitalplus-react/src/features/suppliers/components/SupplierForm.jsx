@@ -1,9 +1,20 @@
 import Input from "@/shared/components/Input";
 
+import { AvatarUploader } from "@/features/users";
+
+
 export default function ProveedorForm(){
     return (
+
         // CONTENEDOR PADRE
-        <div className=" flex w-1200px h-800px justify-center items-center mt-20">
+        <div className="w-full h-full">
+
+                <div className="flex h-36 justify-center gap-8">
+                    <AvatarUploader/>
+                </div>
+
+        {/* // CONTENEDOR Formulario */}
+        <div className=" flex w-1200px h-800px justify-center items-center">
             {/* // FORMULARIO */}
             <form className="grid grid-cols-3 gap-4 ">
                 <div>
@@ -60,6 +71,7 @@ export default function ProveedorForm(){
                         />   
                 </div>
             </form>
+        </div>
         </div>
     );
 }

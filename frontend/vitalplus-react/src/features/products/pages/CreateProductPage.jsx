@@ -4,6 +4,7 @@ import Button from "@/shared/components/Button";
 import guardar from "@/assets/svg/icono-guardar.svg";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
 import FormLayout from "@/shared/layout/FormLayout";
+import { useNavigate } from "react-router-dom";
 
 /*
 Se crea una arrow function para los botones del formulario
@@ -13,6 +14,9 @@ y sus estilos
 */
 
 const Botones = () => {
+
+    const navigate = useNavigate()
+
     return (
         <div className="flex w-full justify-between px-10">
 
@@ -22,6 +26,8 @@ const Botones = () => {
                     variant="secondary"
                     size="sm"
                     type="button"
+                    //para devolverme al apartado del menu del administrador
+                    onClick={() => navigate(-1)}
                 >
                     <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
                     Retroceder
@@ -35,6 +41,7 @@ const Botones = () => {
                     variant="secondary"
                     size="sm"
                     type="button"
+                    onClick={() => alert("Producto creado con Exito")}
                 >
                     <img src={guardar} alt="icono-guardar" className="w-5 h-5 px-[2px]" />
                     Guardar

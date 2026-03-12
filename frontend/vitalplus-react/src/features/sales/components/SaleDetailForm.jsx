@@ -42,14 +42,14 @@ export default function SaleDetailForm () {
 
     return (
             // SECCION PADRE 
-        <section className="w-full px-6 py-4">
+        <section className="w-full px-6 py-4 items-center">
                 
-            <div className="flex w-full max-w-7xl gap-12 justify-center">
+            <div className="flex w-full max-w-7xl justify-center gap-5 pl-10">
 
                     {/* contenedor 1 - Imagen y botones */}
-                <div className="rounded-2xl border border-background-muted bg-background p-6 shadow-sm  ">
+                <div className="h-100 mt-7 pt-12  rounded-2xl border border-background-muted bg-background p-6 shadow-sm items-center ">
                     <div className="mb-6 flex items-center justify-center">
-                    <h1 className="border-b-2 border-text-secundary pb-1 text-font-md font-medium text-slate-900 mt-20">
+                    <h1 className="border-b-2 border-text-secundary pb-1 text-font-md font-medium text-slate-900 ">
                         Detalles de Venta
                     </h1>
                     </div>
@@ -69,9 +69,6 @@ export default function SaleDetailForm () {
 
                     <div className="mt-5 flex w-full flex-col items-center gap-4">
                         <div className="flex flex-wrap items-center justify-center gap-3">
-
-                        
-
                         {/* Boton modificar */}
                     <Button
                         variant="secondary"
@@ -91,7 +88,7 @@ export default function SaleDetailForm () {
             {/* contenedor 2 - informacion */}
             <div className="w-[600px] items-center mt-5">
                 <div className="rounded-2xl border border-background-muted bg-backgroud p-5 shadow-sm">
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-3">
 
                         {/* con map se itera sobre userDetails para renderizar los label y sus valores */}
                     {userDetails.map((item) => (
