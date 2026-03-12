@@ -2,7 +2,7 @@ import { useState } from "react";
 import Input from "@/shared/components/Input";
 import Button from "@/shared/components/Button";
 
-export default function ForgotPasswordForm() {
+export default function ForgotPasswordForm({ onSuccess }) {
   const [form, setForm] = useState({ email: "" });
 
   const handleChange = (e) => {
@@ -12,7 +12,11 @@ export default function ForgotPasswordForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Recuperar contraseña:", form);
+    console.log("Recuperar contraseña:", form.email);
+
+    if (onSuccess) {
+      onSuccess(form.email);
+    }
   };
 
   return (
@@ -36,7 +40,7 @@ export default function ForgotPasswordForm() {
         onChange={handleChange}
       />
 
-      <Button variant="primary" size="md" type="submit">
+      <Button variant="primary" size="md" type="submit" className="w-full">
         Enviar enlace
       </Button>
     </form>

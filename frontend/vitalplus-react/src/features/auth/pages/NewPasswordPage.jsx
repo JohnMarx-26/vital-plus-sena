@@ -1,19 +1,14 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { ResetPasswordForm } from "@/features/auth";
+import { useNavigate } from "react-router-dom";
+import { NewPasswordForm } from "@/features/auth";
 
-export default function ResetPasswordPage() {
+export default function NewPasswordPage() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const email = location.state?.email || "";
 
   const outerBorder = "border-[color:var(--color-primary-700)]";
   const innerBorder = "border-[color:var(--color-primary-100)]";
 
-  const handleSuccess = (token) => {
-    navigate("/new-password", {
-      state: { email, token },
-    });
+  const handleSuccess = () => {
+    navigate("/login");
   };
 
   return (
@@ -37,7 +32,7 @@ export default function ResetPasswordPage() {
 
       <div className={`w-full max-w-md rounded-xl border-2 ${outerBorder} p-2`}>
         <div className={`rounded-lg border-2 ${innerBorder} p-8 bg-white`}>
-          <ResetPasswordForm email={email} onSuccess={handleSuccess} />
+          <NewPasswordForm onSuccess={handleSuccess} />
         </div>
       </div>
     </div>

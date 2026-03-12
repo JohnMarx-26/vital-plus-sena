@@ -12,6 +12,7 @@ import {
   LoginPage,
   ForgotPasswordPage,
   ResetPasswordPage,
+  NewPasswordPage,
   AdminLoginPage,
 } from "@/features/auth";
 
@@ -47,9 +48,9 @@ const router = createBrowserRouter([
       { path: "/admin/login", element: <AdminLoginPage /> },
       { path: "/forgot-password", element: <ForgotPasswordPage /> },
       { path: "/reset-password", element: <ResetPasswordPage /> },
+      { path: "/new-password", element: <NewPasswordPage /> },
     ],
   },
-
 
   { path: "/main", element: <MainMenu /> },
 
@@ -68,7 +69,6 @@ const router = createBrowserRouter([
   // PROVEEDORES
   { path: "/proveedores/crear", element: <CreateSupplierPage /> },
   { path: "/proveedores/visualizar", element: <SupplierDetailPage /> },
-
 ]);
 
 export default router;

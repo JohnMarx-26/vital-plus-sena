@@ -1,15 +1,16 @@
 export default function Button({
-  variant = "primary", 
+  variant = "primary",
   size = "md",
   type = "button",
   children,
+  className = "",
   ...props
 }) {
   const variants = {
-    primary: "border border-border bg-brand text-text-inverse hover:bg-brand-hover",
+    primary:
+      "border border-border bg-brand text-text-inverse hover:bg-brand-hover",
     secondary:
       "border border-border bg-background text-text-primary hover:bg-brand-soft",
-
   };
 
   const sizes = {
@@ -25,16 +26,13 @@ export default function Button({
     `,
   };
 
-
   const variantClass = variants[variant] || variants.primary;
   const sizeClass = sizes[size] || sizes.md;
-
 
   return (
     <button
       type={type}
       className={`
-
         relative
         inline-flex items-center justify-center
         rounded-lg
@@ -43,8 +41,8 @@ export default function Button({
         disabled:opacity-50 disabled:cursor-not-allowed
         ${variantClass}
         ${sizeClass}
+        ${className}
       `}
-
       {...props}
     >
       {children}

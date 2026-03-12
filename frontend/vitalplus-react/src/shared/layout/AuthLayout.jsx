@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import authBg from "@/assets/images/prueba.jpg";
+import authBg from "@/assets/images/fondo-blanco.jpg";
 
 export default function AuthLayout() {
   return (

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProductSection from "@/features/home/components/ProductSection";
 import Modal from "@/shared/components/Modal";
 import MenuBar from "@/features/home/components/MenuBar";
 import Carousel from "@/features/home/components/Carousel";
@@ -57,6 +58,8 @@ export default function HomePage() {
       <div className="w-full">
         <MenuBar />
       </div>
+      
+      <ProductSection />
 
       {/* Modal */}
       <Modal isOpen={open} onClose={() => setOpen(false)} title="Bienvenido">
