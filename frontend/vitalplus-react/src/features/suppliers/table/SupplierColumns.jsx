@@ -1,5 +1,5 @@
 // Componente reutilizable que muestra un switch para activar o desactivar estados
-import SupplierStatusSwitch from "../components/SupplierStatusSwitch";
+import StatusSwitch from "@/shared/components/StatusSwitch";
 
 // Componente que contiene los botones de acciones (editar y eliminar) para cada usuario
 import SupplierRowActions from "../components/SupplierRowActions";
@@ -9,32 +9,54 @@ import SupplierRowActions from "../components/SupplierRowActions";
 export const SupplierColumns = [
   // Columna ID
   {
-    accessorKey: "id", // Propiedad del objeto user que se mostrará en la columna
-    header: "Id", // Título de la columna
+    accessorKey: "id", // Propiedad del objeto supplier que se mostrará en la columna
+    header: "ID", // Título de la columna
   },
 
-  // Columna Nombre
+  // Columna Nombre proveedor
   {
-    accessorKey: "name", // Campo del objeto user
+    accessorKey: "name", // Campo del objeto Supplier
     header: "Nombre", // Encabezado visible
   },
-
-  // Columna Email
+  // Columna NIT
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: "nit", 
+    header: "NIT", 
+  },
+   // Columna Razon Social
+  {
+    accessorKey: "razon_social", 
+    header: "Razon social", 
   },
 
-  // Columna Dirección
+  // Columna Nombre Contacto
   {
-    accessorKey: "address",
-    header: "Dirección",
+    accessorKey: "contact",
+    header: "Nombre Contacto",
   },
 
-  // Columna Edad
+  // Columna Telefono
+  {
+    accessorKey: "phone",
+    header: "Telefono",
+  },
+
+  // Columna Correo Electronico
    {
-    accessorKey: "age",
-    header: "Edad",
+    accessorKey: "email",
+    header: "Correo Electronico",
+  },
+
+   // Columna ciudad
+   {
+    accessorKey: "city",
+    header: "Ciudad",
+  },
+
+   // Columna Adress
+   {
+    accessorKey: "address",
+    header: "Direccion",
   },
 
   // Columna Estado (activo / inactivo)
@@ -59,7 +81,7 @@ export const SupplierColumns = [
 
       return (
         // Componente reutilizable para mostrar el switch
-        <SupplierStatusSwitch
+        <StatusSwitch
           checked={user.is_active} // Estado actual del usuario
           onChange={handleChange} // Función que maneja el cambio
         />

@@ -8,6 +8,7 @@
   --color-brand: var(--semantic-brand);
   --color-brand-hover: var(--semantic-brand-hover);
   --color-brand-soft: var(--semantic-brand-soft);
+  --color-brand-semiLight: var(--semantic-brand-semiLight);
   --color-brand-light: var(--semantic-brand-light);
 
   --color-border: var(--semantic-border);

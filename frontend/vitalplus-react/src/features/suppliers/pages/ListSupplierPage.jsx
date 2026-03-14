@@ -1,22 +1,25 @@
 import SupplierDataTable from "../components/SupplierDataTable";
 import {  SupplierColumns }   from "../table/SupplierColumns";
-import { users } from "@/data/user/users";
+import { suppliers } from "@/data/supplier/suppliers";
+import Header from "@/shared/components/Header";
 
 export default function ListSupplierPage() {
 
   return (
+    <div className="w-full h-dvh">
+      <Header/>
     <div className="p-6">
-
-      <h1 className="text-xl font-semibold mb-4">
-        Proveedores
-      </h1>
-
+      
       <SupplierDataTable
-        data={users}
+        data={suppliers}
         columns={SupplierColumns}
       />
 
     </div>
+    </div>
   )
 }
+
+
+
 

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Check, X } from "lucide-react";
 
 // Componente reutilizable para representar un switch de estado (activo/inactivo)
-export default function SupplierStatusSwitch({
+export default function StatusSwitch({
   checked = false,   // Valor inicial del switch (controlado desde el padre)
   onChange,          // Callback que se ejecuta cuando cambia el estado
   disabled = false,  // Permite deshabilitar la interacción
@@ -73,7 +73,7 @@ export default function SupplierStatusSwitch({
         ${sizes[size]}
 
         // Color dependiendo del estado
-        ${isActive ? "bg-brand " : "bg-gray-300"}
+        ${isActive ? "bg-brand-soft " : "bg-gray-300"}
 
         // Estilo cuando está deshabilitado
         ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
