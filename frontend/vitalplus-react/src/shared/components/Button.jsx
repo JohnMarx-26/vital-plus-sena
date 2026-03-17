@@ -8,7 +8,7 @@ export default function Button({
 }) {
   const variants = {
     primary:
-      "border border-border bg-brand text-text-inverse hover:bg-brand-hover",
+      "border border-border bg-[color:var(--color-primary-700)] text-text-inverse hover:bg-brand-hover",
     secondary:
       "border border-border bg-background text-text-primary hover:bg-brand-soft",
   };

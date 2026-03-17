@@ -77,15 +77,17 @@ export default function SupplierDataTable({ data, columns }) {
           placeholder="Buscar..."
           value={globalFilter ?? ""}
           onChange={(e) => setGlobalFilter(e.target.value)}
-          className="border rounded px-3 py-2 w-64"
+          className="border rounded px-3 py-2 w-80 bg-background border-brand-soft
+          focus:outline-none focus:ring-2 focus:ring-brand-soft"
         />
 
         {/* ================== SELECTOR DE FILAS ================== */}
         {/* Permite cambiar cuántas filas se muestran por página */}
         <select
-          value={table.getState().pagination.pageSize}
+          value={table.getState().pagination.pageSize} 
           onChange={(e) => table.setPageSize(Number(e.target.value))}
-          className="border rounded px-2 py-2"
+          className="border rounded px-2 py-2 border-brand-soft
+          focus:outline-none focus:ring-2 focus:ring-brand-soft"
         >
           {[5, 7, 10, 20, 50].map(size => (
             <option key={size} value={size}>
@@ -97,11 +99,11 @@ export default function SupplierDataTable({ data, columns }) {
       </div>
 
       {/* ================== TABLA ================== */}
-      <div className="overflow-x-auto border rounded">
+      <div className="overflow-x-auto border rounded border-brand-soft  ">
         <table className="w-full">
 
           {/* ================== CABECERA ================== */}
-          <thead className="bg-gray-100">
+          <thead className="bg-brand-semiLight text-text-primary">
 
             {/* TanStack agrupa cabeceras automáticamente */}
             {table.getHeaderGroups().map(headerGroup => (
@@ -112,7 +114,7 @@ export default function SupplierDataTable({ data, columns }) {
 
                   <th
                     key={header.id}
-                    className="p-3 text-left border-b"
+                    className="p-3 text-left border-b border-brand-soft"
                   >
 
                     {/* 
@@ -141,12 +143,12 @@ export default function SupplierDataTable({ data, columns }) {
             {/* Filas generadas por TanStack */}
             {table.getRowModel().rows.map(row => (
 
-              <tr key={row.id} className="hover:bg-gray-50">
+              <tr key={row.id} className="hover:bg-brand-light">
 
                 {/* Celdas visibles de cada fila */}
                 {row.getVisibleCells().map(cell => (
 
-                  <td key={cell.id} className="p-3 border-b">
+                  <td key={cell.id} className="p-3 border-b border-brand-soft">
 
                     {/* Render dinámico del contenido de la celda */}
                     {flexRender(
@@ -172,7 +174,7 @@ export default function SupplierDataTable({ data, columns }) {
 
         {/* ================== INFORMACIÓN ================== */}
         {/* Cantidad de registros visibles */}
-        <span className="text-sm text-gray-600">
+        <span className="text-sm text-text-muted">
           Mostrando {table.getRowModel().rows.length} de{" "}
           {table.getFilteredRowModel().rows.length} registros
         </span>
@@ -249,7 +251,8 @@ export default function SupplierDataTable({ data, columns }) {
             table.setPageIndex(page)
           }}
 
-          className="border rounded px-2 py-1 w-16"
+          className="border rounded px-2 py-1 w-16 border-brand-soft 
+          focus:outline-none focus:ring-2 focus:ring-brand-soft"
         />
 
       </div>

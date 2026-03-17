@@ -23,7 +23,7 @@ import { MainMenu } from "@/features/Main";
 import { CreateSalePage, SaleDetailPage } from "@/features/sales";
 
 import { CreateProductPage, ProductDetailPage } from "@/features/products";
-import { CreateSupplierPage, SupplierDetailPage } from "@/features/suppliers";
+import { CreateSupplierPage, SupplierDetailPage, ListSupplierPage } from "@/features/suppliers";
 import { ProfileUserPage } from "@/features/users";
 
 const router = createBrowserRouter([
@@ -71,6 +71,8 @@ const router = createBrowserRouter([
   // PROVEEDORES
   { path: "/proveedores/crear", element: <CreateSupplierPage /> },
   { path: "/proveedores/visualizar", element: <SupplierDetailPage /> },
+  { path: "/proveedores/listar", element: <ListSupplierPage /> },
 ]);
 
 export default router;
+
