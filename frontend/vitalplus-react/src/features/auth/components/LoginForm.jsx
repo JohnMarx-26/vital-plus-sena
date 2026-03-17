@@ -1,12 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import Input from "@/shared/components/Input";
-import Button from "@/shared/components/Button";
+import { useState } from "react";
+import { Input, Button } from "@/shared";
+import { loginSchema } from "../Schemas/authSchemas";
 
 export default function LoginForm({
   title = "Iniciar sesión",
   description = "Ingresa tus credenciales para continuar",
   redirectTo = "/dashboard",
-  redirectToAdmin ="/main",
+  redirectToAdmin = "/main",
   isAdmin = false,
   showCreateAccount = true,
   createAccountPath = "/usuarios/crear",
@@ -15,8 +16,38 @@ export default function LoginForm({
 }) {
   const navigate = useNavigate();
 
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const result = loginSchema.safeParse(form);
+
+    if (!result.success) {
+      const fieldErrors = {};
+
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0];
+        fieldErrors[field] = issue.message;
+      });
+
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
 
     localStorage.setItem("token", "demo-token");
     localStorage.setItem("userName", userName);
@@ -26,7 +57,7 @@ export default function LoginForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-6">
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-text-primary">{title}</h3>
 
@@ -40,6 +71,9 @@ export default function LoginForm({
         type="email"
         name="email"
         placeholder="Ingresa tu correo"
+        value={form.email}
+        onChange={handleChange}
+        error={errors.email}
       />
 
       <Input
@@ -47,6 +81,9 @@ export default function LoginForm({
         type="password"
         name="password"
         placeholder="Ingresa tu contraseña"
+        value={form.password}
+        onChange={handleChange}
+        error={errors.password}
       />
 
       <Link

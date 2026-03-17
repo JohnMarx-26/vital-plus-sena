@@ -1,19 +1,39 @@
 import { useState } from "react";
-import Input from "@/shared/components/Input";
-import Button from "@/shared/components/Button";
+import { Input, Button } from "@/shared";
+import { resetTokenSchema } from "../Schemas/authSchemas";
 
 export default function ResetPasswordForm({ email = "", onSuccess }) {
   const [form, setForm] = useState({
     token: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const result = resetTokenSchema.safeParse(form);
+
+    if (!result.success) {
+      const fieldErrors = {};
+
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0];
+        fieldErrors[field] = issue.message;
+      });
+
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
 
     if (onSuccess) {
       onSuccess(form.token);
@@ -21,7 +41,7 @@ export default function ResetPasswordForm({ email = "", onSuccess }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-6">
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-text-primary">
           Validar token
@@ -47,6 +67,7 @@ export default function ResetPasswordForm({ email = "", onSuccess }) {
         placeholder="Ingresa tu token"
         value={form.token}
         onChange={handleChange}
+        error={errors.token}
       />
 
       <Button variant="primary" size="md" type="submit" className="w-full">
