@@ -26,10 +26,21 @@
 
     /*  ====== Border ======= */
     --semantic-border: var(--color-gray-700); /*Borde principal de todos los componentes*/
-    --semantic-border-strong: var(--color-gray-400); /* Border mas fuertes*/
+    --semantic-border-strong: var(--color-gray-900); /* Border mas fuertes*/
 
     /* ====== State ======== */
     --semantic-warning: var(--color-secundary-950);
+
+
+    /*============== Font ================*/
+    --semantic-font-size-display: var(--fs-xxl); /* Texto de alto impacto, texto protagonista, hero, números grandes*/
+    --semantic-font-size-banner: var(--fs-xl);
+    --semantic-font-size-h1: var(--fs-lg);
+    --semantic-font-size-h2: var(--fs-md);
+    --semantic-font-size-h3: var(--fs-sm);
+    --semantic-font-size-body: var(--fs-xs);
+    --semantic-font-size-small: var(--fs-xxs);
+    --semantic-font-size-caption: var(--fs-xxxs); 
 
     /* ================================================ */
     /*          YA NO DEPENDEMOS DE NOMBRES DE COLOR,

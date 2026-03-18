@@ -1,13 +1,13 @@
 // Contiene las acciones de cada fila
 // Iconos usados en los botones de acciones
-import { Pencil, Trash2 } from "lucide-react";
+import { Newspaper, FileDown } from "lucide-react";
 
 // Hook de React Router para navegar programáticamente entre rutas
 import { useNavigate } from "react-router-dom";
 
 // Componente que renderiza las acciones de cada fila de usuario
 // Recibe como prop el objeto user
-export default function SupplierRowActions({ user }) {
+export default function SaleRowActions({ sale }) {
 
   // const handleEdit = () => {
   //   console.log("Editar usuario", user.id);
@@ -19,15 +19,15 @@ export default function SupplierRowActions({ user }) {
   // Acción para editar el usuario
   // Redirige a la página de edición usando el id del usuario
   const handleEdit = () => {
-    // navigate(`/users/${user.id}/edit`); 
-    navigate("/proveedores/detalles");
+    // navigate(`/sales/${sale.id}/edit`); 
+    navigate("/ventas/detalles");
   };
 
   // Acción para eliminar el usuario
   // Actualmente solo imprime en consola el id
   // En una aplicación real aquí se llamaría a la API
   const handleDelete = () => {
-    console.log("Eliminar usuario", user.id);
+    console.log("Eliminar usuario", sale.id);
   };
 
   return (
@@ -39,7 +39,7 @@ export default function SupplierRowActions({ user }) {
         onClick={handleEdit} // Ejecuta la navegación a la página de edición
         className="p-1 rounded hover:bg-gray-100"
       >
-        <Pencil size={16} /> {/* Icono de editar */}
+        <Newspaper size={16} /> {/* Icono de editar */}
         
       </button>
 
@@ -48,7 +48,7 @@ export default function SupplierRowActions({ user }) {
         onClick={handleDelete} // Ejecuta la acción de eliminación
         className="p-1 rounded hover:bg-gray-100"
       >
-        <Trash2 size={16} /> {/* Icono de eliminar */}
+        <FileDown size={16} /> {/* Icono de eliminar */}
       </button>
 
     </div>

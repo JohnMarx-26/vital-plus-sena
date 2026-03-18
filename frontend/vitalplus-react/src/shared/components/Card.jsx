@@ -2,7 +2,7 @@ const Card = ({ product }) => {
   const { title, image, price, description } = product;
 
   return (
-   <div
+  <div
   className="
     w-full
     max-w-[260px]
@@ -40,3 +40,5 @@ const Card = ({ product }) => {
 };
 
 export default Card;
+
+

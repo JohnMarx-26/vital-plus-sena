@@ -10,7 +10,7 @@ export default function Header(){
             {/* parte superior del header color de la marca  */}
             <div className="w-full h-16 bg-brand flex justify-between items-center px-4 text-text-secundary">
                 {/* ubicacion para el logo */}
-                <img src={logo} alt="Logo VitalPlus" className="h-10 border-border"/>
+                <img src={logo} alt="Logo VitalPlus" className="h-10 border-border z-50"/>
 
                 <div className="flex px-10 gap-4 ">
                     <img src={usuario} alt="Logo Inicio Sesion" className="h-8 border-border"/>

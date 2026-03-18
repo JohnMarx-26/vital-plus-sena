@@ -1,9 +1,9 @@
-import SupplierDataTable from "../components/SupplierDataTable";
-import {  SupplierColumns }   from "../table/SupplierColumns";
-import { suppliers } from "@/data/supplier/suppliers";
+import SaleDataTable from "../components/SaleDataTable";
+import {  SaleColumns }   from "../table/SaleColumns";
+import { sales } from "@/data/sale/sales";
 import Header from "@/shared/components/Header";
-import retroceder from "@/assets/svg/icono-retroceder.svg";
 import Button from "@/shared/components/Button" ;
+import retroceder from "@/assets/svg/icono-retroceder.svg";
 import {useNavigate} from "react-router-dom";
 
 
@@ -38,7 +38,6 @@ const Botones = () => {
     );
 }
 
-
 export default function ListSupplierPage() {
 
   return (
@@ -47,9 +46,9 @@ export default function ListSupplierPage() {
       <Botones />
     <div className="p-6">
       
-      <SupplierDataTable
-        data={suppliers}
-        columns={SupplierColumns}
+      <SaleDataTable
+        data={sales}
+        columns={SaleColumns}
       />
 
     </div>
