@@ -24,6 +24,9 @@ import { CreateSalePage, SaleDetailPage, ListSalePage } from "@/features/sales";
 import { CreateProductPage, ProductDetailPage } from "@/features/products";
 import { CreateSupplierPage, SupplierDetailPage, ListSupplierPage } from "@/features/suppliers";
 import { ProfileUserPage } from "@/features/users";
+import ProfileUserSimplePage from "../../features/users/pages/ProfileUserSimplePage";
+import { ListUserPage } from "../../features/users";
+import { ListProductPage } from "../../features/products";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,7 @@ const router = createBrowserRouter([
       { path: "videos", element: <h1 className="p-4">Videos</h1> },
 
       { path: "perfil", element: <ProfilePage /> },
+      { path: "/usuarios/visualizar", element: <ProfileUserSimplePage /> },
     ],
   },
 
@@ -57,6 +61,7 @@ const router = createBrowserRouter([
   { path: "/usuarios/crear", element: <CreateUserPage /> },
   { path: "/usuarios/visualizar", element: <ProfileUserPage /> },
   { path: "/usuarios/modificar", element: <EditUserPage /> },
+  { path: "/usuarios/listar", element: <ListUserPage/> },
 
   // VENTAS
   { path: "/ventas/crear", element: <CreateSalePage /> },
@@ -66,6 +71,7 @@ const router = createBrowserRouter([
   // PRODUCTOS
   { path: "/productos/crear", element: <CreateProductPage /> },
   { path: "/productos/visualizar", element: <ProductDetailPage /> },
+  { path: "/productos/listar", element: <ListProductPage /> },
 
   // PROVEEDORES
   { path: "/proveedores/crear", element: <CreateSupplierPage /> },

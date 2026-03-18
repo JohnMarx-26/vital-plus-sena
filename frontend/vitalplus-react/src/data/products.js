@@ -7,7 +7,7 @@ import teclado from "@/assets/images/card-teclado.png";
 export const products =[
 {
     id: 1,
-    title: "Laptop Profesional"
+    title: "Laptop Profesional",
     price: 3500000,
     description: "Laptop de alto rendimiento para desarrollo y diseño",
     image:laptop,
@@ -15,7 +15,7 @@ export const products =[
 },
 {
     id: 2,
-    title: "Monitor de 27 pulgadas"
+    title: "Monitor de 27 pulgadas",
     price: 1200000,
     description: "Monitor IPS ideal par programacion y edicion",
     image: monitor,
@@ -23,7 +23,7 @@ export const products =[
 },
 {
     id: 3,
-    title: "Mouse"
+    title: "Mouse",
     price: 80000,
     description: "Laptop de alto rendimiento para desarrollo y diseño",
     image: mouse,
@@ -31,7 +31,7 @@ export const products =[
 },
 {
     id: 4,
-    title: "Teclado"
+    title: "Teclado",
     price: 50000,
     description: "Teclado mecanico de iluminacion RGB",
     image: teclado,

@@ -122,11 +122,11 @@ const Navbar = () => {
 
                         <li>
                           <Link
-                            to="/usuarios/editar"
+                            to="/usuarios/visualizar"
                             className="block px-4 py-2 hover:bg-surface transition"
                             onClick={() => setIsOpen(false)}
                           >
-                            Editar datos
+                            Visualizar usuario
                           </Link>
                         </li>
 

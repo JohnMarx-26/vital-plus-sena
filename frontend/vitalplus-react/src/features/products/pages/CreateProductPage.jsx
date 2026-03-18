@@ -41,8 +41,8 @@ const Botones = () => {
                 <Button
                     variant="secondary"
                     size="sm"
-                    type="button"
-                    onClick={() => alert("Producto creado con Exito")}
+                    type="submit"
+                    // onClick={() => alert("Producto creado con Exito")}
                     className="flex items-center gap-2"
                 >
                     <img src={guardar} alt="icono-guardar" className="w-5 h-5 px-[2px]" />
