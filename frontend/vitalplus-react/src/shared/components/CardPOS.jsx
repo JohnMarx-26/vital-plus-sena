@@ -47,10 +47,7 @@ const CardPOS = ({ product }) => {
 
         {/*//=========== Stock del producto (cantidad en inventario) =========== */}
         <h3 className="text-xs font-semibold text-text-primary">Stock: {stock}</h3>
-
-        {/* <p className="text-lg font-bold text-brand">
-          ${price.toLocaleString()}
-        </p> */}
+        
 
         {/* //================= Precio Regular =================== */}
         {/*

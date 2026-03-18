@@ -119,12 +119,27 @@ const products = [
   
 ];
 
-export default function ProductSectionPOS() {
+export default function ProductSectionPOS({ onSelectProduct }) {
   return (
-    <section className="w-full px-4 py-10">
-      <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center">
+    // <section className="w-full px-4 py-10">
+    //   <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center">
+    //     {products.map((product, index) => (
+    //       <CardPOS key={`${product.title}-${index}`} product={product} />
+    //     ))}
+    //   </div>
+    // </section>
+
+    <section className="w-full px-4 py-6">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">
         {products.map((product, index) => (
-          <CardPOS key={`${product.title}-${index}`} product={product} />
+          <div 
+            key={`${product.id}-${index}`} 
+            onClick={() => onSelectProduct?.(product)} // <--- Acción al hacer clic
+            className="cursor-pointer hover:scale-[1.02] active:scale-95 transition-all w-full flex justify-center"
+          >
+            {/* Usamos tu Card original tal cual me la pasaste */}
+            <CardPOS product={product} />
+          </div>
         ))}
       </div>
     </section>

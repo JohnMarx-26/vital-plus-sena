@@ -48,7 +48,7 @@ export default function SaleRowActions({ sale }) {
         onClick={handleDelete} // Ejecuta la acción de eliminación
         className="p-1 rounded hover:bg-gray-100"
       >
-        <FileDown size={16} /> {/* Icono de eliminar */}
+        <FileDown size={16} />
       </button>
 
     </div>

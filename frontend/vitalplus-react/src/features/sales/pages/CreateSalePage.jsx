@@ -1,10 +1,11 @@
 // Importaciones
-import VentasForm from "@/features/Sales/components/SalesForm";
-import Button from "@/shared/components/Button" 
-import guardar from "@/assets/svg/icono-guardar.svg"
+// import VentasForm from "@/features/Sales/components/SalesForm";
+import SaleForm from "@/features/Sales/components/SaleForm";
+import { Button } from "@/shared";
 import retroceder from "@/assets/svg/icono-retroceder.svg"
 import FormLayout from "@/shared/layout/FormLayout";
 import { useNavigate } from "react-router-dom";
+import ProductSectionPOS from "../components/ProductSectionPOS";
 
 
     /*se crea una arrow function para los botones del formulario
@@ -17,7 +18,7 @@ import { useNavigate } from "react-router-dom";
         const navigate = useNavigate()
 
         return ( 
-            <div className="flex w-full justify-between px-10">
+            <div className="flex w-full justify-between px-10 mb-5">
 
                 <div >
                     {/* Boton Retroceder */}
@@ -33,20 +34,6 @@ import { useNavigate } from "react-router-dom";
                         Retroceder
                     </Button>
                 </div>
-                <div className="flex w-60 px-1 gap-3">
-                    {/* Boton Guardar  */}
-                    <Button
-                        variant="secondary"
-                        size="sm"
-                        type="button"
-                        onClick={() => alert("Venta registrada con Exito")}
-                        className="flex items-center gap-2"
-                    >
-                        {/* Se pone padding en X de 2 px porque el icono estaba muy pegado al texto */}
-                        <img src={guardar} alt="icono-modificar" className="w-5 h-5 px-[2px]"/>
-                        Guardar
-                    </Button>
-                </div>
             </div>   
     );
 } 
@@ -55,7 +42,9 @@ export default function CreateSale() {
     return (
         <FormLayout>
             <Botones />
-            <VentasForm />
+            <SaleForm>
+                <ProductSectionPOS />
+            </SaleForm>
         </FormLayout>
     );
 }

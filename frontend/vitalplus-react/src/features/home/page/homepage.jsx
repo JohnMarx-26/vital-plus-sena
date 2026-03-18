@@ -11,15 +11,15 @@ import img2 from "@/assets/images/imagen-3.png";
 export default function HomePage() {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    setOpen(true);
+  useEffect(() => { setOpen(true)
   }, []);
 
   const slides = [img1, img2];
 
   return (
     <section className="w-full pt-16">
-      {/* Carousels */}
+
+      {/* Carousel 1*/}
       <div className="w-full px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* Carousel 1 */}
