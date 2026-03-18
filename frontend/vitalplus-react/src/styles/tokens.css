@@ -47,15 +47,16 @@
     --main-font: Helvetica;
 
     /* Font-size */
-    --fs-xxxxl: 5rem;    /*Ultra grande*/
-    --fs-xxxl: 4.0rem; /*Super grande*/
-    --fs-xxl: 3rem; /*Extra grande*/
-    --fs-xl: 2.5rem; /*Muy grande*/
-    --fs-lg: 2rem; /*grande*/
-    --fs-md: 1.5rem; /*mediano*/
-    --fs-sm: 1.25rem; /*pequeño*/
-    --fs-xs: 1em;   /*base*/
-    --fs-xxs: 0.875rem; /*extra estra pequeño*/
-    --fs-xxxs: 0.75rem; /*extra pequeño*/
+    --fs-xxxxl: 5rem; /* Ultra grande */
+    --fs-xxxl: 4rem; /* Súper grande */
+    --fs-xxl: 3rem; /* Extra grande */
+    --fs-xl: 2.5rem;  /* Muy grande */
+    --fs-lg: 2rem;  /* Grande */
+    --fs-md: 1.5rem;  /* Mediano */
+    --fs-sm: 1.25rem;  /* Pequeño */
+    --fs-xs: 1rem;  /* Base */
+    --fs-xxs: 0.875rem; /* Extra extra pequeño */
+    --fs-xxxs: 0.5rem; /* Mínimo */
+    --fs-xxxxs: 0.5rem; /* Mínimo 8px */
 
 }

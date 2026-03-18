@@ -7,7 +7,7 @@ export const suppliers = [
     contact: "Luis Peralta",
     phone: 3006556978,
     email: "luis.peralta@email.com",
-    city: "Medellín",
+    city: "Bogotá",
     address: "Calle 10 #15-23, Bogotá",
   },
   {

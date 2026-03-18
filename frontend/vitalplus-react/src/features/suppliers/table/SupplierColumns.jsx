@@ -13,16 +13,18 @@ export const SupplierColumns = [
     header: "ID", // Título de la columna
   },
 
+   // Columna NIT
+  {
+    accessorKey: "nit", 
+    header: "NIT", 
+  },
+  
   // Columna Nombre proveedor
   {
     accessorKey: "name", // Campo del objeto Supplier
     header: "Nombre", // Encabezado visible
   },
-  // Columna NIT
-  {
-    accessorKey: "nit", 
-    header: "NIT", 
-  },
+
    // Columna Razon Social
   {
     accessorKey: "razon_social", 

@@ -17,7 +17,7 @@ import  Button  from "@/shared/components/Button"
 // Recibe:
 // - data: datos que se mostrarán
 // - columns: configuración de columnas
-export default function SupplierDataTable({ data, columns }) {
+export default function SaleDataTable({ data, columns }) {
 
   // ================== ESTADO DE PAGINACIÓN ==================
   // pageIndex → página actual

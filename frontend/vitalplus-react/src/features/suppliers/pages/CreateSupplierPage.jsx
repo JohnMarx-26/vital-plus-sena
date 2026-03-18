@@ -35,16 +35,18 @@ import { useNavigate } from "react-router-dom";
                     </Button>
                 </div>
                 <div className="flex w-60 px-1 gap-3">
-                    {/* Boton modificar
+                    
+                    {/* Boton modificar */}
                     <Button
                         variant="secondary"
                         size="sm"
                         type="button"
-                        // onClick={() => console.log("Oprimió cancelar")}
+                        // onClick={() => navigate ("")}
                     >
                         <SquarePen className="w-5 h-5"/>
                         Modificar
-                    </Button> */}
+                    </Button>
+                    
                     {/* Boton Guardar  */}
                     <Button
                         variant="secondary"

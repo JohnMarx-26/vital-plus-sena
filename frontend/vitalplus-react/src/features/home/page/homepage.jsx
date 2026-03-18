@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import ProductSection from "@/features/home/components/ProductSection";
+// import ProductSection from "@/features/home/components/ProductSection";
+import ProductSectionNew from "@/features/home/components/ProductSectionNew";
 import Modal from "@/shared/components/Modal";
 import MenuBar from "@/features/home/components/MenuBar";
 import Carousel from "@/features/home/components/Carousel";
@@ -22,7 +23,7 @@ export default function HomePage() {
       <div className="w-full px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* Carousel 1 */}
-          <div className="w-full h-[260px] sm:h-[320px] lg:h-[350px] overflow-hidden rounded-lg">
+          <div className="w-full h-65 sm:h-80 lg:h-87 overflow-hidden rounded-lg">
             <Carousel autoSlide={true} autoSlideInterval={5000}>
               {slides.map((src, idx) => (
                 <img
@@ -36,7 +37,7 @@ export default function HomePage() {
           </div>
 
           {/* Carousel 2 */}
-          <div className="w-full h-[260px] sm:h-[320px] lg:h-[350px] overflow-hidden rounded-lg">
+          <div className="w-full h-65 sm:h-80 lg:h-87 overflow-hidden rounded-lg">
             <Carousel autoSlide={true} autoSlideInterval={5000}>
               {slides.map((src, idx) => (
                 <img
@@ -58,9 +59,9 @@ export default function HomePage() {
       <div className="w-full">
         <MenuBar />
       </div>
-      
-      <ProductSection />
-
+      <div className="flex flex-col md:flex-row gap-2">
+        <ProductSectionNew />
+      </div>
       {/* Modal */}
       <Modal isOpen={open} onClose={() => setOpen(false)} title="Bienvenido">
         <p>Tu farmacia de confianza, VitalPlus</p>
