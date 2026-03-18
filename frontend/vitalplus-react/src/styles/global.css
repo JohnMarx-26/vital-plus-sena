@@ -46,8 +46,8 @@
 
 /* ===== Ocultar ojo nativo del navegador en password ===== */
 
-  input[type="password"]::-ms-reveal;
-  input[type="password"]::-ms-clear {
+  --input[type="password"]::-ms-reveal;
+  --input[type="password"]::-ms-clear {
     display: none;
   }
 }
