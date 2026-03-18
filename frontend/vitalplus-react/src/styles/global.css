@@ -4,6 +4,7 @@
 
 @theme {
 
+
   /* ===== COLOR MARCA ===== */
   --color-brand: var(--semantic-brand);
   --color-brand-hover: var(--semantic-brand-hover);
@@ -28,7 +29,7 @@
 
   --color-background: var(--semantic-background);
   --color-background-md: var(--semantic-surface);
-  --color-background-muted: var( --semantic-surface-muted);
+  --color-background-muted: var(--semantic-surface-muted);
   --color-background-sidebar: var(--semantic-background-sidebar);
 
   /* ===== TIPOGRAFÍA ===== */
@@ -42,4 +43,11 @@
     --text-body: var(--semantic-font-size-body); /*base*/
     --text-small: var(--semantic-font-size-small); /*extra estra pequeño*/
     --text-caption: var(--semantic-font-size-caption); /*extra pequeño*/
-}    
+
+/* ===== Ocultar ojo nativo del navegador en password ===== */
+
+  input[type="password"]::-ms-reveal;
+  input[type="password"]::-ms-clear {
+    display: none;
+  }
+}

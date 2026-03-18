@@ -1,18 +1,36 @@
 import { useState } from "react";
-import Input from "@/shared/components/Input";
-import Button from "@/shared/components/Button";
+import { Input, Button } from "@/shared";
+import { forgotPasswordSchema } from "../Schemas/authSchemas";
 
 export default function ForgotPasswordForm({ onSuccess }) {
   const [form, setForm] = useState({ email: "" });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Recuperar contraseña:", form.email);
+
+    const result = forgotPasswordSchema.safeParse(form);
+
+    if (!result.success) {
+      const fieldErrors = {};
+
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0];
+        fieldErrors[field] = issue.message;
+      });
+
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
 
     if (onSuccess) {
       onSuccess(form.email);
@@ -20,7 +38,7 @@ export default function ForgotPasswordForm({ onSuccess }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-6">
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-text-primary">
           ¿Olvidaste tu contraseña?
@@ -38,6 +56,7 @@ export default function ForgotPasswordForm({ onSuccess }) {
         placeholder="Ingresa tu correo"
         value={form.email}
         onChange={handleChange}
+        error={errors.email}
       />
 
       <Button variant="primary" size="md" type="submit" className="w-full">

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Input from "@/shared/components/Input";
-import Button from "@/shared/components/Button";
+import { Input, Button } from "@/shared";
+import { newPasswordSchema } from "../Schemas/authSchemas";
 
 export default function NewPasswordForm({ onSuccess }) {
   const [form, setForm] = useState({
@@ -8,18 +8,33 @@ export default function NewPasswordForm({ onSuccess }) {
     confirmPassword: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (form.password !== form.confirmPassword) {
-      alert("Las contraseñas no coinciden");
+    const result = newPasswordSchema.safeParse(form);
+
+    if (!result.success) {
+      const fieldErrors = {};
+
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0];
+        fieldErrors[field] = issue.message;
+      });
+
+      setErrors(fieldErrors);
       return;
     }
+
+    setErrors({});
 
     if (onSuccess) {
       onSuccess();
@@ -27,7 +42,7 @@ export default function NewPasswordForm({ onSuccess }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-6">
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-text-primary">
           Nueva contraseña
@@ -47,6 +62,7 @@ export default function NewPasswordForm({ onSuccess }) {
         placeholder="Ingresa tu nueva contraseña"
         value={form.password}
         onChange={handleChange}
+        error={errors.password}
       />
 
       <Input
@@ -56,6 +72,7 @@ export default function NewPasswordForm({ onSuccess }) {
         placeholder="Confirma tu nueva contraseña"
         value={form.confirmPassword}
         onChange={handleChange}
+        error={errors.confirmPassword}
       />
 
       <Button variant="primary" size="md" type="submit" className="w-full">
