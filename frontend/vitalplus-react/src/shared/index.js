@@ -7,5 +7,13 @@ export { default as Input } from "./components/Input";
 export { default as Select } from "./components/Select";
 export { default as Header } from "./components/Header";
 export { default as FormLayout } from "./layout/FormLayout";
+export {
+    Dropdown,
+    DropdownTrigger,
+    DropdownContent,
+    DropdownItem,
+} from "./components/Dropdown";
+
+export {IconButton } from "./components/IconButton";
 
 
