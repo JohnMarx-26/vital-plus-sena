@@ -4,6 +4,12 @@ import Button from "@/shared/components/Button";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
 import { useNavigate } from "react-router-dom";
 
+
+    /*se crea una arrow function para el boton del formulario
+    a esta funcion se le realiza un callback cuando se ejecuta
+    el FormLayout, dentro de esta funcion esta la logica de los botones
+    y sus estilos*/
+
 const Botones = () => {
 
   const navigate = useNavigate();
@@ -12,6 +18,7 @@ const Botones = () => {
     <div className="flex w-full justify-between px-10">
 
       <div>
+        {/* Boton Retroceder */}
         <Button
           variant="secondary"
           size="sm"
@@ -32,11 +39,8 @@ export default function ProfileUserPage() {
 
   return (
     <FormLayout>
-
       <Botones />
-
       <ProfileUserForm />
-
     </FormLayout>
   );
 }

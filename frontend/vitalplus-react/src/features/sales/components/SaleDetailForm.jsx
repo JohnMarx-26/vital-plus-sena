@@ -42,9 +42,9 @@ export default function SaleDetailForm () {
 
     return (
             // SECCION PADRE 
-        <section className="w-full px-6 py-4 items-center">
+        <section className="w-full px-6 py-4 items-center justify-center">
                 
-            <div className="flex w-full max-w-7xl justify-center gap-5 pl-10">
+            <div className="flex w-full justify-center gap-5 pl-10">
 
                     {/* contenedor 1 - Imagen y botones */}
                 <div className="h-100 mt-7 pt-12  rounded-2xl border border-background-muted bg-background p-6 shadow-sm items-center ">

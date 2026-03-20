@@ -24,7 +24,7 @@ const Botones = () => {
                     variant="secondary"
                     size="sm"
                     type="button"
-                    //para devolverme al apartado del menu del administrador
+                    //para devolverme al apartado anterior
                     onClick={() => navigate(-1)}
                     className="flex items-center gap-2"
                 >
@@ -42,6 +42,5 @@ export default function SupplierDetailPage (){
             <Botones />
             <SupplierDetailForm/>
         </FormLayout>
-    
     );
 }
