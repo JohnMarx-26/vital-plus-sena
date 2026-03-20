@@ -6,6 +6,14 @@ export const productSchema = z
       .string()
       .min(1, "El ID debe tener como minimo un caracter"),
 
+      manufacturingDate: z
+      .string()
+      .min(6, "La fecha de fabricación debe tener como minimo de 6 caracteres"),
+
+      expirationDate: z
+      .string()
+      .min(6, "La fecha de expiración debe tener como minimo de 6 caracteres"),
+
     productName: z
       .string()
       .min(3, "Los nombres deben tener mínimo 3 caracteres")

@@ -1,11 +1,63 @@
-import Input from "@/shared/components/Input";
-import Select from "@/shared/components/Select";
-import Button from "@/shared/components/Button"
+import { Button, Select, Input } from "@/shared";
 import { useEffect, useState } from "react";
 import { getFormaTypes } from "../../users/services/selectFormaFarmaceutica";
 import { getViaTypes } from "../../users/services/selectViaAdministracion";
 import { AvatarUploader } from "@/features/users";
 import { productSchema } from "../Schemas/productSchemas";
+import { useNavigate } from "react-router-dom";
+import guardar from "@/assets/svg/icono-guardar.svg";
+import retroceder from "@/assets/svg/icono-retroceder.svg";
+
+/*
+Se crea una arrow function para los botones del formulario
+a esta función se le realiza un callback cuando se ejecuta
+el FormLayout, dentro de esta función está la lógica de los botones
+y sus estilos
+*/
+
+const Botones = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex w-full justify-between px-10">
+      <div>
+        {/* Botón Retroceder */}
+        <Button
+          variant="secondary"
+          size="sm"
+          type="button"
+          //para devolverme al apartado del menu del administrador
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2"
+        >
+          <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
+          Retroceder
+        </Button>
+      </div>
+
+      <div className="flex w-60 px-1 gap-3">
+        {/* Botón Guardar */}
+        <Button
+          variant="secondary"
+          size="sm"
+          type="submit"
+          className="flex items-center gap-2"
+          form="productsForms"
+        >
+          {/* padding en X porque el icono estaba muy pegado */}
+          <img
+            src={guardar}
+            alt="icono-modificar"
+            className="w-5 h-5 px-[2px]"
+          />
+          Guardar
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+
 
 export default function ProductForm(){
 
@@ -14,6 +66,8 @@ export default function ProductForm(){
 
     const [formData, setFormData] = useState({
     id: "",
+    manufacturingDate:"",
+    expirationDate:"",
     productName: "",
     administrationRoute: "",
     requiresPrescription: "",
@@ -80,6 +134,10 @@ export default function ProductForm(){
     // CONTENEDOR PADRE
     <div className="w-full h-full">
 
+      <div className="flex w-full justify-between px-10">
+          <Botones/>
+      </div>
+
       {/* SUBIR IMAGEN */}
       <div className="flex h-36 justify-center gap-8">
         <AvatarUploader onChange={handleAvatarChange}/>
@@ -89,7 +147,7 @@ export default function ProductForm(){
       <div className="flex w-1200px h-800px justify-center items-center mt-20">
 
         {/* FORMULARIO */}
-        <form noValidate onSubmit={handleSubmit} className="grid grid-cols-3 gap-4">
+        <form noValidate onSubmit={handleSubmit} className="grid grid-cols-3 gap-4 " id="productsForms">
 
           {/* COLUMNA 1 */}
           <div>
@@ -162,11 +220,19 @@ export default function ProductForm(){
             <Input
               label="Fecha de fabricación"
               type="date"
+              name="manufacturingDate"
+              value={formData.manufacturingDate}
+              onChange={handleChange}
+              error={errors.manufacturingDate}
             />
 
             <Input
               label="Fecha de vencimiento"
               type="date"
+              name="expirationDate"
+              value={formData.expirationDate}
+              onChange={handleChange}
+              error={errors.expirationDate}
             />
 
           </div>
@@ -214,11 +280,6 @@ export default function ProductForm(){
               error={errors.description}
             />
 
-          </div>
-                     <div className="col-span-3 flex justify-center mt-6">
-            <Button variant="primary" size="md" type="submit">
-              Guardar
-            </Button>
           </div>
         </form>
       </div>

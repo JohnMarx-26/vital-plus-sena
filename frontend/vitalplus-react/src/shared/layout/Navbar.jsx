@@ -122,7 +122,7 @@ const Navbar = () => {
 
                         <li>
                           <Link
-                            to="/usuarios/visualizar"
+                            to="/usuarios/detalles"
                             className="block px-4 py-2 hover:bg-surface transition"
                             onClick={() => setIsOpen(false)}
                           >

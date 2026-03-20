@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../../../shared/components/Button";
+import { Button } from "@/shared";
 import { SquarePen } from "lucide-react";
 import usuario from "@/assets/svg/icono-usuario-new.svg";
 
@@ -35,12 +35,12 @@ export default function ProfileUserForm() {
   ];
 
   const handleEdit = () => {
-    console.log("Modificar usuario");
+    console.log("Modificar producto");
   };
 
   return (
-    <section className="w-full px-6 py-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:flex-row lg:items-start">
+    <section className="flex w-full px-6 py-8 justify-center">
+      <div className="mx-auto flex w-full flex-col gap-8 lg:flex-row lg:items-start justify-center">
 
         <aside className="w-full lg:max-w-sm">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -56,8 +56,8 @@ export default function ProfileUserForm() {
               <div className="flex h-52 w-52 items-center justify-center">
                 <img
                   src={usuario}
-                  alt="Icono usuario"
-                  className="h-36 w-36"
+                  alt="Icono medicamento"
+                  className="h-50 w-50"
                 />
               </div>
 
@@ -82,8 +82,8 @@ export default function ProfileUserForm() {
                     onClick={toggleStatus}
                   >
                     {userStatus === "Activo"
-                      ? "Usuario Inactivo"
-                      : "Usuario Activo"}
+                      ? "Producto Inactivo"
+                      : "Producto Activo"}
                   </Button>
 
                   <Button
