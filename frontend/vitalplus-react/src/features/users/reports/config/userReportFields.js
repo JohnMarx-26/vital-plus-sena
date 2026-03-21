@@ -5,29 +5,33 @@ export const userReportFields =[
     default: true,
 },
 {
-    key: "email",
-    label: "Email",
+    key: "lastName",
+    label: "Apellido",
     default: true,
 },
 {
-    key: "document_type",
+    key: "documentType",
     label: "Tipo de documento",
     default: true,
 },
 {
-    key: "document_number",
+    key: "documentNumber",
     label: "Documento",
     default: true,
 },
 {
-    key: "phone",
-    label: "Telefono",
-    default: false,
+    key: "email",
+    label: "Email",
+    default: true,
 },
 {
     key: "address",
     label: "Direccion",
     default: false,
 },
-
+{
+    key: "cellNumber",
+    label: "Telefono",
+    default: false,
+},
 ]

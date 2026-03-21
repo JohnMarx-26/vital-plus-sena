@@ -5,7 +5,7 @@ import { userReportFields } from "../config/userReportFields";
 // Caso de uso que orquesta la generación del reporte
 import { generateUserReport } from "../services/generateUserReport";
 // Componentes UI reutilizables (design system)
-import { Button, Input, Select } from "@/shared/components";
+import { Button, Input, Select } from "@/shared";
 import Checkbox from "@/shared/components/Checkbox";
 // Componente modal para configuración de reportes
 export default function ReportConfigModal({ isOpen, onClose }) {
