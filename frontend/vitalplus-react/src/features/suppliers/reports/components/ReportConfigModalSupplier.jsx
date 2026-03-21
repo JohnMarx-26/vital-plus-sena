@@ -1,14 +1,14 @@
 // Hook para manejo de estado local en componentes funcionales
 import { useState } from "react";
 // Configuración de campos disponibles para el reporte
-import { productReportFields } from "../config/productReportFields";
+import { supplierReportFields } from "../config/supplierSupplierFields";
 // Caso de uso que orquesta la generación del reporte
-import { generateProductReport } from "../services/generateProductReport";
+import { generateSupplierReport } from "../services/generateSupplierReport";
 // Componentes UI reutilizables (design system)
 import { Button, Input, Select } from "@/shared";
 import Checkbox from "@/shared/components/Checkbox";
 // Componente modal para configuración de reportes
-export default function ReportConfigModal({ isOpen, onClose }) {
+export default function SupplierConfigModal({ isOpen, onClose }) {
   // Estado del formato de salida
   const [format, setFormat] = useState("pdf");
   // Estado del alcance del reporte
@@ -17,7 +17,7 @@ export default function ReportConfigModal({ isOpen, onClose }) {
   const [documentNumber, setDocumentNumber] = useState("");
   // Estado de campos seleccionados (inicialización lazy)
   const [selectedFields, setSelectedFields] = useState(
-    () => productReportFields.filter((f) => f.default) // Solo campos marcados por
+    () => supplierReportFields.filter((f) => f.default) // Solo campos marcados por
     // defecto
   );
   // Control de render: si el modal no está abierto, no se monta en el DOM
@@ -37,7 +37,7 @@ export default function ReportConfigModal({ isOpen, onClose }) {
   // Handler principal para generar el reporte
   const handleGenerateReport = () => {
     // Invoca el caso de uso con la configuración actual
-    generateProductReport({
+    generateSupplierReport({
       format,
       selectedFields,
       scope,
@@ -76,7 +76,7 @@ black/40"
           <p className="mb-2 font-medium">Campos del reporte</p>
           {/* Grid de checkboxes */}
           <div className="grid grid-cols-2 gap-2">
-            {productReportFields.map((field) => {
+            {supplierReportFields.map((field) => {
               // Determina si el campo está seleccionado
               const checked = selectedFields.some((f) => f.key === field.key);
               return (
