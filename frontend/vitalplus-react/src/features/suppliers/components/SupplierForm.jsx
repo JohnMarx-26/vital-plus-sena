@@ -1,9 +1,8 @@
-import Input from "@/shared/components/Input";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Input, Button } from "@/shared";
 import { AvatarUploader } from "@/features/users";
 import { supplierSchema } from "../Schemas/supplierSchemas";
-import { useNavigate } from "react-router-dom";
-import Button from "@/shared/components/Button";
 import guardar from "@/assets/svg/icono-guardar.svg";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
 // import { SquarePen } from "lucide-react";
@@ -13,7 +12,7 @@ import retroceder from "@/assets/svg/icono-retroceder.svg";
     el FormLayout, dentro de esta funcion esta la logica de los botones
     y sus estilos*/
 
-const Botones = () => {
+const Botones = ({ formId = "suppliersForm", submitLabel = "Guardar" }) => {
   const navigate = useNavigate();
 
   return (
@@ -51,7 +50,7 @@ const Botones = () => {
           type="submit"
           // onClick={() => ()}
           className="flex items-center gap-2"
-          form="suppliersForms"
+          form={formId}
         >
           {/* Se pone padding en X de 2 px porque el icono estaba muy pegado al texto */}
           <img
@@ -59,14 +58,18 @@ const Botones = () => {
             alt="icono-modificar"
             className="w-5 h-5 px-0.5"
           />
-          Guardar
+          {submitLabel}
         </Button>
       </div>
     </div>
   );
 };
 
-export default function ProveedorForm() {
+export default function SupplierForm({
+  formId = "suppliersForm",
+  showActions = true,
+  submitLabel = "Guardar",
+}) {
   const [formData, setFormData] = useState({
     suppliertName: "",
     documentNumber: "",
@@ -121,20 +124,24 @@ export default function ProveedorForm() {
     }
 
     setErrors({});
-    console.log("Usuario válido:", result.data);
+    console.log("Proveedor válido:", result.data);
   };
 
   return (
     // ==================Contenedor PADRE =====================//
     <div className="w-full h-full">
       {/* //============ Boton de retroceder y guardar ============== */}
-      <div className="flex w-full justify-between px-10">
-        <Botones />
-      </div>
+      {showActions && (
+        <div className="flex w-full justify-between px-10">
+          <Botones formId={formId} submitLabel={submitLabel} />
+        </div>
+      )}
 
       {/* //============ Avatar =============== */}
       <div className="flex h-36 justify-center gap-8">
-        <AvatarUploader onChange={handleAvatarChange} />
+        <AvatarUploader 
+          label="Foto del proveedor"
+          onChange={handleAvatarChange} />
       </div>
 
       <div className=" flex w-1200px h-800px justify-center items-center mt-8">
@@ -143,7 +150,7 @@ export default function ProveedorForm() {
           noValidate
           onSubmit={handleSubmit}
           className="grid grid-cols-3 gap-4 "
-          id="suppliersForms"
+          id={formId}
         >
           {/* //========= Columna 1 ======= */}
           <div>

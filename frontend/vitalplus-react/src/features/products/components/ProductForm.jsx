@@ -1,19 +1,22 @@
-import Input from "@/shared/components/Input";
-import Select from "@/shared/components/Select";
-import Button from "@/shared/components/Button"
+import { Input, Select, Button } from "@/shared";
 import { useEffect, useState } from "react";
 import { getFormaTypes } from "../../users/services/selectFormaFarmaceutica";
 import { getViaTypes } from "../../users/services/selectViaAdministracion";
 import { AvatarUploader } from "@/features/users";
 import { productSchema } from "../Schemas/productSchemas";
 
-export default function ProductForm(){
-
+export default function ProductForm({
+  formId = "productForm",
+  showActions = true,
+  submitLabel = "Guardar",
+}) {
   const [FormaTypes, setFormaTypes] = useState([]);
   const [ViaTypes, setViaTypes] = useState([]);
 
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     id: "",
+    expirationDate: "",
+    manufacturingDate: "",
     productName: "",
     administrationRoute: "",
     requiresPrescription: "",
@@ -26,74 +29,76 @@ export default function ProductForm(){
     avatarUrl: null,
   });
 
-    const [errors, setErrors] = useState({});
-
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     getFormaTypes().then(setFormaTypes);
     getViaTypes().then(setViaTypes);
   }, []);
-  
-   const handleChange = (e) => {
-     const { name, value } = e.target;
- 
-     setFormData((prev) => ({
-       ...prev,
-       [name]: value,
-     }));
- 
-     setErrors((prev) => ({
-       ...prev,
-       [name]: "",
-     }));
-   };
- 
-   const handleAvatarChange = (_, previewUrl) => {
-   setFormData((prev) => ({
-     ...prev,
-     avatarUrl: previewUrl || null,
-   }));
- };
- 
-   const handleSubmit = (e) => {
-     e.preventDefault();
- 
-     const result = productSchema.safeParse(formData);
- 
-     if (!result.success) {
-       const fieldErrors = {};
- 
-       result.error.issues.forEach((issue) => {
-         const field = issue.path[0];
-         fieldErrors[field] = issue.message;
-       });
- 
-       setErrors(fieldErrors);
-       return;
-     }
- 
-     setErrors({});
-     console.log("Usuario válido:", result.data);
-   };
-  return (
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
+  };
+
+  const handleAvatarChange = (_, previewUrl) => {
+    setFormData((prev) => ({
+      ...prev,
+      avatarUrl: previewUrl || null,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const result = productSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors = {};
+
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0];
+        fieldErrors[field] = issue.message;
+      });
+
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
+    console.log("Producto válido:", result.data);
+  };
+
+  return (
     // CONTENEDOR PADRE
     <div className="w-full h-full">
-
       {/* SUBIR IMAGEN */}
       <div className="flex h-36 justify-center gap-8">
-        <AvatarUploader onChange={handleAvatarChange}/>
+        <AvatarUploader
+          label="Foto del producto"
+          onChange={handleAvatarChange} />
       </div>
 
       {/* CONTENEDOR FORMULARIO */}
       <div className="flex w-1200px h-800px justify-center items-center mt-20">
-
         {/* FORMULARIO */}
-        <form noValidate onSubmit={handleSubmit} className="grid grid-cols-3 gap-4">
-
+        <form
+          id={formId}
+          noValidate
+          onSubmit={handleSubmit}
+          className="grid grid-cols-3 gap-4"
+        >
           {/* COLUMNA 1 */}
           <div>
-
             <Input
               label="ID del producto"
               name="id"
@@ -102,7 +107,6 @@ export default function ProductForm(){
               value={formData.id}
               onChange={handleChange}
               error={errors.id}
-
             />
 
             <Input
@@ -132,17 +136,14 @@ export default function ProductForm(){
               value={formData.lotNumber}
               onChange={handleChange}
               error={errors.lotNumber}
-              
             />
-
           </div>
 
           {/* COLUMNA 2 */}
           <div>
-
             <Select
               label="Vía de administración"
-              name="viaAdministracion"
+              name="administrationRoute"
               options={ViaTypes}
               value={formData.administrationRoute}
               onChange={handleChange}
@@ -162,18 +163,24 @@ export default function ProductForm(){
             <Input
               label="Fecha de fabricación"
               type="date"
+              name="manufacturingDate"
+              value={formData.manufacturingDate}
+              onChange={handleChange}
+              error={errors.manufacturingDate}
             />
 
             <Input
               label="Fecha de vencimiento"
+              name="expirationDate"
               type="date"
+              value={formData.expirationDate}
+              onChange={handleChange}
+              error={errors.expirationDate}
             />
-
           </div>
 
           {/* COLUMNA 3 */}
           <div>
-
             <Input
               label="Requiere fórmula"
               type="text"
@@ -213,13 +220,16 @@ export default function ProductForm(){
               onChange={handleChange}
               error={errors.description}
             />
+          </div>
 
-          </div>
-                     <div className="col-span-3 flex justify-center mt-6">
-            <Button variant="primary" size="md" type="submit">
-              Guardar
-            </Button>
-          </div>
+          {/* Acciones internas opcionales */}
+          {showActions && (
+            <div className="col-span-3 flex justify-center mt-6">
+              <Button variant="primary" size="md" type="submit">
+                {submitLabel}
+              </Button>
+            </div>
+          )}
         </form>
       </div>
     </div>

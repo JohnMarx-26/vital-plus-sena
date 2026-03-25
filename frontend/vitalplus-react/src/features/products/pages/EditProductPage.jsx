@@ -1,8 +1,8 @@
 // importaciones
-import { EditUserForm } from "@/features/users";
+import { ProductForm } from "@/features/products";
 import { Button, FormLayout } from "@/shared";
-import retroceder from "@/assets/svg/icono-retroceder.svg";
 import guardar from "@/assets/svg/icono-guardar.svg";
+import retroceder from "@/assets/svg/icono-retroceder.svg";
 import { useNavigate } from "react-router-dom";
 
 /*
@@ -34,10 +34,14 @@ const Botones = () => {
           variant="secondary"
           size="sm"
           type="submit"
-          form="editUserForm"
+          form="editProductForm"
           className="flex items-center gap-2"
         >
-          <img src={guardar} alt="icono-actualizar" className="w-5 h-5 px-[2px]" />
+          <img
+            src={guardar}
+            alt="icono-actualizar"
+            className="w-5 h-5 px-[2px]"
+          />
           Actualizar
         </Button>
       </div>
@@ -45,11 +49,11 @@ const Botones = () => {
   );
 };
 
-export default function EditUserPage() {
+export default function EditProductPage() {
   return (
     <FormLayout>
       <Botones />
-      <EditUserForm />
+      <ProductForm formId="editProductForm" showActions={false} />
     </FormLayout>
   );
 }

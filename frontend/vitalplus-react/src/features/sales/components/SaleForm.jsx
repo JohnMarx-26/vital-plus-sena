@@ -78,7 +78,7 @@ const SaleFormPos = ({ children }) => {
           </div>
           <div className="flex justify-between border-b">
             <p className="p-2 font-bold text-xs text-text-primary">
-              Metdo Pago:{" "}
+              Metodo Pago:{" "}
             </p>
             <Link className="text-xs  font-bold mt-2">Efectivo</Link>
             <Link className="text-xs  font-bold mt-2">Tarjeta debito</Link>

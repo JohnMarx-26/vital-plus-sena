@@ -1,14 +1,11 @@
 // importaciones
-import ProveedorForm from "@/features/suppliers/components/SupplierForm";
-import FormLayout from "@/shared/layout/FormLayout";
-
-
+import { SupplierForm } from "@/features/suppliers";
+import { FormLayout } from "@/shared";
 
 export default function CreateSupplierPage() {
-return (
-
-        <FormLayout>
-            <ProveedorForm />
-        </FormLayout>
-    );
+  return (
+    <FormLayout>
+      <SupplierForm />
+    </FormLayout>
+  );
 }

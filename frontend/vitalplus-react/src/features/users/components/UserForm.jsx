@@ -72,7 +72,9 @@ export default function UserForm() {
     <div className="w-full h-full">
       {/* CARGAR IMAGEN */}
       <div className="flex h-36 justify-center gap-8">
-        <AvatarUploader onChange={handleAvatarChange} />
+        <AvatarUploader
+          label="Foto de perfil" 
+          onChange={handleAvatarChange} />
       </div>
 
       {/* CONTENEDOR FORMULARIO */}

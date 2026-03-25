@@ -1,4 +1,4 @@
-import Button  from "./Button"
+import Button  from "./Button";
 import agregar from "@/assets/svg/icono-add-light.svg";
 
 const CardClient = ({ product }) => {

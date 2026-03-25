@@ -1,8 +1,8 @@
-// importaciones
-import { EditUserForm } from "@/features/users";
+// Importaciones
+import { SaleForm, ProductSectionPOS } from "@/features/sales";
 import { Button, FormLayout } from "@/shared";
-import retroceder from "@/assets/svg/icono-retroceder.svg";
 import guardar from "@/assets/svg/icono-guardar.svg";
+import retroceder from "@/assets/svg/icono-retroceder.svg";
 import { useNavigate } from "react-router-dom";
 
 /*
@@ -13,7 +13,7 @@ const Botones = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex w-full justify-between px-10">
+    <div className="flex w-full justify-between px-10 mb-5">
       <div>
         {/* Botón Retroceder */}
         <Button
@@ -28,16 +28,20 @@ const Botones = () => {
         </Button>
       </div>
 
-      <div className="flex w-60 px-1 gap-3">
+      <div>
         {/* Botón Actualizar */}
         <Button
           variant="secondary"
           size="sm"
-          type="submit"
-          form="editUserForm"
+          type="button"
+          onClick={() => alert("Venta actualizada con éxito")}
           className="flex items-center gap-2"
         >
-          <img src={guardar} alt="icono-actualizar" className="w-5 h-5 px-[2px]" />
+          <img
+            src={guardar}
+            alt="icono-actualizar"
+            className="w-5 h-5 px-[2px]"
+          />
           Actualizar
         </Button>
       </div>
@@ -45,11 +49,13 @@ const Botones = () => {
   );
 };
 
-export default function EditUserPage() {
+export default function EditSalePage() {
   return (
     <FormLayout>
       <Botones />
-      <EditUserForm />
+      <SaleForm>
+        <ProductSectionPOS />
+      </SaleForm>
     </FormLayout>
   );
 }
