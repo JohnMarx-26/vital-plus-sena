@@ -4,10 +4,8 @@ import { getDocumentTypes } from "../services/selectService";
 import { AvatarUploader } from "@/features/users";
 import { userSchema } from "../Schemas/userSchemas";
 
-
 export default function EditUserForm() {
   const [documentTypes, setDocumentTypes] = useState([]);
-
 
   const [formData, setFormData] = useState({
     documentType: "",
@@ -22,31 +20,25 @@ export default function EditUserForm() {
     avatarUrl: null,
   });
 
-
   const [errors, setErrors] = useState({});
-
 
   useEffect(() => {
     getDocumentTypes().then(setDocumentTypes);
   }, []);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-
 
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
 
-
     setErrors((prev) => ({
       ...prev,
       [name]: "",
     }));
   };
-
 
   const handleAvatarChange = (_, previewUrl) => {
     setFormData((prev) => ({
@@ -55,33 +47,26 @@ export default function EditUserForm() {
     }));
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     const result = userSchema.safeParse(formData);
-
 
     if (!result.success) {
       const fieldErrors = {};
-
 
       result.error.issues.forEach((issue) => {
         const field = issue.path[0];
         fieldErrors[field] = issue.message;
       });
 
-
       setErrors(fieldErrors);
       return;
     }
 
-
     setErrors({});
     console.log("Usuario actualizado:", result.data);
   };
-
 
   return (
     <div className="w-full h-full">
@@ -92,7 +77,6 @@ export default function EditUserForm() {
           onChange={handleAvatarChange}
         />
       </div>
-
 
       {/* CONTENEDOR FORMULARIO */}
       <div className="flex w-1200px h-800px justify-center items-center mt-20">
@@ -114,7 +98,6 @@ export default function EditUserForm() {
               error={errors.documentType}
             />
 
-
             <Input
               label="Nombres"
               name="firstName"
@@ -124,7 +107,6 @@ export default function EditUserForm() {
               onChange={handleChange}
               error={errors.firstName}
             />
-
 
             <Input
               label="Correo electrónico"
@@ -136,7 +118,6 @@ export default function EditUserForm() {
               error={errors.email}
             />
           </div>
-
 
           {/* COLUMNA 2 */}
           <div>
@@ -150,7 +131,6 @@ export default function EditUserForm() {
               error={errors.documentNumber}
             />
 
-
             <Input
               label="Apellidos"
               name="lastName"
@@ -160,7 +140,6 @@ export default function EditUserForm() {
               onChange={handleChange}
               error={errors.lastName}
             />
-
 
             <Input
               label="Teléfono"
@@ -172,7 +151,6 @@ export default function EditUserForm() {
               error={errors.phone}
             />
           </div>
-
 
           {/* COLUMNA 3 */}
           <div>
@@ -186,7 +164,6 @@ export default function EditUserForm() {
               error={errors.address}
             />
 
-
             <Input
               label="Contraseña"
               name="password"
@@ -196,7 +173,6 @@ export default function EditUserForm() {
               onChange={handleChange}
               error={errors.password}
             />
-
 
             <Input
               label="Confirmar contraseña"
