@@ -1,8 +1,8 @@
 import Button  from "./Button"
 import agregar from "@/assets/svg/icono-add-light.svg";
 
-const CardClient = ({ product }) => {
-  const { lab, title, image, price, discount } = product;
+const CardClient = ({ variant, product, onComprar, onSelectProduct }) => {
+  const { id, lab, title, image, stock, price, discount } = product;
 
   //==================== Descuento ============================//
   /**
@@ -11,12 +11,25 @@ const CardClient = ({ product }) => {
    * sino y es falso se mantene solo el price en el color de la marca
    */
   const hasDiscount = discount && discount > 0;
+  
+  //==================== Stock en 0 VISTA FARMACEUTA============================//
+  // Cuando el stock llegue a cero cambia el color de fondo de la card
+  // y el texto de stock se pondra de color rojo
+  const notStock = stock == 0;
 
-  return (
-    <div
-      className="
+  //==================== Tamaño de la Card====================//
+  /**
+   * Se crea una variable que pasa como argumento en el div contenedor
+   * para asi de manera dinamica dependiendo de la variante, la card
+   * tenga un tamaño u otro
+   */
+
+  const variantCard ={ 
+
+  client: `
+    p-1
     w-80
-    h-98
+    h-95
     max-w-68
     bg-background
     text-text-primary
@@ -26,13 +39,46 @@ const CardClient = ({ product }) => {
     hover:shadow-2xl
     transition-all
     duration-300
-  "
+    ${notStock ? "disable" : "bg-white"}
+    `
+    ,
+  
+    pos: `
+    w-48
+    bg-background
+    border-border-strong
+    text-text-primary
+    shadow-md
+    rounded-2xl
+    overflow-hidden
+    hover:shadow-2xl
+    transition-all
+    duration-300
+    ${notStock ? "bg-background-md " : "bg-white"}
+  `
+  };
+
+  return (
+    
+    <div className={variantCard[variant]}
+    
+    onClick={() => onSelectProduct?.(product)}
+
     >
+      
+      {/* //========= ID del producto ============ */}
+      <div className={`${variant === "client" ? "hidden" : "font-bold pl-2 pt-2 text-small"}`}>
+        {id}
+      </div>
+
       {/* //========= Imagen del producto ============ */}
       <img
         src={image}
         alt={title}
-        className="w-full h-44 object-contain bg-background"
+        className={`${variant === "client" 
+          ? "w-full h-44 object-contain bg-background" 
+          :  "w-full h-36 object-contain bg-backgorund"
+        }`} 
       />
 
       <div className="p-4 space-y-2">
@@ -46,7 +92,7 @@ const CardClient = ({ product }) => {
         {/* //================= Precio Regular =================== */}
         {/*
          * Se utilizo visible ----- invisible para que la etiqueta no cambie de tamaño
-         * si el prodcuto no tiene descuesto haciendo un espacio reservado
+         * si el producto no tiene descuesto haciendo un espacio reservado
          */}
         <div className="flex items-baseline ">
           <p
@@ -94,7 +140,24 @@ const CardClient = ({ product }) => {
           </span>
         </div>
 
-        {/* //=============== AGREGAR al carrito =================*/}
+      {/* //=============== Variante Card Venta POS =================
+        card SIN boton de comprar, con cantidad de Stock
+        si el stock llega a cero el stock pasara a color rojo
+        para punto de venta, vista farmaceuta */}
+      {variant === "pos" && ( 
+        <>
+        <h3 className={` ${notStock 
+        ? "text-xs font-semibold text-red-500"
+        : "text-xs font-semibold text-text-primary"}`}>Stock: {stock}</h3>
+        </>
+      )}
+
+      {/* //=============== Variante Card E-commers =================
+
+      // boton de comprar */}
+      {variant === "client" && (
+      
+      //=============== AGREGAR al carrito =================
         <Button
         className="
         w-full 
@@ -105,10 +168,12 @@ const CardClient = ({ product }) => {
         py-2 px-2
         mt-3
         "
+        onClick={() =>  onComprar(product)}
         >
           Agregar
           <img src={agregar} alt="icono-agregar" className="h-5 w-5" />
         </Button>
+      )}
       </div>
     </div>
   );

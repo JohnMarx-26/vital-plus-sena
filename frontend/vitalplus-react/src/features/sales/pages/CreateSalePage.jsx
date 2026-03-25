@@ -1,11 +1,10 @@
 // Importaciones
-// import VentasForm from "@/features/Sales/components/SalesForm";
 import SaleForm from "@/features/Sales/components/SaleForm";
 import { Button } from "@/shared";
 import retroceder from "@/assets/svg/icono-retroceder.svg"
 import FormLayout from "@/shared/layout/FormLayout";
 import { useNavigate } from "react-router-dom";
-import ProductSectionPOS from "../components/ProductSectionPOS";
+import { ProductSection } from "@/features/products";
 
 
     /*se crea una arrow function para los botones del formulario
@@ -43,7 +42,7 @@ export default function CreateSale() {
         <FormLayout>
             <Botones />
             <SaleForm>
-                <ProductSectionPOS />
+                <ProductSection variant="pos" />
             </SaleForm>
         </FormLayout>
     );
