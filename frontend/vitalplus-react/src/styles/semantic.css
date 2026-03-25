@@ -1,0 +1,49 @@
+/* @import url(tokens.css); */
+/* Son roles de la interfaz */
+
+:root {
+    /*======== Brand ========*/
+
+    --semantic-brand: var(--color-primary-700);
+    --semantic-brand-hover: var(--color-primary-800); /*generalmente es de un tono mas alto que el brand */
+    --semantic-brand-soft: var(--color-primary-500);
+    --semantic-brand-semiLight: var(--color-primary-300);
+    --semantic-brand-light: var(--color-primary-100);
+    
+    /* ===== BackGround ===== */
+    
+    --semantic-background: var(--color-white); /*Fondo para toda la aplicacion*/
+    --semantic-surface: var(--color-gray-600); /*Fondo para modales, cards, containers*/
+    --semantic-surface-muted: var(--color-gray-200); /*Zonas secundarias, con menos importancia*/
+    --semantic-background-sidebar: var(--color-primary-100); /*color de fondo para el Sidebar de Main*/
+    
+    /*  ====== Text ======*/
+    --semantic-text-primary: var(--color-gray-900); /*Color principal de lectura, titulos, texto base del documento*/
+    --semantic-text-secondary: var(--color-gray-700); /*Textos menos dominantes*/
+    --semantic-text-muted: var(--color-gray-500); /*Texto deshabilitado, por ejemplo*/
+    --semantic-text-inverse: var(--color-gray-50); /*Texto invertido*/
+    --semantic-text-dropdowns: var(--color-white);
+
+    /*  ====== Border ======= */
+    --semantic-border: var(--color-gray-700); /*Borde principal de todos los componentes*/
+    --semantic-border-strong: var(--color-gray-900); /* Border mas fuertes*/
+
+    /* ====== State ======== */
+    --semantic-warning: var(--color-secundary-950);
+
+
+    /*============== Font ================*/
+    --semantic-font-size-display: var(--fs-xxl); /* Texto de alto impacto, texto protagonista, hero, números grandes*/
+    --semantic-font-size-banner: var(--fs-xl);
+    --semantic-font-size-h1: var(--fs-lg);
+    --semantic-font-size-h2: var(--fs-md);
+    --semantic-font-size-h3: var(--fs-sm);
+    --semantic-font-size-body: var(--fs-xs);
+    --semantic-font-size-small: var(--fs-xxs);
+    --semantic-font-size-caption: var(--fs-xxxs); 
+
+    /* ================================================ */
+    /*          YA NO DEPENDEMOS DE NOMBRES DE COLOR,
+                    DEPENDEMOS ES DE INTENCION 
+        ==============================================*/
+}

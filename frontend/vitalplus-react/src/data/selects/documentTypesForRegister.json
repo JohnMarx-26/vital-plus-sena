@@ -1,0 +1,14 @@
+[
+    {
+        "id": "User",
+        "label": "Usuario"
+    },
+    {
+        "id": "Adm",
+        "label": "Administrador"
+    },
+    {
+        "id": "Farm",
+        "label": "Farmaceuta"
+    }
+]

@@ -1,0 +1,53 @@
+@import url(tokens.css);
+@import url(semantic.css);
+@import "tailwindcss";
+
+@theme {
+
+
+  /* ===== COLOR MARCA ===== */
+  --color-brand: var(--semantic-brand);
+  --color-brand-hover: var(--semantic-brand-hover);
+  --color-brand-soft: var(--semantic-brand-soft);
+  --color-brand-semiLight: var(--semantic-brand-semiLight);
+  --color-brand-light: var(--semantic-brand-light);
+
+     /* ===== BORDE ===== */
+
+  --color-border: var(--semantic-border);
+  --color-border-strong: var(--semantic-border-strong);
+
+   /* ===== COLOR TEXTO ===== */
+
+  --color-text-primary: var(--semantic-text-primary);
+  --color-text-muted: var(--semantic-text-muted);
+  --color-text-inverse: var(--semantic-text-inverse);
+  --color-text-secundary: var(--semantic-text-secundary);
+  --color-text-dropdowns: var(--semantic-text-dropdowns);
+
+   /* ===== BACKGROUND ===== */
+
+  --color-background: var(--semantic-background);
+  --color-background-md: var(--semantic-surface);
+  --color-background-muted: var(--semantic-surface-muted);
+  --color-background-sidebar: var(--semantic-background-sidebar);
+
+  /* ===== TIPOGRAFÍA ===== */
+  --font-sans: var(--main-font);
+
+    --text-xxl: var(--semantic-font-size-display); /*Extra grande*/
+    --font-text-xl: var(--semantic-font-size-banner); /*Muy grande*/
+    --text-h1: var(--semantic-font-size-h1); /*grande*/
+    --text-h2: var(--semantic-font-size-h2); /*mediano*/
+    --text-h3: var(--semantic-font-size-h3);/*pequeño*/
+    --text-body: var(--semantic-font-size-body); /*base*/
+    --text-small: var(--semantic-font-size-small); /*extra estra pequeño*/
+    --text-caption: var(--semantic-font-size-caption); /*extra pequeño*/
+
+/* ===== Ocultar ojo nativo del navegador en password ===== */
+
+  --input[type="password"]::-ms-reveal;
+  --input[type="password"]::-ms-clear {
+    display: none;
+  }
+}

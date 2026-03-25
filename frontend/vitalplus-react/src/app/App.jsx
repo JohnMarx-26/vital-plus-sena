@@ -1,16 +1,6 @@
-import UserForm from "../features/users/components/UserForm"
+import { RouterProvider } from "react-router-dom";
+import router from "@/app/router/index.jsx";
 
-export default function App(){
-  return(
-    <div className="text bg-green-700 flex items-center justify-center ">
-      <h1 className="text-white text-4xl font-bold">
-          Vital-Plus
-      </h1>
-
-      <UserForm>
-        
-      </UserForm>
-
-    </div>
-  )
+export default function App() {
+  return <RouterProvider router={router} />;
 }

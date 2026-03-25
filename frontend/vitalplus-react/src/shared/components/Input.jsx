@@ -1,44 +1,73 @@
-// Creacion de componente input
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
-export default function Input({label, type = "text", ...props}){
-    return(
-        <div className="w-^[320px]">
-            {/* Label */}
-            {label &&(
-             <label 
-                className="
-                block
-                text-[8px]
-                mb-1
-                text-gray-600
-                "
-             >
-               {label}
-             </label>
-            )}
+export default function Input({
+  label,
+  type = "text",
+  id,
+  name,
+  error,
+  ...props
+}) {
+  const inputId = id || name;
+  const isPassword = type === "password";
+  const [showPassword, setShowPassword] = useState(false);
 
-        {/* El contenedor del input */}
+  const inputType = isPassword && showPassword ? "text" : type;
 
-        {/* Area interactiva visible(48px) */}
+  return (
+    <div className="w-full min-w-[320px]">
+      {label && (
+        <label
+          htmlFor={inputId}
+          className="block text-[8px] mb-1 text-text-muted"
+        >
+          {label}
+        </label>
+      )}
 
-        {/* Input visual */}
-        <input 
-            type={type} 
-            className="
+      <div className="relative">
+        <input
+          id={inputId}
+          name={name}
+          type={inputType}
+          className={`
             w-full
             h-12
-            rounded-b-md
+            rounded-md
             border
-            border-gray-300
             px-4
             text-base
-
-            focus:right-2
-            focus:ring-blue-500
-            focus:border-blue-500
-            "
-            {...props}     
+            bg-background
+            text-text-primary
+            placeholder:text-text-muted
+            focus:outline-none
+            focus:ring-2
+            focus:ring-brand
+            focus:border-brand
+            disabled:opacity-60
+            ${isPassword ? "pr-12" : ""}
+            ${error ? "border-red-500" : "border-border"}
+          `}
+          {...props}
         />
-        </div>
-    );
+
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary transition"
+          >
+            {showPassword ? (
+              <EyeOff className="size-5" />
+            ) : (
+              <Eye className="size-5" />
+            )}
+          </button>
+        )}
+      </div>
+
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+    </div>
+  );
 }
