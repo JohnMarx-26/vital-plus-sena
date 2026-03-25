@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/shared";
 import { Trash2, SquarePlus } from "lucide-react";
 
-const SaleFormPos = ({ children }) => {
+const SaleFormPos = ({ children }) => { 
 
   
   const [listaVenta, setListaVenta] = useState([]);
@@ -76,7 +76,7 @@ const SaleFormPos = ({ children }) => {
                   cliente:
                 </p>
               </div>
-            <Link  to="/usuarios/crear"className="flex text-xs font-bold pr-2 pt-1 items-center">
+            <Link  to="/usuariosSale/crear"className="flex text-xs font-bold pr-2 pt-1 items-center">
               Nuevo
               <SquarePlus />
             </Link>

@@ -41,7 +41,7 @@ export default function ResetPasswordForm({ email = "", onSuccess }) {
   };
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form noValidate  onSubmit={handleSubmit} className="flex flex-col gap-6">
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-text-primary">
           Validar token

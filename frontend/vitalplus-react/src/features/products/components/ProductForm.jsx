@@ -1,73 +1,22 @@
-import { Button, Select, Input } from "@/shared";
+import { Input, Select, Button } from "@/shared";
 import { useEffect, useState } from "react";
 import { getFormaTypes } from "../../users/services/selectFormaFarmaceutica";
 import { getViaTypes } from "../../users/services/selectViaAdministracion";
 import { AvatarUploader } from "@/features/users";
 import { productSchema } from "../Schemas/productSchemas";
-import { useNavigate } from "react-router-dom";
-import guardar from "@/assets/svg/icono-guardar.svg";
-import retroceder from "@/assets/svg/icono-retroceder.svg";
 
-/*
-Se crea una arrow function para los botones del formulario
-a esta función se le realiza un callback cuando se ejecuta
-el FormLayout, dentro de esta función está la lógica de los botones
-y sus estilos
-*/
-
-const Botones = () => {
-  const navigate = useNavigate();
-
-  return (
-    <div className="flex w-full justify-between px-10">
-      <div>
-        {/* Botón Retroceder */}
-        <Button
-          variant="secondary"
-          size="sm"
-          type="button"
-          //para devolverme al apartado del menu del administrador
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2"
-        >
-          <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
-          Retroceder
-        </Button>
-      </div>
-
-      <div className="flex w-60 px-1 gap-3">
-        {/* Botón Guardar */}
-        <Button
-          variant="secondary"
-          size="sm"
-          type="submit"
-          className="flex items-center gap-2"
-          form="productsForms"
-        >
-          {/* padding en X porque el icono estaba muy pegado */}
-          <img
-            src={guardar}
-            alt="icono-modificar"
-            className="w-5 h-5 px-[2px]"
-          />
-          Guardar
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-
-
-export default function ProductForm(){
-
+export default function ProductForm({
+  formId = "productForm",
+  showActions = true,
+  submitLabel = "Guardar",
+}) {
   const [FormaTypes, setFormaTypes] = useState([]);
   const [ViaTypes, setViaTypes] = useState([]);
 
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     id: "",
-    manufacturingDate:"",
-    expirationDate:"",
+    expirationDate: "",
+    manufacturingDate: "",
     productName: "",
     administrationRoute: "",
     requiresPrescription: "",
@@ -80,78 +29,74 @@ export default function ProductForm(){
     avatarUrl: null,
   });
 
-    const [errors, setErrors] = useState({});
-
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     getFormaTypes().then(setFormaTypes);
     getViaTypes().then(setViaTypes);
   }, []);
-  
-   const handleChange = (e) => {
-     const { name, value } = e.target;
- 
-     setFormData((prev) => ({
-       ...prev,
-       [name]: value,
-     }));
- 
-     setErrors((prev) => ({
-       ...prev,
-       [name]: "",
-     }));
-   };
- 
-   const handleAvatarChange = (_, previewUrl) => {
-   setFormData((prev) => ({
-     ...prev,
-     avatarUrl: previewUrl || null,
-   }));
- };
- 
-   const handleSubmit = (e) => {
-     e.preventDefault();
- 
-     const result = productSchema.safeParse(formData);
- 
-     if (!result.success) {
-       const fieldErrors = {};
- 
-       result.error.issues.forEach((issue) => {
-         const field = issue.path[0];
-         fieldErrors[field] = issue.message;
-       });
- 
-       setErrors(fieldErrors);
-       return;
-     }
- 
-     setErrors({});
-     console.log("Usuario válido:", result.data);
-   };
-  return (
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
+  };
+
+  const handleAvatarChange = (_, previewUrl) => {
+    setFormData((prev) => ({
+      ...prev,
+      avatarUrl: previewUrl || null,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const result = productSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors = {};
+
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0];
+        fieldErrors[field] = issue.message;
+      });
+
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
+    console.log("Producto válido:", result.data);
+  };
+
+  return (
     // CONTENEDOR PADRE
     <div className="w-full h-full">
-
-      <div className="flex w-full justify-between px-10">
-          <Botones/>
-      </div>
-
       {/* SUBIR IMAGEN */}
       <div className="flex h-36 justify-center gap-8">
-        <AvatarUploader onChange={handleAvatarChange}/>
+        <AvatarUploader onChange={handleAvatarChange} />
       </div>
 
       {/* CONTENEDOR FORMULARIO */}
       <div className="flex w-1200px h-800px justify-center items-center mt-20">
-
         {/* FORMULARIO */}
-        <form noValidate onSubmit={handleSubmit} className="grid grid-cols-3 gap-4 " id="productsForms">
-
+        <form
+          id={formId}
+          noValidate
+          onSubmit={handleSubmit}
+          className="grid grid-cols-3 gap-4"
+        >
           {/* COLUMNA 1 */}
           <div>
-
             <Input
               label="ID del producto"
               name="id"
@@ -160,7 +105,6 @@ export default function ProductForm(){
               value={formData.id}
               onChange={handleChange}
               error={errors.id}
-
             />
 
             <Input
@@ -190,17 +134,14 @@ export default function ProductForm(){
               value={formData.lotNumber}
               onChange={handleChange}
               error={errors.lotNumber}
-              
             />
-
           </div>
 
           {/* COLUMNA 2 */}
           <div>
-
             <Select
               label="Vía de administración"
-              name="viaAdministracion"
+              name="administrationRoute"
               options={ViaTypes}
               value={formData.administrationRoute}
               onChange={handleChange}
@@ -228,18 +169,16 @@ export default function ProductForm(){
 
             <Input
               label="Fecha de vencimiento"
-              type="date"
               name="expirationDate"
+              type="date"
               value={formData.expirationDate}
               onChange={handleChange}
               error={errors.expirationDate}
             />
-
           </div>
 
           {/* COLUMNA 3 */}
           <div>
-
             <Input
               label="Requiere fórmula"
               type="text"
@@ -279,8 +218,16 @@ export default function ProductForm(){
               onChange={handleChange}
               error={errors.description}
             />
-
           </div>
+
+          {/* Acciones internas opcionales */}
+          {showActions && (
+            <div className="col-span-3 flex justify-center mt-6">
+              <Button variant="primary" size="md" type="submit">
+                {submitLabel}
+              </Button>
+            </div>
+          )}
         </form>
       </div>
     </div>
