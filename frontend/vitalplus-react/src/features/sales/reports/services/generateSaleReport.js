@@ -1,5 +1,5 @@
 // Fuente de datos de usuarios (mock o fuente centralizada)
-import { users } from "@/data/user/users";
+import { sales } from "@/data/sale/sales";
 // Utilidad para transformar datos en dataset de reporte
 import { buildReportDataset } from "../utils/buildReportDataset";
 // Servicios de exportación
@@ -7,7 +7,7 @@ import { generateExcelReport } from "./generateExcelReport";
 import { generatePdfReport } from "./generatePdfReport";
 // Caso de uso: orquestador de generación de reportes de usuarios
 // Patrón: Application Service (coordina utilidades y servicios)
-export function generateUserReport({
+export function generateSaleReport({
   format, // "excel" | "pdf"
   selectedFields, // Campos seleccionados por el usuario
   scope, // Alcance del reporte
@@ -15,7 +15,7 @@ export function generateUserReport({
 }) {
   // Construcción del dataset (desacoplado de la UI)
   const { headers, rows } = buildReportDataset({
-    users,
+    sales,
     selectedFields,
     scope,
     documentNumber,
@@ -32,14 +32,14 @@ export function generateUserReport({
     generateExcelReport({
       headers,
       rows,
-      fileName: `users-report-${timestamp}.xlsx`,
+      fileName: `sales-report-${timestamp}.xlsx`,
     });
   }
   if (format === "pdf") {
     generatePdfReport({
       headers,
       rows,
-      fileName: `users-report-${timestamp}.pdf`,
+      fileName: `sales-report-${timestamp}.pdf`,
     });
   }
 }

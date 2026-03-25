@@ -1,12 +1,9 @@
 import { FileInput } from "@/shared";
 
-export default function AvatarUploader({
-  onChange,
-  label = "Foto de perfil",
-}) {
+export default function AvatarUploader({ onChange }) {
   return (
     <FileInput
-      label={label}
+      label="Foto de perfil"
       accept="image/png, image/jpeg, image/jpg, image/webp"
       onChange={onChange}
     />

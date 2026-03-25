@@ -11,14 +11,14 @@ export function generateProductReport({
     format, // "excel" | "pdf"
     selectedFields, // Campos seleccionados por el usuario
     scope, // Alcance del reporte
-    documentNumber // Filtro opcional
+    administrationRoute // Filtro opcional
 }) {
     // Construcción del dataset (desacoplado de la UI)
     const { headers, rows } = buildReportDataset({
         product,
         selectedFields,
         scope,
-        documentNumber
+        administrationRoute
     });
     // Validación: evita generar archivos vacíos
     if (!rows.length) {

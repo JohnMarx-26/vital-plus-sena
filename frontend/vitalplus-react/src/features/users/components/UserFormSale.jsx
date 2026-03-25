@@ -1,7 +1,6 @@
 import { Button, Select, Input } from "@/shared";
 import { useEffect, useState } from "react";
 import { getDocumentTypes } from "../services/selectService";
-import { AvatarUploader } from "@/features/users";
 import { userSchema } from "../Schemas/userSchemas";
 import { useNavigate } from "react-router-dom";
 
@@ -57,7 +56,7 @@ const Botones = () => {
   );
 };
 
-export default function UserForm() {
+export default function UserFormSale() {
   const [documentTypes, setDocumentTypes] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -68,9 +67,6 @@ export default function UserForm() {
     phone: "",
     documentNumber: "",
     address: "",
-    password: "",
-    confirmPassword: "",
-    avatarUrl: null,
   });
 
   const [errors, setErrors] = useState({});
@@ -128,11 +124,6 @@ export default function UserForm() {
           <Botones/>
       </div>
 
-      {/* CARGAR IMAGEN */}
-      <div className="flex h-36 justify-center gap-8">
-        <AvatarUploader onChange={handleAvatarChange} />
-      </div>
-
       {/* CONTENEDOR FORMULARIO */}
       <div className="flex w-1200px h-800px justify-center items-center mt-20">
         {/* FORMULARIO */}
@@ -157,7 +148,7 @@ export default function UserForm() {
               label="Nombres"
               name="firstName"
               type="text"
-              placeholder="Ingrese los nombres del usuario"
+              placeholder="Ingrese los nombres del cliente"
               value={formData.firstName}
               onChange={handleChange}
               error={errors.firstName}
@@ -190,7 +181,7 @@ export default function UserForm() {
               label="Apellidos"
               name="lastName"
               type="text"
-              placeholder="Ingrese los apellidos del usuario"
+              placeholder="Ingrese los apellidos del cliente"
               value={formData.lastName}
               onChange={handleChange}
               error={errors.lastName}
@@ -213,31 +204,12 @@ export default function UserForm() {
               label="Dirección"
               name="address"
               type="text"
-              placeholder="Ingrese la dirección del usuario"
+              placeholder="Ingrese la dirección del cliente"
               value={formData.address}
               onChange={handleChange}
               error={errors.address}
             />
 
-            <Input
-              label="Contraseña"
-              name="password"
-              type="password"
-              placeholder="Ingrese la contraseña"
-              value={formData.password}
-              onChange={handleChange}
-              error={errors.password}
-            />
-
-            <Input
-              label="Confirmar contraseña"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirme la contraseña"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              error={errors.confirmPassword}
-            />
           </div>
 
           <div className="col-span-3 flex justify-center mt-6"></div>
