@@ -1,8 +1,61 @@
-import {Button , Select, Input} from "@/shared";
+import { Button, Select, Input } from "@/shared";
 import { useEffect, useState } from "react";
 import { getDocumentTypes } from "../services/selectService";
 import { AvatarUploader } from "@/features/users";
 import { userSchema } from "../Schemas/userSchemas";
+import { useNavigate } from "react-router-dom";
+
+import guardar from "@/assets/svg/icono-guardar.svg";
+import retroceder from "@/assets/svg/icono-retroceder.svg";
+
+/*
+Se crea una arrow function para los botones del formulario
+a esta función se le realiza un callback cuando se ejecuta
+el FormLayout, dentro de esta función está la lógica de los botones
+y sus estilos
+*/
+
+const Botones = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex w-full justify-between px-10">
+      <div>
+        {/* Botón Retroceder */}
+        <Button
+          variant="secondary"
+          size="sm"
+          type="button"
+          //para devolverme al apartado del menu del administrador
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2"
+        >
+          <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
+          Retroceder
+        </Button>
+      </div>
+
+      <div className="flex w-60 px-1 gap-3">
+        {/* Botón Guardar */}
+        <Button
+          variant="secondary"
+          size="sm"
+          type="submit"
+          className="flex items-center gap-2"
+          form="usersForms"
+        >
+          {/* padding en X porque el icono estaba muy pegado */}
+          <img
+            src={guardar}
+            alt="icono-modificar"
+            className="w-5 h-5 px-[2px]"
+          />
+          Guardar
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 export default function UserForm() {
   const [documentTypes, setDocumentTypes] = useState([]);
@@ -41,11 +94,11 @@ export default function UserForm() {
   };
 
   const handleAvatarChange = (_, previewUrl) => {
-  setFormData((prev) => ({
-    ...prev,
-    avatarUrl: previewUrl || null,
-  }));
-};
+    setFormData((prev) => ({
+      ...prev,
+      avatarUrl: previewUrl || null,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,6 +123,11 @@ export default function UserForm() {
 
   return (
     <div className="w-full h-full">
+
+      <div className="flex w-full justify-between px-10">
+          <Botones/>
+      </div>
+
       {/* CARGAR IMAGEN */}
       <div className="flex h-36 justify-center gap-8">
         <AvatarUploader
@@ -80,7 +138,12 @@ export default function UserForm() {
       {/* CONTENEDOR FORMULARIO */}
       <div className="flex w-1200px h-800px justify-center items-center mt-20">
         {/* FORMULARIO */}
-        <form noValidate onSubmit={handleSubmit} className="grid grid-cols-3 gap-4">
+        <form
+          noValidate
+          onSubmit={handleSubmit}
+          className="grid grid-cols-3 gap-4"
+          id="usersForms"
+        >
           {/* COLUMNA 1 */}
           <div>
             <Select
@@ -179,11 +242,7 @@ export default function UserForm() {
             />
           </div>
 
-          <div className="col-span-3 flex justify-center mt-6">
-            <Button variant="primary" size="md" type="submit">
-              Guardar
-            </Button>
-          </div>
+          <div className="col-span-3 flex justify-center mt-6"></div>
         </form>
       </div>
     </div>

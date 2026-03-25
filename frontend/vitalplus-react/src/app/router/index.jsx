@@ -4,7 +4,7 @@ import MainLayout from "@/shared/layout/MainLayout";
 import AuthLayout from "@/shared/layout/AuthLayout";
 
 import HomePage from "@/features/home/page/homepage";
-import ProfilePage from "@/features/users/pages/ProfilePage";
+// import ProfilePage from "@/features/users/pages/ProfilePage";
 import CreateUserPage from "@/features/users/pages/CreateUserPage";
 import EditUserPage from "@/features/users/pages/EditUserPage";
 
@@ -54,8 +54,8 @@ const router = createBrowserRouter([
       { path: "contacto", element: <h1 className="p-4">Contacto</h1> },
       { path: "videos", element: <h1 className="p-4">Videos</h1> },
 
-      { path: "perfil", element: <ProfilePage /> },
-      { path: "/usuarios/visualizar", element: <ProfileUserSimplePage /> },
+      // { path: "perfil", element: <ProfilePage /> },
+      { path: "/usuarios/detalles", element: <ProfileUserSimplePage /> },
     ],
   },
 

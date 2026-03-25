@@ -1,9 +1,67 @@
+<<<<<<< HEAD
 import { Input, Select, Button } from "@/shared";
+=======
+import { Button, Select, Input } from "@/shared";
+>>>>>>> d76d267301b55d9a809abc1eff01fa060fb532b8
 import { useEffect, useState } from "react";
 import { getFormaTypes } from "../../users/services/selectFormaFarmaceutica";
 import { getViaTypes } from "../../users/services/selectViaAdministracion";
 import { AvatarUploader } from "@/features/users";
 import { productSchema } from "../Schemas/productSchemas";
+import { useNavigate } from "react-router-dom";
+import guardar from "@/assets/svg/icono-guardar.svg";
+import retroceder from "@/assets/svg/icono-retroceder.svg";
+
+/*
+Se crea una arrow function para los botones del formulario
+a esta función se le realiza un callback cuando se ejecuta
+el FormLayout, dentro de esta función está la lógica de los botones
+y sus estilos
+*/
+
+const Botones = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex w-full justify-between px-10">
+      <div>
+        {/* Botón Retroceder */}
+        <Button
+          variant="secondary"
+          size="sm"
+          type="button"
+          //para devolverme al apartado del menu del administrador
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2"
+        >
+          <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
+          Retroceder
+        </Button>
+      </div>
+
+      <div className="flex w-60 px-1 gap-3">
+        {/* Botón Guardar */}
+        <Button
+          variant="secondary"
+          size="sm"
+          type="submit"
+          className="flex items-center gap-2"
+          form="productsForms"
+        >
+          {/* padding en X porque el icono estaba muy pegado */}
+          <img
+            src={guardar}
+            alt="icono-modificar"
+            className="w-5 h-5 px-[2px]"
+          />
+          Guardar
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+
 
 export default function ProductForm({
   formId = "productForm",
@@ -81,6 +139,14 @@ export default function ProductForm({
   return (
     // CONTENEDOR PADRE
     <div className="w-full h-full">
+<<<<<<< HEAD
+=======
+
+      <div className="flex w-full justify-between px-10">
+          <Botones/>
+      </div>
+
+>>>>>>> d76d267301b55d9a809abc1eff01fa060fb532b8
       {/* SUBIR IMAGEN */}
       <div className="flex h-36 justify-center gap-8">
         <AvatarUploader
@@ -91,12 +157,17 @@ export default function ProductForm({
       {/* CONTENEDOR FORMULARIO */}
       <div className="flex w-1200px h-800px justify-center items-center mt-20">
         {/* FORMULARIO */}
+<<<<<<< HEAD
         <form
           id={formId}
           noValidate
           onSubmit={handleSubmit}
           className="grid grid-cols-3 gap-4"
         >
+=======
+        <form noValidate onSubmit={handleSubmit} className="grid grid-cols-3 gap-4 " id="productsForms">
+
+>>>>>>> d76d267301b55d9a809abc1eff01fa060fb532b8
           {/* COLUMNA 1 */}
           <div>
             <Input
@@ -173,6 +244,10 @@ export default function ProductForm({
               label="Fecha de vencimiento"
               name="expirationDate"
               type="date"
+<<<<<<< HEAD
+=======
+              name="expirationDate"
+>>>>>>> d76d267301b55d9a809abc1eff01fa060fb532b8
               value={formData.expirationDate}
               onChange={handleChange}
               error={errors.expirationDate}
@@ -222,6 +297,7 @@ export default function ProductForm({
             />
           </div>
 
+<<<<<<< HEAD
           {/* Acciones internas opcionales */}
           {showActions && (
             <div className="col-span-3 flex justify-center mt-6">
@@ -230,6 +306,9 @@ export default function ProductForm({
               </Button>
             </div>
           )}
+=======
+          </div>
+>>>>>>> d76d267301b55d9a809abc1eff01fa060fb532b8
         </form>
       </div>
     </div>

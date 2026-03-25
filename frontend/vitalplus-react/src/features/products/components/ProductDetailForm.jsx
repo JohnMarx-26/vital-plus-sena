@@ -44,8 +44,8 @@ export default function ProductDetailForm() {
   };
 
   return (
-    <section className="w-full px-6 py-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:flex-row lg:items-start">
+    <section className="flex w-full px-6 py-8 justify-center">
+      <div className="mx-auto flex w-full flex-col gap-8 lg:flex-row lg:items-start justify-center">
 
         <aside className="w-full lg:max-w-sm">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -62,7 +62,7 @@ export default function ProductDetailForm() {
                 <img
                   src={medicamento}
                   alt="Icono medicamento"
-                  className="h-36 w-36"
+                  className="h-50 w-50"
                 />
               </div>
 

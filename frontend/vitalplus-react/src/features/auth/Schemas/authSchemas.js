@@ -6,9 +6,12 @@ export const loginSchema = z.object({
     .min(1, "El correo es obligatorio")
     .email("Debe ingresar un correo válido"),
 
-  password: z
-    .string()
-    .min(1, "La contraseña es obligatoria"),
+ password: z
+      .string()
+      .min(8, "La contraseña debe tener mínimo 8 caracteres")
+      .regex(/[A-Z]/, "Debe contener al menos una mayúscula")
+      .regex(/[a-z]/, "Debe contener al menos una minúscula")
+      .regex(/[0-9]/, "Debe contener al menos un número"),
 });
 
 export const forgotPasswordSchema = z.object({

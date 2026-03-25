@@ -4,8 +4,6 @@ import { SquarePen } from "lucide-react"
 import usuario from "@/assets/svg/icono-usu-dark.svg"
 import { Delete} from "lucide-react"
 
-
-
 export default function SupplierDetailForm () {
 
     // se crea un objeto para almacenar  todas las propiedades que posteriomente sera la informacion 
@@ -27,7 +25,7 @@ export default function SupplierDetailForm () {
     const toggleStatus = () => {
     setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
     };
-
+    
     // array de objetos para renderizar dinamicamente con map lo que seria (label y value)
     const userDetails = [
         { label: "Tipo de documento", value: userData.documentType },
