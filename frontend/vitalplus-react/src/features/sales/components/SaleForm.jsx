@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/shared";
 import { Trash2, SquarePlus } from "lucide-react";
 
-const SaleFormPos = ({ children }) => {
+const SaleFormPos = ({ children }) => { 
 
   
   const [listaVenta, setListaVenta] = useState([]);
@@ -71,14 +71,14 @@ const SaleFormPos = ({ children }) => {
                   cliente:
                 </p>
               </div>
-            <Link  to="/usuarios/crear"className="flex text-xs font-bold pr-2 pt-1 items-center">
+            <Link  to="/usuariosSale/crear"className="flex text-xs font-bold pr-2 pt-1 items-center">
               Nuevo
               <SquarePlus />
             </Link>
           </div>
           <div className="flex justify-between border-b">
             <p className="p-2 font-bold text-xs text-text-primary">
-              Metodo Pago:{" "}
+              Metdo Pago:{" "}
             </p>
             <Link className="text-xs  font-bold mt-2">Efectivo</Link>
             <Link className="text-xs  font-bold mt-2">Tarjeta debito</Link>

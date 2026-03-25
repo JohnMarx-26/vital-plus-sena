@@ -1,191 +1,110 @@
+import Input from "@/shared/components/Input";
 import { useEffect, useState } from "react";
-import { Input, Select } from "@/shared";
 import { getDocumentTypes } from "../services/selectService";
+import { getUserTypes } from "../services/selectService2";
+import Select from "@/shared/components/Select";
 import { AvatarUploader } from "@/features/users";
-import { userSchema } from "../Schemas/userSchemas";
 
-export default function EditUserForm() {
-  const [documentTypes, setDocumentTypes] = useState([]);
+export default function EditUserForm(){
 
-  const [formData, setFormData] = useState({
-    documentType: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    documentNumber: "",
-    address: "",
-    password: "",
-    confirmPassword: "",
-    avatarUrl: null,
-  });
+    const [documentTypes, setDocumentTypes] = useState([]);
+    const [userTypes, setUserTypes] = useState([]);
 
-  const [errors, setErrors] = useState({});
+    useEffect(() => {
+        getDocumentTypes().then(setDocumentTypes);
+        getUserTypes().then(setUserTypes);
+    }, []);
 
-  useEffect(() => {
-    getDocumentTypes().then(setDocumentTypes);
-  }, []);
+    return (
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+        // CONTENEDOR PADRE
+        <div className="w-full h-full">
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+            {/* CARGAR IMAGEN */}
+            <div className="flex h-36 justify-center gap-8">
+                <AvatarUploader/>
+            </div>
 
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
+            {/* CONTENEDOR FORMULARIO */}
+            <div className="flex w-1200px h-800px justify-center items-center mt-20">
 
-  const handleAvatarChange = (_, previewUrl) => {
-    setFormData((prev) => ({
-      ...prev,
-      avatarUrl: previewUrl || null,
-    }));
-  };
+                {/* FORMULARIO */}
+                <form className="grid grid-cols-3 gap-4">
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+                    {/* COLUMNA 1 */}
+                    <div>
 
-    const result = userSchema.safeParse(formData);
+                        <Select
+                            label="Tipo de usuario"
+                            name="userType"
+                            options={userTypes}
+                        />
 
-    if (!result.success) {
-      const fieldErrors = {};
+                        <Select
+                            label="Tipo de documento"
+                            name="documentType"
+                            options={documentTypes}
+                        />
 
-      result.error.issues.forEach((issue) => {
-        const field = issue.path[0];
-        fieldErrors[field] = issue.message;
-      });
+                        <Input
+                            label="Nombres"
+                            type="text"
+                            placeholder="Ingrese los nombres del usuario"
+                        />
 
-      setErrors(fieldErrors);
-      return;
-    }
+                        <Input
+                            label="Correo electrónico"
+                            type="email"
+                            placeholder="Ingrese el correo electrónico"
+                        />
+                    </div>
 
-    setErrors({});
-    console.log("Usuario actualizado:", result.data);
-  };
+                    {/* COLUMNA 2 */}
+                    <div>
 
-  return (
-    <div className="w-full h-full">
-      {/* CARGAR IMAGEN */}
-      <div className="flex h-36 justify-center gap-8">
-        <AvatarUploader
-          label="Foto de perfil"
-          onChange={handleAvatarChange}
-        />
-      </div>
+                        <Input
+                            label="Número de documento"
+                            type="text"
+                            placeholder="Ingrese el número de documento"
+                        />
 
-      {/* CONTENEDOR FORMULARIO */}
-      <div className="flex w-1200px h-800px justify-center items-center mt-20">
-        {/* FORMULARIO */}
-        <form
-          id="editUserForm"
-          noValidate
-          onSubmit={handleSubmit}
-          className="grid grid-cols-3 gap-4"
-        >
-          {/* COLUMNA 1 */}
-          <div>
-            <Select
-              label="Tipo de documento"
-              name="documentType"
-              options={documentTypes}
-              value={formData.documentType}
-              onChange={handleChange}
-              error={errors.documentType}
-            />
+                        <Input
+                            label="Apellidos"
+                            type="text"
+                            placeholder="Ingrese los apellidos del usuario"
+                        />
 
-            <Input
-              label="Nombres"
-              name="firstName"
-              type="text"
-              placeholder="Ingrese los nombres del usuario"
-              value={formData.firstName}
-              onChange={handleChange}
-              error={errors.firstName}
-            />
+                        <Input
+                            label="Teléfono"
+                            type="tel"
+                            placeholder="Ingrese el número de teléfono"
+                        />
+                    </div>
 
-            <Input
-              label="Correo electrónico"
-              name="email"
-              type="email"
-              placeholder="Ingrese el correo electrónico"
-              value={formData.email}
-              onChange={handleChange}
-              error={errors.email}
-            />
-          </div>
+                    {/* COLUMNA 3 */}
+                    <div>
 
-          {/* COLUMNA 2 */}
-          <div>
-            <Input
-              label="Número de documento"
-              name="documentNumber"
-              type="text"
-              placeholder="Ingrese el número de documento"
-              value={formData.documentNumber}
-              onChange={handleChange}
-              error={errors.documentNumber}
-            />
+                        <Input
+                            label="Dirección"
+                            type="text"
+                            placeholder="Ingrese la dirección del usuario"
+                        />
 
-            <Input
-              label="Apellidos"
-              name="lastName"
-              type="text"
-              placeholder="Ingrese los apellidos del usuario"
-              value={formData.lastName}
-              onChange={handleChange}
-              error={errors.lastName}
-            />
+                        <Input
+                            label="Contraseña"
+                            type="password"
+                            placeholder="Ingrese la contraseña"
+                        />
 
-            <Input
-              label="Teléfono"
-              name="phone"
-              type="tel"
-              placeholder="Ingrese el número de teléfono"
-              value={formData.phone}
-              onChange={handleChange}
-              error={errors.phone}
-            />
-          </div>
+                        <Input
+                            label="Confirmar contraseña"
+                            type="password"
+                            placeholder="Confirme la contraseña"
+                        />
+                    </div>
 
-          {/* COLUMNA 3 */}
-          <div>
-            <Input
-              label="Dirección"
-              name="address"
-              type="text"
-              placeholder="Ingrese la dirección del usuario"
-              value={formData.address}
-              onChange={handleChange}
-              error={errors.address}
-            />
-
-            <Input
-              label="Contraseña"
-              name="password"
-              type="password"
-              placeholder="Ingrese la contraseña"
-              value={formData.password}
-              onChange={handleChange}
-              error={errors.password}
-            />
-
-            <Input
-              label="Confirmar contraseña"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirme la contraseña"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              error={errors.confirmPassword}
-            />
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+                </form>
+            </div>
+        </div>
+    );
 }

@@ -1,5 +1,10 @@
 export const supplierReportFields =[
 {
+    key: "id",
+    label: "ID",
+    default: true,
+},
+{
     key: "name",
     label: "Nombre laboratorio",
     default: true,

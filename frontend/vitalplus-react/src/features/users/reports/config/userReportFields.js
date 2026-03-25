@@ -1,5 +1,10 @@
 export const userReportFields =[
 {
+    key: "id",
+    label: "ID",
+    default: true,
+},
+{
     key: "name",
     label: "Nombre",
     default: true,

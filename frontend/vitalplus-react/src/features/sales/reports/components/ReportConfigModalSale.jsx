@@ -1,9 +1,9 @@
 // Hook para manejo de estado local en componentes funcionales
 import { useState } from "react";
 // Configuración de campos disponibles para el reporte
-import { userReportFields } from "../config/userReportFields";
+import { saleReportFields } from "../config/saleReportFields";
 // Caso de uso que orquesta la generación del reporte
-import { generateUserReport } from "../services/generateUserReport";
+import { generateSaleReport } from "../services/generateSaleReport";
 // Componentes UI reutilizables (design system)
 import { Button, Input, Select } from "@/shared";
 import Checkbox from "@/shared/components/Checkbox";
@@ -14,10 +14,10 @@ export default function ReportConfigModal({ isOpen, onClose }) {
   // Estado del alcance del reporte
   const [scope, setScope] = useState("all");
   // Estado para filtro por documento
-  const [documentNumber, setdocumentNumber] = useState("");
+  const [numero_factura, setnumero_factura] = useState("");
   // Estado de campos seleccionados (inicialización lazy)
   const [selectedFields, setSelectedFields] = useState(
-    () => userReportFields.filter((f) => f.default) // Solo campos marcados por
+    () => saleReportFields.filter((f) => f.default) // Solo campos marcados por
     // defecto
   );
   // Control de render: si el modal no está abierto, no se monta en el DOM
@@ -37,11 +37,11 @@ export default function ReportConfigModal({ isOpen, onClose }) {
   // Handler principal para generar el reporte
   const handleGenerateReport = () => {
     // Invoca el caso de uso con la configuración actual
-    generateUserReport({
+    generateSaleReport({
       format,
       selectedFields,
       scope,
-      documentNumber,
+      numero_factura,
     });
     // Cierra el modal después de generar el reporte
     onClose();
@@ -76,7 +76,7 @@ black/40"
           <p className="mb-2 font-medium">Campos del reporte</p>
           {/* Grid de checkboxes */}
           <div className="grid grid-cols-2 gap-2">
-            {userReportFields.map((field) => {
+            {saleReportFields.map((field) => {
               // Determina si el campo está seleccionado
               const checked = selectedFields.some((f) => f.key === field.key);
               return (
@@ -100,7 +100,7 @@ black/40"
             onChange={(e) => setScope(e.target.value)}
             options={[
               { label: "Todos los usuarios", value: "all" },
-              { label: "Filtrar por numero de documento", value: "document" },
+              { label: "Filtrar por numero de factura", value: "document" },
             ]}
           />
         </div>
@@ -108,10 +108,10 @@ black/40"
         {scope === "document" && (
           <div className="mb-4">
             <Input
-              label="Número de documento"
-              value={documentNumber}
-              onChange={(e) => setdocumentNumber(e.target.value)}
-              placeholder="Ingrese número de documento"
+              label="Número de factura"
+              value={numero_factura}
+              onChange={(e) => setnumero_factura(e.target.value)}
+              placeholder="Ingrese número de factura"
             />
           </div>
         )}

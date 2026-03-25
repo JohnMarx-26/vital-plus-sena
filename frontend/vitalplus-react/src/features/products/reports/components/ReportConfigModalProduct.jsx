@@ -14,7 +14,7 @@ export default function ReportConfigModal({ isOpen, onClose }) {
   // Estado del alcance del reporte
   const [scope, setScope] = useState("all"); 
   // Estado para filtro por documento
-  const [documentNumber, setDocumentNumber] = useState("");
+  const [administrationRoute, setadministrationRoute] = useState("");
   // Estado de campos seleccionados (inicialización lazy)
   const [selectedFields, setSelectedFields] = useState(
     () => productReportFields.filter((f) => f.default) // Solo campos marcados por
@@ -41,7 +41,7 @@ export default function ReportConfigModal({ isOpen, onClose }) {
       format,
       selectedFields,
       scope,
-      documentNumber,
+      administrationRoute,
     });
     // Cierra el modal después de generar el reporte
     onClose();
@@ -100,17 +100,17 @@ black/40"
             onChange={(e) => setScope(e.target.value)}
             options={[
               { label: "Todos los usuarios", value: "all" },
-              { label: "Filtrar por documento", value: "document" },
+              { label: "Filtrar por ruta de administración", value: "admRoute" },
             ]}
           />
         </div>
         {/* Campo condicional para filtro por documento */}
-        {scope === "document" && (
+        {scope === "admRoute" && (
           <div className="mb-4">
             <Input
-              label="Número de documento"
-              value={documentNumber}
-              onChange={(e) => setDocumentNumber(e.target.value)}
+              label="Ruta de administración"
+              value={administrationRoute}
+              onChange={(e) => setadministrationRoute(e.target.value)}
               placeholder="Ingrese número de documento"
             />
           </div>

@@ -1,12 +1,17 @@
 export const productReportFields =[
 {
+    key: "id",
+    label: "ID",
+    default: true,
+},
+{
     key: "productName",
     label: "Nombre producto",
     default: true,
 },
 {
     key: "administrationRoute",
-    label: "Via de administración",
+    label: "Ruta de administración",
     default: true,
 },
 {

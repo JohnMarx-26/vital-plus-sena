@@ -14,7 +14,7 @@ export default function SupplierConfigModal({ isOpen, onClose }) {
   // Estado del alcance del reporte
   const [scope, setScope] = useState("all"); 
   // Estado para filtro por documento
-  const [documentNumber, setDocumentNumber] = useState("");
+  const [nit, setnit] = useState("");
   // Estado de campos seleccionados (inicialización lazy)
   const [selectedFields, setSelectedFields] = useState(
     () => supplierReportFields.filter((f) => f.default) // Solo campos marcados por
@@ -41,7 +41,7 @@ export default function SupplierConfigModal({ isOpen, onClose }) {
       format,
       selectedFields,
       scope,
-      documentNumber,
+      nit,
     });
     // Cierra el modal después de generar el reporte
     onClose();
@@ -100,18 +100,18 @@ black/40"
             onChange={(e) => setScope(e.target.value)}
             options={[
               { label: "Todos los usuarios", value: "all" },
-              { label: "Filtrar por documento", value: "document" },
+              { label: "Filtrar por numero de Nit", value: "nitNumber" },
             ]}
           />
         </div>
         {/* Campo condicional para filtro por documento */}
-        {scope === "document" && (
+        {scope === "nitNumber" && (
           <div className="mb-4">
             <Input
-              label="Número de documento"
-              value={documentNumber}
-              onChange={(e) => setDocumentNumber(e.target.value)}
-              placeholder="Ingrese número de documento"
+              label="Número de Nit"
+              value={nit}
+              onChange={(e) => setnit(e.target.value)}
+              placeholder="Ingrese número de Nit"
             />
           </div>
         )}
