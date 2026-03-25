@@ -22,10 +22,12 @@ export default function Carousels({
 
     return(
         <div className="overflow-hidden relative">
+
             {/* aca se van a guardar las imagenes que se traigan desde el home */}
             <div className=" flex transition-transform ease-out duration-500"
                 style={{ transform: `translateX(-${curr * 100}%)`}}   // genera la transicion completa de la imgane  en horizonta (X)
             >{slides}</div>
+
             {/* los botones de navegacion entre imagenes  tipo Instagram */}
             <div  className="absolute inset-0 flex items-center justify-between p-4">
                 <button className="p-1 rounded-full shadow bg-background text-text-muted hover:bg-brand"
@@ -37,6 +39,7 @@ export default function Carousels({
                     <ChevronRight size={30}/>
                 </button>
             </div>
+
             <div className="absolute bottom-4 right-0 left-0">
                 <div className="flex items-center justify-center gap-2">
                     {slides.map((_, i) => (

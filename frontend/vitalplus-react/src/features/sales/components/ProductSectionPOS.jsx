@@ -1,5 +1,4 @@
 import { CardPOS } from "@/shared";
-
 import tylenol from "@/assets/images/tylenol.jpg";
 import noxpirin from "@/assets/images/noxpirin.png";
 import dolex from "@/assets/images/dolex.png";
@@ -121,13 +120,6 @@ const products = [
 
 export default function ProductSectionPOS({ onSelectProduct }) {
   return (
-    // <section className="w-full px-4 py-10">
-    //   <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center">
-    //     {products.map((product, index) => (
-    //       <CardPOS key={`${product.title}-${index}`} product={product} />
-    //     ))}
-    //   </div>
-    // </section>
 
     <section className="w-full px-4 py-6">
       <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">

@@ -8,8 +8,14 @@ const SaleFormPos = ({ children }) => {
   
   const [listaVenta, setListaVenta] = useState([]);
 
-  const agregarProducto = (producto) => {
+  const agregarProducto = (producto) => { 
+
+    /*Termina la funcion si el stock es menor a 1 impidiendo
+    vender productos menores a cero*/
+    if(producto.stock < 1) return;
+
     const existe = listaVenta.find((item) => item.id === producto.id);
+
     if (existe) {
       setListaVenta(
         listaVenta.map((item) =>
@@ -20,9 +26,8 @@ const SaleFormPos = ({ children }) => {
       );
     } else {
       setListaVenta([...listaVenta, { ...producto, cantidad: 1 }]);
-    }
   };
-
+  }
   const total = listaVenta.reduce((acc, item) => {
     const precio =
       item.discount && item.discount > 0 ? item.discount : item.price;
@@ -37,7 +42,7 @@ const SaleFormPos = ({ children }) => {
 
   //============================== Vaciar todo el carrito ==================//
   const vaciarCarrito = () => {
-    setListaVenta([]); // Borra TODO de un solo golpe
+    setListaVenta([]);
   };
 
   return (
@@ -48,7 +53,7 @@ const SaleFormPos = ({ children }) => {
       <div className="w-2/3 overflow-y-auto bg-gray-50 border-r border-border-strong p-4">
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
-            // Aquí es donde ocurre la conexión real y SEGURA
+            
             return React.cloneElement(child, {
               onSelectProduct: agregarProducto,
             });

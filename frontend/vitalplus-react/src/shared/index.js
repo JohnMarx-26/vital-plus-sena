@@ -1,6 +1,6 @@
 export { default as FileInput } from "./components/FileInput";
 export { default as Card } from "./components/Card";
-export { default as CardNew } from "./components/CardClient";
+export { default as CardClient } from "./components/CardClient";
 export { default as CardPOS } from "./components/CardPOS";
 export { default as Button } from "./components/Button";
 export { default as Input } from "./components/Input";

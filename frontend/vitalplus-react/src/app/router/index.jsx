@@ -42,6 +42,9 @@ const router = createBrowserRouter([
 
       // { path: "perfil", element: <ProfilePage /> },
       { path: "/usuarios/detalles", element: <ProfileUserSimplePage /> },
+
+      //Detalle de los productos
+      { path: "/products/:id", element: <ProductDetailClient /> },
     ],
   },
 
