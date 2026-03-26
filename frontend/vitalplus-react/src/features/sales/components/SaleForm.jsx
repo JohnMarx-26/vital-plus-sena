@@ -45,7 +45,7 @@ const SaleFormPos = ({ children }) => {
     <div className="flex h-[80vh] w-full border rounded-2xl overflow-hidden bg-background shadow-xl">
 
       {/* //=============================== Contenedor Izquierdo ==========================// */}
-      <div className="w-2/3 overflow-y-auto bg-gray-50 border-r border-border-strong p-4">
+      <div className="w-2/3 overflow-y-auto bg-gray-50 border-r border-border-strong ">
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
             // Aquí es donde ocurre la conexión real y SEGURA

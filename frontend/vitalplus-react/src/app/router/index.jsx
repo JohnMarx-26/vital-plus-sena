@@ -49,6 +49,9 @@ const router = createBrowserRouter([
       { path: "videos", element: <h1 className="p-4">Videos</h1> },
 
       { path: "/usuarios/detalles", element: <ProfileUserSimplePage /> },
+
+      //Detalle de los productos
+      { path: "/products/:id", element: <ProductDetailClient /> },
     ],
   },
 

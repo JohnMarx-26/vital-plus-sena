@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-// import ProductSection from "@/features/home/components/ProductSection";
-import ProductSectionNew from "@/features/home/components/ProductSectionNew";
+import { ProductSection } from "@/features/products";
 import Modal from "@/shared/components/Modal";
 import MenuBar from "@/features/home/components/MenuBar";
 import Carousel from "@/features/home/components/Carousel";
@@ -62,7 +61,7 @@ export default function HomePage() {
       </div>
 
       <div className="flex flex-col md:flex-row gap-2">
-        <ProductSectionNew />
+        <ProductSection variant="client"  />
       </div>
 
       {/* Footer con la información en el pie de pagina */}
