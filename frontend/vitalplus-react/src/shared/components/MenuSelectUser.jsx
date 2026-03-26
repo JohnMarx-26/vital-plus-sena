@@ -28,6 +28,7 @@ export default function SelectMenu({
                     bg-brand
                     text-text-dropdowns
                     hover:bg-brand-hover
+                    px-4
                 "
             >
             <option>{titulo}</option>

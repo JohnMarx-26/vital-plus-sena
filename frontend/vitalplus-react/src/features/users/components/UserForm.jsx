@@ -20,7 +20,6 @@ const Botones = () => {
 
   return (
     <div className="flex w-full justify-between px-10">
-      <div>
         {/* Botón Retroceder */}
         <Button
           variant="secondary"
@@ -33,9 +32,8 @@ const Botones = () => {
           <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
           Retroceder
         </Button>
-      </div>
+    
 
-      <div className="flex w-60 px-1 gap-3">
         {/* Botón Guardar */}
         <Button
           variant="secondary"
@@ -52,7 +50,6 @@ const Botones = () => {
           />
           Guardar
         </Button>
-      </div>
     </div>
   );
 };
@@ -136,16 +133,16 @@ export default function UserForm() {
       </div>
 
       {/* CONTENEDOR FORMULARIO */}
-      <div className="flex w-1200px h-800px justify-center items-center mt-20">
+      <div className="flex w-1200px h-800px justify-center items-center mt-20 gap-6 ">
+        
         {/* FORMULARIO */}
         <form
           noValidate
           onSubmit={handleSubmit}
-          className="grid grid-cols-3 gap-4"
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 "
           id="usersForms"
         >
-          {/* COLUMNA 1 */}
-          <div>
+         
             <Select
               label="Tipo de documento"
               name="documentType"
@@ -174,10 +171,7 @@ export default function UserForm() {
               onChange={handleChange}
               error={errors.email}
             />
-          </div>
-
-          {/* COLUMNA 2 */}
-          <div>
+      
             <Input
               label="Número de documento"
               name="documentNumber"
@@ -207,10 +201,9 @@ export default function UserForm() {
               onChange={handleChange}
               error={errors.phone}
             />
-          </div>
 
-          {/* COLUMNA 3 */}
-          <div>
+
+
             <Input
               label="Dirección"
               name="address"
@@ -240,9 +233,6 @@ export default function UserForm() {
               onChange={handleChange}
               error={errors.confirmPassword}
             />
-          </div>
-
-          <div className="col-span-3 flex justify-center mt-6"></div>
         </form>
       </div>
     </div>

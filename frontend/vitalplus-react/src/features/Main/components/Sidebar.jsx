@@ -14,7 +14,7 @@ export default function Sidebar(){
 
         return(
             <div className="sidebar">          
-                <div className="w-[240px] space-y-4">
+                <div className="w-[208px] space-y-4 ">
                     {menuOptions && menuOptions.map((menu, index) => (
                     <SelectMenu
                     key={index}

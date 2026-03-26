@@ -16,7 +16,7 @@ export default function Input({
   const inputType = isPassword && showPassword ? "text" : type;
 
   return (
-    <div className="w-full min-w-[320px]">
+    <div className="w-full">
       {label && (
         <label
           htmlFor={inputId}
@@ -32,7 +32,7 @@ export default function Input({
           name={name}
           type={inputType}
           className={`
-            w-full
+            w-80
             h-12
             rounded-md
             border
@@ -40,7 +40,8 @@ export default function Input({
             text-base
             bg-background
             text-text-primary
-            placeholder:text-text-muted
+            placeholder:text-text-muted 
+            hover:ring
             focus:outline-none
             focus:ring-2
             focus:ring-brand

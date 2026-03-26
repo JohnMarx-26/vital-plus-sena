@@ -8,9 +8,9 @@ export default function Button({
 }) {
   const variants = {
     primary:
-      "border border-border bg-[color:var(--color-primary-700)] text-text-inverse hover:bg-brand-hover",
+      "border border-border bg-[color:var(--color-primary-700)] text-text-inverse hover:bg-brand-hover ",
     secondary:
-      "border border-border bg-background text-text-primary hover:bg-brand-soft",
+      "border border-border bg-background text-text-primary hover:bg-brand-light px-4",
   };
 
   const sizes = {
@@ -24,6 +24,7 @@ export default function Button({
       before:absolute before:content-['']
       before:-inset-y-[4px] before:-inset-x-[0px]
     `,
+    
   };
 
   const variantClass = variants[variant] || variants.primary;

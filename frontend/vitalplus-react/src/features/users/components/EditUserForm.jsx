@@ -70,6 +70,8 @@ export default function EditUserForm() {
 
   return (
     <div className="w-full h-full">
+
+  
       {/* CARGAR IMAGEN */}
       <div className="flex h-36 justify-center gap-8">
         <AvatarUploader
@@ -79,16 +81,15 @@ export default function EditUserForm() {
       </div>
 
       {/* CONTENEDOR FORMULARIO */}
-      <div className="flex w-1200px h-800px justify-center items-center mt-20">
+      <div className="flex w-1200px h-800px justify-center items-center mt-20 gap-6 ">
         {/* FORMULARIO */}
         <form
           id="editUserForm"
           noValidate
           onSubmit={handleSubmit}
-          className="grid grid-cols-3 gap-4"
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {/* COLUMNA 1 */}
-          <div>
+
             <Select
               label="Tipo de documento"
               name="documentType"
@@ -117,10 +118,8 @@ export default function EditUserForm() {
               onChange={handleChange}
               error={errors.email}
             />
-          </div>
 
-          {/* COLUMNA 2 */}
-          <div>
+          
             <Input
               label="Número de documento"
               name="documentNumber"
@@ -150,10 +149,8 @@ export default function EditUserForm() {
               onChange={handleChange}
               error={errors.phone}
             />
-          </div>
 
-          {/* COLUMNA 3 */}
-          <div>
+
             <Input
               label="Dirección"
               name="address"
@@ -183,7 +180,7 @@ export default function EditUserForm() {
               onChange={handleChange}
               error={errors.confirmPassword}
             />
-          </div>
+
         </form>
       </div>
     </div>

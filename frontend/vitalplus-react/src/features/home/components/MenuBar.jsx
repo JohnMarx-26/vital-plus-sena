@@ -13,7 +13,7 @@ export default function MenuBar() {
         <li>
           <Link
             to="/ofertas"
-            className="hover:text-primary transition flex flex-col items-center gap-2 py-4"
+            className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img6} alt="Ofertas" className="w-20 h-20" />
             Ofertas
@@ -23,7 +23,7 @@ export default function MenuBar() {
         <li>
           <Link
             to="/medicamentos"
-            className="hover:text-primary transition flex flex-col items-center gap-2 py-4"
+            className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img5} alt="Medicamentos" className="w-20 h-20" />
             Medicamentos
@@ -33,7 +33,7 @@ export default function MenuBar() {
         <li>
           <Link
             to="/cuidadob"
-            className="hover:text-primary transition flex flex-col items-center gap-2 py-4"
+            className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img3} alt="Cuidado y belleza" className="w-20 h-20" />
             Cuidado y Belleza
@@ -43,7 +43,7 @@ export default function MenuBar() {
         <li>
           <Link
             to="/dermatologia"
-            className="hover:text-primary transition flex flex-col items-center gap-2 py-4"
+            className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img1} alt="Dermatologia" className="w-20 h-20" />
             Dermatologia
@@ -53,7 +53,7 @@ export default function MenuBar() {
         <li>
           <Link
             to="/maternidad"
-            className="hover:text-primary transition flex flex-col items-center gap-2 py-4"
+            className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img4} alt="Maternidad" className="w-20 h-20" />
             Maternidad
@@ -63,7 +63,7 @@ export default function MenuBar() {
         <li>
           <Link
             to="/cuidadop"
-            className="hover:text-primary transition flex flex-col items-center gap-2 py-4"
+            className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img2} alt="Cuidado Personal" className="w-20 h-20" />
             Cuidado personal

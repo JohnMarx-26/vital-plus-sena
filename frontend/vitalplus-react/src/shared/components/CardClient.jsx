@@ -75,7 +75,7 @@ const CardClient = ({ product }) => {
          * uniformidad por espacio reservado
          */}
 
-        <div className={`flex ${hasDiscount ? " visible" : "invisible"}`}>
+        <div className={`flex ${hasDiscount ? " visible" : "invisible"} gap-4`}>
           <p
             className={`font-bold text-red-500 pr-2  ${
               hasDiscount ? "text-body" : "text-small"
@@ -87,10 +87,10 @@ const CardClient = ({ product }) => {
             className={` 
             flex w-15 h-6 text-xs
           bg-red-400 border rounded-full
-            items-center justify-center
+            items-center justify-center text-text-inverse
             ${hasDiscount ? " visible" : "invisible border-none"}`}
           >
-            Ahora
+            Oferta
           </span>
         </div>
 
@@ -106,7 +106,7 @@ const CardClient = ({ product }) => {
         mt-3
         "
         >
-          Agregar
+          Comprar
           <img src={agregar} alt="icono-agregar" className="h-5 w-5" />
         </Button>
       </div>

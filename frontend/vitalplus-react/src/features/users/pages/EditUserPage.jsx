@@ -13,7 +13,7 @@ const Botones = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex w-full justify-between px-10">
+    <div className="flex w-full justify-between px-5">
       <div>
         {/* Botón Retroceder */}
         <Button
@@ -37,7 +37,11 @@ const Botones = () => {
           form="editUserForm"
           className="flex items-center gap-2"
         >
-          <img src={guardar} alt="icono-actualizar" className="w-5 h-5 px-[2px]" />
+          <img
+            src={guardar}
+            alt="icono-actualizar"
+            className="w-5 h-5 px-[2px]"
+          />
           Actualizar
         </Button>
       </div>

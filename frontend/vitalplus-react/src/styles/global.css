@@ -21,7 +21,7 @@
 
   --color-text-primary: var(--semantic-text-primary);
   --color-text-muted: var(--semantic-text-muted);
-  --color-text-inverse: var(--semantic-text-inverse);
+  --color-text-inverse: var(--semantic-inverse);
   --color-text-secundary: var(--semantic-text-secundary);
   --color-text-dropdowns: var(--semantic-text-dropdowns);
 

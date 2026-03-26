@@ -1,6 +1,6 @@
 // Contiene las acciones de cada fila
 // Iconos usados en los botones de acciones
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Eye } from "lucide-react";
 
 // Hook de React Router para navegar programáticamente entre rutas
 import { useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ export default function UserRowActions({ user }) {
 
   return (
     // Contenedor de los botones de acciones
-    <div className="flex gap-2">
+    <div className="flex gap-6">
 
       {/* Botón editar */}
       <button
@@ -48,7 +48,7 @@ export default function UserRowActions({ user }) {
         onClick={handleDelete} // Ejecuta la acción de eliminación
         className="p-1 rounded hover:bg-gray-100"
       >
-        <Trash2 size={16} /> {/* Icono de eliminar */}
+        <Eye size={16} /> {/* Icono de visualizar */}
       </button>
 
     </div>
