@@ -23,6 +23,7 @@ import { MainMenu } from "@/features/Main";
 import { CreateSalePage, SaleDetailPage, ListSalePage } from "@/features/sales";
 import {
   CreateProductPage,
+  ProductDetailClient,
   ProductDetailPage,
   ListProductPage,
   EditProductPage,
