@@ -22,7 +22,7 @@ import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 // MENU DE ADMINISTRACIÓN
 import { MainMenu } from "@/features/Main";
 import { CreateSalePage, SaleDetailPage, ListSalePage } from "@/features/sales";
-import { CreateProductPage, ProductDetailPage } from "@/features/products";
+import { CreateProductPage, ProductDetailPage, ProductDetailClient } from "@/features/products";
 import { CreateSupplierPage, SupplierDetailPage, ListSupplierPage } from "@/features/suppliers";
 import { ProfileUserPage } from "@/features/users";
 import ProfileUserSimplePage from "../../features/users/pages/ProfileUserSimplePage";
@@ -42,6 +42,9 @@ const router = createBrowserRouter([
 
       // { path: "perfil", element: <ProfilePage /> },
       { path: "/usuarios/detalles", element: <ProfileUserSimplePage /> },
+
+      //Detalle de los productos
+      { path: "/products/:id", element: <ProductDetailClient /> },
     ],
   },
 

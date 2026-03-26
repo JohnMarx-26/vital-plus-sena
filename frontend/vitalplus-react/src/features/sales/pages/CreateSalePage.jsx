@@ -1,6 +1,7 @@
 // Importaciones
 // import VentasForm from "@/features/Sales/components/SalesForm";
-import { SaleForm, ProductSectionPOS } from "@/features/sales";
+import { SaleForm } from "@/features/sales";
+import { ProductSection } from "@/features/products";
 import { Button, FormLayout } from "@/shared";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +39,7 @@ export default function CreateSalePage() {
     <FormLayout>
       <Botones />
       <SaleForm>
-        <ProductSectionPOS />
+        <ProductSection variant="pos" />
       </SaleForm>
     </FormLayout>
   );
