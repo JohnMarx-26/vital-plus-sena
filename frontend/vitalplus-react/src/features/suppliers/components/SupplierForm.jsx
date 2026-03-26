@@ -5,69 +5,30 @@ import { AvatarUploader } from "@/features/users";
 import { supplierSchema } from "../Schemas/supplierSchemas";
 import guardar from "@/assets/svg/icono-guardar.svg";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
-// import { SquarePen } from "lucide-react";
 
-/*se crea una arrow function para los botones del formulario
-    a esta funcion se le realiza un callback cuando se ejecuta
-    el FormLayout, dentro de esta funcion esta la logica de los botones
-    y sus estilos*/
-
-const Botones = ({ formId = "suppliersForm", submitLabel = "Guardar" }) => {
+const Botones = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex w-full justify-between">
-      <div>
-        {/* //========= Boton Retroceder ======= */}
-        <Button
-          variant="secondary"
-          size="sm"
-          type="button"
-          //para devolverme al apartado del menu del administrador
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2"
-        >
-          <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
-          Retroceder
-        </Button>
-      </div>
-      <div>
-        {/* //========= Boton Modificar ======= 
-                    <Button
-                        variant="secondary"
-                        size="sm"
-                        type="button"
-                        // onClick={() => navigate ("")}
-                    >
-                        <SquarePen className="w-5 h-5"/>
-                        Modificar
-                    </Button> */}
+    <div className="flex w-full justify-between px-10">
+      <Button
+        variant="secondary"
+        size="sm"
+        type="button"
+        onClick={() => navigate(-1)}
+        className="flex items-center gap-2"
+      >
+        <img src={retroceder} alt="icono-retroceder" className="w-5 h-5" />
+        Retroceder
+      </Button>
 
-        {/* //========= Boton Guardar ======= */}
-        <Button
-          variant="secondary"
-          size="sm"
-          type="submit"
-          // onClick={() => ()}
-          className="flex items-center gap-2"
-          form={formId}
-        >
-          {/* Se pone padding en X de 2 px porque el icono estaba muy pegado al texto */}
-          <img
-            src={guardar}
-            alt="icono-modificar"
-            className="w-5 h-5 px-0.5"
-          />
-          {submitLabel}
-        </Button>
-      </div>
+
     </div>
   );
 };
 
 export default function SupplierForm({
   formId = "suppliersForm",
-  showActions = true,
   submitLabel = "Guardar",
 }) {
   const [formData, setFormData] = useState({
@@ -124,130 +85,137 @@ export default function SupplierForm({
     }
 
     setErrors({});
-    console.log("Proveedor válido:", result.data);
+    console.log(
+      submitLabel === "Actualizar"
+        ? "Proveedor actualizado:"
+        : "Proveedor creado:",
+      result.data
+    );
   };
 
   return (
-    // ==================Contenedor PADRE =====================//
-    <div className="w-full h-full">
-      {/* //============ Boton de retroceder y guardar ============== */}
-      {showActions && (
-        <div className="flex w-full justify-between px-10">
-          <Botones formId={formId} submitLabel={submitLabel} />
-        </div>
-      )}
+  <div className="w-full h-full">
+    <Botones/>
 
-      {/* //============ Avatar =============== */}
-      <div className="flex h-36 justify-center gap-8">
-        <AvatarUploader 
-          label="Foto del proveedor"
-          onChange={handleAvatarChange} />
-      </div>
-
-      <div className=" flex w-1200px h-800px justify-center items-center mt-8">
-        {/* //=================== Formulario ========================== */}
-        <form
-          noValidate
-          onSubmit={handleSubmit}
-          className="grid grid-cols-3 gap-4 "
-          id={formId}
-        >
-          {/* //========= Columna 1 ======= */}
-          <div>
-            <Input
-              label="Nombre proveedor"
-              name="suppliertName"
-              type="text"
-              placeholder="Ingrese el nombre del proveedor"
-              value={formData.suppliertName}
-              onChange={handleChange}
-              error={errors.suppliertName}
-            />
-
-            <Input
-              label="NIT"
-              name="documentNumber"
-              type="text"
-              placeholder="Ingrese el NIT "
-              value={formData.documentNumber}
-              onChange={handleChange}
-              error={errors.documentNumber}
-            />
-
-            <Input
-              label="Razon social"
-              name="companyName"
-              type="text"
-              placeholder="Ingrese la razon social"
-              value={formData.companyName}
-              onChange={handleChange}
-              error={errors.companyName}
-            />
-          </div>
-
-          {/* //========= Columna 2 ======= */}
-          <div>
-            <Input
-              label="Nombre contacto (representante)"
-              name="contactName"
-              type="text"
-              placeholder="Ingrese el nombre del contacto"
-              value={formData.contactName}
-              onChange={handleChange}
-              error={errors.contactName}
-            />
-            <Input
-              label="apellido contacto"
-              name="lastName"
-              type="tel"
-              placeholder="Ingrese el apellido del contactos"
-              value={formData.lastName}
-              onChange={handleChange}
-              error={errors.lastName}
-            />
-            <Input
-              label="Telefono contacto"
-              name="phone"
-              type="tel"
-              placeholder="Ingrese el numero del contacto"
-              value={formData.phone}
-              onChange={handleChange}
-              error={errors.phone}
-            />
-          </div>
-
-          {/* //========= Columna 3 ======= */}
-          <div>
-            <Input
-              label="Correo electronico contacto"
-              name="email"
-              type="email"
-              placeholder="Ingrese el correo electronico"
-              value={formData.email}
-              onChange={handleChange}
-              error={errors.email}
-            />
-            <Input
-              label="ciudad"
-              name="city"
-              type="text"
-              placeholder="Ingrese la ciudad del proveedor"
-              value={formData.city}
-              onChange={handleChange}
-              error={errors.city}
-            />
-            <Input
-              label="Direccion"
-              name="address"
-              type="text"
-              placeholder="Ingrese la direccion del proveedor"
-              value={formData.address}
-              onChange={handleChange}
-              error={errors.address}
-            />
-          </div>
-        </form>
-      </div>
+    <div className="flex h-36 justify-center gap-8">
+      <AvatarUploader
+        label="Foto del proveedor"
+        onChange={handleAvatarChange}
+      />
     </div>
-  );
+
+    <form
+      noValidate
+      onSubmit={handleSubmit}
+      className="w-full max-w-[1008px] mx-auto mt-20 px-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      id={formId}
+    >
+      <Input
+        label="Nombre proveedor"
+        name="suppliertName"
+        type="text"
+        placeholder="Ingrese el nombre del proveedor"
+        value={formData.suppliertName}
+        onChange={handleChange}
+        error={errors.suppliertName}
+      />
+
+      <Input
+        label="NIT"
+        name="documentNumber"
+        type="text"
+        placeholder="Ingrese el NIT"
+        value={formData.documentNumber}
+        onChange={handleChange}
+        error={errors.documentNumber}
+      />
+
+      <Input
+        label="Razon social"
+        name="companyName"
+        type="text"
+        placeholder="Ingrese la razon social"
+        value={formData.companyName}
+        onChange={handleChange}
+        error={errors.companyName}
+      />
+
+      <Input
+        label="Nombre contacto (representante)"
+        name="contactName"
+        type="text"
+        placeholder="Ingrese el nombre del contacto"
+        value={formData.contactName}
+        onChange={handleChange}
+        error={errors.contactName}
+      />
+
+      <Input
+        label="Apellido contacto"
+        name="lastName"
+        type="text"
+        placeholder="Ingrese el apellido del contacto"
+        value={formData.lastName}
+        onChange={handleChange}
+        error={errors.lastName}
+      />
+
+      <Input
+        label="Telefono contacto"
+        name="phone"
+        type="tel"
+        placeholder="Ingrese el numero del contacto"
+        value={formData.phone}
+        onChange={handleChange}
+        error={errors.phone}
+      />
+
+      <Input
+        label="Correo electronico contacto"
+        name="email"
+        type="email"
+        placeholder="Ingrese el correo electronico"
+        value={formData.email}
+        onChange={handleChange}
+        error={errors.email}
+      />
+
+      <Input
+        label="Ciudad"
+        name="city"
+        type="text"
+        placeholder="Ingrese la ciudad del proveedor"
+        value={formData.city}
+        onChange={handleChange}
+        error={errors.city}
+      />
+
+      <Input
+        label="Direccion"
+        name="address"
+        type="text"
+        placeholder="Ingrese la direccion del proveedor"
+        value={formData.address}
+        onChange={handleChange}
+        error={errors.address}
+      />
+      <div className="sm:col-span-2 lg:col-span-3 flex justify-end mt-0">
+        <Button
+          variant="secondary"
+          size="sm"
+          type="submit"
+          className="flex items-center gap-2"
+          form={formId}
+        >
+          <img
+            src={guardar}
+            alt="icono-guardar"
+            className="w-5 h-5 px-[2px]"
+          />
+          {submitLabel}
+        </Button>
+        </div>
+    </form>
+  </div>
+);
 }

@@ -34,22 +34,7 @@ const Botones = () => {
         </Button>
     
 
-        {/* Botón Guardar */}
-        <Button
-          variant="secondary"
-          size="sm"
-          type="submit"
-          className="flex items-center gap-2"
-          form="usersForms"
-        >
-          {/* padding en X porque el icono estaba muy pegado */}
-          <img
-            src={guardar}
-            alt="icono-modificar"
-            className="w-5 h-5 px-[2px]"
-          />
-          Guardar
-        </Button>
+       
     </div>
   );
 };
@@ -233,6 +218,25 @@ export default function UserForm() {
               onChange={handleChange}
               error={errors.confirmPassword}
             />
+
+             {/* Botón Guardar */}
+        <div className="sm:col-span-2 lg:col-span-3 flex justify-end mt-0">
+        <Button
+          variant="secondary"
+          size="sm"
+          type="submit"
+          className="flex items-center gap-2"
+          form="usersForms"
+        >
+          
+          <img
+            src={guardar}
+            alt="icono-modificar"
+            className="w-auto flex items-center gap-2"
+          />
+          Guardar
+        </Button>
+        </div>
         </form>
       </div>
     </div>

@@ -7,6 +7,7 @@ export default function Input({
   id,
   name,
   error,
+  className = "",
   ...props
 }) {
   const inputId = id || name;
@@ -32,7 +33,7 @@ export default function Input({
           name={name}
           type={inputType}
           className={`
-            w-80
+            w-full
             h-12
             rounded-md
             border
@@ -49,6 +50,7 @@ export default function Input({
             disabled:opacity-60
             ${isPassword ? "pr-12" : ""}
             ${error ? "border-red-500" : "border-border"}
+            ${className}
           `}
           {...props}
         />
