@@ -4,6 +4,7 @@ import ProductSectionNew from "@/features/home/components/ProductSectionNew";
 import Modal from "@/shared/components/Modal";
 import MenuBar from "@/features/home/components/MenuBar";
 import Carousel from "@/features/home/components/Carousel";
+import { Footer } from "../../../shared";
 
 import img1 from "@/assets/images/imagen-2.png";
 import img2 from "@/assets/images/imagen-3.png";
@@ -59,9 +60,16 @@ export default function HomePage() {
       <div className="w-full">
         <MenuBar />
       </div>
+
       <div className="flex flex-col md:flex-row gap-2">
         <ProductSectionNew />
       </div>
+
+      {/* Footer con la información en el pie de pagina */}
+      <div>
+        <Footer/>
+      </div>
+
       {/* Modal */}
       <Modal isOpen={open} onClose={() => setOpen(false)} title="Bienvenido">
         <p>Tu farmacia de confianza, VitalPlus</p>
