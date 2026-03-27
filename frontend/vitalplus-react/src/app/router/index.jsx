@@ -71,7 +71,8 @@ const router = createBrowserRouter([
 
   // USUARIOS
   { path: "/usuarios/crear", element: <CreateUserPage /> },
-  { path: "/usuarios/visualizar", element: <ProfileUserPage /> },
+  { path: "/usuarios/edit", element: <EditUserPage /> },
+  { path: "/usuarios/view", element: <ProfileUserPage /> },
   { path: "/usuarios/modificar", element: <EditUserPage /> },
   { path: "/usuarios/listar", element: <ListUserPage /> },
   { path: "/usuariosSale/crear", element: <CreateUserPageSale /> },

@@ -2,27 +2,26 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-12 border-t border-slate-200 bg-white">
+    <footer className="mt-12 border-t border-slate-200 bg-white ">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         {/* Contenido principal del footer */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 ">
           {/* Marca y descripcion */}
           <div>
-            <h2 className="text-lg font-semibold tracking-wide text-slate-900">
+            <h2 className="text-lg font-semibold tracking-wide text-slate-900 place-self-center">
               VitalPlus
             </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Plataforma enfocada en el acceso a productos, servicios y
-              categorias relacionadas con salud y bienestar.
+            <p className="mt-3 text-sm leading-6 text-slate-600 place-self-center">
+              VitalPlus tu aliado estratégico en la distribución de productos farmacéuticos.
             </p>
           </div>
 
           {/* Informacion de contacto */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-900">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-900 place-self-center">
               Contacto
             </h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
+            <ul className="mt-3 space-y-2 text-sm text-slate-600 place-self-center">
               <li>
                 <a
                   href="https://vitalplus.co"
@@ -48,12 +47,12 @@ const Footer = () => {
 
           {/* Enlaces legales */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-900">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-900 place-self-center">
               Informacion legal
             </h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
+            <ul className="mt-3 space-y-2 text-sm text-slate-600 place-self-center">
               <li>
-                <a href="/contacto" className="transition hover:text-sky-700">
+                <a href="/contacto" className="transition hover:text-sky-700 ">
                   Contacto
                 </a>
               </li>

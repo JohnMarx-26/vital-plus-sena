@@ -82,8 +82,8 @@ export default function ProfileUserForm() {
                     onClick={toggleStatus}
                   >
                     {userStatus === "Activo"
-                      ? "Producto Inactivo"
-                      : "Producto Activo"}
+                      ? "Usuario Inactivo"
+                      : "Usuario Activo"}
                   </Button>
 
                   <Button

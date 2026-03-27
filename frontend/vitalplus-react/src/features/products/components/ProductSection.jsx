@@ -202,7 +202,7 @@ export default function ProductSection({ variant, onSelectProduct }) {
 
           ? `mx-auto max-w-7xl gap-y-3
         grid grid-cols-1 sm:grid-cols-2
-        lg:grid-cols-2 xl:grid-cols-3 
+        lg:grid-cols-3 xl:grid-cols-4 
         not-last:gap-6 place-items-center`
           : `
         mx-auto max-w-7xl gap-y-3
