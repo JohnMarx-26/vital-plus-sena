@@ -99,7 +99,7 @@ black/40"
             value={scope}
             onChange={(e) => setScope(e.target.value)}
             options={[
-              { label: "Todos los usuarios", value: "all" },
+              { label: "Todos los proveedores", value: "all" },
               { label: "Filtrar por numero de Nit", value: "nitNumber" },
             ]}
           />
