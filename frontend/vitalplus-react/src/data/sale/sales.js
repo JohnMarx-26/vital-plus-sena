@@ -1,7 +1,7 @@
-export const sales = [ 
+export const sales = [
   {
     id: 1,
-    numero_factura: 40151,
+    numero_factura: "40151",
     fecha_venta: "2026-03-17 14:30:00",
     identificacion: 1069471123,
     cliente: "Oscar Gomez",
@@ -15,7 +15,7 @@ export const sales = [
   },
   {
     id: 2,
-    numero_factura: 40152,
+    numero_factura: "40152",
     fecha_venta: "2026-03-17 14:45:12",
     identificacion: 1002345678,
     cliente: "Valentina Restrepo",
@@ -29,7 +29,7 @@ export const sales = [
   },
   {
     id: 3,
-    numero_factura: 40153,
+    numero_factura: "40153",
     fecha_venta: "2026-03-17 15:10:05",
     identificacion: 1088123456,
     cliente: "Andrés Felipe Cano",
@@ -44,7 +44,7 @@ export const sales = [
   },
   {
     id: 4,
-    numero_factura: 40154,
+    numero_factura: "40154",
     fecha_venta: "2026-03-17 15:35:20",
     identificacion: 31455982,
     cliente: "Marta Lucía Rivas",
@@ -58,7 +58,7 @@ export const sales = [
   },
   {
     id: 5,
-    numero_factura: 40155,
+    numero_factura: "40155",
     fecha_venta: "2026-03-17 16:05:45",
     identificacion: 1053765432,
     cliente: "Santiago Morales",
@@ -72,7 +72,7 @@ export const sales = [
   },
   {
     id: 6,
-    numero_factura: 40156,
+    numero_factura: "40156",
     fecha_venta: "2026-03-17 16:22:10",
     identificacion: 1017890123,
     cliente: "Elena Villamizar",
@@ -86,7 +86,7 @@ export const sales = [
   },
   {
     id: 7,
-    numero_factura: 40157,
+    numero_factura: "40157",
     fecha_venta: "2026-03-17 16:50:30",
     identificacion: 1094321654,
     cliente: "Mateo Salazar",
@@ -100,7 +100,7 @@ export const sales = [
   },
   {
     id: 8,
-    numero_factura: 40158,
+    numero_factura: "40158",
     fecha_venta: "2026-03-17 17:15:00",
     identificacion: 43567890,
     cliente: "Claudia Holguín",
@@ -114,7 +114,7 @@ export const sales = [
   },
   {
     id: 9,
-    numero_factura: 40159,
+    numero_factura: "40159",
     fecha_venta: "2026-03-17 17:40:18",
     identificacion: 1032445566,
     cliente: "Jorge Eliecer Ruiz",
@@ -128,7 +128,7 @@ export const sales = [
   },
   {
     id: 10,
-    numero_factura: 40160,
+    numero_factura: "40160",
     fecha_venta: "2026-03-17 18:05:55",
     identificacion: 1000123456,
     cliente: "Daniela Ospina",
@@ -142,7 +142,7 @@ export const sales = [
   },
   {
     id: 11,
-    numero_factura: 40161,
+    numero_factura: "40161",
     fecha_venta: "2026-03-17 18:20:15",
     identificacion: 1054321098,
     cliente: "Carlos Mario Zuluaga",
@@ -157,7 +157,7 @@ export const sales = [
   },
   {
     id: 12,
-    numero_factura: 40162,
+    numero_factura: "40162",
     fecha_venta: "2026-03-17 18:45:30",
     identificacion: 32145678,
     cliente: "Gloria Estela Ortiz",
@@ -172,7 +172,7 @@ export const sales = [
   },
   {
     id: 13,
-    numero_factura: 40163,
+    numero_factura: "40163",
     fecha_venta: "2026-03-17 19:05:12",
     identificacion: 1010234876,
     cliente: "Julian David Henao",
@@ -187,7 +187,7 @@ export const sales = [
   },
   {
     id: 14,
-    numero_factura: 40164,
+    numero_factura: "40164",
     fecha_venta: "2026-03-17 19:15:45",
     identificacion: 1085443322,
     cliente: "Mariana Pajón",
@@ -202,7 +202,7 @@ export const sales = [
   },
   {
     id: 15,
-    numero_factura: 40165,
+    numero_factura: "40165",
     fecha_venta: "2026-03-17 19:40:00",
     identificacion: 71234567,
     cliente: "Roberto Carlos Diaz",
@@ -217,7 +217,7 @@ export const sales = [
   },
   {
     id: 16,
-    numero_factura: 40166,
+    numero_factura: "40166",
     fecha_venta: "2026-03-17 20:02:10",
     identificacion: 1033456123,
     cliente: "Camila Andrea Lora",
@@ -232,7 +232,7 @@ export const sales = [
   },
   {
     id: 17,
-    numero_factura: 40167,
+    numero_factura: "40167",
     fecha_venta: "2026-03-17 20:25:35",
     identificacion: 1098765432,
     cliente: "Fernando Gaviria",
@@ -247,7 +247,7 @@ export const sales = [
   },
   {
     id: 18,
-    numero_factura: 40168,
+    numero_factura: "40168",
     fecha_venta: "2026-03-17 20:50:22",
     identificacion: 42123987,
     cliente: "Sandra Milena Patiño",
@@ -262,7 +262,7 @@ export const sales = [
   },
   {
     id: 19,
-    numero_factura: 40169,
+    numero_factura: "40169",
     fecha_venta: "2026-03-17 21:10:05",
     identificacion: 1015667788,
     cliente: "Luis Alberto Garcia",
@@ -277,7 +277,7 @@ export const sales = [
   },
   {
     id: 20,
-    numero_factura: 40170,
+    numero_factura: "40170",
     fecha_venta: "2026-03-17 21:35:18",
     identificacion: 1045223344,
     cliente: "Paula Andrea Rios",
@@ -292,7 +292,7 @@ export const sales = [
   },
   {
     id: 21,
-    numero_factura: 40171,
+    numero_factura: "40171",
     fecha_venta: "2026-03-17 21:55:00",
     identificacion: 1110223344,
     cliente: "Javier Solis",
@@ -307,7 +307,7 @@ export const sales = [
   },
   {
     id: 22,
-    numero_factura: 40172,
+    numero_factura: "40172",
     fecha_venta: "2026-03-17 22:12:40",
     identificacion: 52344556,
     cliente: "Adriana Lucía",
@@ -322,7 +322,7 @@ export const sales = [
   },
   {
     id: 23,
-    numero_factura: 40173,
+    numero_factura: "40173",
     fecha_venta: "2026-03-17 22:30:15",
     identificacion: 1066778899,
     cliente: "Hugo Sanchez",
@@ -337,7 +337,7 @@ export const sales = [
   },
   {
     id: 24,
-    numero_factura: 40174,
+    numero_factura: "40174",
     fecha_venta: "2026-03-17 22:45:00",
     identificacion: 1012334455,
     cliente: "Martha Isabel Bolaños",
@@ -352,7 +352,7 @@ export const sales = [
   },
   {
     id: 25,
-    numero_factura: 40175,
+    numero_factura: "40175",
     fecha_venta: "2026-03-17 23:02:12",
     identificacion: 1088443322,
     cliente: "Ricardo Quevedo",
@@ -367,7 +367,7 @@ export const sales = [
   },
   {
     id: 26,
-    numero_factura: 40176,
+    numero_factura: "40176",
     fecha_venta: "2026-03-17 23:15:30",
     identificacion: 25667788,
     cliente: "Beatriz Pinzón",
@@ -382,7 +382,7 @@ export const sales = [
   },
   {
     id: 27,
-    numero_factura: 40177,
+    numero_factura: "40177",
     fecha_venta: "2026-03-17 23:30:45",
     identificacion: 1018990011,
     cliente: "Armando Mendoza",
@@ -397,7 +397,7 @@ export const sales = [
   },
   {
     id: 28,
-    numero_factura: 40178,
+    numero_factura: "40178",
     fecha_venta: "2026-03-17 23:45:10",
     identificacion: 1077889900,
     cliente: "Nicolas Mora",
@@ -412,7 +412,7 @@ export const sales = [
   },
   {
     id: 29,
-    numero_factura: 40179,
+    numero_factura: "40179",
     fecha_venta: "2026-03-17 23:55:00",
     identificacion: 1033445566,
     cliente: "Patricia Fernandez",
@@ -427,7 +427,7 @@ export const sales = [
   },
   {
     id: 30,
-    numero_factura: 40180,
+    numero_factura: "40180",
     fecha_venta: "2026-03-18 08:15:30",
     identificacion: 1022334455,
     cliente: "Freddy Stewart",
@@ -439,6 +439,5 @@ export const sales = [
     metodo_pago: "tarjeta credito",
     n_items: 10,
     estado: "Completada"
-  },
-]
-
+  }
+];

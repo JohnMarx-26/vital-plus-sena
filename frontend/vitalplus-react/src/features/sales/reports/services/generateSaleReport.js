@@ -11,14 +11,14 @@ export function generateSaleReport({
   format, // "excel" | "pdf"
   selectedFields, // Campos seleccionados por el usuario
   scope, // Alcance del reporte
-  documentNumber, // Filtro opcional
+  numero_factura, // Filtro opcional
 }) {
   // Construcción del dataset (desacoplado de la UI)
   const { headers, rows } = buildReportDataset({
     sales,
     selectedFields,
     scope,
-    documentNumber,
+    numero_factura,
   });
   // Validación: evita generar archivos vacíos
   if (!rows.length) {
