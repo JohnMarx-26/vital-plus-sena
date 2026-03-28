@@ -42,15 +42,14 @@ export default function FileInput({
             className="h-32 w-32 rounded-full object-cover"
           />  
       )}
-
-      <label className="block text-sm font-medium text-gray-600">
+       <label className="block text-sm font-medium text-gray-600">
           {label}
         </label>
       </div>
 
       {/* label + input */}
       <div className="flex flex-col space-y-3">
-        
+       
 
         <input
           type="file"
