@@ -35,7 +35,7 @@ export default function ProfileUserForm() {
   ];
 
   const handleEdit = () => {
-    console.log("Modificar producto");
+    console.log("Modificar usuario");
   };
 
   return (
@@ -46,7 +46,7 @@ export default function ProfileUserForm() {
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
             <div className="mb-6 flex justify-center">
-              <h1 className="border-b-2 border-slate-900 pb-1 text-xl font-medium text-slate-900">
+              <h1 className="border-b-2 border-text-secundary pb-1 text-xl font-medium text-slate-900">
                 Opciones de usuario
               </h1>
             </div>
@@ -62,7 +62,7 @@ export default function ProfileUserForm() {
               </div>
 
               <div className="mt-6 w-full max-w-xs border-b border-slate-400 pb-3 text-center">
-                <p className="text-sm font-medium text-slate-800">
+                <p className="text-sm font-medium text-text-secundary">
                   {userData.fullName}
                 </p>
               </div>
