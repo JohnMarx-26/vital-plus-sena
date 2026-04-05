@@ -30,6 +30,24 @@ export const ProductColumns = [
     accessorKey: "requiresPrescription", 
     header: "Requiere Formula", 
   },
+   // Columna concentration
+
+  {
+    accessorKey: "concentration", 
+    header: "Concentración", 
+  },
+   // Columna requiresPrescription
+
+  {
+    accessorKey: "laboratory", 
+    header: "Laboratorio", 
+  },
+   // Columna requiresPrescription
+
+  {
+    accessorKey: "provider", 
+    header: "Proveedor", 
+  },
 
   // Columna stock
   {

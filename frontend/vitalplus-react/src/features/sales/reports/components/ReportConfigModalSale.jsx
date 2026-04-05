@@ -99,13 +99,13 @@ black/40"
             value={scope}
             onChange={(e) => setScope(e.target.value)}
             options={[
-              { label: "Todos los usuarios", value: "all" },
-              { label: "Filtrar por numero de factura", value: "document" },
+              { label: "Todas las ventas", value: "all" },
+              { label: "Filtrar por numero de factura", value: "billNumber" },
             ]}
           />
         </div>
         {/* Campo condicional para filtro por documento */}
-        {scope === "document" && (
+        {scope === "billNumber" && (
           <div className="mb-4">
             <Input
               label="Número de factura"

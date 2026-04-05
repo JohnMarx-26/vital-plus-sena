@@ -50,6 +50,9 @@ export default function ProductForm({
     pharmaceuticalForm: "",
     lotNumber: "",
     description: "",
+    laboratory:"",
+    provider:"",
+    concentration:"",
     avatarUrl: null,
   });
 
@@ -209,6 +212,33 @@ export default function ProductForm({
             value={formData.requiresPrescription}
             onChange={handleChange}
             error={errors.requiresPrescription}
+          />
+            <Input
+              label="Concentración"
+              type="text"
+              name="concentration"
+              placeholder="Ingrese la concentración del producto"
+              value={formData.concentration}
+              onChange={handleChange}
+              error={errors.concentration}
+            />
+          <Input
+            label="Laboratorio"
+            type="text"
+            name="laboratory"
+            placeholder="Ingrese el laboratorio"
+            value={formData.laboratory}
+            onChange={handleChange}
+            error={errors.laboratory}
+          />
+          <Input
+            label="Proveedor"
+            type="text"
+            name="provider"
+            placeholder="Ingrese el proveedor"
+            value={formData.provider}
+            onChange={handleChange}
+            error={errors.provider}
           />
 
           <Input

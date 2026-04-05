@@ -198,23 +198,24 @@ export default function ProductSection({ variant, onSelectProduct }) {
   return (
     <section className="w-full px-3 py-10">
       <div
-        className={` ${variant === "pos"
-
-          ? `mx-auto max-w-7xl gap-y-3
+        className={` ${
+          variant === "pos"
+            ? `mx-auto max-w-7xl gap-y-3
         grid grid-cols-1 sm:grid-cols-2
         lg:grid-cols-3 xl:grid-cols-4 
         not-last:gap-6 place-items-center`
-          : `
+            : `
         mx-auto max-w-7xl gap-y-3
         grid grid-cols-1 sm:grid-cols-2
         lg:grid-cols-3 xl:grid-cols-4 
-        not-last:gap-6 place-items-center`}`}
+        not-last:gap-6 place-items-center`
+        }`}
       >
         {products
           /*todos los productos con stock en cero no se mostraran en la tienda virtual
         pero si seran visibles desde apartado de ventas del farmaceuta*/
           .filter((product) =>
-            variant === "client" ? product.stock > 0 : true
+            variant === "client" ? product.stock > 0 : true,
           )
           .map((product, index) => (
             <CardClient
@@ -230,4 +231,3 @@ export default function ProductSection({ variant, onSelectProduct }) {
     </section>
   );
 }
-

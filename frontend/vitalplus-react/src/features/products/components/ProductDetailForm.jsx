@@ -5,19 +5,25 @@ import medicamento from "@/assets/svg/Rectangle-63.svg";
 
 export default function ProductDetailForm() {
 
-  const userData = {
-    idMedicamento: "43443",
-    nombreMedicamento: "Noraver Gripa",
-    formaFarmaceutica: "Solida",
-    presentacion: "Capsula",
-    viaAdministracion: "Oral",
-    laboratorio: "Risaralda, Pereira, El Japon Mz 10",
-    fechaFabricacion: "2025/12/15",
-    fechaVencimiento: "2026/03/18",
-    proveedor: "Farma S.o.s",
-    requiereFormula: "No",
-    descripcion: "Producto para curar el malestar de la gripe",
-  };
+const userData = {
+  idMedicamento: "43443",
+  nombreMedicamento: "Noraver Gripa",
+  formaFarmaceutica: "Solida",
+  presentacion: "Capsula",
+  viaAdministracion: "Oral",
+  laboratorio: "Risaralda, Pereira, El Japon Mz 10",
+  fechaFabricacion: "2025/12/15",
+  fechaVencimiento: "2026/03/18",
+  proveedor: "Farma S.o.s",
+  requiereFormula: "No",
+  descripcion: "Producto para curar el malestar de la gripe",
+
+  numeroLote: "LOT-9001",
+  stock: 75,
+  precioCompra: 8500,
+  precioVenta: 12000,
+  concentracion: "500 mg"
+};
 
   const [userStatus, setUserStatus] = useState("Activo");
 
@@ -34,6 +40,11 @@ export default function ProductDetailForm() {
     { label: "Laboratorio", value: userData.laboratorio },
     { label: "Fecha fabricación", value: userData.fechaFabricacion },
     { label: "Fecha vencimiento", value: userData.fechaVencimiento },
+    { label: "Numero de Lote", value: userData.numeroLote },
+    { label: "Stock", value: userData.stock },
+    { label: "Precio compra", value: userData.precioCompra },
+    { label: "Precio venta", value: userData.precioVenta },
+    { label: "Concentración", value: userData.concentracion },
     { label: "Proveedor", value: userData.proveedor },
     { label: "Requiere formula", value: userData.requiereFormula },
     { label: "Descripción medicamento", value: userData.descripcion },

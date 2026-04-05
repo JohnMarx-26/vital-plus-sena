@@ -4,12 +4,12 @@ export function buildReportDataset({
   sales, // Array de usuarios origen
   selectedFields, // Campos seleccionados para el reporte [{ key, label }]
   scope, // Alcance del reporte: "all" | "document"
-  documentNumber, // Número de documento para filtrar (si aplica)
+  numero_factura, // Número de documento para filtrar (si aplica)
 }) {
   // Copia inmutable del array original (evita mutaciones)
   let filteredSales = [...sales];
   // Filtro por alcance: si es por documento, se aplica filtro específico
-  if (scope === "document" && numero_factura) {
+  if (scope === "billNumber" && numero_factura) {
     filteredSales = filteredSales.filter(
       (sale) => sale.numero_factura === numero_factura,
     );

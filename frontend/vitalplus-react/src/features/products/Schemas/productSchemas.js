@@ -18,6 +18,18 @@ export const productSchema = z
       .string()
       .min(3, "Los nombres deben tener mínimo 3 caracteres")
       .max(60, "Los nombres son demasiado largos"),
+    laboratory: z
+      .string()
+      .min(3, "Los nombres de laboratorio deben tener mínimo 3 caracteres")
+      .max(60, "El nombre de laboratorio es demasiado largo"),
+    provider: z
+      .string()
+      .min(3, "Los nombres de proveedores deben tener mínimo 3 caracteres")
+      .max(60, "El nombre de proveedor es demasiado largo"),
+    concentration: z
+      .string()
+      .min(2, "La concentración deben tener mínimo 2 caracteres")
+      .max(20, "La concentración es demasiado larga"),
 
     administrationRoute: z
       .string()
