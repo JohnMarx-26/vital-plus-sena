@@ -40,7 +40,6 @@ export default function MainLayout() {
       {isHome ? (
         <main className="w-full pt-2 pb-6">
           <Outlet context={{ cartItems, setCartItems, setShowToast, setToastMessage, setToastType, setClose }}  />
-          <div>{JSON.stringify(cartItems)}</div>
         </main>
         
       ) : (

@@ -62,7 +62,11 @@ const { handleComprar } = useAddToCart();
             onSelectProduct={handleSelectProduct}
             onComprar={
               variant === "client"
-                ? (e) => handleComprar(e, product)
+                /*se ejecuta e para que no pase a la vista de detalle
+                  ...product trae toda la informacion del producto
+                  quantity hace que desde el boton de la card agregue 1 producto a la vez
+                */
+                ? (e) => handleComprar(e, { ...product, quantity: 1 })
                 : undefined
             }
           />

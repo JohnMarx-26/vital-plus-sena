@@ -1,9 +1,10 @@
-import { Search, User, ShoppingCart } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button } from "@/shared";
+import { IconButton } from "@/shared";
 import logo from "@/assets/svg/logo-Header.svg";
 import campana from "@/assets/svg/campana.svg";
+import login from "@/assets/svg/icono-usu-light.svg";
 
 const Header = ({ variant = "client", cartCount }) => {
 
@@ -44,13 +45,16 @@ const Header = ({ variant = "client", cartCount }) => {
   client: {
     icon:
     <div className="relative">
-        <Button>
-          <ShoppingCart alt="carrito" className="h-6 w-6" />
-        </Button>
+        <IconButton
+          areaLabel="Preview carrito"
+          variant="primary"
+        >
+          <ShoppingCart alt="carrito" />
+        </IconButton>
         {cartCount > 0 && (
           <span
-            className="absolute -top-2 -right-2
-          bg-red-500 text-text-inverse
+            className="absolute -top-1 -right-2
+          bg-red-500 
             text-xs font-bold px-2 
             py-0.5 rounded-full"
           >
@@ -79,7 +83,7 @@ const Header = ({ variant = "client", cartCount }) => {
       "
     >
       <div className= "mx-auto max-w-7xl px-4" >
-        <div className={`flex h-16 items-center ${variant==="client" ? "gap-4" : "gap-4 "}`}>
+        <div className={`flex h-17 items-center ${variant==="client" ? "gap-4" : "gap-4 "}`}>
           {/* //==================== LOGO ==================== */}
           <div className="w-40 shrink-0 flex items-center">
             <Link
@@ -119,12 +123,13 @@ const Header = ({ variant = "client", cartCount }) => {
           {/* //========================  MENU DE USUARIO ========================*/}
           <div className=" shrink-0 flex items-center justify-end">
             <div className="relative">
-              <button
+              <IconButton
+                areaLabel="Menu de usuario"
+                variant="primary"
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-center size-10 rounded-full border border-white/30 hover:bg-white/10 transition"
               >
-                <User className="size-5" />
-              </button>
+                <img src={login} alt="Menu de usuario" />
+              </IconButton>
 
               {isOpen && (
                 <div className="absolute right-0 mt-2 w-56 rounded-lg border border-border bg-background text-text-primary shadow-lg overflow-hidden">
