@@ -38,6 +38,8 @@ export default function SupplierDetailForm () {
         // { label: "Contraseña", value: userData.password },
     ];
 
+
+
     return (
             // SECCION PADRE 
         <section className="w-full px-6  pl-16 py-8 mt-5">
@@ -112,7 +114,7 @@ export default function SupplierDetailForm () {
                     </div>
                     </div>
                 </div>
-            </aside>    
+            </aside>    7
 
             {/* contenedor 2 - informacion */}
             <div className="w-[600px] items-center mt-5">

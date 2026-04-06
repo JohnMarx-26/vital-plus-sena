@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react";
 import { ProductSection } from "@/features/products";
-import Modal from "@/shared/components/Modal";
+import{Modal} from "@/shared/";
 import MenuBar from "@/features/home/components/MenuBar";
 import Carousel from "@/features/home/components/Carousel";
-import { Footer } from "../../../shared";
 
-import img1 from "@/assets/images/imagen-2.png";
-import img2 from "@/assets/images/imagen-3.png";
+import img1 from "@/assets/images/banners/slide-1.webp";
+import img2 from "@/assets/images/banners/slide-2.webp";
+import img3 from "@/assets/images/banners/slide-3.webp";
+import img4 from "@/assets/images/banners/slide-4.webp";
+import img5 from "@/assets/images/banners/slide-5.webp";
+import img6 from "@/assets/images/banners/slide-6.webp";
+import img7 from "@/assets/images/banners/slide-7.webp";
+import img8 from "@/assets/images/banners/slide-8.webp";
+
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => { setOpen(true)
-  }, []);
+  useEffect(() => {setOpen(true)}, []);
 
-  const slides = [img1, img2];
+  const slides = [img1,img2,img3,img4,img5,img6,img7,img8];
 
   return (
-    <section className="w-full pt-16">
+    <section className="w-full pt-8 ">
 
-      {/* Carousel 1*/}
-      <div className="w-full px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Carousel 1 */}
-          <div className="w-full h-65 sm:h-80 lg:h-87 overflow-hidden rounded-lg">
+          {/*//============================ Carousel de Publicidad ========================== */}
+          <div className="flex w-full sm:h-70 lg:h-88 2xl:h-133 justify-center  overflow-hidden mb-10">
             <Carousel autoSlide={true} autoSlideInterval={5000}>
               {slides.map((src, idx) => (
                 <img
@@ -36,25 +38,6 @@ export default function HomePage() {
             </Carousel>
           </div>
 
-          {/* Carousel 2 */}
-          <div className="w-full h-65 sm:h-80 lg:h-87 overflow-hidden rounded-lg">
-            <Carousel autoSlide={true} autoSlideInterval={5000}>
-              {slides.map((src, idx) => (
-                <img
-                  key={`c2-${idx}`}
-                  src={src}
-                  alt={`slide-${idx + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              ))}
-            </Carousel>
-          </div>
-        </div>
-      </div>
-
-      {/* Spacer */}
-      <div className="h-6" />
-
       {/* MenuBar */}
       <div className="w-full">
         <MenuBar />
@@ -64,13 +47,12 @@ export default function HomePage() {
         <ProductSection variant="client"  />
       </div>
 
-      {/* Footer con la información en el pie de pagina */}
-      <div>
-        <Footer/>
-      </div>
-
-      {/* Modal */}
-      <Modal isOpen={open} onClose={() => setOpen(false)} title="Bienvenido">
+  
+      {/* //================= MODAL ================= */}
+      <Modal 
+      isOpen={open} 
+      onClose={() => setOpen(false)} 
+      title="Bienvenido">
         <p>Tu farmacia de confianza, VitalPlus</p>
       </Modal>
     </section>

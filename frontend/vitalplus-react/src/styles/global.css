@@ -11,6 +11,10 @@
   --color-brand-soft: var(--semantic-brand-soft);
   --color-brand-semiLight: var(--semantic-brand-semiLight);
   --color-brand-light: var(--semantic-brand-light);
+  --color-brand-dark: var(--semantic-brand-dark);
+
+  /* ===== COLOR SECUNDARIO ===== */
+  --color-secondary-semiLight: var(--semantic-secondary-semiLight);
 
      /* ===== BORDE ===== */
 
@@ -36,7 +40,7 @@
   --font-sans: var(--main-font);
 
     --text-xxl: var(--semantic-font-size-display); /*Extra grande*/
-    --font-text-xl: var(--semantic-font-size-banner); /*Muy grande*/
+    --text-xl: var(--semantic-font-size-banner); /*Muy grande*/
     --text-h1: var(--semantic-font-size-h1); /*grande*/
     --text-h2: var(--semantic-font-size-h2); /*mediano*/
     --text-h3: var(--semantic-font-size-h3);/*pequeño*/

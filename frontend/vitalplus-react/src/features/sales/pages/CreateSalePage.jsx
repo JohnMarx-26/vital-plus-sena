@@ -1,5 +1,4 @@
 // Importaciones
-// import VentasForm from "@/features/Sales/components/SalesForm";
 import { SaleForm } from "@/features/sales";
 import { ProductSection } from "@/features/products";
 import { Button, FormLayout } from "@/shared";

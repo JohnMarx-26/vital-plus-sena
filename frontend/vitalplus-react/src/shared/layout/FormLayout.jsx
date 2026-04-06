@@ -1,6 +1,5 @@
-import Header from "@/shared/components/Header";
-// import {Header} from "../components/Header";
-import LogoForm from "@/assets/images/logo-forms.png";
+import { Header } from "@/shared";
+import LogoForm from "@/assets/images/logo/logo-forms.png";
 
 export default function FormLayout({ children }) {
   return (
@@ -11,13 +10,13 @@ export default function FormLayout({ children }) {
         <img
           src={LogoForm}
           alt="Logo de fondo"
-          className="h-[450px] object-contain justify-left"
+          className="h-113 object-contain justify-left"
         />
       </div>
 
       {/* // contenido principal este contenedor esta superpuesto al del fondo  */}
       <div className="relative z-10 flex-1">
-        <Header />
+        <Header variant="Main" />
         <main className="p-6">{children}</main>
       </div>
     </div>
