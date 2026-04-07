@@ -37,7 +37,7 @@ export default function Modal({
         <div
           className="
             relative
-            w-[400px]
+            w-100
             bg-background
             rounded-xl
             shadow-2xl
@@ -58,7 +58,7 @@ export default function Modal({
             className="
               absolute top-3 right-3
               text-text-primary
-              hover:text-text-inverse
+              hover:text-brand
               transition
             "
           >

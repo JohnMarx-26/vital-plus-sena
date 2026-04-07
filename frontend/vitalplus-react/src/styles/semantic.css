@@ -9,6 +9,10 @@
     --semantic-brand-soft: var(--color-primary-500);
     --semantic-brand-semiLight: var(--color-primary-300);
     --semantic-brand-light: var(--color-primary-100);
+    --semantic-brand-dark: var(--color-primary-950); /* el color mas oscuro de la gama*/
+
+    /*======== Secondary ========*/
+    --semantic-secondary-semiLight: var(--color-secondary-400);
     
     /* ===== BackGround ===== */
     

@@ -45,6 +45,11 @@ export const userSchema = z
       .string()
       .min(1, "Debe confirmar la contraseña"),
 
+    comment: z
+      .string()
+      .min(4, "Invalido, requiere cantidad minima caracteres")
+      .max(100, "Cantidad de caracteres excedida"),
+
     avatarUrl: z
       .string()
       .nullable()

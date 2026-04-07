@@ -8,6 +8,7 @@ import CreateUserPage from "@/features/users/pages/CreateUserPage";
 import CreateUserPageSale from "@/features/users/pages/CreateUserPageSale";
 import EditUserPage from "@/features/users/pages/EditUserPage";
 
+
 import {
   LoginPage,
   ForgotPasswordPage,
@@ -20,20 +21,35 @@ import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
 // MENU DE ADMINISTRACIÓN
 import { MainMenu } from "@/features/Main";
-import { CreateSalePage, SaleDetailPage, ListSalePage } from "@/features/sales";
+import { 
+  CreateSalePage, 
+  SaleDetailPage, 
+  ListSalePage } 
+  from "@/features/sales";
+
 import {
   CreateProductPage,
   ProductDetailClient,
   ProductDetailPage,
   ListProductPage,
   EditProductPage,
-} from "@/features/products";
+  BeautyProductsPage,
+  OfferProductPage,
+  MedicineProductsPage,
+  DermatologyProductPage,
+  MaternityProductPage,
+  PersonalProductsPage,
+} 
+from "@/features/products";
+
 import {
   CreateSupplierPage,
   EditSupplierPage,
   SupplierDetailPage,
   ListSupplierPage,
-} from "@/features/suppliers";
+}
+from "@/features/suppliers";
+
 import { ProfileUserPage } from "@/features/users";
 import ProfileUserSimplePage from "../../features/users/pages/ProfileUserSimplePage";
 import { ListUserPage } from "../../features/users";
@@ -53,6 +69,13 @@ const router = createBrowserRouter([
 
       //Detalle de los productos
       { path: "/products/:id", element: <ProductDetailClient /> },
+      //filtros de los productos
+      { path: "/products/Cosmetics/:id", element: <BeautyProductsPage /> },
+      { path: "/products/Offers/:id", element: <OfferProductPage /> },
+      { path: "/products/Medicines/:id", element: <MedicineProductsPage /> },
+      { path: "/products/Dermatology/:id", element: <DermatologyProductPage /> },
+      { path: "/products/Maternity/:id", element: <MaternityProductPage /> },
+      { path: "/products/Personal/:id", element: <PersonalProductsPage /> },
     ],
   },
 

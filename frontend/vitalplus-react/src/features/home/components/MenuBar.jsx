@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import img1 from "@/assets/images/img-acne.png";
-import img2 from "@/assets/images/img-aseo.png";
-import img3 from "@/assets/images/img-fash.png";
-import img4 from "@/assets/images/img-mama.png";
-import img5 from "@/assets/images/img-med.png";
-import img6 from "@/assets/images/img-ofertas.png";
+import img1 from "@/assets/images/icons/img-acne.png";
+import img2 from "@/assets/images/icons/img-aseo.png";
+import img3 from "@/assets/images/icons/img-fash.png";
+import img4 from "@/assets/images/icons/img-mama.png";
+import img5 from "@/assets/images/icons/img-med.png";
+import img6 from "@/assets/images/icons/img-ofertas.png";
 
 export default function MenuBar() {
   return (
@@ -12,7 +12,7 @@ export default function MenuBar() {
       <ul className="hidden md:flex w-full items-center justify-evenly px-8">
         <li>
           <Link
-            to="/ofertas"
+            to="/products/Offers/:id"
             className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img6} alt="Ofertas" className="w-20 h-20" />
@@ -22,7 +22,7 @@ export default function MenuBar() {
 
         <li>
           <Link
-            to="/medicamentos"
+            to="/products/Medicines/:id"
             className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img5} alt="Medicamentos" className="w-20 h-20" />
@@ -32,7 +32,7 @@ export default function MenuBar() {
 
         <li>
           <Link
-            to="/cuidadob"
+            to="/products/Cosmetics/:id"
             className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img3} alt="Cuidado y belleza" className="w-20 h-20" />
@@ -42,7 +42,7 @@ export default function MenuBar() {
 
         <li>
           <Link
-            to="/dermatologia"
+            to="/products/Dermatology/:id"
             className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img1} alt="Dermatologia" className="w-20 h-20" />
@@ -52,7 +52,7 @@ export default function MenuBar() {
 
         <li>
           <Link
-            to="/maternidad"
+            to="/products/Maternity/:id"
             className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img4} alt="Maternidad" className="w-20 h-20" />
@@ -62,7 +62,7 @@ export default function MenuBar() {
 
         <li>
           <Link
-            to="/cuidadop"
+            to="/products/Personal/:id"
             className="hover:text-primary transition flex flex-col items-center gap-2 py-4 text-text-inverse"
           >
             <img src={img2} alt="Cuidado Personal" className="w-20 h-20" />

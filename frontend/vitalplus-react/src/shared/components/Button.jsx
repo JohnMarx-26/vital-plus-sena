@@ -8,9 +8,11 @@ export default function Button({
 }) {
   const variants = {
     primary:
-      "border border-border bg-[color:var(--color-primary-700)] text-text-inverse hover:bg-brand-hover ",
+      "border border-brand bg-[color:var(--color-primary-700)] text-text-inverse hover:bg-brand-hover ",
     secondary:
       "border border-border bg-background text-text-primary hover:bg-brand-light px-4",
+    detailProduct:
+      " bg-brand text-text-inverse text-small border border-brand  rounded-full hover:bg-brand-hover "
   };
 
   const sizes = {
@@ -24,7 +26,27 @@ export default function Button({
       before:absolute before:content-['']
       before:-inset-y-[4px] before:-inset-x-[0px]
     `,
-    
+    xl:`
+      h-12 w-48
+      py-3 px-4
+      gap-3
+      before:absolute before:content-['']
+      before:-inset-y-[4px] before:-inset-x-[0px]
+    `,
+    detail:`
+      w-full
+      p-2
+      gap-3
+      before:absolute before:content-['']
+      before:-inset-y-[4px] before:-inset-x-[0px]
+    `,
+    amount:`
+      w-6
+      h-6
+      rounded
+      before:absolute before:content-['']
+      before:-inset-y-[4px] before:-inset-x-[0px]
+    `
   };
 
   const variantClass = variants[variant] || variants.primary;
@@ -35,11 +57,13 @@ export default function Button({
       type={type}
       className={`
         relative
-        inline-flex items-center justify-center
+        inline-flex
+        ${size== 'xl' ? '' : 'items-center justify-center'}
         rounded-lg
         transition-colors
         cursor-pointer
-        disabled:opacity-50 disabled:cursor-not-allowed
+        disabled:opacity-50 disabled:cursor-not-allowed 
+        
         ${variantClass}
         ${sizeClass}
         ${className}
