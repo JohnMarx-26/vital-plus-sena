@@ -12,4 +12,9 @@ export { default as PersonalProductsPage } from "./pages/PersonalProductsPage";
 export { default as ProductSection } from "./components/ProductSection";
 export { default as ProductForm } from "./components/ProductForm";
 export { default as ProductRowActions } from "./components/ProductRowActions";
+export { default as CartSlide } from "./components/CartSlide";
+export { default as CartPage } from "./pages/CartPage";
+export { default as ProductShippingForm } from "./components/ProductShippingForm";
+export { default as ProductShippingPage } from "./pages/ProductShippingPage";
+export { default as ProductPaymentPage } from "./pages/ProductPaymentPage";
 

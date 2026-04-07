@@ -27,7 +27,7 @@ export default function Select({
         value={value}
         onChange={onChange}
         className={`
-           w-80
+            w-80
             h-12
             rounded-md
             border

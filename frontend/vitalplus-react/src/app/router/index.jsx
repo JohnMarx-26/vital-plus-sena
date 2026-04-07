@@ -39,6 +39,10 @@ import {
   DermatologyProductPage,
   MaternityProductPage,
   PersonalProductsPage,
+  CartPage,
+  ProductShippingPage,
+  ProductPaymentPage,
+  
 } 
 from "@/features/products";
 
@@ -61,10 +65,6 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/dashboard", element: <DashboardPage /> },
 
-      { path: "cursos", element: <h1 className="p-4">Cursos</h1> },
-      { path: "contacto", element: <h1 className="p-4">Contacto</h1> },
-      { path: "videos", element: <h1 className="p-4">Videos</h1> },
-
       { path: "/usuarios/detalles", element: <ProfileUserSimplePage /> },
 
       //Detalle de los productos
@@ -76,6 +76,11 @@ const router = createBrowserRouter([
       { path: "/products/Dermatology/:id", element: <DermatologyProductPage /> },
       { path: "/products/Maternity/:id", element: <MaternityProductPage /> },
       { path: "/products/Personal/:id", element: <PersonalProductsPage /> },
+
+      //carrito de compras
+      { path: "/products/cart", element: <CartPage /> },
+      { path: "/cart/shipping", element: <ProductShippingPage /> },
+      { path: "/cart/payment", element: <ProductPaymentPage /> },
     ],
   },
 

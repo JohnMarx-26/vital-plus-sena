@@ -1,4 +1,5 @@
 import Button  from "./Button";
+import {formatCurrency} from "@/shared";
 import agregar from "@/assets/svg/icono-add-light.svg";
 
 const CardClient = ({ variant, product, onComprar, onSelectProduct, }) => {
@@ -108,7 +109,7 @@ const CardClient = ({ variant, product, onComprar, onSelectProduct, }) => {
                 : " text-body text-brand "
             }`}
           >
-            ${price.toLocaleString()}
+            {formatCurrency(price)}
           </p>
 
           <span
@@ -133,7 +134,7 @@ const CardClient = ({ variant, product, onComprar, onSelectProduct, }) => {
               hasDiscount ? "text-body" : "text-small"
             }`}
           >
-            ${discount?.toLocaleString()}
+            {formatCurrency(discount)}
           </p>
           <span
             className={` 

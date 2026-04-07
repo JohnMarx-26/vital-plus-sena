@@ -10,15 +10,29 @@ export const useAddToCart = () => {
 
     const context = useOutletContext();
     //Si no hay context retorna  un handlercomprar vacio para que no afecte la variante de POS
-    if(!context) return { handleComprar: () => {} };
+    if(!context) return { handleComprar: () => {}, handlePlus: () => {}, handleMinus: () => {} };
     const { setCartItems, setShowToast, setToastMessage, setToastType, setClose } = context;
+
+   
 
     const handleComprar = (e, product) => {
         /*stopPropagation evita que al hacer el evento de click en la card
         redireccione a la vista de detalle porque detiene el evento hacia arriba del DOM */
         if(e) e.stopPropagation();
         /*array que almacena todos los producto seleccionados que van al carrito */
-        setCartItems(prev => [...prev, product]);
+        // setCartItems(prev => [...prev, product]);
+        setCartItems(prev => {
+        const existing = prev.find(item => item.id === product.id);
+
+       if (existing) {
+    return prev.map(item =>
+        item.id === product.id
+            ? { ...item, quantity: item.quantity + (product.quantity ?? 1) } 
+            : item
+    );
+}
+      return [...prev, { ...product, quantity: product.quantity ?? 1 }];
+    });
         /**
          * Actualizan los estados que estan en el MainLayout
          * se selecciona un mensaje y una variante del toast en este caso success
@@ -31,5 +45,5 @@ export const useAddToCart = () => {
         setTimeout(() => setShowToast(false), 3000);
     };
 
-    return { handleComprar };
+    return { handleComprar, setCartItems }
     };

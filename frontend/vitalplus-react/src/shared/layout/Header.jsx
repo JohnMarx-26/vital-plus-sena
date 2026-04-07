@@ -6,7 +6,7 @@ import logo from "@/assets/svg/logo-Header.svg";
 import campana from "@/assets/svg/campana.svg";
 import login from "@/assets/svg/icono-usu-light.svg";
 
-const Header = ({ variant = "client", cartCount }) => {
+const Header = ({ variant = "client", cartCount,onCartClick }) => {
 
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -48,6 +48,7 @@ const Header = ({ variant = "client", cartCount }) => {
         <IconButton
           areaLabel="Preview carrito"
           variant="primary"
+          onClick = {onCartClick}
         >
           <ShoppingCart alt="carrito" />
         </IconButton>

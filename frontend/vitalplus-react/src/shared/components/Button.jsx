@@ -46,6 +46,13 @@ export default function Button({
       rounded
       before:absolute before:content-['']
       before:-inset-y-[4px] before:-inset-x-[0px]
+    `,
+    cart:`
+      w-4
+      h-4
+      rounded
+      before:absolute before:content-['']
+      before:-inset-y-[4px] before:-inset-x-[0px]
     `
   };
 
