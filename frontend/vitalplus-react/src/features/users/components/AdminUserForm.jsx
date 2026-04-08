@@ -1,5 +1,5 @@
 import { Button, Select, Input } from "@/shared";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AvatarUploader } from "@/features/users";
 import { userSchema } from "../Schemas/userSchemas";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,6 @@ const Botones = () => {
         variant="secondary"
         size="sm"
         type="button"
-        //para devolverme al apartado del menu del administrador
         onClick={() => navigate(-1)}
         className="flex items-center gap-2"
       >
@@ -37,7 +36,7 @@ const Botones = () => {
 
 const documentTypeOptions = [
   { value: "1", label: "Cédula de ciudadanía" },
-  { value: "2", label: "Cédula de Extranjeria" },
+  { value: "2", label: "Cédula de Extranjería" },
   { value: "3", label: "Pasaporte" },
   { value: "4", label: "NIT" },
   { value: "5", label: "PEP" },
@@ -57,8 +56,9 @@ const cityOptions = [
   { value: "9", label: "Armenia" },
 ];
 
-export default function UserForm() {
+export default function AdminUserForm() {
   const navigate = useNavigate();
+  const [roleOptions, setRoleOptions] = useState([]);
 
   const [formData, setFormData] = useState({
     documentType: "",
@@ -69,12 +69,33 @@ export default function UserForm() {
     documentNumber: "",
     city: "",
     address: "",
+    role: "",
     password: "",
     confirmPassword: "",
     avatarUrl: null,
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const loadRoles = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/roles/");
+        const data = await response.json();
+
+        const formattedRoles = data.map((role) => ({
+          value: String(role.id_rol),
+          label: role.nombre_rol,
+        }));
+
+        setRoleOptions(formattedRoles);
+      } catch (error) {
+        console.error("Error cargando roles:", error);
+      }
+    };
+
+    loadRoles();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -101,15 +122,20 @@ export default function UserForm() {
     e.preventDefault();
 
     const result = userSchema.safeParse(formData);
+    const fieldErrors = {};
 
     if (!result.success) {
-      const fieldErrors = {};
-
       result.error.issues.forEach((issue) => {
         const field = issue.path[0];
         fieldErrors[field] = issue.message;
       });
+    }
 
+    if (!formData.role) {
+      fieldErrors.role = "Debe seleccionar un rol";
+    }
+
+    if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
       return;
     }
@@ -125,16 +151,17 @@ export default function UserForm() {
       documentNumber: formData.documentNumber.trim(),
       city: parseInt(formData.city, 10),
       address: formData.address.trim(),
+      role: parseInt(formData.role, 10),
       password: formData.password,
       confirmPassword: formData.confirmPassword,
       avatarUrl: formData.avatarUrl,
     };
 
-    console.log("Payload enviado:", payload);
+    console.log("Payload funcionario:", payload);
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/auth/clientes/register/",
+        "http://127.0.0.1:8000/api/auth/funcionarios/register/",
         {
           method: "POST",
           headers: {
@@ -145,18 +172,18 @@ export default function UserForm() {
       );
 
       const data = await response.json();
-      console.log("Respuesta backend:", data);
+      console.log("Respuesta backend funcionario:", data);
 
       if (!response.ok) {
         const detalleErrores = data.errores
           ? JSON.stringify(data.errores, null, 2)
           : data.error || data.mensaje;
 
-        alert(detalleErrores || "No se pudo registrar el cliente");
+        alert(detalleErrores || "No se pudo registrar el funcionario");
         return;
       }
 
-      alert(data.mensaje || "Cliente registrado correctamente");
+      alert(data.mensaje || "Funcionario registrado correctamente");
 
       setFormData({
         documentType: "",
@@ -167,12 +194,11 @@ export default function UserForm() {
         documentNumber: "",
         city: "",
         address: "",
+        role: "",
         password: "",
         confirmPassword: "",
         avatarUrl: null,
       });
-
-      navigate("/login", { replace: true });
     } catch (error) {
       console.error("Error de conexión:", error);
       alert("No se pudo conectar con el backend");
@@ -200,7 +226,7 @@ export default function UserForm() {
           noValidate
           onSubmit={handleSubmit}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 "
-          id="usersForms"
+          id="adminUserForm"
         >
           <Select
             label="Tipo de documento"
@@ -215,7 +241,7 @@ export default function UserForm() {
             label="Nombres"
             name="firstName"
             type="text"
-            placeholder="Ingrese los nombres del usuario"
+            placeholder="Ingrese los nombres del funcionario"
             value={formData.firstName}
             onChange={handleChange}
             error={errors.firstName}
@@ -245,7 +271,7 @@ export default function UserForm() {
             label="Apellidos"
             name="lastName"
             type="text"
-            placeholder="Ingrese los apellidos del usuario"
+            placeholder="Ingrese los apellidos del funcionario"
             value={formData.lastName}
             onChange={handleChange}
             error={errors.lastName}
@@ -274,10 +300,19 @@ export default function UserForm() {
             label="Dirección"
             name="address"
             type="text"
-            placeholder="Ingrese la dirección del usuario"
+            placeholder="Ingrese la dirección del funcionario"
             value={formData.address}
             onChange={handleChange}
             error={errors.address}
+          />
+
+          <Select
+            label="Rol"
+            name="role"
+            options={roleOptions}
+            value={formData.role}
+            onChange={handleChange}
+            error={errors.role}
           />
 
           <Input
@@ -300,6 +335,17 @@ export default function UserForm() {
             error={errors.confirmPassword}
           />
 
+          <div className="flex items-center justify-end">
+            <Button
+              variant="secondary"
+              size="sm"
+              type="button"
+              onClick={() => navigate("/admin/roles/gestionar")}
+            >
+              Gestionar roles y permisos
+            </Button>
+          </div>
+
           {/* Botón Guardar */}
           <div className="sm:col-span-2 lg:col-span-3 flex justify-end mt-0">
             <Button
@@ -307,11 +353,11 @@ export default function UserForm() {
               size="sm"
               type="submit"
               className="flex items-center gap-2"
-              form="usersForms"
+              form="adminUserForm"
             >
               <img
                 src={guardar}
-                alt="icono-modificar"
+                alt="icono-guardar"
                 className="w-auto flex items-center gap-2"
               />
               Guardar

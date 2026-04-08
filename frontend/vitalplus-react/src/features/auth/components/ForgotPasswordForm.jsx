@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@/shared";
 import { forgotPasswordSchema } from "../Schemas/authSchemas";
 
 export default function ForgotPasswordForm({ onSuccess }) {
   const [form, setForm] = useState({ email: "" });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,29 +15,60 @@ export default function ForgotPasswordForm({ onSuccess }) {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const result = forgotPasswordSchema.safeParse(form);
+  const result = forgotPasswordSchema.safeParse(form);
 
-    if (!result.success) {
-      const fieldErrors = {};
+  if (!result.success) {
+    const fieldErrors = {};
 
-      result.error.issues.forEach((issue) => {
-        const field = issue.path[0];
-        fieldErrors[field] = issue.message;
-      });
+    result.error.issues.forEach((issue) => {
+      const field = issue.path[0];
+      fieldErrors[field] = issue.message;
+    });
 
-      setErrors(fieldErrors);
+    setErrors(fieldErrors);
+    return;
+  }
+
+  setErrors({});
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/auth/forgot-password/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: form.email.trim(),
+      }),
+    });
+
+    const data = await response.json();
+    console.log("Respuesta forgot-password:", data);
+
+    if (!response.ok) {
+      alert(data.mensaje || "No se pudo generar el token");
       return;
     }
 
-    setErrors({});
+    sessionStorage.setItem("resetEmail", form.email.trim());
+
+    alert(
+      `Token generado correctamente.\n\nToken de prueba: ${data.data.token}`
+    );
 
     if (onSuccess) {
-      onSuccess(form.email);
+      onSuccess(form.email.trim());
     }
-  };
+
+    navigate("/reset-password");
+  } catch (error) {
+    console.error("Error de conexión:", error);
+    alert("No se pudo conectar con el backend");
+  }
+};
 
   return (
     <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-6">

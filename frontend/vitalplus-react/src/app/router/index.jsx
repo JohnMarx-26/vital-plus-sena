@@ -7,6 +7,8 @@ import HomePage from "@/features/home/page/homepage";
 import CreateUserPage from "@/features/users/pages/CreateUserPage";
 import CreateUserPageSale from "@/features/users/pages/CreateUserPageSale";
 import EditUserPage from "@/features/users/pages/EditUserPage";
+import CreateAdminUsers from "@/features/users/pages/CreateAdminUsers";
+import CreateRolePage from "@/features/users/pages/CreateRolePage";
 
 
 import {
@@ -94,6 +96,8 @@ const router = createBrowserRouter([
 
   // USUARIOS
   { path: "/usuarios/crear", element: <CreateUserPage /> },
+  { path: "/admin/usuarios/crear", element: <CreateAdminUsers /> },
+  { path: "/admin/roles/gestionar", element: <CreateRolePage /> },
   { path: "/usuarios/edit", element: <EditUserPage /> },
   { path: "/usuarios/view", element: <ProfileUserPage /> },
   { path: "/usuarios/modificar", element: <EditUserPage /> },
