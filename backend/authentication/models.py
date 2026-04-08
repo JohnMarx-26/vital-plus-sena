@@ -111,3 +111,24 @@ class Ciudades(models.Model):
     class Meta:
         managed = False
         db_table = 'ciudades'
+
+class Permisos(models.Model):
+    id_permiso = models.AutoField(primary_key=True)
+    nombre_permiso = models.CharField(max_length=100)
+    modulo = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'permisos'
+
+
+class RolesPermisos(models.Model):
+    id_rol_permiso = models.AutoField(primary_key=True)
+    id_rol = models.IntegerField()
+    id_permiso = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'roles_permisos'
+        unique_together = (('id_rol', 'id_permiso'),)

@@ -7,7 +7,7 @@ from django.core.cache import cache
 import random
 import string
 
-from .models import Roles, Funcionarios, Clientes, Direcciones
+from .models import Roles, Funcionarios, Clientes, Direcciones, Permisos, RolesPermisos
 from .serializers import (
     RolesSerializers,
     FuncionarioLoginSerializer,
@@ -17,6 +17,7 @@ from .serializers import (
     ForgotPasswordSerializer,
     ValidateResetTokenSerializer,
     ResetPasswordSerializer,
+    RoleCreateSerializer,
 )
 
 # Aqui dice que esta vista solo responde peticiones GET
@@ -507,3 +508,369 @@ def reset_password(request):
         },
         status=status.HTTP_200_OK
     )
+
+@api_view(['GET'])
+def listar_permisos(request):
+    permisos = Permisos.objects.all().order_by('modulo', 'id_permiso')
+
+    grouped = {}
+    for permiso in permisos:
+        modulo = (permiso.modulo or '').strip()
+        if modulo not in grouped:
+            grouped[modulo] = []
+
+        grouped[modulo].append({
+            'id_permiso': permiso.id_permiso,
+            'nombre_permiso': permiso.nombre_permiso,
+            'modulo': permiso.modulo,
+            'descripcion': permiso.descripcion,
+        })
+
+    data = [
+        {
+            'modulo': modulo,
+            'permisos': items
+        }
+        for modulo, items in grouped.items()
+    ]
+
+    return Response(
+        {
+            'ok': True,
+            'data': data
+        },
+        status=status.HTTP_200_OK
+    )
+
+
+@api_view(['POST'])
+def create_role(request):
+    serializer = RoleCreateSerializer(data=request.data)
+
+    if not serializer.is_valid():
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Datos inválidos',
+                'errores': serializer.errors
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    data = serializer.validated_data
+    nombre_rol = data['nombre_rol'].strip()
+    descripcion = data['descripcion'].strip()
+    permisos_solicitados = data['permisos']
+
+    if Roles.objects.filter(nombre_rol__iexact=nombre_rol).exists():
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Ya existe un rol con ese nombre'
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    permisos_db = Permisos.objects.all()
+    permisos_map = {
+        ((permiso.modulo or '').strip(), (permiso.nombre_permiso or '').strip()): permiso
+        for permiso in permisos_db
+    }
+
+    permisos_encontrados = []
+    permisos_faltantes = []
+
+    for item in permisos_solicitados:
+        key = (item['modulo'].strip(), item['nombre_permiso'].strip())
+        permiso = permisos_map.get(key)
+
+        if not permiso:
+            permisos_faltantes.append({
+                'modulo': item['modulo'],
+                'nombre_permiso': item['nombre_permiso'],
+            })
+        else:
+            permisos_encontrados.append(permiso)
+
+    if permisos_faltantes:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Algunos permisos no existen en la base de datos',
+                'errores': {
+                    'permisos': permisos_faltantes
+                }
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    role = None
+
+    try:
+        role = Roles.objects.create(
+            nombre_rol=nombre_rol,
+            descripcion=descripcion
+        )
+
+        relaciones = [
+            RolesPermisos(
+                id_rol=role.id_rol,
+                id_permiso=permiso.id_permiso
+            )
+            for permiso in permisos_encontrados
+        ]
+
+        RolesPermisos.objects.bulk_create(relaciones)
+
+        return Response(
+            {
+                'ok': True,
+                'mensaje': 'Rol creado correctamente',
+                'data': {
+                    'id_rol': role.id_rol,
+                    'nombre_rol': role.nombre_rol,
+                    'descripcion': role.descripcion,
+                    'total_permisos': len(permisos_encontrados),
+                }
+            },
+            status=status.HTTP_201_CREATED
+        )
+
+    except Exception as e:
+        if role:
+            RolesPermisos.objects.filter(id_rol=role.id_rol).delete()
+            role.delete()
+
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'No se pudo crear el rol',
+                'error': str(e)
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+    
+@api_view(['GET'])
+def manage_roles(request):
+    roles = Roles.objects.all().order_by('-id_rol')
+
+    data = []
+    for role in roles:
+        total_permisos = RolesPermisos.objects.filter(id_rol=role.id_rol).count()
+        total_funcionarios = Funcionarios.objects.filter(id_rol=role.id_rol).count()
+
+        data.append({
+            'id_rol': role.id_rol,
+            'nombre_rol': role.nombre_rol,
+            'descripcion': role.descripcion,
+            'total_permisos': total_permisos,
+            'total_funcionarios': total_funcionarios,
+            'en_uso': total_funcionarios > 0,
+        })
+
+    return Response(
+        {
+            'ok': True,
+            'data': data
+        },
+        status=status.HTTP_200_OK
+    )
+
+
+@api_view(['DELETE'])
+def delete_role(request, role_id):
+    role = Roles.objects.filter(id_rol=role_id).first()
+
+    if not role:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'El rol no existe'
+            },
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    total_funcionarios = Funcionarios.objects.filter(id_rol=role_id).count()
+
+    if total_funcionarios > 0:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'No se puede eliminar el rol porque está asignado a funcionarios'
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    try:
+        RolesPermisos.objects.filter(id_rol=role_id).delete()
+        role.delete()
+
+        return Response(
+            {
+                'ok': True,
+                'mensaje': 'Rol eliminado correctamente'
+            },
+            status=status.HTTP_200_OK
+        )
+
+    except Exception as e:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'No se pudo eliminar el rol',
+                'error': str(e)
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+    
+@api_view(['GET'])
+def role_detail(request, role_id):
+    role = Roles.objects.filter(id_rol=role_id).first()
+
+    if not role:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'El rol no existe'
+            },
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    relaciones = RolesPermisos.objects.filter(id_rol=role_id)
+    permisos_ids = [rel.id_permiso for rel in relaciones]
+
+    permisos = Permisos.objects.filter(id_permiso__in=permisos_ids).order_by('modulo', 'id_permiso')
+
+    return Response(
+        {
+            'ok': True,
+            'data': {
+                'id_rol': role.id_rol,
+                'nombre_rol': role.nombre_rol,
+                'descripcion': role.descripcion,
+                'permisos': [
+                    {
+                        'id_permiso': permiso.id_permiso,
+                        'modulo': permiso.modulo,
+                        'nombre_permiso': permiso.nombre_permiso,
+                    }
+                    for permiso in permisos
+                ]
+            }
+        },
+        status=status.HTTP_200_OK
+    )
+
+
+@api_view(['PUT'])
+def update_role(request, role_id):
+    role = Roles.objects.filter(id_rol=role_id).first()
+
+    if not role:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'El rol no existe'
+            },
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    serializer = RoleCreateSerializer(data=request.data)
+
+    if not serializer.is_valid():
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Datos inválidos',
+                'errores': serializer.errors
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    data = serializer.validated_data
+    nombre_rol = data['nombre_rol'].strip()
+    descripcion = data['descripcion'].strip()
+    permisos_solicitados = data['permisos']
+
+    if Roles.objects.filter(nombre_rol__iexact=nombre_rol).exclude(id_rol=role_id).exists():
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Ya existe otro rol con ese nombre'
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    permisos_db = Permisos.objects.all()
+    permisos_map = {
+        ((permiso.modulo or '').strip(), (permiso.nombre_permiso or '').strip()): permiso
+        for permiso in permisos_db
+    }
+
+    permisos_encontrados = []
+    permisos_faltantes = []
+
+    for item in permisos_solicitados:
+        key = (item['modulo'].strip(), item['nombre_permiso'].strip())
+        permiso = permisos_map.get(key)
+
+        if not permiso:
+            permisos_faltantes.append({
+                'modulo': item['modulo'],
+                'nombre_permiso': item['nombre_permiso'],
+            })
+        else:
+            permisos_encontrados.append(permiso)
+
+    if permisos_faltantes:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Algunos permisos no existen en la base de datos',
+                'errores': {
+                    'permisos': permisos_faltantes
+                }
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    try:
+        role.nombre_rol = nombre_rol
+        role.descripcion = descripcion
+        role.save(update_fields=['nombre_rol', 'descripcion'])
+
+        RolesPermisos.objects.filter(id_rol=role_id).delete()
+
+        relaciones = [
+            RolesPermisos(
+                id_rol=role.id_rol,
+                id_permiso=permiso.id_permiso
+            )
+            for permiso in permisos_encontrados
+        ]
+
+        RolesPermisos.objects.bulk_create(relaciones)
+
+        return Response(
+            {
+                'ok': True,
+                'mensaje': 'Rol actualizado correctamente',
+                'data': {
+                    'id_rol': role.id_rol,
+                    'nombre_rol': role.nombre_rol,
+                    'descripcion': role.descripcion,
+                    'total_permisos': len(permisos_encontrados),
+                }
+            },
+            status=status.HTTP_200_OK
+        )
+
+    except Exception as e:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'No se pudo actualizar el rol',
+                'error': str(e)
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )

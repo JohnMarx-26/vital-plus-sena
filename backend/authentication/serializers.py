@@ -111,3 +111,46 @@ class ResetPasswordSerializer(serializers.Serializer):
                 {"confirmPassword": "Las contraseñas no coinciden"}
             )
         return attrs
+    
+class PermisoSerializer(serializers.Serializer):
+    id_permiso = serializers.IntegerField()
+    nombre_permiso = serializers.CharField()
+    modulo = serializers.CharField()
+    descripcion = serializers.CharField(allow_null=True, required=False)
+
+
+class PermisoSeleccionadoSerializer(serializers.Serializer):
+    modulo = serializers.CharField(max_length=100)
+    nombre_permiso = serializers.CharField(max_length=100)
+
+
+class RoleCreateSerializer(serializers.Serializer):
+    nombre_rol = serializers.CharField(max_length=30)
+    descripcion = serializers.CharField(max_length=100)
+    plantilla_base = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    permisos = PermisoSeleccionadoSerializer(many=True)
+
+    def validate_nombre_rol(self, value):
+        value = value.strip()
+        if not value:
+            raise serializers.ValidationError("El nombre del rol es obligatorio")
+        return value
+
+    def validate_descripcion(self, value):
+        value = value.strip()
+        if not value:
+            raise serializers.ValidationError("La descripción es obligatoria")
+        return value
+
+    def validate_permisos(self, value):
+        if not value:
+            raise serializers.ValidationError("Debes seleccionar al menos un permiso")
+
+        seen = set()
+        for item in value:
+            key = (item["modulo"].strip(), item["nombre_permiso"].strip())
+            if key in seen:
+                raise serializers.ValidationError("Hay permisos duplicados en la solicitud")
+            seen.add(key)
+
+        return value
