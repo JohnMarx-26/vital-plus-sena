@@ -19,6 +19,7 @@ export default function ProfileUserForm() {
 
   const [userStatus, setUserStatus] = useState("Activo");
 
+  // sincroniza el estado local del botón con el estado real que llega del backend
   const toggleStatus = () => {
     setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
   };
@@ -46,7 +47,7 @@ export default function ProfileUserForm() {
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
             <div className="mb-6 flex justify-center">
-              <h1 className="border-b-2 border-slate-900 pb-1 text-xl font-medium text-slate-900">
+              <h1 className="border-b-2 border-slate-900 pb-1 text-font-md font-medium text-slate-900">
                 Opciones de usuario
               </h1>
             </div>
@@ -61,6 +62,8 @@ export default function ProfileUserForm() {
                 />
               </div>
 
+              {/* Nombre del proveedor */}
+
               <div className="mt-6 w-full max-w-xs border-b border-slate-400 pb-3 text-center">
                 <p className="text-sm font-medium text-slate-800">
                   {userData.fullName}
@@ -71,6 +74,8 @@ export default function ProfileUserForm() {
 
                 <div className="flex flex-wrap items-center justify-center gap-3">
 
+
+                {/* Boton estado */}
                   <Button
                     type="button"
                     size="md"
@@ -86,6 +91,7 @@ export default function ProfileUserForm() {
                       : "Usuario Activo"}
                   </Button>
 
+                  {/* Boton modificar */}
                   <Button
                     variant="secondary"
                     size="sm"
@@ -106,13 +112,20 @@ export default function ProfileUserForm() {
           </div>
         </aside>
 
+                {/*             {/* contenedor 2 - informacion */} 
         <div className="w-full max-w-[700px]">
           <div className="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
 
             <div className="flex flex-col gap-6">
 
+                        {/* con map se itera sobre userDetails para renderizar los label y sus valores */}
               {userDetails.map((item) => (
                 <div
+
+                  // Se crean dos columnas la primera 220px  
+                  // la segunda 1fr que se adapta al espacio disponible despues de los 220px
+
+
                   key={item.label}
                   className="grid grid-cols-[220px_1fr] items-start gap-x-8"
                 >
