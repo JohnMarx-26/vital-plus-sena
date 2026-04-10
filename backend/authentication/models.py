@@ -7,6 +7,9 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+#Models.py, este archivo es importante ya que python necesita una froma de representar el sql dentro del codigo,
+#Este models sirve como un traductor, ya que la base real reside en MySQL, ya que trabajamos con una base existente usando inspectdb, managed=False,
+#Eso implica que, python las usa pero no intenta administrarlas ni crearlas (Este archivo le enseña a Django como leerlas y usarlas)
 
 class Clientes(models.Model):
     id_cliente = models.AutoField(primary_key=True)
