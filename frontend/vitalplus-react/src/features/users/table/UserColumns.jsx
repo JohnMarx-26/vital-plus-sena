@@ -28,7 +28,7 @@ export const UserColumns = [
    // Columna documentType
   {
     accessorKey: "documentType", 
-    header: "Tipo de documento", 
+    header: "Tipo de documento",  
   },
 
   // Columna documentNumber
