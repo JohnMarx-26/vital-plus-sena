@@ -60,6 +60,7 @@ class Proveedor(models.Model):
         db_constraint=False,
         related_name="proveedores",
     )
+    n_documento = models.BigIntegerField(blank=True, null=True)
     nombre_proveedor = models.CharField(max_length=100, blank=True, null=True)
     razon_social = models.CharField(max_length=100, blank=True, null=True)
     nombres_contacto = models.CharField(max_length=50, blank=True, null=True)

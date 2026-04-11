@@ -29,6 +29,7 @@ class ProveedorListSerializer(serializers.ModelSerializer):
         fields = [
             "id_proveedor",
             "tipo_documento",
+            "n_documento",
             "nombre_proveedor",
             "razon_social",
             "nombre_contacto",
@@ -81,6 +82,7 @@ class ProveedorDetailSerializer(serializers.ModelSerializer):
         fields = [
             "id_proveedor",
             "tipo_documento",
+            "n_documento",
             "nombre_proveedor",
             "razon_social",
             "nombres_contacto",
@@ -95,6 +97,7 @@ class ProveedorDetailSerializer(serializers.ModelSerializer):
 
 class ProveedorCreateSerializer(serializers.Serializer):
     id_tipo_documento = serializers.IntegerField(required=False, allow_null=True)
+    n_documento = serializers.IntegerField(required=False, allow_null=True)
     nombre_proveedor = serializers.CharField(max_length=100)
     razon_social = serializers.CharField(
         max_length=100,
@@ -131,6 +134,7 @@ class ProveedorCreateSerializer(serializers.Serializer):
 
 class ProveedorUpdateSerializer(serializers.Serializer):
     id_tipo_documento = serializers.IntegerField(required=False, allow_null=True)
+    n_documento = serializers.IntegerField(required=False, allow_null=True)
     nombre_proveedor = serializers.CharField(max_length=100)
     razon_social = serializers.CharField(
         max_length=100,

@@ -4,6 +4,9 @@ from rest_framework import status
 from django.utils import timezone
 from django.db import transaction
 from django.core.cache import cache
+from .models import Funcionarios
+
+
 import random
 import string
 
@@ -13,14 +16,25 @@ from .serializers import (
     FuncionarioLoginSerializer,
     ClienteLoginSerializer,
     ClienteRegisterSerializer,
+    FuncionarioUpdateSerializer,
+    FuncionarioDetailSerializer,
     FuncionarioRegisterSerializer,
     ForgotPasswordSerializer,
     ValidateResetTokenSerializer,
     ResetPasswordSerializer,
     RoleCreateSerializer,
+    FuncionarioListSerializer
 )
 
 # Aqui dice que esta vista solo responde peticiones GET
+@api_view(["GET"])
+def listar_funcionarios(request):
+    # Consulta todos los funcionarios sin relaciones
+    funcionarios = Funcionarios.objects.all().order_by("id_funcionario")
+
+    serializer = FuncionarioListSerializer(funcionarios, many=True)
+    return Response(serializer.data)
+
 @api_view(['GET'])
 def listar_roles(request):
     # Trae los registros de la tabla roles
@@ -301,7 +315,7 @@ def register_funcionario(request):
                 contrasena=data['password'],
                 fecha_registro=timezone.now(),
                 id_rol=int(data['role']),
-                estado_cuenta='activo',
+                estado_cuenta=data['active'],
                 foto_url=data.get('avatarUrl') or None
             )
 
@@ -328,9 +342,110 @@ def register_funcionario(request):
             },
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
-    
+
+@api_view(['PUT'])
+def update_funcionario(request, funcionario_id):
+    try:
+        funcionario = Funcionarios.objects.get(id_funcionario=funcionario_id)
+    except Funcionarios.DoesNotExist:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Funcionario no encontrado'
+            },
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    serializer = FuncionarioUpdateSerializer(
+        data=request.data,
+        context={'funcionario_id': funcionario_id}
+    )
+
+    if not serializer.is_valid():
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Datos inválidos',
+                'errores': serializer.errors
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    data = serializer.validated_data
+    correo = data['email'].strip().lower()
+
+    try:
+        with transaction.atomic():
+            # Actualiza la dirección asociada al funcionario
+            direccion = Direcciones.objects.get(id_direccion=funcionario.id_direccion)
+            direccion.direccion = data['address'].strip()
+            direccion.id_ciudad = int(data['city'])
+            direccion.save()
+
+            # Actualiza los datos principales del funcionario
+            funcionario.id_tipo_documento = int(data['documentType'])
+            funcionario.n_documento = int(data['documentNumber'])
+            funcionario.nombres_funcionario = data['firstName'].strip()
+            funcionario.apellidos_funcionario = data['lastName'].strip()
+            funcionario.correo_electronico = correo
+            funcionario.numero_telefonico = int(data['phone'])
+            funcionario.id_rol = int(data['role'])
+            funcionario.estado_cuenta = data['active']
+            funcionario.foto_url = data.get('avatarUrl') or None
+            funcionario.save()
+
+            return Response(
+                {
+                    'ok': True,
+                    'mensaje': 'Funcionario actualizado correctamente',
+                    'data': {
+                        'id_funcionario': funcionario.id_funcionario,
+                        'correo_electronico': funcionario.correo_electronico,
+                        'id_rol': funcionario.id_rol,
+                        'estado_cuenta': funcionario.estado_cuenta,
+                    }
+                },
+                status=status.HTTP_200_OK
+            )
+
+    except Exception as e:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'No se pudo actualizar el funcionario',
+                'error': str(e)
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
 def generar_token(longitud=6):
     return ''.join(random.choices(string.digits, k=longitud))
+
+
+@api_view(['GET'])
+def detail_funcionario(request, funcionario_id):
+    try:
+        funcionario = Funcionarios.objects.get(id_funcionario=funcionario_id)
+    except Funcionarios.DoesNotExist:
+        return Response(
+            {
+                'ok': False,
+                'mensaje': 'Funcionario no encontrado'
+            },
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    serializer = FuncionarioDetailSerializer(funcionario)
+
+    return Response(
+        {
+            'ok': True,
+            'data': serializer.data
+        },
+        status=status.HTTP_200_OK
+    )
+
 
 
 @api_view(['POST'])
@@ -874,3 +989,4 @@ def update_role(request, role_id):
             },
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+

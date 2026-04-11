@@ -1,0 +1,10 @@
+[
+    {
+        "id": "YES",
+        "label": "activo"
+    },
+    {
+        "id": "NOT",
+        "label": "inactivo"
+    }
+]

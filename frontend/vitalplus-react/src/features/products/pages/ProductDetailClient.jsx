@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button,ZoomImages} from "@/shared";
+import { Button,ZoomImages, formatCurrency} from "@/shared";
 import { ShoppingCart, Star, MessageCircleX, FilePenLine, Minus, Plus,} from "lucide-react";
 import { UserFormComment } from "@/features/users";
 import  {useAddToCart} from "../hooks/useAddToCart";
@@ -15,7 +15,7 @@ export default function ProductDetailClient() {
   const { id, lab, title, image, description, price, discount, presentation, } = state.product;
 
   {/* //================ Redirecciona al carrito ================== */}
-const { handleComprar } = useAddToCart();
+const { handleComprar, setCartItems } = useAddToCart();
 
   //==================== Descuento ============================//
   /** 
@@ -48,13 +48,26 @@ const { handleComprar } = useAddToCart();
 //===================== botones para CANTIDAD ===============
   const [isAmount, setAmount] = useState(1);
 
-  const handlePlus = () =>{
-    setAmount(prev => prev + 1)
-  }
-  const handleMinus = () =>{
-    setAmount(prev => (prev > 1 ? prev - 1 : 1));
-  }
-
+ const handlePlus = () => {
+  setAmount(prev => prev + 1);
+  setCartItems(prev =>
+    prev.map(item =>
+      item.id === id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    )
+  );
+};
+  const handleMinus = () => {
+  setAmount(prev => (prev > 1 ? prev - 1 : 1));
+  setCartItems(prev =>
+    prev.map(item =>
+      item.id === id
+        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+        : item
+    )
+  );
+};
   return (
     // ========================== Contenedor Padre ======================
     <div className="flex flex-col gap-10 p-5 justify-center">
@@ -95,7 +108,7 @@ const { handleComprar } = useAddToCart();
                   : "text-h1 text-brand "
               }`}
             >
-              ${price.toLocaleString()}
+              {formatCurrency(price)}
             </p>
 
             <span
@@ -122,7 +135,7 @@ const { handleComprar } = useAddToCart();
                 hasDiscount ? "text-h1" : "text-xs"
               }`}
             >
-              ${discount?.toLocaleString()}
+              {formatCurrency(discount)}
             </p>
             <span
               className={` 
@@ -143,7 +156,7 @@ const { handleComprar } = useAddToCart();
             <p className="font-bold text-small">Recoger en Tienda</p>
           </div>
 
-          {/* //======================== Botones cantidad producto ============== */}
+          {/* //==================== Botones cantidad producto ============== */}
           <div className="flex gap-10 my-5 items-center ">
             <Button 
             size="amount" 

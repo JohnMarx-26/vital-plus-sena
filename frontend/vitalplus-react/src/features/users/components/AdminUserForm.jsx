@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { AvatarUploader } from "@/features/users";
 import { userSchema } from "../Schemas/userSchemas";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+=======
+import { getSelectActive } from "../services/selectActive";
+>>>>>>> origin/SNEIDER-PROVEEDORES
 
 import guardar from "@/assets/svg/icono-guardar.svg";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
@@ -56,9 +60,20 @@ const cityOptions = [
   { value: "9", label: "Armenia" },
 ];
 
+<<<<<<< HEAD
 export default function AdminUserForm() {
   const navigate = useNavigate();
   const [roleOptions, setRoleOptions] = useState([]);
+=======
+export default function AdminUserForm({
+  userId = null,
+  initialData = null,
+  submitLabel = "Guardar",
+}) {
+  const navigate = useNavigate();
+  const [roleOptions, setRoleOptions] = useState([]);
+  const [selectActive, setSelectActive] = useState([]);
+>>>>>>> origin/SNEIDER-PROVEEDORES
 
   const [formData, setFormData] = useState({
     documentType: "",
@@ -70,6 +85,10 @@ export default function AdminUserForm() {
     city: "",
     address: "",
     role: "",
+<<<<<<< HEAD
+=======
+    active: "activo",
+>>>>>>> origin/SNEIDER-PROVEEDORES
     password: "",
     confirmPassword: "",
     avatarUrl: null,
@@ -97,6 +116,36 @@ export default function AdminUserForm() {
     loadRoles();
   }, []);
 
+<<<<<<< HEAD
+=======
+  // Carga las opciones del select activo/inactivo
+  useEffect(() => {
+    getSelectActive().then(setSelectActive);
+    
+  }, []);
+
+  // Llena el formulario cuando llega la información del usuario a editar
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        documentType: initialData.documentType || "",
+        firstName: initialData.firstName || "",
+        lastName: initialData.lastName || "",
+        email: initialData.email || "",
+        phone: initialData.phone || "",
+        documentNumber: initialData.documentNumber || "",
+        city: initialData.city || "",
+        address: initialData.address || "",
+        role: initialData.role || "",
+        active: initialData.active || "activo",
+        password: "",
+        confirmPassword: "",
+        avatarUrl: initialData.avatarUrl || null,
+      });
+    }
+  }, [initialData]);
+
+>>>>>>> origin/SNEIDER-PROVEEDORES
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -121,6 +170,7 @@ export default function AdminUserForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+<<<<<<< HEAD
     const result = userSchema.safeParse(formData);
     const fieldErrors = {};
 
@@ -129,12 +179,43 @@ export default function AdminUserForm() {
         const field = issue.path[0];
         fieldErrors[field] = issue.message;
       });
+=======
+    const fieldErrors = {};
+
+    // En creación usa el schema completo
+    if (!userId) {
+      const result = userSchema.safeParse(formData);
+
+      if (!result.success) {
+        result.error.issues.forEach((issue) => {
+          const field = issue.path[0];
+          fieldErrors[field] = issue.message;
+        });
+      }
+    } else {
+      // Validaciones básicas para edición
+      if (!formData.documentType) fieldErrors.documentType = "Debe seleccionar un tipo de documento";
+      if (!formData.firstName.trim()) fieldErrors.firstName = "El nombre es obligatorio";
+      if (!formData.lastName.trim()) fieldErrors.lastName = "El apellido es obligatorio";
+      if (!formData.email.trim()) fieldErrors.email = "El correo es obligatorio";
+      if (!formData.phone.trim()) fieldErrors.phone = "El teléfono es obligatorio";
+      if (!formData.documentNumber.trim()) fieldErrors.documentNumber = "El número de documento es obligatorio";
+      if (!formData.city) fieldErrors.city = "Debe seleccionar una ciudad";
+      if (!formData.address.trim()) fieldErrors.address = "La dirección es obligatoria";
+>>>>>>> origin/SNEIDER-PROVEEDORES
     }
 
     if (!formData.role) {
       fieldErrors.role = "Debe seleccionar un rol";
     }
 
+<<<<<<< HEAD
+=======
+    if (!formData.active) {
+      fieldErrors.active = "Debe seleccionar un estado";
+    }
+
+>>>>>>> origin/SNEIDER-PROVEEDORES
     if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
       return;
@@ -142,7 +223,12 @@ export default function AdminUserForm() {
 
     setErrors({});
 
+<<<<<<< HEAD
     const payload = {
+=======
+    // Payload para crear
+    let payload = {
+>>>>>>> origin/SNEIDER-PROVEEDORES
       documentType: parseInt(formData.documentType, 10),
       firstName: formData.firstName.trim(),
       lastName: formData.lastName.trim(),
@@ -152,11 +238,16 @@ export default function AdminUserForm() {
       city: parseInt(formData.city, 10),
       address: formData.address.trim(),
       role: parseInt(formData.role, 10),
+<<<<<<< HEAD
+=======
+      active: formData.active,
+>>>>>>> origin/SNEIDER-PROVEEDORES
       password: formData.password,
       confirmPassword: formData.confirmPassword,
       avatarUrl: formData.avatarUrl,
     };
 
+<<<<<<< HEAD
     console.log("Payload funcionario:", payload);
 
     try {
@@ -170,6 +261,41 @@ export default function AdminUserForm() {
           body: JSON.stringify(payload),
         }
       );
+=======
+    // En edición no se envían contraseñas
+    if (userId) {
+      payload = {
+        documentType: parseInt(formData.documentType, 10),
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        documentNumber: formData.documentNumber.trim(),
+        city: parseInt(formData.city, 10),
+        address: formData.address.trim(),
+        role: parseInt(formData.role, 10),
+        active: formData.active,
+        avatarUrl: formData.avatarUrl,
+      };
+    }
+
+    console.log("Payload funcionario:", payload);
+
+    try {
+      const url = userId
+        ? `http://127.0.0.1:8000/api/funcionarios/${userId}/update/`
+        : "http://127.0.0.1:8000/api/auth/funcionarios/register/";
+
+      const method = userId ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+>>>>>>> origin/SNEIDER-PROVEEDORES
 
       const data = await response.json();
       console.log("Respuesta backend funcionario:", data);
@@ -179,11 +305,29 @@ export default function AdminUserForm() {
           ? JSON.stringify(data.errores, null, 2)
           : data.error || data.mensaje;
 
+<<<<<<< HEAD
         alert(detalleErrores || "No se pudo registrar el funcionario");
         return;
       }
 
       alert(data.mensaje || "Funcionario registrado correctamente");
+=======
+        alert(detalleErrores || "No se pudo procesar el funcionario");
+        return;
+      }
+
+      alert(
+        data.mensaje ||
+        (userId
+          ? "Funcionario actualizado correctamente"
+          : "Funcionario registrado correctamente")
+      );
+
+      if (userId) {
+        navigate(-1);
+        return;
+      }
+>>>>>>> origin/SNEIDER-PROVEEDORES
 
       setFormData({
         documentType: "",
@@ -195,6 +339,10 @@ export default function AdminUserForm() {
         city: "",
         address: "",
         role: "",
+<<<<<<< HEAD
+=======
+        active: "activo",
+>>>>>>> origin/SNEIDER-PROVEEDORES
         password: "",
         confirmPassword: "",
         avatarUrl: null,
@@ -315,6 +463,7 @@ export default function AdminUserForm() {
             error={errors.role}
           />
 
+<<<<<<< HEAD
           <Input
             label="Contraseña"
             name="password"
@@ -334,6 +483,41 @@ export default function AdminUserForm() {
             onChange={handleChange}
             error={errors.confirmPassword}
           />
+=======
+          <Select
+            label="Activo o Inactivo"
+            name="active"
+            options={selectActive}
+            value={formData.active}
+            onChange={handleChange}
+            error={errors.active}
+          />
+
+          {/* Contraseñas solo en creación */}
+          {!userId && (
+            <>
+              <Input
+                label="Contraseña"
+                name="password"
+                type="password"
+                placeholder="Ingrese la contraseña"
+                value={formData.password}
+                onChange={handleChange}
+                error={errors.password}
+              />
+
+              <Input
+                label="Confirmar contraseña"
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirme la contraseña"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                error={errors.confirmPassword}
+              />
+            </>
+          )}
+>>>>>>> origin/SNEIDER-PROVEEDORES
 
           <div className="flex items-center justify-end">
             <Button
@@ -360,7 +544,11 @@ export default function AdminUserForm() {
                 alt="icono-guardar"
                 className="w-auto flex items-center gap-2"
               />
+<<<<<<< HEAD
               Guardar
+=======
+              {submitLabel}
+>>>>>>> origin/SNEIDER-PROVEEDORES
             </Button>
           </div>
         </form>

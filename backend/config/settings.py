@@ -41,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.core',
-    'apps.suppliers',
     'rest_framework',
     'corsheaders',
     'authentication',
+    'apps.core.apps.CoreConfig',
+    'apps.suppliers.apps.SuppliersConfig',
 ]
 
 MIDDLEWARE = [
@@ -126,10 +126,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
+# Tipo de id automático por defecto
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Orígenes permitidos para el frontend
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
 ]

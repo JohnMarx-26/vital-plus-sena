@@ -10,7 +10,6 @@ import EditUserPage from "@/features/users/pages/EditUserPage";
 import CreateAdminUsers from "@/features/users/pages/CreateAdminUsers";
 import CreateRolePage from "@/features/users/pages/CreateRolePage";
 
-
 import {
   LoginPage,
   ForgotPasswordPage,
@@ -23,11 +22,12 @@ import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
 // MENU DE ADMINISTRACIÓN
 import { MainMenu } from "@/features/Main";
-import { 
-  CreateSalePage, 
-  SaleDetailPage, 
-  ListSalePage } 
-  from "@/features/sales";
+
+import {
+  CreateSalePage,
+  SaleDetailPage,
+  ListSalePage,
+} from "@/features/sales";
 
 import {
   CreateProductPage,
@@ -41,16 +41,17 @@ import {
   DermatologyProductPage,
   MaternityProductPage,
   PersonalProductsPage,
-} 
-from "@/features/products";
+  CartPage,
+  ProductShippingPage,
+  ProductPaymentPage,
+} from "@/features/products";
 
 import {
   CreateSupplierPage,
   EditSupplierPage,
   SupplierDetailPage,
   ListSupplierPage,
-}
-from "@/features/suppliers";
+} from "@/features/suppliers";
 
 import { ProfileUserPage } from "@/features/users";
 import ProfileUserSimplePage from "../../features/users/pages/ProfileUserSimplePage";
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
+      // RUTAS PÚBLICAS PRINCIPALES
       { path: "/", element: <HomePage /> },
       { path: "/dashboard", element: <DashboardPage /> },
 
@@ -67,11 +69,13 @@ const router = createBrowserRouter([
       { path: "contacto", element: <h1 className="p-4">Contacto</h1> },
       { path: "videos", element: <h1 className="p-4">Videos</h1> },
 
+      // PERFIL SIMPLE DE USUARIO
       { path: "/usuarios/detalles", element: <ProfileUserSimplePage /> },
 
-      //Detalle de los productos
+      // DETALLE DE PRODUCTOS
       { path: "/products/:id", element: <ProductDetailClient /> },
-      //filtros de los productos
+
+      // FILTROS DE PRODUCTOS
       { path: "/products/Cosmetics/:id", element: <BeautyProductsPage /> },
       { path: "/products/Offers/:id", element: <OfferProductPage /> },
       { path: "/products/Medicines/:id", element: <MedicineProductsPage /> },
@@ -84,6 +88,7 @@ const router = createBrowserRouter([
   {
     element: <AuthLayout />,
     children: [
+      // AUTENTICACIÓN
       { path: "/login", element: <LoginPage /> },
       { path: "/admin/login", element: <AdminLoginPage /> },
       { path: "/forgot-password", element: <ForgotPasswordPage /> },
@@ -92,15 +97,16 @@ const router = createBrowserRouter([
     ],
   },
 
+  // MENÚ ADMINISTRATIVO
   { path: "/main", element: <MainMenu /> },
 
   // USUARIOS
-  { path: "/usuarios/crear", element: <CreateUserPage /> },
   { path: "/admin/usuarios/crear", element: <CreateAdminUsers /> },
   { path: "/admin/roles/gestionar", element: <CreateRolePage /> },
-  { path: "/usuarios/edit", element: <EditUserPage /> },
-  { path: "/usuarios/view", element: <ProfileUserPage /> },
-  { path: "/usuarios/modificar", element: <EditUserPage /> },
+  { path: "/usuarios/crear", element: <CreateUserPage /> },
+  { path: "/usuarios/edit/:id", element: <EditUserPage /> },
+  { path: "/usuarios/view/:id", element: <ProfileUserPage /> },
+  { path: "/usuarios/modificar/:id", element: <EditUserPage /> },
   { path: "/usuarios/listar", element: <ListUserPage /> },
   { path: "/usuariosSale/crear", element: <CreateUserPageSale /> },
 
@@ -117,8 +123,8 @@ const router = createBrowserRouter([
 
   // PROVEEDORES
   { path: "/proveedores/crear", element: <CreateSupplierPage /> },
-  { path: "/proveedores/modificar", element: <EditSupplierPage /> },
-  { path: "/proveedores/detalles", element: <SupplierDetailPage /> },
+  { path: "/proveedores/modificar/:id", element: <EditSupplierPage /> },
+  { path: "/proveedores/detalles/:id", element: <SupplierDetailPage /> },
   { path: "/proveedores/listar", element: <ListSupplierPage /> },
 ]);
 

@@ -69,6 +69,7 @@ def crear_proveedor(request):
     # Crea el proveedor con la dirección recién creada
     proveedor = Proveedor.objects.create(
         tipo_documento_rel_id=data.get("id_tipo_documento"),
+        n_documento=data.get("n_documento"),
         nombre_proveedor=data.get("nombre_proveedor"),
         razon_social=data.get("razon_social"),
         nombres_contacto=data.get("nombres_contacto"),
@@ -128,6 +129,7 @@ def actualizar_proveedor(request, proveedor_id):
 
     # Actualiza los campos principales del proveedor
     proveedor.tipo_documento_rel_id = data.get("id_tipo_documento")
+    proveedor.n_documento = data.get("n_documento")
     proveedor.nombre_proveedor = data.get("nombre_proveedor")
     proveedor.razon_social = data.get("razon_social")
     proveedor.nombres_contacto = data.get("nombres_contacto")

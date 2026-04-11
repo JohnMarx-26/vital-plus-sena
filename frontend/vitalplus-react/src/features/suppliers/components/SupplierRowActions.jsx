@@ -1,16 +1,16 @@
 // Contiene las acciones de cada fila
 // Iconos usados en los botones de acciones
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Eye } from "lucide-react";
 
 // Hook de React Router para navegar programáticamente entre rutas
 import { useNavigate } from "react-router-dom";
 
 // Componente que renderiza las acciones de cada fila de usuario
-// Recibe como prop el objeto user
-export default function SupplierRowActions({ user }) {
+// Recibe como prop el objeto supplier
+export default function SupplierRowActions({ supplier }) {
 
   // const handleEdit = () => {
-  //   console.log("Editar usuario", user.id);
+  //   console.log("Editar usuario", supplier.id);
   // };
 
   // Hook que permite redirigir a otra ruta desde código
@@ -19,20 +19,20 @@ export default function SupplierRowActions({ user }) {
   // Acción para editar el usuario
   // Redirige a la página de edición usando el id del usuario
   const handleEdit = () => {
-    // navigate(`/users/${user.id}/edit`); 
-    navigate("/proveedores/detalles");
+    // navigate(`/supplier/${supplier.id}/edit`); 
+    navigate(`/proveedores/modificar/${supplier.id}`);
   };
 
   // Acción para eliminar el usuario
   // Actualmente solo imprime en consola el id
   // En una aplicación real aquí se llamaría a la API
-  const handleDelete = () => {
-    console.log("Eliminar usuario", user.id);
+  const handleView= () => {
+    navigate(`/proveedores/detalles/${supplier.id}`);
   };
 
   return (
     // Contenedor de los botones de acciones
-    <div className="flex gap-2">
+    <div className="flex gap-6">
 
       {/* Botón editar */}
       <button
@@ -45,10 +45,10 @@ export default function SupplierRowActions({ user }) {
 
       {/* Botón eliminar */}
       <button
-        onClick={handleDelete} // Ejecuta la acción de eliminación
+        onClick={handleView} // Ejecuta la acción de eliminación
         className="p-1 rounded hover:bg-gray-100"
       >
-        <Trash2 size={16} /> {/* Icono de eliminar */}
+        <Eye size={16} /> {/* Icono de eliminar */}
       </button>
 
     </div>
