@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IconButton } from "@/shared";
 import logo from "@/assets/svg/logo-Header.svg";
-import campana from "@/assets/svg/campana.svg";
 import login from "@/assets/svg/icono-usu-light.svg";
 
 const Header = ({ variant = "client", cartCount,onCartClick }) => {
@@ -65,7 +64,6 @@ const Header = ({ variant = "client", cartCount,onCartClick }) => {
       </div>,
   },
   Main: {
-    icon: <img src={campana} alt="notificaciones" className="h-6 w-6" />,
   },
 };
 
