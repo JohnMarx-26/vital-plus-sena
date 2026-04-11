@@ -1,36 +1,35 @@
 // Función utilitaria para construir el dataset de un reporte (tabla)
 // Patrón: transformación de datos (input → output listo para exportar)
 export function buildReportDataset({
-  suppliers, // Array de usuarios origen
+  suppliers, // Array de proveedores origen
   selectedFields, // Campos seleccionados para el reporte [{ key, label }]
-  scope, // Alcance del reporte: "all" | "document"
-  nit, // Número de documento para filtrar (si aplica)
+  scope, // Alcance del reporte: "all" | "nitNumber"
+  nit, // Número de nit para filtrar (si aplica)
 }) {
-  // Copia inmutable del array original (evita mutaciones)
+  // Copia inmutable del array original
   let filteredSuppliers = [...suppliers];
-  // Filtro por alcance: si es por documento, se aplica filtro específico
+
+  // Filtro por alcance
   if (scope === "nitNumber" && nit) {
     filteredSuppliers = filteredSuppliers.filter(
-      (supplier) => supplier.nit === nit,
+      (supplier) => String(supplier.nit ?? "") === String(nit ?? "")
     );
   }
+
   // Construcción de encabezados del reporte
-  // Se toma el label de cada campo seleccionado
   const headers = selectedFields.map((field) => field.label);
+
   // Construcción de filas del reporte
-  // Cada usuario se transforma en un array de valores según los campos
-  // seleccionados
   const rows = filteredSuppliers.map((supplier) =>
     selectedFields.map((field) => {
-      const value = supplier[field.key]; // Acceso dinámico a la propiedad
-      // Normalización: evita undefined o null en el reporte
+      const value = supplier[field.key];
       return value ?? "";
-    }),
+    })
   );
-  // Estructura final desacoplada de la UI
-  // Lista para exportar a Excel, PDF o renderizar en tabla
+
+  // Estructura final para exportar
   return {
-    headers, // Array de strings (columnas)
-    rows, // Array de arrays (filas)
+    headers,
+    rows,
   };
 }

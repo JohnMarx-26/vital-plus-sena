@@ -7,58 +7,75 @@ import { generateSupplierReport } from "../services/generateSupplierReport";
 // Componentes UI reutilizables (design system)
 import { Button, Input, Select } from "@/shared";
 import Checkbox from "@/shared/components/Checkbox";
+
 // Componente modal para configuración de reportes
 export default function SupplierConfigModal({ isOpen, onClose }) {
   // Estado del formato de salida
   const [format, setFormat] = useState("pdf");
   // Estado del alcance del reporte
-  const [scope, setScope] = useState("all"); 
-  // Estado para filtro por documento
-  const [nit, setnit] = useState("");
-  // Estado de campos seleccionados (inicialización lazy)
-  const [selectedFields, setSelectedFields] = useState(
-    () => supplierReportFields.filter((f) => f.default) // Solo campos marcados por
-    // defecto
+  const [scope, setScope] = useState("all");
+  // Estado para filtro por nit
+  const [nit, setNit] = useState("");
+  // Estado de carga para evitar múltiples clics
+  const [isGenerating, setIsGenerating] = useState(false);
+  // Estado de campos seleccionados
+  const [selectedFields, setSelectedFields] = useState(() =>
+    supplierReportFields.filter((f) => f.default)
   );
-  // Control de render: si el modal no está abierto, no se monta en el DOM
+
+  // Control de render
   if (!isOpen) return null;
+
   // Handler para activar/desactivar campos del reporte
   const handleFieldToggle = (field) => {
-    // Verifica si el campo ya está seleccionado
     const exists = selectedFields.find((f) => f.key === field.key);
+
     if (exists) {
-      // Elimina el campo si ya existe
       setSelectedFields(selectedFields.filter((f) => f.key !== field.key));
     } else {
-      // Agrega el campo si no existe
       setSelectedFields([...selectedFields, field]);
     }
   };
-  // Handler principal para generar el reporte
-  const handleGenerateReport = () => {
-    // Invoca el caso de uso con la configuración actual
-    generateSupplierReport({
-      format,
-      selectedFields,
-      scope,
-      nit,
-    });
-    // Cierra el modal después de generar el reporte
-    onClose();
-  };
-  return (
-    // Overlay del modal
 
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-
-black/40"
-    >
+  // Handler principal para generar el reporte
+  const handleGenerateReport = async () => {
+    try {
+      if (!selectedFields.length) {
+        alert("Debes seleccionar al menos un campo para el reporte.");
+        return;
+      }
+
+      if (scope === "nitNumber" && !nit.trim()) {
+        alert("Debes ingresar un número de Nit para filtrar.");
+        return;
+      }
+
+      setIsGenerating(true);
+
+      await generateSupplierReport({
+        format,
+        selectedFields,
+        scope,
+        nit: nit.trim(),
+      });
+
+      onClose();
+    } catch (error) {
+      alert(error.message || "No se pudo generar el reporte.");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       {/* Contenedor del modal */}
       <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-lg">
         {/* Título */}
         <h2 className="mb-6 text-xl font-semibold">
-          Generar reporte de usuarios
+          Generar reporte de proveedores
         </h2>
+
         {/* Selección de formato */}
         <div className="mb-4">
           <Select
@@ -71,27 +88,29 @@ black/40"
             ]}
           />
         </div>
+
         {/* Selección de campos */}
         <div className="mb-4">
           <p className="mb-2 font-medium">Campos del reporte</p>
-          {/* Grid de checkboxes */}
+
           <div className="grid grid-cols-2 gap-2">
             {supplierReportFields.map((field) => {
-              // Determina si el campo está seleccionado
               const checked = selectedFields.some((f) => f.key === field.key);
+
               return (
                 <Checkbox
-                  key={field.key} // Key única para renderizado
-                  id={field.key} // Id accesible
-                  name={field.key} // Nombre del campo
-                  label={field.label} // Texto visible
-                  checked={checked} // Estado controlado
-                  onChange={() => handleFieldToggle(field)} // Toggle
+                  key={field.key}
+                  id={field.key}
+                  name={field.key}
+                  label={field.label}
+                  checked={checked}
+                  onChange={() => handleFieldToggle(field)}
                 />
               );
             })}
           </div>
         </div>
+
         {/* Selección de alcance */}
         <div className="mb-4">
           <Select
@@ -99,31 +118,40 @@ black/40"
             value={scope}
             onChange={(e) => setScope(e.target.value)}
             options={[
-              { label: "Todos los usuarios", value: "all" },
-              { label: "Filtrar por numero de Nit", value: "nitNumber" },
+              { label: "Todos los proveedores", value: "all" },
+              { label: "Filtrar por número de Nit", value: "nitNumber" },
             ]}
           />
         </div>
-        {/* Campo condicional para filtro por documento */}
+
+        {/* Campo condicional para filtro por nit */}
         {scope === "nitNumber" && (
           <div className="mb-4">
             <Input
               label="Número de Nit"
               value={nit}
-              onChange={(e) => setnit(e.target.value)}
+              onChange={(e) => setNit(e.target.value)}
               placeholder="Ingrese número de Nit"
             />
           </div>
         )}
+
         {/* Acciones del modal */}
-        <div className="flex justify-end gap-2 mt-6">
-          {/* Botón cancelar */}
-          <Button variant="secondary" onClick={onClose}>
+        <div className="mt-6 flex justify-end gap-2">
+          <Button
+            variant="secondary"
+            onClick={onClose}
+            disabled={isGenerating}
+          >
             Cancelar
           </Button>
-          {/* Botón generar reporte */}
-          <Button variant="primary" onClick={handleGenerateReport}>
-            Generar reporte
+
+          <Button
+            variant="primary"
+            onClick={handleGenerateReport}
+            disabled={isGenerating}
+          >
+            {isGenerating ? "Generando..." : "Generar reporte"}
           </Button>
         </div>
       </div>

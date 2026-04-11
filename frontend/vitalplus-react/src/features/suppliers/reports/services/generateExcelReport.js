@@ -1,23 +1,24 @@
 // Librería para manipulación y generación de archivos Excel
 import * as XLSX from "xlsx";
-// Función utilitaria para generar un archivo Excel a partir de datos
-// tabularesS
-// Patrón: exportación de datos (dataset → archivo descargable)
+
+// Función utilitaria para generar un archivo Excel a partir de datos tabulares
 export function generateExcelReport({
-  headers, // Array de encabezados (columnas)
-  rows, // Array de filas (array de arrays)
-  fileName = "user-report.xlsx", // Nombre del archivo de salida
+  headers, // Array de encabezados
+  rows, // Array de filas
+  fileName = "suppliers-report.xlsx", // Nombre del archivo de salida
 }) {
-  // Estructura final de la hoja:
-  // Primera fila = headers
-  // Siguientes filas = datos
+  // Estructura final de la hoja
   const worksheetData = [headers, ...rows];
-  // Convierte un array de arrays (AOA = Array of Arrays) en una hoja de Excel
+
+  // Convierte el array de arrays en una hoja de Excel
   const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-  // Crea un nuevo libro de Excel (workbook)
+
+  // Crea un nuevo libro de Excel
   const workbook = XLSX.utils.book_new();
-  // Agrega la hoja al libro con el nombre "Usuarios"
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Usuarios");
-  // Genera y descarga el archivo Excel en el cliente
+
+  // Agrega la hoja al libro
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Proveedores");
+
+  // Genera y descarga el archivo Excel
   XLSX.writeFile(workbook, fileName);
 }

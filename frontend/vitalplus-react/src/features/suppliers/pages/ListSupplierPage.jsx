@@ -35,7 +35,7 @@ const Botones = () => {
           onClick={() => setIsReportModalOpen(true)}
           size="sm"
           type="button"
-          className="flex items- gap-2"
+          className="flex items-center gap-2"
         >
           <FileDown className="w-5 h-5" />
           Descargar factura
