@@ -7,6 +7,10 @@ import HomePage from "@/features/home/page/homepage";
 import CreateUserPage from "@/features/users/pages/CreateUserPage";
 import CreateUserPageSale from "@/features/users/pages/CreateUserPageSale";
 import EditUserPage from "@/features/users/pages/EditUserPage";
+import CreateAdminUsers from "@/features/users/pages/CreateAdminUsers";
+import CreateRolePage from "@/features/users/pages/CreateRolePage";
+
+
 
 
 import {
@@ -65,6 +69,10 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/dashboard", element: <DashboardPage /> },
 
+      { path: "cursos", element: <h1 className="p-4">Cursos</h1> },
+      { path: "contacto", element: <h1 className="p-4">Contacto</h1> },
+      { path: "videos", element: <h1 className="p-4">Videos</h1> },
+
       { path: "/usuarios/detalles", element: <ProfileUserSimplePage /> },
 
       //Detalle de los productos
@@ -76,11 +84,6 @@ const router = createBrowserRouter([
       { path: "/products/Dermatology/:id", element: <DermatologyProductPage /> },
       { path: "/products/Maternity/:id", element: <MaternityProductPage /> },
       { path: "/products/Personal/:id", element: <PersonalProductsPage /> },
-
-      //carrito de compras
-      { path: "/products/cart", element: <CartPage /> },
-      { path: "/cart/shipping", element: <ProductShippingPage /> },
-      { path: "/cart/payment", element: <ProductPaymentPage /> },
     ],
   },
 
@@ -98,10 +101,15 @@ const router = createBrowserRouter([
   { path: "/main", element: <MainMenu /> },
 
   // USUARIOS
+  { path: "/admin/usuarios/crear", element: <CreateAdminUsers /> },
   { path: "/usuarios/crear", element: <CreateUserPage /> },
-  { path: "/usuarios/edit", element: <EditUserPage /> },
-  { path: "/usuarios/view", element: <ProfileUserPage /> },
-  { path: "/usuarios/modificar", element: <EditUserPage /> },
+  { path: "/admin/roles/gestionar", element: <CreateRolePage /> },
+
+
+  { path: "/usuarios/edit/:id", element: <EditUserPage /> },
+
+  { path: "/usuarios/view/:id", element: <ProfileUserPage /> },
+  { path: "/usuarios/modificar/:id", element: <EditUserPage /> },
   { path: "/usuarios/listar", element: <ListUserPage /> },
   { path: "/usuariosSale/crear", element: <CreateUserPageSale /> },
 

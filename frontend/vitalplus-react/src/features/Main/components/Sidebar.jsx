@@ -48,7 +48,7 @@ export default function Sidebar(){
                 </DropdownTriggerMain>
                 <DropdownContentMain className="right-0 w-48 align-middle z-10">
                     <DropdownItemMain>
-                    <Link to="/usuarios/crear" className="block w-full">
+                    <Link to="/admin/usuarios/crear" className="block w-full">
                         Crear Usuario
                     </Link>
                     </DropdownItemMain>

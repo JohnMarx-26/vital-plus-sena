@@ -1,97 +1,90 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/shared";
 import { SquarePen } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import usuario from "@/assets/svg/icono-usuario-new.svg";
 
-export default function ProfileUserForm() {
+export default function ProfileUserForm({ user }) {
+  const navigate = useNavigate();
 
-  const userData = {
-    fullName: "Brahian Estiwen Galeano Pinzón",
-    documentType: "Cédula de ciudadanía",
-    documentNumber: "1090074404",
-    userType: "Usuario",
-    email: "brahiagaleano@gmail.com",
-    phone: "3152405454",
-    address: "Risaralda, Pereira, El Japón Mz 10",
-    createdAt: "2025/12/15",
-    password: "************",
-  };
+  // Estado visual del botón de estado
+  const [userStatus, setUserStatus] = useState("Inactivo");
 
-  const [userStatus, setUserStatus] = useState("Activo");
+  // Sincroniza el estado visual con la información real del usuario
+  useEffect(() => {
+    if (user?.status === "activo") {
+      setUserStatus("Activo");
+    } else {
+      setUserStatus("Inactivo");
+    }
+  }, [user]);
 
-  // sincroniza el estado local del botón con el estado real que llega del backend
+  // Cambia el texto del botón de manera visual
+  // Por ahora no actualiza la base de datos
   const toggleStatus = () => {
     setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
   };
 
-  const userDetails = [
-    { label: "Tipo de documento", value: userData.documentType },
-    { label: "Número de documento", value: userData.documentNumber },
-    { label: "Tipo de usuario", value: userData.userType },
-    { label: "Correo electrónico", value: userData.email },
-    { label: "Número celular", value: userData.phone },
-    { label: "Dirección", value: userData.address },
-    { label: "Fecha creación cuenta", value: userData.createdAt },
-    { label: "Contraseña", value: userData.password },
-  ];
-
+  // Redirige a la pantalla de edición usando el id del usuario
   const handleEdit = () => {
-    console.log("Modificar producto");
+    navigate(`/usuarios/modificar/${user.id}`);
   };
+
+  if (!user) return null;
+
+  const userDetails = [
+    { label: "Tipo de documento", value: user.documentType },
+    { label: "Número de documento", value: user.documentNumber },
+    { label: "Rol", value: user.role },
+    { label: "Correo electrónico", value: user.email },
+    { label: "Número celular", value: user.phone },
+    { label: "Dirección", value: user.address },
+    { label: "Fecha creación cuenta", value: user.createdAt },
+  ];
 
   return (
     <section className="flex w-full px-6 py-8 justify-center">
       <div className="mx-auto flex w-full flex-col gap-8 lg:flex-row lg:items-start justify-center">
-
         <aside className="w-full lg:max-w-sm">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-
             <div className="mb-6 flex justify-center">
-              <h1 className="border-b-2 border-slate-900 pb-1 text-font-md font-medium text-slate-900">
+              <h1 className="border-b-2 border-text-secundary pb-1 text-xl font-medium text-slate-900">
                 Opciones de usuario
               </h1>
             </div>
 
             <div className="flex flex-col items-center">
-
               <div className="flex h-52 w-52 items-center justify-center">
                 <img
-                  src={usuario}
-                  alt="Icono medicamento"
+                  src={user.avatarUrl || usuario}
+                  alt="Icono usuario"
                   className="h-50 w-50"
                 />
               </div>
 
-              {/* Nombre del proveedor */}
-
               <div className="mt-6 w-full max-w-xs border-b border-slate-400 pb-3 text-center">
-                <p className="text-sm font-medium text-slate-800">
-                  {userData.fullName}
+                <p className="text-sm font-medium text-text-secundary">
+                  {user.fullName}
                 </p>
               </div>
 
               <div className="mt-5 flex w-full flex-col items-center gap-4">
-
                 <div className="flex flex-wrap items-center justify-center gap-3">
-
-
-                {/* Boton estado */}
                   <Button
                     type="button"
                     size="md"
                     className={`px-6 py-2 rounded-md shadow-md text-white ${
                       userStatus === "Activo"
-                        ? "bg-gray-500 hover:bg-gray-700"
-                        : "bg-blue-500 hover:bg-blue-600"
+                        ? "bg-blue-500 hover:bg-blue-600"
+                        : "bg-gray-500 hover:bg-gray-700"
                     }`}
                     onClick={toggleStatus}
                   >
                     {userStatus === "Activo"
-                      ? "Usuario Inactivo"
-                      : "Usuario Activo"}
+                      ? "Usuario Activo"
+                      : "Usuario Inactivo"}
                   </Button>
 
-                  {/* Boton modificar */}
                   <Button
                     variant="secondary"
                     size="sm"
@@ -102,30 +95,17 @@ export default function ProfileUserForm() {
                     <SquarePen className="w-5 h-5" />
                     Modificar
                   </Button>
-
                 </div>
-
               </div>
-
             </div>
-
           </div>
         </aside>
 
-                {/*             {/* contenedor 2 - informacion */} 
         <div className="w-full max-w-[700px]">
           <div className="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
-
             <div className="flex flex-col gap-6">
-
-                        {/* con map se itera sobre userDetails para renderizar los label y sus valores */}
               {userDetails.map((item) => (
                 <div
-
-                  // Se crean dos columnas la primera 220px  
-                  // la segunda 1fr que se adapta al espacio disponible despues de los 220px
-
-
                   key={item.label}
                   className="grid grid-cols-[220px_1fr] items-start gap-x-8"
                 >
@@ -136,15 +116,11 @@ export default function ProfileUserForm() {
                   <span className="text-sm text-slate-900 break-words">
                     {item.value}
                   </span>
-
                 </div>
               ))}
-
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );
