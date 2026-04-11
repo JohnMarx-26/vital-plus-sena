@@ -48,18 +48,18 @@ export default function Select({
       >
         <option value="">Seleccione una opción</option>
 
-        {options.map((option) => (
+        {/* {options.map((option) => (
           <option key={option.value} value={option.value}>
+            {option.label}
+          </option> */}
+        {options.map((option) => (
+          <option key={option.id} value={option.value}>
             {option.label}
           </option>
         ))}
       </select>
 
-      {error && (
-        <p className="mt-1 text-xs text-red-500">
-          {error}
-        </p>
-      )}
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
   );
 }

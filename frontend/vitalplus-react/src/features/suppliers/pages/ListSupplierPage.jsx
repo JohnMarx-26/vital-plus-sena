@@ -58,7 +58,7 @@ const Botones = () => {
 export default function ListSupplierPage() {
   return (
     <div className="w-full h-dvh">
-      <Header />
+      <Header variant="Main"/>
       <Botones />
       <div className="p-6">
         <SupplierDataTable data={suppliers} columns={SupplierColumns} />

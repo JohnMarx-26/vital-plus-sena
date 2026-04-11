@@ -48,7 +48,7 @@ export default function SupplierDetailForm () {
                     {/* contenedor 1 - Imagen y botones */}
                 <div className="rounded-2xl border border-background-muted bg-background p-6 shadow-sm">
                     <div className="mb-6 flex justify-center">
-                    <h1 className="border-b-2 border-text-secundary pb-1 text-font-md font-medium text-slate-900">
+                    <h1 className="border-b-2 border-text-secundary pb-1 text-body font-medium text-slate-900">
                         Opciones de Proveedores
                     </h1>
                     </div>

@@ -48,7 +48,7 @@ const { handleComprar, setCartItems } = useAddToCart();
 //===================== botones para CANTIDAD ===============
   const [isAmount, setAmount] = useState(1);
 
- const handlePlus = () => {
+  const handlePlus = () => {
   setAmount(prev => prev + 1);
   setCartItems(prev =>
     prev.map(item =>
@@ -70,8 +70,8 @@ const { handleComprar, setCartItems } = useAddToCart();
 };
   return (
     // ========================== Contenedor Padre ======================
-    <div className="flex flex-col gap-10 p-5 justify-center">
-      <div className="flex pl-20 gap-20 ">
+    <div className="flex flex-col gap-1 p-5 justify-center">
+      <div className="flex gap-20 justify-center">
         {/* //================ Imagen Producto ================== */}
         {/*El componente ZoomImges que incorpora la capacidad de
         hacer zoom al 100% sobre la parte de la imagen que este apuntando el cursor  */}
@@ -112,7 +112,7 @@ const { handleComprar, setCartItems } = useAddToCart();
             </p>
 
             <span
-              className={`text-body text-text-muted ${
+              className={`text-xs text-text-muted ${
                 hasDiscount ? "visible" : "invisible"
               }`}
             >
@@ -132,7 +132,7 @@ const { handleComprar, setCartItems } = useAddToCart();
           >
             <p
               className={`font-bold text-red-500 pr-2  ${
-                hasDiscount ? "text-h1" : "text-xs"
+                hasDiscount ? "text-h1" : "text-h2"
               }`}
             >
               {formatCurrency(discount)}
@@ -185,7 +185,7 @@ const { handleComprar, setCartItems } = useAddToCart();
         </div>
       </div>
       {/* //================ Informacion del Producto ================== */}
-      <div className="flex flex-col py-5 gap-5">
+      <div className="flex flex-col py-4 gap-5">
         <p
           className="flex h-8 bg-brand-semiLight text-small font-bold
           items-center rounded-2xl  mt-4 pl-2 "

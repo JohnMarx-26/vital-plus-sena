@@ -10,6 +10,7 @@ export { default as ScrollToTop} from "./components/ScrollToTop";
 export { default as ZoomImages} from "./components/ZoomImages";
 export { default as TextArea} from "./components/TextArea";
 export { default as Toast} from "./components/Toast";
+export { default as StatusSwitchFour} from "./components/StatusSwitchFour";
 export { default as FormLayout } from "./layout/FormLayout";
 export { formatCurrency } from "./utils/formatCurrency";
 export { default as CheckoutStepper } from "./components/CheckoutStepper";

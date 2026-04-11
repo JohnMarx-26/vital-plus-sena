@@ -19,7 +19,7 @@ export default function MedicineProductsPage(){
 
             {/* //================= Contenedor de las cards ================== */} 
             <div className = "flex flex-col md:flex-row gap-2">
-                <ProductSection variant = "client" category="medicine" />
+                <ProductSection variant = "client" category="medicinas" />
             </div>
         </div>
     );

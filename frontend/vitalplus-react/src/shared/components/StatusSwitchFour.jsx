@@ -16,7 +16,7 @@ export default function StatusSwitch({
   const handleToggle = () => {
     if (disabled) return;
 
-    const newValue = (currentState + 1) % 4;
+    const newValue = (currentState + 1) % 5;
     setCurrentState(newValue);
 
     if (onChange) {
@@ -25,9 +25,9 @@ export default function StatusSwitch({
   };
 
   const sizes = {
-    sm: "h-5 w-16",
-    md: "h-6 w-20",
-    lg: "h-7 w-24",
+  sm: "h-5 w-20",
+  md: "h-6 w-24",
+  lg: "h-7 w-28",
   };
 
   const knobSizes = {
@@ -36,28 +36,57 @@ export default function StatusSwitch({
     lg: "h-6 w-6",
   };
 
+
+  // const stateStyles = {
+  //   0: {
+  //     bg: "bg-gray-300",
+  //     icon: <X size={12} className="text-primary" />,
+  //     translate: "translate-x-0",
+  //   },
+  //   1: {
+  //     bg: "bg-brand-soft",
+  //     icon: <Check size={12} className="text-brand" />,
+  //     translate: "translate-x-[100%]",
+  //   },
+  //   2: {
+  //     bg: "bg-yellow-200",
+  //     icon: <Clock3 size={12} className="text-yellow-700" />,
+  //     translate: "translate-x-[200%]",
+  //   },
+  //   3: {
+  //     bg: "bg-red-200",
+  //     icon: <AlertCircle size={12} className="text-red-600" />,
+  //     translate: "translate-x-[300%]",
+  //   },
+  // };
+
   const stateStyles = {
-    0: {
-      bg: "bg-gray-300",
-      icon: <X size={12} className="text-primary" />,
-      translate: "translate-x-0",
-    },
-    1: {
-      bg: "bg-brand-soft",
-      icon: <Check size={12} className="text-brand" />,
-      translate: "translate-x-[100%]",
-    },
-    2: {
-      bg: "bg-yellow-200",
-      icon: <Clock3 size={12} className="text-yellow-700" />,
-      translate: "translate-x-[200%]",
-    },
-    3: {
-      bg: "bg-red-200",
-      icon: <AlertCircle size={12} className="text-red-600" />,
-      translate: "translate-x-[300%]",
-    },
-  };
+  0: {
+    bg: "bg-gray-300",
+    icon: <X size={12} className="text-primary" />,
+    translate: "translate-x-0",
+  },
+  1: {
+    bg: "bg-brand-soft",
+    icon: <Check size={12} className="text-brand" />,
+    translate: "translate-x-[100%]",
+  },
+  2: {
+    bg: "bg-yellow-200",
+    icon: <Clock3 size={12} className="text-yellow-700" />,
+    translate: "translate-x-[200%]",
+  },
+  3: {
+    bg: "bg-red-200",
+    icon: <AlertCircle size={12} className="text-red-600" />,
+    translate: "translate-x-[300%]",
+  },
+  4: {
+    bg: "bg-purple-200",
+    icon: <AlertCircle size={12} className="text-purple-600" />,
+    translate: "translate-x-[400%]",
+  },
+};
 
   const current = stateStyles[currentState];
 

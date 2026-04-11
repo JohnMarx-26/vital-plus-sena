@@ -3,6 +3,6 @@ export const formatCurrency = (value) => {
   return new Intl.NumberFormat("es-CO", {
     style: "currency",
     currency: "COP",
-    minimumFractionDigits: 0,
+    minimumFractionDigits: 2,
   }).format(value);
 };

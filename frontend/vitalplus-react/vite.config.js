@@ -15,5 +15,10 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'), // cuando veas @, interpretalo como src
     },
   },
+
+    server: {
+    port: 5173,  // puerto
+    strictPort: true,  // si está ocupado, da error en vez de cambiar
+  },
 })
 

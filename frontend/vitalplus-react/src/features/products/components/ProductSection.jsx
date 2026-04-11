@@ -1,21 +1,28 @@
 import { Card} from "@/shared";
 import { useNavigate} from "react-router-dom";
-import { product_card } from "@/data/product/product_card";
+import { getMedicamentos } from "../services/infoMedicineCards";
 import  {useAddToCart} from "../hooks/useAddToCart";
+import { useEffect, useState } from "react";
 
 export default function ProductSection({ variant, onSelectProduct, category, discount,}) {
 
   //================== para navegar por el router =================
   const navigate = useNavigate();
+  //Estado para los productos que se llamadan de Back
+  const [products, setProducts] = useState([]);
+
+    // fetch al montar el componente
+  useEffect(() => {
+    getMedicamentos().then(setProducts);
+  }, []);
 
   const handleSelectProduct = (product) => {
-    if (variant === "client") {
+      if (variant === "client") {
       navigate(`/products/${product.id}`, { state: { product } });
     } else {
       onSelectProduct?.(product);
     }
   };
-
   /*todos los productos con stock en cero no se mostraran en la tienda virtual
   pero si seran visibles desde apartado de ventas del farmaceuta,
     
@@ -24,15 +31,16 @@ export default function ProductSection({ variant, onSelectProduct, category, dis
   
   el filtro de descuento permite que en el filtro de descuento se
   muestren todos los prodcutos que cuentan con descuento*/
-  const filteredProducts = product_card.filter((product) => {
+  const filteredProducts = products.filter((product) => {
   //============== Filtro de Stock =================  
   const byStock = variant === "client" ? product.stock > 0 : true;
   //============== Filtro de Categoria =================  
   const byCategory = category ? product.category === category : true;
   //============== Filtro de Descuento =================  
-  const byDiscount = discount ? product.discount < product.price : true;
+  const byDiscount = discount ? product.discount > 0 && product.discount < product.price : true;
   //============== Retorna segun el filtro==============
   return byStock && byCategory && byDiscount;
+
 })
 
 const { handleComprar } = useAddToCart();

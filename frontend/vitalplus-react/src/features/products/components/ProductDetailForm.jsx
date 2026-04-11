@@ -1,44 +1,63 @@
-import { useState } from "react";
-import Button from "../../../shared/components/Button";
+import { detailProductInfo } from "../services/detailProductInfo";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {Button} from "@/shared";
 import { SquarePen } from "lucide-react";
 import medicamento from "@/assets/svg/Rectangle-63.svg";
 
+
 export default function ProductDetailForm() {
 
-  const userData = {
-    idMedicamento: "43443",
-    nombreMedicamento: "Noraver Gripa",
-    formaFarmaceutica: "Solida",
-    presentacion: "Capsula",
-    viaAdministracion: "Oral",
-    laboratorio: "Risaralda, Pereira, El Japon Mz 10",
-    fechaFabricacion: "2025/12/15",
-    fechaVencimiento: "2026/03/18",
-    proveedor: "Farma S.o.s",
-    requiereFormula: "No",
-    descripcion: "Producto para curar el malestar de la gripe",
-  };
+  //usamos Params para leer la url  y capturar el ID
+  //asi se sabe en espefico lainformación que vamos a renderizar
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
 
-  const [userStatus, setUserStatus] = useState("Activo");
+  useEffect(() => {
+    detailProductInfo(id).then(setProduct);
+  }, [id]);
 
-  const toggleStatus = () => {
-    setUserStatus((prev) => (prev === "Activo" ? "Inactivo" : "Activo"));
-  };
+  //============== Boton del estado del producto ===============
+  const [userStatus, setUserStatus] = useState(null);
 
-  const userDetails = [
-    { label: "ID Medicamento", value: userData.idMedicamento },
-    { label: "Nombre del medicamento", value: userData.nombreMedicamento },
-    { label: "Forma farmacéutica", value: userData.formaFarmaceutica },
-    { label: "Presentación medicamento", value: userData.presentacion },
-    { label: "Vía de administración", value: userData.viaAdministracion },
-    { label: "Laboratorio", value: userData.laboratorio },
-    { label: "Fecha fabricación", value: userData.fechaFabricacion },
-    { label: "Fecha vencimiento", value: userData.fechaVencimiento },
-    { label: "Proveedor", value: userData.proveedor },
-    { label: "Requiere formula", value: userData.requiereFormula },
-    { label: "Descripción medicamento", value: userData.descripcion },
-  ];
+  useEffect(() => {
+  if (product) {
+    setUserStatus(product.status); // "activo" o "inactivo" desde la Base de datos
+  }
+}, [product]);
 
+  const toggleStatus = async () => {
+  const nuevoEstado = userStatus === "activo" ? "inactivo" : "activo";
+  
+  await fetch(`http://localhost:8000/api/medicamentos/${id}/`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ estado_medicamento: nuevoEstado }),
+  });
+
+  setUserStatus(nuevoEstado);
+};
+  //=========================================================
+const userDetails = [
+  { label: "ID Medicamento", value: product?.id },
+  { label: "Nombre del medicamento", value: product?.title },
+  { label: "Categoría", value: product?.category },
+  { label: "Forma farmacéutica", value: product?.pharmaceuticalForm },
+  { label: "Presentación", value: product?.presentation },
+  { label: "Concentración", value: product?.concentration },
+  { label: "Vía de administración", value: product?.administrationRoute },
+  { label: "Laboratorio", value: product?.lab },
+  { label: "Proveedor", value: product?.supplier },
+  { label: "Requiere fórmula", value: product?.requiresPrescription },
+  { label: "Número de lote", value: product?.lotNumber },
+  { label: "Stock", value: product?.stock },
+  { label: "Fecha de fabricación", value: product?.manufacturingDate },
+  { label: "Fecha de vencimiento", value: product?.expirationDate },
+  { label: "Precio de compra", value: product?.purchasePrice },
+  { label: "Precio de venta", value: product?.price },
+  { label: "Precio con descuento", value: product?.discount },
+  { label: "Descripción", value: product?.description },
+];
   const handleEdit = () => {
     console.log("Modificar producto");
   };
@@ -51,24 +70,25 @@ export default function ProductDetailForm() {
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
             <div className="mb-6 flex justify-center">
-              <h1 className="border-b-2 border-slate-900 pb-1 text-xl font-medium text-slate-900">
+              <h1 className="border-b-2 border-slate-900 pb-1 text-body font-medium text-slate-900">
                 Opciones de producto
               </h1>
             </div>
 
             <div className="flex flex-col items-center">
 
-              <div className="flex h-52 w-52 items-center justify-center">
+              <div className="flex h-70 w-70 items-center justify-center">
                 <img
-                  src={medicamento}
-                  alt="Icono medicamento"
-                  className="h-50 w-50"
+                //si no existe imagne que tome por defecto la que esta en assets 
+                  src={product?.image ?? medicamento}
+                  alt="Imagen medicamento"
+                  className="h-70 w-70"
                 />
               </div>
 
               <div className="mt-6 w-full max-w-xs border-b border-slate-400 pb-3 text-center">
                 <p className="text-sm font-medium text-slate-800">
-                  {userData.nombreMedicamento}
+                  {product?.title}
                 </p>
               </div>
 
@@ -80,15 +100,15 @@ export default function ProductDetailForm() {
                     type="button"
                     size="md"
                     className={`px-6 py-2 rounded-md shadow-md text-white ${
-                      userStatus === "Activo"
+                      userStatus === "activo"
                         ? "bg-gray-500 hover:bg-gray-700"
-                        : "bg-blue-500 hover:bg-blue-600"
+                        : "bg-brand hover:bg-brand-hover"
                     }`}
                     onClick={toggleStatus}
                   >
-                    {userStatus === "Activo"
-                      ? "Producto Inactivo"
-                      : "Producto Activo"}
+                    {userStatus === "activo"
+                      ? "Desactivar producto"
+                      : "Activar producto"}
                   </Button>
 
                   <Button
@@ -111,7 +131,7 @@ export default function ProductDetailForm() {
           </div>
         </aside>
 
-        <div className="w-full max-w-[700px]">
+        <div className="w-full max-w-175">
           <div className="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
 
             <div className="flex flex-col gap-6">

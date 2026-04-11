@@ -1,8 +1,7 @@
 import SaleDataTable from "../components/SaleDataTable";
 import {  SaleColumns }   from "../table/SaleColumns";
 import { sales } from "@/data/sale/sales";
-// import Header from "@/shared/components/Header";
-import Button from "@/shared/components/Button" ;
+import { Header, Button } from "@/shared";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
 import {useNavigate} from "react-router-dom";
 import { useState } from "react";
@@ -63,7 +62,7 @@ export default function ListSupplierPage() {
 
   return (
     <div className="w-full h-dvh">
-      {/* <Header/> */}
+      <Header variant="Main"/>
       <Botones />
     <div className="p-6">
       

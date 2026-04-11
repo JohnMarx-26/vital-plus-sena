@@ -1,7 +1,7 @@
 import ProductDataTable from "../components/ProductDataTable";
 import {  ProductColumns }   from "../table/ProductColumns";
-import { useState } from "react";
-import { product } from "@/data/product/product";
+import { listProductInfo } from "../services/listProductInfo";
+import { useState, useEffect } from "react";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
 import { Button, Header} from "@/shared" ;
 import {useNavigate} from "react-router-dom";
@@ -61,14 +61,20 @@ const Botones = () => {
 
 export default function ListProductPage() {
 
+  const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+      listProductInfo().then(setProducts);
+    }, []);
+
   return (
     <div className="w-full h-dvh">
-      <Header/>
+      <Header variant="Main"/>
       <Botones />
     <div className="p-6">
       
       <ProductDataTable
-        data={product}
+        data={products}
         columns={ProductColumns}
       />
 

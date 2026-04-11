@@ -58,6 +58,7 @@ import { ProfileUserPage } from "@/features/users";
 import ProfileUserSimplePage from "../../features/users/pages/ProfileUserSimplePage";
 import { ListUserPage } from "../../features/users";
 
+
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
@@ -112,8 +113,8 @@ const router = createBrowserRouter([
 
   // PRODUCTOS
   { path: "/productos/crear", element: <CreateProductPage /> },
-  { path: "/productos/modificar", element: <EditProductPage /> },
-  { path: "/productos/visualizar", element: <ProductDetailPage /> },
+  { path: "/productos/modificar/:id", element: <EditProductPage /> },
+  { path: "/productos/visualizar/:id", element: <ProductDetailPage /> },
   { path: "/productos/listar", element: <ListProductPage /> },
 
   // PROVEEDORES
