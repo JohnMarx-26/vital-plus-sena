@@ -1,67 +1,72 @@
 import { z } from "zod";
 
-export const productSchema = z
-  .object({
-      id: z
-      .string()
-      .min(1, "El ID debe tener como minimo un caracter"),
+export const getProductSchema = (isMedicamento) =>
+  z.object({
+    id: z.union([z.string(), z.number()]).optional(),
 
-      expirationDate: z
-      .string()
-      .min(6, "Fecha de Expiracion debe tener como minimo 6 caracteres"),
-
-      manufacturingDate: z
-      .string()
-      .min(6, "Fecha de vencimiento debe tener como minimo un caracter"),
+    expirationDate: z.string().min(6, "Fecha de expiración obligatoria"),
+    manufacturingDate: z.string().min(6, "Fecha de fabricación obligatoria"),
 
     productName: z
       .string()
-      .min(3, "Los nombres deben tener mínimo 3 caracteres")
-      .max(60, "Los nombres son demasiado largos"),
+      .min(3, "Mínimo 3 caracteres")
+      .max(60, "Nombre demasiado largo"),
 
-    administrationRoute: z
-      .string()
-      .min(3, "Los rutas de administración deben tener mínimo 3 caracteres")
-      .max(60, "La ruta de administración es demasiado larga"),
+    requiresPrescription: z.enum(['Si', 'No']).default('No'),
 
-    requiresPrescription: z
-      .string()
-      .min(2, "Requiere minimo 2 caracteres")
-      .max(2, "Requiere maximo 2 caracteres"),
+    lab: z.string().min(1, "El laboratorio es obligatorio"),
+    supplier: z.string().min(1, "El proveedor es obligatorio"),
 
     stock: z
-      .string()
-      .min(1, "Requiere minimo 1 caracter")
-      .max(3, "Requiere maximo 3 caracteres"),
+      .union([z.string(), z.number()])
+      .refine((val) => String(val).length <= 3, "Máximo 3 caracteres")
+      .refine((val) => !isNaN(Number(val)), "Debe ser numérico"),
 
     purchasePrice: z
-      .string()
-      .min(3, "El precio de compra requiere minimo 3 caracteres")
-      .max(60, "El precio de compra maximo es de 60 caracteres"),
+      .union([z.string(), z.number()])
+      .refine((val) => !isNaN(Number(val)), "Debe ser decimal"),
 
     salePrice: z
-      .string()
-      .min(3, "El precio de venta requiere minimo 3 caracteres")
-      .max(60, "El precio de venta maximo es de 60 caracteres"),
+      .union([z.string(), z.number()])
+      .refine((val) => !isNaN(Number(val)), "Debe ser decimal"),
 
-    pharmaceuticalForm: z
-      .string()
-      .min(3, "La formula farmaceutica debe tener un minimo de 3 caracteres")
-      .max(60, "La formula farmaceutica es demasiado larga"),
+    discount: z.union([z.string(), z.number()]).optional().default("0"),
+    salePriceDiscount: z.union([z.string(), z.number()]).optional(),
 
     lotNumber: z
-      .string()
-      .min(8, "El numero de lote debe tener un minimo de 8 caracteres")
-      .max(10, "El numero de lote debe tener un maximo de 10 caracteres"),
+      .union([z.string(), z.number()])
+      .refine((val) => String(val).length >= 4, "Mínimo 4 caracteres")
+      .refine((val) => String(val).length <= 10, "Máximo 10 caracteres"),
 
     description: z
       .string()
-      .min(10, "La descripcion debe tener un minimo de 10 caracteres")
-      .max(100, "La descripcion es demasiado larga, maximo de 100 caracteres"),
+      .min(10, "Mínimo 10 caracteres")
+      .max(255, "Máximo 255 caracteres"),
 
-    avatarUrl: z
-      .string()
-      .nullable()
-      .optional(),
+    avatarUrl: z.string().nullable().optional(),
 
-  })
+    // ===== Campos exclusivos Medicamento =====
+    pharmaceuticalForm: isMedicamento
+      ? z.string().min(1, "La forma farmacéutica es obligatoria")
+      : z.string().optional(),
+
+    presentation: isMedicamento
+      ? z.string().min(1, "La presentación es obligatoria")
+      : z.string().optional(),
+
+    administrationRoute: isMedicamento
+      ? z.string().min(1, "La vía de administración es obligatoria")
+      : z.string().optional(),
+
+    concentration: isMedicamento
+      ? z.string().min(1, "La concentración es obligatoria")
+          .refine((val) => val.trim().length > 0, {
+            message: "Debe contener al menos un carácter válido"
+          })
+      : z.string().optional(),
+
+    // ===== Campo exclusivo Producto =====
+    category: !isMedicamento
+      ? z.string().min(1, "La categoría es obligatoria")
+      : z.string().optional(),
+  });

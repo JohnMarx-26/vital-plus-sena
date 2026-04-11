@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 // Componente que renderiza las acciones de cada fila de usuario
 // Recibe como prop el objeto user
-export default function ProductRowActions() {
+export default function ProductRowActions({ product }) {
 
   // const handleEdit = () => {
   //   console.log("Editar usuario", user.id);
@@ -20,16 +20,16 @@ export default function ProductRowActions() {
   // Redirige a la página de edición usando el id del usuario
   const handleEdit = () => {
     // navigate(`/users/${user.id}/edit`); 
-    navigate("/productos/modificar");
+    navigate(`/productos/modificar/${product.id}`);
   };
 
   // Acción para eliminar el usuario
   // Actualmente solo imprime en consola el id
   // En una aplicación real aquí se llamaría a la API
   const handleView = () => {
-    navigate("/productos/visualizar");
-  };
-
+  console.log("product:", product);
+  navigate(`/productos/visualizar/${product.id}`);
+};
   return (
     // Contenedor de los botones de acciones
     <div className="flex gap-6">

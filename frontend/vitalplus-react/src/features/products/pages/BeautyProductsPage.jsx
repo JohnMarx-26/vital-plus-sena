@@ -19,7 +19,7 @@ export default function BeautyProductsPage(){
 
             {/* //================= Contenedor de las cards ================== */} 
             <div className="flex flex-col md:flex-row gap-2">
-                <ProductSection variant="client" category="cosmetic" />
+                <ProductSection variant="client" category="belleza" />
             </div>
         </div>
     );

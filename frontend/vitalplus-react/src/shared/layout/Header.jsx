@@ -46,7 +46,7 @@ const Header = ({ variant = "client", cartCount,onCartClick }) => {
     icon:
     <div className="relative">
         <IconButton
-          areaLabel="Preview carrito"
+          ariaLabel="Preview carrito"
           variant="primary"
           onClick = {onCartClick}
         >
@@ -125,7 +125,7 @@ const Header = ({ variant = "client", cartCount,onCartClick }) => {
           <div className=" shrink-0 flex items-center justify-end">
             <div className="relative">
               <IconButton
-                areaLabel="Menu de usuario"
+                ariaLabel="Menu de usuario"
                 variant="primary"
                 onClick={() => setIsOpen(!isOpen)}
               >

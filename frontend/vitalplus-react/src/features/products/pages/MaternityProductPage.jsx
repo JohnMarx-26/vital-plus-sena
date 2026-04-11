@@ -19,7 +19,7 @@ export default function MaternityProductPage(){
 
             {/* //================= Contenedor de las cards ================== */} 
             <div className = "flex flex-col md:flex-row gap-2">
-                <ProductSection variant = "client" category="maternity" />
+                <ProductSection variant = "client" category="maternidad" />
             </div>
         </div>
     );

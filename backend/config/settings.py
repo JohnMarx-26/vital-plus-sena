@@ -14,10 +14,10 @@ load_dotenv(BASE_DIR / ".env")
 # Quick-start development settings - unsuitable for production
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l294q9#w15y@1izyd03!u%@08dq&&ln*-4+0-ji1j$*&&e_1@s'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
@@ -35,9 +35,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 
+    # importacion de imagenes
+    'cloudinary_storage',
+    'cloudinary',
+
     'authentication',
     'apps.core.apps.CoreConfig',
     'apps.suppliers.apps.SuppliersConfig',
+    'apps.catalogs.apps.CatalogsConfig',
+    'apps.medicines.apps.MedicinesConfig',
+    'apps.products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +136,13 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5174",
     "http://127.0.0.1:5174",
 ]
+
+
+# Para importar las imagenes
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

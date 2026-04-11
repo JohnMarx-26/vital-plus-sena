@@ -19,7 +19,7 @@ export default function PersonalProductsPage(){
 
             {/* //================= Contenedor de las cards ================== */} 
             <div className = "flex flex-col md:flex-row gap-2">
-                <ProductSection variant = "client" category="personal" />
+                <ProductSection variant = "client" category="cuidado-personal" />
             </div>
         </div>
     );

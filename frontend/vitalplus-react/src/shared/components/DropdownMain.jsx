@@ -95,11 +95,11 @@ export function DropdownContentMain({ children, className = "" }) {
         border-brand-semiLight
         text-text-inverse
         p-1
-        dark:bg-neutral-950/70 
+        dark:bg-brand
         backdrop-blur-[2px] 
         shadow-lg rounded-xl 
         overflow-hidden
-        hover:shadow-black 
+        hover:brand-hover 
         transition-shadow duration-700
         ${className}
       `}

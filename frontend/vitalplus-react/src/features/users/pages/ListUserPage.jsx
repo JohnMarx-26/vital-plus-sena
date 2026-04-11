@@ -103,7 +103,7 @@ export default function ListUserPage() {
 
   return (
     <div className="w-full h-dvh">
-      <Header />
+      <Header variant="Main"/>
       <Botones />
       <div className="p-6">
         {loading && <p>Cargando usuarios...</p>}

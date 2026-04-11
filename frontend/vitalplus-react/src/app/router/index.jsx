@@ -120,8 +120,8 @@ const router = createBrowserRouter([
 
   // PRODUCTOS
   { path: "/productos/crear", element: <CreateProductPage /> },
-  { path: "/productos/modificar", element: <EditProductPage /> },
-  { path: "/productos/visualizar", element: <ProductDetailPage /> },
+  { path: "/productos/modificar/:id", element: <EditProductPage /> },
+  { path: "/productos/visualizar/:id", element: <ProductDetailPage /> },
   { path: "/productos/listar", element: <ListProductPage /> },
 
   // PROVEEDORES

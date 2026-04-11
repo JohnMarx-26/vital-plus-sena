@@ -1,9 +1,27 @@
 // Componente reutilizable que muestra un switch para activar o desactivar estados
-import StatusSwitch from "@/shared/components/StatusSwitch";
+import {StatusSwitchFour} from "@/shared/";
 
 // Componente que contiene los botones de acciones (editar y eliminar) para cada usuario
 import ProductRowActions from "../components/ProductRowActions";
 
+//se importa el useState para el contenerod de descripcion
+import { useState } from "react";
+
+const estadoMap = {
+  0: "inactivo",
+  1: "activo",
+  2: "vencido",
+  3: "agotado",
+  4: "suspendido",
+};
+
+const estadoToNum = {
+  "inactivo": 0,
+  "activo": 1,
+  "vencido": 2,
+  "agotado": 3,
+  "suspendido": 4,
+};
 // Definición de las columnas de la tabla de usuarios
 // Este arreglo suele usarse en librerías de tablas como TanStack Table
 export const ProductColumns = [
@@ -13,28 +31,28 @@ export const ProductColumns = [
     header: "ID", // Título de la columna
   },
 
-   // Columna productName
+  // Columna productName
   {
-    accessorKey: "productName", 
-    header: "Nombre producto", 
-  },
-  
-  // Columna administrationRoute
-  {
-    accessorKey: "administrationRoute", 
-    header: "Ruta de administración", // Encabezado visible
+    accessorKey: "productName",
+    header: "Nombre producto",
   },
 
-   // Columna requiresPrescription
+  // Columna administrationRoute
   {
-    accessorKey: "requiresPrescription", 
-    header: "Requiere Formula", 
+    accessorKey: "administrationRoute",
+    header: "via de administración", // Encabezado visible
+  },
+
+  // Columna requiresPrescription
+  {
+    accessorKey: "requiresPrescription",
+    header: "Requiere Formula",
   },
 
   // Columna stock
   {
     accessorKey: "stock",
-    header: "Numero de stock ",
+    header: "Stock ",
   },
 
   // Columna purchasePrice
@@ -44,62 +62,86 @@ export const ProductColumns = [
   },
 
   // Columna salePrice
-   {
+  {
     accessorKey: "salePrice",
     header: "Precio de venta",
   },
 
-   // Columna pharmaceuticalForm
-   {
+  // Columna pharmaceuticalForm
+  {
     accessorKey: "pharmaceuticalForm",
-    header: "Formula farmaceutica",
+    header: "Forma farmaceutica",
   },
-//   Columna lotNumber
-   {
+  //   Columna lotNumber
+  {
     accessorKey: "lotNumber",
-    header: "Numero de lote",
+    header: "Lote",
   },
-//   Columna manufacturingDate
-   {
+  //   Columna manufacturingDate
+  {
     accessorKey: "manufacturingDate",
     header: "Fecha de fabricación",
   },
-//   Columna expiracion
-   {
+  //   Columna expiracion
+  {
     accessorKey: "expirationDate",
-    header: "Fecha de Expiracion",
+    header: "Fecha de Expiración",
   },
-//   Columna description
-   {
+  // DESCRIPCION
+  /**
+   * Se usa el estado de expanded se utiliza para que al escuchar el evento click
+   * el contenedor cambia de tamaño  a un maximo de 400px
+   * tambien se tiene una condicionalque dependiendo si tiene expancion o
+   * no mostrar un mensaje de hover
+   */
+
+  {
     accessorKey: "description",
     header: "Descripción",
+    cell: ({ row }) => {
+      //Controla si la celda está expandida o contraída
+      const [expanded, setExpanded] = useState(false);
+      //Toma la descripción del producto de esa fila. Si viene null o undefined usa "" vacío.
+      const text = row.original.description ?? "";
+
+      return (
+        <span
+          //Cada vez el usuario hace click alterna enre true y false
+          onClick={() => setExpanded(!expanded)}
+          //Muestra un mensaje al hacer hover indicando qué va a pasar al hacer click.
+          title={!expanded ? "Click para expandir" : "Click para contraer"}
+          className={`block cursor-pointer ${
+            expanded ? "max-w-100 whitespace-normal" : "max-w-50 truncate"
+          }`}
+        >
+          {text}
+        </span>
+      );
+    },
   },
 
   // Columna Estado (activo / inactivo)
   {
-    accessorKey: "is_active",
+    accessorKey: "status",
     header: "Estado",
 
-    // Render personalizado de la celda
-    // Permite mostrar un componente en lugar de solo texto
     cell: ({ row }) => {
-      // Se obtiene el objeto completo del usuario de la fila
-      const user = row.original;
+      const product = row.original;
 
-      // Función que se ejecuta cuando cambia el switch
-      const handleChange = (value) => {
-        // value representa el nuevo estado del switch (true o false)
-        console.log("Actualizar estado usuario:", user.user.id, value);
+      const handleChange = async (value) => {
+        const nuevoEstado = estadoMap[value];
 
-        // Aquí normalmente se llamaría una API para actualizar el estado
-        // updateUserStatus(user.user_id, value)
+        await fetch(`http://localhost:8000/api/medicamentos/${product.id}/`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ estado_medicamento: nuevoEstado }),
+        });
       };
 
       return (
-        // Componente reutilizable para mostrar el switch
-        <StatusSwitch
-          checked={user.is_active} // Estado actual del usuario
-          onChange={handleChange} // Función que maneja el cambio
+        <StatusSwitchFour
+          checked={estadoToNum[product.status] ?? 0}
+          onChange={handleChange}
         />
       );
     },
@@ -110,6 +152,6 @@ export const ProductColumns = [
     id: "actions", // No usa accessorKey porque no corresponde a un campo del usuario
 
     // Renderiza el componente de acciones pasando el usuario completo
-    cell: ({ row }) => <ProductRowActions user={row.original} />,
+    cell: ({ row }) => <ProductRowActions product={row.original} />,
   },
 ];

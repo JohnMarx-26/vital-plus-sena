@@ -19,7 +19,7 @@ export default function DermatologyProductPage(){
 
             {/* //================= Contenedor de las cards ================== */} 
             <div className = "flex flex-col md:flex-row gap-2">
-                <ProductSection variant = "client" category="dermatology" />
+                <ProductSection variant = "client" category="dermatologia" />
             </div>
         </div>
     );
