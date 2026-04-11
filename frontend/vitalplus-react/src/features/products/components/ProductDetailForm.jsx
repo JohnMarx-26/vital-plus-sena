@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import {Button} from "@/shared";
 import { SquarePen } from "lucide-react";
 import medicamento from "@/assets/svg/Rectangle-63.svg";
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function ProductDetailForm() {
@@ -12,6 +14,8 @@ export default function ProductDetailForm() {
   //asi se sabe en espefico lainformación que vamos a renderizar
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     detailProductInfo(id).then(setProduct);
@@ -115,7 +119,7 @@ const userDetails = [
                     variant="secondary"
                     size="sm"
                     type="button"
-                    onClick={handleEdit}
+                    onClick={() => navigate(`/productos/modificar/${product.id}`)}
                     className="flex items-center gap-2"
                   >
                     <SquarePen className="w-5 h-5" />

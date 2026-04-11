@@ -77,6 +77,7 @@ class Proveedor(models.Model):
         related_name="proveedores",
     )
     estado = models.CharField(max_length=8, blank=True, null=True)
+    foto_url = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

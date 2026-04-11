@@ -78,6 +78,7 @@ def crear_proveedor(request):
         correo_electronico=data.get("correo_electronico"),
         direccion_rel=direccion_obj,
         estado=data.get("estado"),
+        foto_url=data.get("foto_url"),
     )
 
     # Consulta de nuevo el proveedor con relaciones para devolverlo completo
@@ -137,6 +138,7 @@ def actualizar_proveedor(request, proveedor_id):
     proveedor.telefono_contacto = data.get("telefono_contacto")
     proveedor.correo_electronico = data.get("correo_electronico")
     proveedor.estado = data.get("estado")
+    proveedor.foto_url = data.get("foto_url")
     proveedor.save()
 
     # Consulta final para devolver el detalle actualizado

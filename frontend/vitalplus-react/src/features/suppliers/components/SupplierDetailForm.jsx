@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "@/shared/components/Button";
 import { SquarePen } from "lucide-react";
 import usuario from "@/assets/svg/icono-usu-dark.svg";
+import { useNavigate } from "react-router-dom";
 // import { Delete } from "lucide-react";
 
 export default function SupplierDetailForm({ supplier }) {
@@ -9,6 +10,8 @@ export default function SupplierDetailForm({ supplier }) {
     // se usa un estado para que dependiendo el estado del proveedor
     // se muestre Activo o Inactivo en el boton
     const [userStatus, setUserStatus] = useState("Inactivo");
+    const navigate = useNavigate();
+
 
     // sincroniza el estado local del botón con el estado real que llega del backend
     useEffect(() => {
@@ -103,6 +106,7 @@ export default function SupplierDetailForm({ supplier }) {
                            size="sm"
                            type="button"
                            className="flex items-center gap-2"
+                           onClick={() => navigate(`/proveedores/modificar/${supplier.id}`)}
                          >
                            <SquarePen className="w-5 h-5" />
                            Modificar

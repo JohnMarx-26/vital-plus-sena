@@ -48,7 +48,7 @@ export default function ProfileUserForm({ user }) {
         <aside className="w-full lg:max-w-sm">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="mb-6 flex justify-center">
-              <h1 className="border-b-2 border-text-secundary pb-1 text-xl font-medium text-slate-900">
+              <h1 className="border-b-2 border-slate-900 pb-1 text-font-md font-medium text-slate-900">
                 Opciones de usuario
               </h1>
             </div>
@@ -89,8 +89,8 @@ export default function ProfileUserForm({ user }) {
                     variant="secondary"
                     size="sm"
                     type="button"
-                    onClick={handleEdit}
                     className="flex items-center gap-2"
+                    onClick={() => navigate(`/usuarios/modificar/${user.id}`)}
                   >
                     <SquarePen className="w-5 h-5" />
                     Modificar

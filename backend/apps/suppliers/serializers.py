@@ -38,6 +38,7 @@ class ProveedorListSerializer(serializers.ModelSerializer):
             "ciudad",
             "direccion",
             "estado",
+            "foto_url",
         ]
 
     def get_nombre_contacto(self, obj):
@@ -92,6 +93,7 @@ class ProveedorDetailSerializer(serializers.ModelSerializer):
             "ciudad",
             "direccion",
             "estado",
+            "foto_url",
         ]
 
 
@@ -122,6 +124,7 @@ class ProveedorCreateSerializer(serializers.Serializer):
     id_ciudad = serializers.IntegerField()
     direccion = serializers.CharField(max_length=100)
     estado = serializers.ChoiceField(choices=["activo", "inactivo"])
+    foto_url = serializers.URLField(required=False, allow_blank=True, allow_null=True)
 
     # Valida que no exista otro proveedor con el mismo correo
     def validate_correo_electronico(self, value):
@@ -159,6 +162,11 @@ class ProveedorUpdateSerializer(serializers.Serializer):
     id_ciudad = serializers.IntegerField()
     direccion = serializers.CharField(max_length=100)
     estado = serializers.ChoiceField(choices=["activo", "inactivo"])
+    foto_url = serializers.CharField(
+    required=False,
+    allow_blank=True,
+    allow_null=True
+)
 
     # Valida el correo excluyendo al proveedor actual
     def validate_correo_electronico(self, value):

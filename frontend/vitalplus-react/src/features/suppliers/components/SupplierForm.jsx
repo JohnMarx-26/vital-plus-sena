@@ -80,7 +80,7 @@ export default function SupplierForm({
         city: initialData.city || "",
         active: initialData.active || "activo",
         address: initialData.address || "",
-        avatarUrl: initialData.avatarUrl || null,
+        avatarUrl: initialData.avatarUrl || initialData.foto_url || null,
       });
     }
   }, [initialData]);
@@ -101,12 +101,21 @@ export default function SupplierForm({
     setSubmitError("");
   };
 
-  const handleAvatarChange = (_, previewUrl) => {
-    setFormData((prev) => ({
-      ...prev,
-      avatarUrl: previewUrl || null,
-    }));
-  };
+ const handleAvatarChange = (uploadResult, previewUrl) => {
+  const fotoUrl =
+    typeof uploadResult === "string"
+      ? uploadResult
+      : uploadResult?.secure_url || uploadResult?.url || null;
+
+  console.log("fotoUrl final:", fotoUrl);
+
+  setFormData((prev) => ({
+    ...prev,
+    avatarUrl: fotoUrl,
+  }));
+
+  setSubmitError("");
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -145,6 +154,7 @@ export default function SupplierForm({
         id_ciudad: formData.city ? Number(formData.city) : null,
         direccion: formData.address,
         estado: formData.active,
+        foto_url: formData.avatarUrl || null,
       };
 
       // Si hay supplierId actualiza, si no crea

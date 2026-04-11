@@ -127,6 +127,7 @@ const router = createBrowserRouter([
   // PROVEEDORES
   { path: "/proveedores/crear", element: <CreateSupplierPage /> },
   { path: "/proveedores/modificar/:id", element: <EditSupplierPage /> },
+  
   { path: "/proveedores/detalles/:id", element: <SupplierDetailPage /> },
   { path: "/proveedores/listar", element: <ListSupplierPage /> },
 ]);
