@@ -37,7 +37,7 @@ const Botones = () => {
         </Button>
       </div>
       <div>
-        {/* Boton de generar reporte */}
+        {/* Boton de generar reportes*/}
         <Button
           variant="primary"
           onClick={() => setIsReportModalOpen(true)}
