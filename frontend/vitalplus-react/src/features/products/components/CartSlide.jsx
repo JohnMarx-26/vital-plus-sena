@@ -8,7 +8,7 @@ export default function CartSlide ({ isOpen, onClose, cartItems, setCartItems })
    const subTotal = cartItems.reduce((previo, item) => previo + item.price * item.quantity, 0)
 
    //=================== Navegacion a otras vistas =============
-   const navigate = useNavigate();
+    const navigate = useNavigate();
 
     //==================== Eliminar Producto ========================
     const handleEliminar = (index) => {

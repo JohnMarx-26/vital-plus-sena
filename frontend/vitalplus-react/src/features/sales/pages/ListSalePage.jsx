@@ -59,7 +59,7 @@ const Botones = () => {
   );
 };
 
-export default function ListSupplierPage() {
+export default function ListSalePage() {
 
   return (
     <div className="w-full h-dvh">

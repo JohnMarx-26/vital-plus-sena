@@ -10,9 +10,6 @@ import EditUserPage from "@/features/users/pages/EditUserPage";
 import CreateAdminUsers from "@/features/users/pages/CreateAdminUsers";
 import CreateRolePage from "@/features/users/pages/CreateRolePage";
 
-
-
-
 import {
   LoginPage,
   ForgotPasswordPage,
@@ -84,6 +81,11 @@ const router = createBrowserRouter([
       { path: "/products/Dermatology/:id", element: <DermatologyProductPage /> },
       { path: "/products/Maternity/:id", element: <MaternityProductPage /> },
       { path: "/products/Personal/:id", element: <PersonalProductsPage /> },
+
+       //carrito de compras
+      { path: "/products/cart", element: <CartPage /> },
+      { path: "/cart/shipping", element: <ProductShippingPage /> },
+      { path: "/cart/payment", element: <ProductPaymentPage /> },
     ],
   },
 
@@ -104,10 +106,7 @@ const router = createBrowserRouter([
   { path: "/admin/usuarios/crear", element: <CreateAdminUsers /> },
   { path: "/usuarios/crear", element: <CreateUserPage /> },
   { path: "/admin/roles/gestionar", element: <CreateRolePage /> },
-
-
   { path: "/usuarios/edit/:id", element: <EditUserPage /> },
-
   { path: "/usuarios/view/:id", element: <ProfileUserPage /> },
   { path: "/usuarios/modificar/:id", element: <EditUserPage /> },
   { path: "/usuarios/listar", element: <ListUserPage /> },
@@ -127,7 +126,6 @@ const router = createBrowserRouter([
   // PROVEEDORES
   { path: "/proveedores/crear", element: <CreateSupplierPage /> },
   { path: "/proveedores/modificar/:id", element: <EditSupplierPage /> },
-  
   { path: "/proveedores/detalles/:id", element: <SupplierDetailPage /> },
   { path: "/proveedores/listar", element: <ListSupplierPage /> },
 ]);

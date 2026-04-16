@@ -12,12 +12,9 @@ export default function ProductDetailClient() {
     y se desetrucuta en product para poder manipularla 
     en la vista*/
   const { state } = useLocation();
-  const { id, lab, title, image, description, price, discount, presentation, } = state.product;
-
-  {/* //================ Redirecciona al carrito ================== */}
-const { handleComprar, setCartItems } = useAddToCart();
-
-  //==================== Descuento ============================//
+  const product = state?.product;
+  const { id, lab, title, image, description, price, discount, presentation, } = product ?? {};
+   //==================== Descuento ============================//
   /** 
    * Si la constante tiene valor quiere decir que existe descuento
    * el precio cambia en la card, poniendose mas  pequeño y el discount mas grande y en rojo
@@ -25,15 +22,31 @@ const { handleComprar, setCartItems } = useAddToCart();
    */
   const hasDiscount = discount && discount > 0;
 
-  //===================== Estado Mostrar Formulario Comentarios ================/
+  //===================== Estado Mostrar Formulario Comentarios ======//
   const [showForm, setShowForm] = useState(false);
 
-  //===================== Estado para los Comentarios =====================//
+  //===================== Estado para los Comentarios ==========//
   const [comments, setComments] = useState([]);
 
   //=================== Promedio puntuacion producto =============
   const [ratings, setRatings] = useState([]);
+  //==================== Carrito =========================//
+  const { handleComprar, setCartItems } = useAddToCart();
+  //==================== Botones de Cantidad ==============//
+  const [isAmount, setAmount] = useState(1);
 
+    // si no hay state o product, retorna el mensaje 
+  if (!state || !state.product) {
+    return (
+      <div className="flex justify-center items-center p-10">
+        <p className="text-text-muted">
+          No se encontró información del producto.
+        </p>
+      </div>
+    );
+  }
+
+  {/* //================ Redirecciona al carrito ================== */}
   const count = ratings.length;
   const sum = ratings.reduce((acc, val) => acc + val, 0);
   const avg = count > 0 ? sum / count : 0;
@@ -46,7 +59,6 @@ const { handleComprar, setCartItems } = useAddToCart();
   };
 
 //===================== botones para CANTIDAD ===============
-  const [isAmount, setAmount] = useState(1);
 
   const handlePlus = () => {
   setAmount(prev => prev + 1);
