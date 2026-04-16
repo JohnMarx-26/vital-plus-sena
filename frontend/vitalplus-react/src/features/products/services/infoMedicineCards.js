@@ -29,6 +29,7 @@ export const getMedicamentos = async () => {
     stock: item.inventario[0]?.stock ?? 0,
     price: item.inventario[0]?.precio_venta ?? 0,
     discount: item.inventario[0]?.precio_descuento ?? 0,
+    id_inventario: item.inventario[0]?.id_inventario ?? null,
     }));
 };
 

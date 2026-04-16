@@ -1,13 +1,14 @@
-from rest_framework.routers import DefaultRouter
+# apps/ventas/urls.py
 from django.urls import path, include
-from . import views
+from rest_framework.routers import DefaultRouter
+from .views import BancoViewSet, MetodoPagoViewSet, VentaViewSet, ClienteViewSet
 
 router = DefaultRouter()
-router.register(r"bancos", views.BancoViewSet, basename="bancos")
-router.register(r"metodos_pago", views.MetodoPagoViewSet, basename="metodos_pago")
-router.register(r"ventas", views.VentaViewSet, basename="ventas")
-router.register(r"anulaciones", views.AnulacionViewSet, basename="anulaciones")
-router.register(r"carritos", views.CarritoViewSet, basename="carritos")
+router.register("bancos",        BancoViewSet,      basename="bancos")
+router.register("metodos-pago",  MetodoPagoViewSet, basename="metodos-pago")
+router.register("ventas",        VentaViewSet,      basename="ventas")
+router.register("clientes",     ClienteViewSet,   basename="clientes")
+
 
 urlpatterns = [
     path("", include(router.urls)),

@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { Button, Select, formatCurrency,Input} from "@/shared";
 import { Trash2, SquarePlus, ChevronDown, BanknoteArrowDown } from "lucide-react";
 import  usuario from "@/assets/svg/icono-usu-dark.svg";
-import { getMetodosPago } from "../services/getMetodosPago";
 import { getBancos } from "../services/getBancos";
+import { getMetodosPago } from "../services/getMetodosPago";
+import { createVenta } from "../services/createVenta";
+import { getClienteByDocumento } from "../services/getClienteByDocumento";
 
 const SaleFormPos = ({ children }) => { 
 
@@ -14,10 +16,20 @@ const [bancos, setBancos] = useState([]);
 const [metodoPago, setMetodoPago] = useState("");
 const [banco, setBanco] = useState("");
 
+//estados del cliente
+const [documento, setDocumento]   = useState("");
+const [nombre, setNombre]         = useState("");
+const [correo, setCorreo]         = useState("");
+const [cargando, setCargando]     = useState(false);
+
+//buscar cliente por Numero de identificacion
+const [clienteId, setClienteId] = useState(null);
+const [buscandoCliente, setBuscandoCliente] = useState(false);
+
   // fetch para los selects 
 useEffect(() => {
-  getMetodosPago().then((data) => {  setMetodosPago(data); });
   getBancos().then((data) => { setBancos(data); });
+  getMetodosPago().then((data) => {  setMetodosPago(data); });
 }, []);
 
     // 2. Filtrar métodos según banco seleccionado
@@ -65,6 +77,93 @@ const metodosFiltrados = banco
   const iva = total * 0.19;
   const subtotal = total - iva;
 
+
+//handle para crear venta de cliente y guardar los datos en el back
+const handleFinalizarVenta = async () => {
+  // Validaciones básicas
+  if (!metodoPago) {
+    alert("Selecciona un método de pago");
+    return;
+  }
+  if (!documento || !nombre) {
+    alert("Ingresa el documento y nombre del cliente");
+    return;
+  }
+  if (!clienteId) {
+    alert("Busca un cliente válido por documento antes de continuar");
+    return;
+  }
+  if (listaVenta.length === 0) {
+    alert("Agrega al menos un producto");
+    return;
+  }
+
+  setCargando(true);
+
+  try {
+    const resultado = await createVenta({
+      id_cliente:    clienteId,           // temporal hasta tener tabla clientes
+      id_funcionario: 3,           // temporal hasta tener auth
+      id_metodo_pago: Number(metodoPago),
+      items: listaVenta.map((item) => ({
+        id_inventario: item.id_inventario, // asegúrate que el producto lo trae
+        cantidad:      item.cantidad,
+        subtotal:      parseFloat(
+          ((item.discount || item.price) * item.cantidad).toFixed(2)
+        ),
+      })),
+      subtotal: parseFloat(subtotal.toFixed(2)),
+      iva:      parseFloat(iva.toFixed(2)),
+      total:    parseFloat(total.toFixed(2)),
+    });
+
+    alert(`✅ Venta registrada — Factura N° ${resultado.numero_factura}`);
+    vaciarCarrito();
+    setDocumento("");
+    setNombre("");
+    setCorreo("");
+    setMetodoPago("");
+    setBanco("");
+    setClienteId(null);
+
+  } catch (error) {
+    alert(`❌ Error al registrar la venta: ${error.message}`);
+  } finally {
+    setCargando(false);
+  }
+};
+
+const handleBuscarCliente = async () => {
+  if (!documento.trim()) return;
+
+  setBuscandoCliente(true);
+  try {
+    const cliente = await getClienteByDocumento(documento.trim());
+
+    if (!cliente) {
+      alert("❌ Cliente no encontrado. Regístralo primero con el botón 'Nuevo'.");
+      setNombre("");
+      setCorreo("");
+      setClienteId(null);
+      return;
+    }
+
+    // Mapeo a los campos reales de la tabla
+    setNombre(`${cliente.nombres_cliente} ${cliente.apellidos_cliente}`);
+    setCorreo(cliente.correo_electronico ?? "");
+    setClienteId(cliente.id_cliente);
+
+  } catch {
+    alert("❌ Error al buscar el cliente");
+  } finally {
+    setBuscandoCliente(false);
+  }
+};
+
+
+console.log("banco seleccionado:", banco, typeof banco);
+console.log("metodosPago:", metodosPago);
+console.log("filtrados:", metodosFiltrados);
   return (
     // =================================== Contenedor Padre ==========================//
     <div className="flex h-[80vh] w-full border rounded-2xl overflow-hidden bg-background shadow-xl">
@@ -97,8 +196,49 @@ const metodosFiltrados = banco
               <p className=" font-bold text-xs ">Datos Cliente</p>
               <ChevronDown className="size-5 text-text-muted " />
             </summary>
-            <div className="flex px-2 my-1 p-2 pr-5">
-              <Input label="Documento de Identidad" />
+            <div className="flex  justify-between px-2 my-1 p-2 gap-2">
+              <div>
+                {/* Documento — buscador */}
+                <div className="flex items-end gap-1">
+                  <Input
+                    label="Documento de Identidad"
+                    value={documento}
+                    onChange={(e) => {
+                      setDocumento(e.target.value);
+                      setClienteId(null);
+                      setNombre("");
+                      setCorreo("");
+                    }}
+                    onKeyDown={(e) =>
+                      e.key === "Enter" && handleBuscarCliente()
+                    }
+                  />
+                  <Button
+                    onClick={handleBuscarCliente}
+                    disabled={buscandoCliente || !documento.trim()}
+                    className="mb-1 bg-brand text-background text-xs font-bold px-2 py-1 rounded-lg disabled:opacity-50"
+                  >
+                    {buscandoCliente ? "..." : "Buscar"}
+                  </Button>
+                </div>
+
+                {/* Nombre — readonly */}
+                <Input
+                  label="Nombre del usuario"
+                  value={nombre}
+                  readOnly
+                  className="bg-red-50 text-text-muted cursor-not-allowed"
+                />
+
+                {/* Correo — readonly */}
+                <Input
+                  label="Correo del usuario"
+                  value={correo}
+                  readOnly
+                  className="bg-red-50 text-text-muted cursor-not-allowed"
+                />
+              </div>
+
               <div>
                 <Link
                   to="/usuariosSale/crear"
@@ -117,7 +257,6 @@ const metodosFiltrados = banco
               <ChevronDown className="size-5 text-text-muted " />
             </summary>
             <div className="grid px-2 my-2 gap-2">
-
               {/* //============ Bancos =============== */}
               <Select
                 label="Banco"
@@ -223,11 +362,11 @@ const metodosFiltrados = banco
 
             {/* //==================== Boton Finalizar Venta =============== */}
             <Button
-              onClick={() => alert("Venta procesada con éxito")}
-              disabled={listaVenta.length === 0}
-              className="bg-brand  text-small text-background py-4 rounded-xl font-bold hover:brightness-110 disabled:opacity-50 transition-all"
+              onClick={handleFinalizarVenta}
+              disabled={listaVenta.length === 0 || cargando}
+              className="bg-brand text-small text-background py-4 rounded-xl font-bold hover:brightness-110 disabled:opacity-50 transition-all"
             >
-              Finalizar Venta
+              {cargando ? "Procesando..." : "Finalizar Venta"}
             </Button>
           </div>
         </div>

@@ -68,6 +68,7 @@ class InventarioSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventario
         fields = [
+            'id_inventario',
             'stock',
             'precio_compra',
             'precio_venta',
