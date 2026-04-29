@@ -30,6 +30,7 @@ export default function AdminLoginPage() {
             description="Ingresa tus credenciales de administrador"
             isAdmin={true}
             userName="Admin"
+            showCreateAccount={false}
           />
         </div>
       </div>

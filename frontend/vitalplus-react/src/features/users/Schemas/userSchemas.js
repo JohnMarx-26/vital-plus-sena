@@ -26,8 +26,13 @@ export const userSchema = z
 
     documentNumber: z
       .string()
+      .regex(/^[0-9]+$/, "El número de documento solo debe contener dígitos")
       .min(5, "Número de documento inválido")
       .max(20, "Número de documento demasiado largo"),
+
+    city: z
+      .string()
+      .min(1, "Debe seleccionar una ciudad"),
 
     address: z
       .string()

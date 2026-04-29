@@ -1,0 +1,44 @@
+[
+    {
+        "value": "1",
+        "label": "Pereira"
+    },
+    {
+        "value": "2",
+        "label": "Manizales"
+    },
+    {
+        "value": "3",
+        "label": "Medellín"
+    }
+    ,
+    {
+        "value": "4",
+        "label": "Bogotá"
+    }
+    ,
+    {
+        "value": "5",
+        "label": "Barranquilla"
+    }
+    ,
+    {
+        "value": "6",
+        "label": "Bucaramanga"
+    }
+    ,
+    {
+        "value": "7",
+        "label": "Cali"
+    }
+    ,
+    {
+        "value": "8",
+        "label": "Ibagué"
+    }
+    ,
+    {
+        "value": "9",
+        "label": "Armenia"
+    }
+]

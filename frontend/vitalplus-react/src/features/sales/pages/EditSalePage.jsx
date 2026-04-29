@@ -1,5 +1,6 @@
 // Importaciones
-import { SaleForm, ProductSectionPOS } from "@/features/sales";
+import { SaleForm } from "@/features/sales";
+import { ProductSection } from "@/features/products";
 import { Button, FormLayout } from "@/shared";
 import guardar from "@/assets/svg/icono-guardar.svg";
 import retroceder from "@/assets/svg/icono-retroceder.svg";
@@ -54,7 +55,7 @@ export default function EditSalePage() {
     <FormLayout>
       <Botones />
       <SaleForm>
-        <ProductSectionPOS />
+        <ProductSection variant="pos" />
       </SaleForm>
     </FormLayout>
   );

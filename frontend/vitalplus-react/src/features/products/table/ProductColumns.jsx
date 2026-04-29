@@ -1,5 +1,5 @@
 // Componente reutilizable que muestra un switch para activar o desactivar estados
-import StatusSwitchFour from "@/shared/components/StatusSwitchFour";
+import StatusSwitch from "@/shared/components/StatusSwitch";
 
 // Componente que contiene los botones de acciones (editar y eliminar) para cada usuario
 import ProductRowActions from "../components/ProductRowActions";
@@ -29,6 +29,24 @@ export const ProductColumns = [
   {
     accessorKey: "requiresPrescription", 
     header: "Requiere Formula", 
+  },
+   // Columna concentration
+
+  {
+    accessorKey: "concentration", 
+    header: "Concentración", 
+  },
+   // Columna requiresPrescription
+
+  {
+    accessorKey: "laboratory", 
+    header: "Laboratorio", 
+  },
+   // Columna requiresPrescription
+
+  {
+    accessorKey: "provider", 
+    header: "Proveedor", 
   },
 
   // Columna stock
@@ -97,7 +115,7 @@ export const ProductColumns = [
 
       return (
         // Componente reutilizable para mostrar el switch
-        <StatusSwitchFour
+        <StatusSwitch
           checked={user.is_active} // Estado actual del usuario
           onChange={handleChange} // Función que maneja el cambio
         />

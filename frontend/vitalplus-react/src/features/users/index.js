@@ -4,6 +4,8 @@ export { default as ProfileUserPage } from "./pages/ProfileUserPage";
 
 export { default as AvatarUploader } from "./components/AvatarUploader";
 export { default as EditUserForm } from "./components/EditUserForm";
+export { default as UserFormComment } from "./components/UserFormComment";
+export { default as AdminUserForm} from "./components/AdminUserForm"
 
 // PAGINAS
 export { default as ListUserPage } from "./pages/ListUserPage";

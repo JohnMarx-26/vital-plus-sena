@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button } from "@/shared";
+import { Button,ZoomImages, formatCurrency} from "@/shared";
+import { ShoppingCart, Star, MessageCircleX, FilePenLine, Minus, Plus,} from "lucide-react";
+import { UserFormComment } from "@/features/users";
+import  {useAddToCart} from "../hooks/useAddToCart";
 import  envio  from "@/assets/svg/icono-envioProd.svg";
 import  tienda  from "@/assets/svg/icono-recogerTienda.svg";
 
@@ -9,153 +12,250 @@ export default function ProductDetailClient() {
     y se desetrucuta en product para poder manipularla 
     en la vista*/
   const { state } = useLocation();
-  const { lab, title, image, description, price, discount} = state.product;
-
+  const { id, lab, title, image, description, price, discount, presentation, } = state.product;
 
   {/* //================ Redirecciona al carrito ================== */}
-  const handleComprar = (producto) => {
-  console.log("Agregando al carrito:", producto);
-  };
+const { handleComprar, setCartItems } = useAddToCart();
 
   //==================== Descuento ============================//
-  /**
+  /** 
    * Si la constante tiene valor quiere decir que existe descuento
-   * el precio cambia en la card poniendose mas  pequeño y el discount mas grande y en rojo
-   * sino y es falso se mantene solo el price en el color de la marca
+   * el precio cambia en la card, poniendose mas  pequeño y el discount mas grande y en rojo
+   * sino y es falso se mantene solo el precio en el color de la marca
    */
   const hasDiscount = discount && discount > 0;
 
+  //===================== Estado Mostrar Formulario Comentarios ================/
+  const [showForm, setShowForm] = useState(false);
 
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  //===================== Estado para los Comentarios =====================//
+  const [comments, setComments] = useState([]);
 
-  const handleMouseMove = (e) => {
-  const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-  const x = ((e.clientX - left) / width) * 100;
-  const y = ((e.clientY - top) / height) * 100;
-  setPosition({ x, y });
+  //=================== Promedio puntuacion producto =============
+  const [ratings, setRatings] = useState([]);
+
+  const count = ratings.length;
+  const sum = ratings.reduce((acc, val) => acc + val, 0);
+  const avg = count > 0 ? sum / count : 0;
+
+  const handleRatingSubmit = (commentData) => {
+    setRatings((prev) => [...prev, commentData.rating]);
+    /*todos los comentarios ya existentes se almacenan en prev
+  commentData es el nuevo  comentario que se almacena en el array*/
+    setComments((prev) => [...prev, commentData]);
+  };
+
+//===================== botones para CANTIDAD ===============
+  const [isAmount, setAmount] = useState(1);
+
+ const handlePlus = () => {
+  setAmount(prev => prev + 1);
+  setCartItems(prev =>
+    prev.map(item =>
+      item.id === id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    )
+  );
 };
-
+  const handleMinus = () => {
+  setAmount(prev => (prev > 1 ? prev - 1 : 1));
+  setCartItems(prev =>
+    prev.map(item =>
+      item.id === id
+        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+        : item
+    )
+  );
+};
   return (
-    // ===========================Contenedor Padre ======================
-    <div className="flex mx-auto  gap-5 p-5 justify-center">
+    // ========================== Contenedor Padre ======================
+    <div className="flex flex-col gap-10 p-5 justify-center">
+      <div className="flex pl-20 gap-20 ">
+        {/* //================ Imagen Producto ================== */}
+        {/*El componente ZoomImges que incorpora la capacidad de
+        hacer zoom al 100% sobre la parte de la imagen que este apuntando el cursor  */}
+        <ZoomImages src={image} />
+        {/* //================ laboratorio, nombre, referencia envio ================== */}
+        <div className="flex w-100  h-110 flex-col py-7 gap-0.5 ">
+          <p className="text-xs">{lab}</p>
+          <p className="font-bold mb-2 ">{title}</p>
+          <p className="text-xs font-bold m-2">Referencia: {id}</p>
 
-      {/* //================ Imagen Producto ================== */}
-      <div className="h-85 w-85 overflow-hidden rounded-xl cursor-zoom-in" 
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      >
-        <img  className="
-          w-full h-full 
-          object-contain 
-          transition-transform 
-          duration-200" 
-          src={image}
-          
-          style={{
-          transformOrigin: `${position.x}% ${position.y}%`,
-          transform: isHovered ? 'scale(2)' : 'scale(1)',
-          }}
-          
-          />
-      </div>
-
-      {/* //================ Informacion del Producto ================== */}
-      <div className="flex flex-col h-110 w-92  border-border items-center py-11">
-        <div className=" w-full h-12 p-1 ">
-          <h4 className="text-xs">{lab}</h4>
-          <h3 className="font-bold ">{title}</h3>
-        </div>
-        <div className="p-1 border-border text-small ">
-          <h3 className="flex h-8 bg-brand text-small text-background items-center pl-1">Información</h3>
-          {description}
-        </div>
-      </div>
-
-
-      <div className="flex w-60  h-70 flex-col py-11  border rounded-2xl mt-10">
-          {/* //================= Precio Regular =================== */}
-        {/*
-         * Se utilizo visible ----- invisible para que la etiqueta no cambie de tamaño
-         * si el producto no tiene descuesto haciendo un espacio reservado
-         */}
-        <div className="flex items-baseline px-2">
-          <p
-            className={`font-bold leading-none ${
-              hasDiscount
-                ? "text-body text-text-muted line-through"
-                : " text-h2 text-brand "
-            }`}
-          > 
-            ${price.toLocaleString()}
-          </p>
-
-          <span
-            className={`text-xs text-text-muted ${
-              hasDiscount ? "visible" : "invisible"
-            }`}
-          >
-            (Antes)
-          </span>
-        </div>
-
-        {/* //================ Precio con Descuento =============== */}
-        {/*
-         * Se utilizo hasDiscount en la etiqueta <p> para  que cambie el tamaño
-         * de la fuente a text-small si este no tiene descuento, permitiendo
-         * uniformidad por espacio reservado
-         */}
-
-        <div className={`flex ${hasDiscount ? " visible" : "invisible"} px-2`}>
-          <p
-            className={`font-bold text-red-500 pr-2  ${
-              hasDiscount ? "text-h2" : "text-small"
-            }`}
-          >
-            ${discount?.toLocaleString()}
-          </p>
-          <span
-            className={` 
-            flex w-15 h-6 text-xs
-          bg-red-400 border rounded-full
-            items-center justify-center mt-1
-            ${hasDiscount ? " visible" : "invisible border-none"}`}
-          >
-            Ahora
-          </span>
-        </div>
-
-        <div className="flex flex-col py-5 px-2">
-
-          <div className="flex gap-2 py-2">
-            <img src={envio} className="w-5 h-5"/>
-            <p className="font-bold text-small">Envio Rush</p>
-          </div>  
-
-          <div className="flex gap-2 py-2">
-            <img src={tienda} className="w-5 h-5"/>
-            <p className="font-bold text-small">Recoger en Tienda</p>
-          </div>  
-
-        </div>
-
-        {/* //================ BOTON agregar Producto =============== */}
-        <div className="flex justify-center">
-          <Button
-            className="
-              w-50 
-              text-background 
-              text-small
-              border rounded-full 
-              gap-2 justify-center
-              py-2 px-2
-              mt-3
-              "
-            onClick={() => handleComprar(state.product)}>
-              Agregar Producto
-          </Button>
+          {/* Mostrar estrellas y promedio */}
+          <div className="flex gap-3 p-2">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={
+                  i < Math.round(avg) ? "text-yellow-400" : "text-gray-300"
+                }
+              />
+            ))}
+            <p>{avg.toFixed(1)}</p>
           </div>
+
+          {/* //================= Precio Regular =================== */}
+          {/*
+           * Se utilizo visible ----- invisible para que la etiqueta no cambie de tamaño
+           * si el producto no tiene descuesto haciendo un espacio reservado
+           */}
+          <div className="flex items-baseline px-2">
+            <p
+              className={`font-bold leading-none ${
+                hasDiscount
+                  ? "text-h2 text-text-muted line-through"
+                  : "text-h1 text-brand "
+              }`}
+            >
+              {formatCurrency(price)}
+            </p>
+
+            <span
+              className={`text-body text-text-muted ${
+                hasDiscount ? "visible" : "invisible"
+              }`}
+            >
+              (Antes)
+            </span>
+          </div>
+
+          {/* //================ Precio con Descuento =============== */}
+          {/*
+           * Se utilizo hasDiscount en la etiqueta <p> para  que cambie el tamaño
+           * de la fuente a text-small si este no tiene descuento, permitiendo
+           * uniformidad por espacio reservado
+           */}
+
+          <div
+            className={`flex ${hasDiscount ? " visible" : "invisible"} px-2`}
+          >
+            <p
+              className={`font-bold text-red-500 pr-2  ${
+                hasDiscount ? "text-h1" : "text-xs"
+              }`}
+            >
+              {formatCurrency(discount)}
+            </p>
+            <span
+              className={` 
+            flex w-15 h-6 text-xs
+          bg-red-600 border rounded-full
+            items-center justify-center my-3
+            text-text-inverse
+            ${hasDiscount ? " visible" : "invisible border-none"}`}
+            >
+              Oferta
+            </span>
+          </div>
+
+          <div className="flex p-2 items-center gap-2">
+            <img src={envio} className="w-5 h-5" />
+            <p className="font-bold text-small">Enviar a casa</p>
+            <img src={tienda} className="w-5 h-5 ml-5" />
+            <p className="font-bold text-small">Recoger en Tienda</p>
+          </div>
+
+          {/* //==================== Botones cantidad producto ============== */}
+          <div className="flex gap-10 my-5 items-center ">
+            <Button 
+            size="amount" 
+            onClick={handleMinus} 
+            >
+              <Minus/>
+            </Button>
+            <p className=" border rounded font-bold px-10 ">{isAmount}</p>
+            <Button
+            size="amount" 
+            onClick={handlePlus} 
+            >
+              <Plus/>
+            </Button> 
+          </div>
+
+          {/* //======================= BOTON agregar Producto ================== */}
+          <Button
+            variant="detailProduct"
+            size="detail"
+            onClick={() => handleComprar(null, { ...state.product, quantity: isAmount })}
+          >
+            <ShoppingCart className="w-5 h-5" />
+            Agregar al carrito
+          </Button>
+        </div>
+      </div>
+      {/* //================ Informacion del Producto ================== */}
+      <div className="flex flex-col py-5 gap-5">
+        <p
+          className="flex h-8 bg-brand-semiLight text-small font-bold
+          items-center rounded-2xl  mt-4 pl-2 "
+        >
+          Descripción del producto
+        </p>
+        <p className="pl-2">{description}</p>
+      
+        <p
+          className="flex h-8 bg-brand-semiLight text-small font-bold
+          items-center rounded-2xl  mt-4 pl-2 "
+        >
+          Especificaciones
+        </p>
+        <div className="grid grid-cols-4 pl-2 gap-1">
+        <p className="flex flex-col font-bold">Referencia:</p>
+        <p className="flex flex-col font-bold">Laboratorio:</p>
+        <p className="flex flex-col font-bold">Nombre:</p>
+        <p className="flex flex-col font-bold">Presentación:</p>
+        <p className="flex flex-col text-small">{id}</p>
+        <p className="flex flex-col text-small">{lab}</p>
+        <p className="flex flex-col text-small">{title}</p>
+        <p className="flex flex-col text-small">{presentation}</p>
+      </div>
+
+
+        {/* //==================== COMENTARIOS ====================*/}
+        <p className="flex h-8 bg-brand-semiLight text-small font-bold
+          items-center rounded-2xl  mt-4 pl-2 "
+        >
+          Comentarios del Producto 
+        </p>
+
+        {/* //================== Formulario de creacion de comentario =============== */}
+        <div>
+          <Button size="xl" onClick={() => setShowForm(!showForm)}>
+            {showForm ? (
+              <MessageCircleX className=" flex w-5 h-5" />
+            ) : (
+              <FilePenLine className=" flex w-5 h-5" />
+            )}
+            {showForm ? "Cerrar formulario" : "Crear comentario"}
+          </Button>
+          {showForm && <UserFormComment onRatingSubmit={handleRatingSubmit} />}
+        </div>
+
+           {/* //===================== Impresión de comentarios  Realizados =============== */}
+          {comments.map((comment, index) => (
+            <div
+              className=" flex flex-col bg-brand-light border-brand-semiLight rounded-2xl p-3 gap-1"
+              key={index}
+            >
+              <p className="text-small font-bold">
+                {comment.firstName} {comment.lastName}
+              </p>
+              <p className=" flex text-small gap-2 items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={
+                      i < comment.rating ? "text-yellow-400" : "text-gray-300"
+                    }
+                  />
+                ))}
+                {comment.rating}
+              </p>
+              <p className="text-small">{comment.comment}</p>
+            </div>
+          ))}
+    
       </div>
     </div>
   );

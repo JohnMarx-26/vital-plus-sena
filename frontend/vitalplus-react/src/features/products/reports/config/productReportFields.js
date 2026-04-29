@@ -20,6 +20,21 @@ export const productReportFields =[
     default: true,
 },
 {
+    key: "concentration",
+    label: "Concentración",
+    default: true,
+},
+{
+    key: "laboratory",
+    label: "Laboratorio",
+    default: true,
+},
+{
+    key: "provider",
+    label: "Proveedor",
+    default: true,
+},
+{
     key: "stock",
     label: "Numero de stock",
     default: true,

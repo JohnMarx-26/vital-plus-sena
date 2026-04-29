@@ -9,6 +9,10 @@
     --semantic-brand-soft: var(--color-primary-500);
     --semantic-brand-semiLight: var(--color-primary-300);
     --semantic-brand-light: var(--color-primary-100);
+    --semantic-brand-dark: var(--color-primary-950); /* el color mas oscuro de la gama*/
+
+    /*======== Secondary ========*/
+    --semantic-secondary-semiLight: var(--color-secondary-400);
     
     /* ===== BackGround ===== */
     
@@ -21,7 +25,7 @@
     --semantic-text-primary: var(--color-gray-900); /*Color principal de lectura, titulos, texto base del documento*/
     --semantic-text-secondary: var(--color-gray-700); /*Textos menos dominantes*/
     --semantic-text-muted: var(--color-gray-500); /*Texto deshabilitado, por ejemplo*/
-    --semantic-text-inverse: var(--color-gray-50); /*Texto invertido*/
+    --semantic-inverse: var(--color-basic-white); /*Texto invertido*/
     --semantic-text-dropdowns: var(--color-white);
 
     /*  ====== Border ======= */

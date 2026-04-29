@@ -30,11 +30,11 @@ export default function Carousels({
 
             {/* los botones de navegacion entre imagenes  tipo Instagram */}
             <div  className="absolute inset-0 flex items-center justify-between p-4">
-                <button className="p-1 rounded-full shadow bg-background text-text-muted hover:bg-brand"
+                <button className="p-1 rounded-full shadow bg-background text-text-muted hover:bg-brand hover:text-text-inverse"
                     onClick={prev}>
                     <ChevronLeft size={30}/>
                 </button>
-                <button className="p-1 rounded-full shadow bg-background text-text-muted hover:bg-brand"
+                <button className="p-1 rounded-full shadow bg-background text-text-muted hover:bg-brand hover:text-text-inverse"
                     onClick={next}>
                     <ChevronRight size={30}/>
                 </button>
@@ -44,7 +44,7 @@ export default function Carousels({
                 <div className="flex items-center justify-center gap-2">
                     {slides.map((_, i) => (
                         <div className={`
-                            transition-all w-3 h-3  bg-background rounded-full
+                            transition-all w-3 h-3  bg-brand rounded-full
                             ${curr == i ? "p-2" : "bg-opacity-60"}   
                         `}/>
                     ))}

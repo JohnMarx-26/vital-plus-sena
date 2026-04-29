@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Input, Button } from "@/shared";
 import { loginSchema } from "../Schemas/authSchemas";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 export default function LoginForm({
   title = "Iniciar sesión",
   description = "Ingresa tus credenciales para continuar",
@@ -22,15 +24,18 @@ export default function LoginForm({
   });
 
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setForm((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
+    setServerError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const result = loginSchema.safeParse(form);
@@ -48,12 +53,51 @@ export default function LoginForm({
     }
 
     setErrors({});
+    setServerError("");
+    setIsSubmitting(true);
 
-    localStorage.setItem("token", "demo-token");
-    localStorage.setItem("userName", userName);
-    window.dispatchEvent(new Event("auth-changed"));
+    const endpoint = isAdmin
+      ? `${API_BASE_URL}/api/auth/funcionarios/login/`
+      : `${API_BASE_URL}/api/auth/clientes/login/`;
 
-    navigate(isAdmin ? redirectToAdmin : redirectTo);
+    const payload = {
+      correo_electronico: form.email,
+      contrasena: form.password,
+    };
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        setServerError(data.mensaje || "No se pudo iniciar sesión");
+        return;
+      }
+
+      localStorage.setItem("token", "demo-token");
+      localStorage.setItem(
+        "userName",
+        data?.data?.correo_electronico || userName
+      );
+      localStorage.setItem("userType", isAdmin ? "funcionario" : "cliente");
+      localStorage.setItem("authData", JSON.stringify(data.data));
+
+      window.dispatchEvent(new Event("auth-changed"));
+
+      navigate(isAdmin ? redirectToAdmin : redirectTo);
+    } catch (error) {
+      console.error("Error en login:", error);
+      setServerError("No se pudo conectar con el servidor");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -93,8 +137,18 @@ export default function LoginForm({
         ¿Olvidaste tu contraseña?
       </Link>
 
-      <Button variant="primary" size="md" type="submit" className="w-full">
-        Iniciar sesión
+      {serverError && (
+        <p className="text-sm text-red-600 text-center">{serverError}</p>
+      )}
+
+      <Button
+        variant="primary"
+        size="md"
+        type="submit"
+        className="w-full"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Ingresando..." : "Iniciar sesión"}
       </Button>
 
       {showCreateAccount && (

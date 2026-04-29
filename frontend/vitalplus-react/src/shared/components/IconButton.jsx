@@ -17,7 +17,7 @@ export const IconButton = React.forwardRef(function IconButton(
 
     // Tamaños
     hitSize = 48,   // px (área táctil)
-    iconSize = 24,  // px (ícono visible)
+    iconSize = 30,  // px (ícono visible)
 
     // Accesibilidad
     ariaLabel,
@@ -49,9 +49,9 @@ export const IconButton = React.forwardRef(function IconButton(
       focus-visible:ring-neutral-300
     `,
     primary: `
-      text-white bg-blue-600
-      hover:bg-blue-700
-      focus-visible:ring-blue-500
+      text-text-inverse bg-brand
+      hover:bg-brand-hover
+      focus-visible:ring-brand-semiLight
     `,
   };
 
