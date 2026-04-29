@@ -6,7 +6,6 @@ import retroceder from "@/assets/svg/icono-retroceder.svg";
 import { useEffect, useState } from "react";
 import ReportConfigModal from "../reports/components/ReportConfigModalSupplier";
 import { FileDown } from "lucide-react";
-import { getSuppliers } from "../services/supplierService";
 
 // ajusta esta ruta según donde tengas el archivo real
 import { getSuppliers } from "../services/suppliersService";
@@ -18,18 +17,10 @@ const Botones = () => {
   return (
     <div className="flex w-full justify-between px-10 my-8">
       <div>
-<<<<<<< HEAD
-        {/* Boton Retroceder */}
-=======
->>>>>>> origin/SNEIDER-PROVEEDORES
         <Button
           variant="secondary"
           size="sm"
           type="button"
-<<<<<<< HEAD
-          //para devolverme al apartado del menu del administrador
-=======
->>>>>>> origin/SNEIDER-PROVEEDORES
           onClick={() => navigate(-1)}
           className="flex items-center gap-2"
         >
@@ -37,13 +28,8 @@ const Botones = () => {
           Retroceder
         </Button>
       </div>
-<<<<<<< HEAD
-      <div>
-        {/* Boton de generar reporte */}
-=======
 
       <div>
->>>>>>> origin/SNEIDER-PROVEEDORES
         <Button
           variant="primary"
           onClick={() => setIsReportModalOpen(true)}
@@ -65,16 +51,6 @@ const Botones = () => {
 };
 
 export default function ListSupplierPage() {
-<<<<<<< HEAD
-  const [suppliersData, setSuppliersData] = useState([]);
-
-  useEffect(() => {
-    getSuppliers()
-      .then(setSuppliersData)
-      .catch((error) => {
-        console.error("Error cargando proveedores:", error);
-      });
-=======
   const [suppliers, setSuppliers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -109,7 +85,6 @@ export default function ListSupplierPage() {
     };
 
     loadSuppliers();
->>>>>>> origin/SNEIDER-PROVEEDORES
   }, []);
 
   return (
@@ -118,16 +93,12 @@ export default function ListSupplierPage() {
       <Botones />
 
       <div className="p-6">
-<<<<<<< HEAD
-        <SupplierDataTable data={suppliersData} columns={SupplierColumns} />
-=======
         {loading && <p>Cargando proveedores...</p>}
         {error && <p className="text-red-600">{error}</p>}
 
         {!loading && !error && (
           <SupplierDataTable data={suppliers} columns={SupplierColumns} />
         )}
->>>>>>> origin/SNEIDER-PROVEEDORES
       </div>
     </div>
   );

@@ -27,11 +27,7 @@ export default function ProfileUserForm({ user }) {
 
   // Redirige a la pantalla de edición usando el id del usuario
   const handleEdit = () => {
-<<<<<<< HEAD
-    console.log("Modificar usuario");
-=======
     navigate(`/usuarios/modificar/${user.id}`);
->>>>>>> origin/SNEIDER-PROVEEDORES
   };
 
   if (!user) return null;
@@ -52,7 +48,7 @@ export default function ProfileUserForm({ user }) {
         <aside className="w-full lg:max-w-sm">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="mb-6 flex justify-center">
-              <h1 className="border-b-2 border-text-secundary pb-1 text-xl font-medium text-slate-900">
+              <h1 className="border-b-2 border-text-secundary pb-1 text-base font-medium text-slate-900">
                 Opciones de usuario
               </h1>
             </div>
@@ -68,11 +64,7 @@ export default function ProfileUserForm({ user }) {
 
               <div className="mt-6 w-full max-w-xs border-b border-slate-400 pb-3 text-center">
                 <p className="text-sm font-medium text-text-secundary">
-<<<<<<< HEAD
-                  {userData.fullName}
-=======
                   {user.fullName}
->>>>>>> origin/SNEIDER-PROVEEDORES
                 </p>
               </div>
 

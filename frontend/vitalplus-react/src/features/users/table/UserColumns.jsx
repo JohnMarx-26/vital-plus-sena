@@ -27,13 +27,8 @@ export const UserColumns = [
 
   // Columna Rol
   {
-<<<<<<< HEAD
-    accessorKey: "documentType", 
-    header: "Tipo de documento",  
-=======
     accessorKey: "role",
     header: "Rol",
->>>>>>> origin/SNEIDER-PROVEEDORES
   },
 
   // Columna Tipo de documento
@@ -87,12 +82,7 @@ export const UserColumns = [
         console.log("Actualizar estado usuario:", user.id, value);
       };
 
-      return (
-        <StatusSwitch
-          checked={user.is_active}
-          onChange={handleChange}
-        />
-      );
+      return <StatusSwitch checked={user.is_active} onChange={handleChange} />;
     },
   },
 
