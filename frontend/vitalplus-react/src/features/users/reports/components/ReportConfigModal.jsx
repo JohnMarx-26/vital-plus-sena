@@ -14,7 +14,7 @@ export default function ReportConfigModal({ isOpen, onClose }) {
   // Estado del alcance del reporte
   const [scope, setScope] = useState("all");
   // Estado para filtro por documento
-  const [documentNumber, setDocumentNumber] = useState("");
+  const [documentNumber, setdocumentNumber] = useState("");
   // Estado de campos seleccionados (inicialización lazy)
   const [selectedFields, setSelectedFields] = useState(
     () => userReportFields.filter((f) => f.default) // Solo campos marcados por
@@ -100,7 +100,7 @@ black/40"
             onChange={(e) => setScope(e.target.value)}
             options={[
               { label: "Todos los usuarios", value: "all" },
-              { label: "Filtrar por documento", value: "document" },
+              { label: "Filtrar por numero de documento", value: "document" },
             ]}
           />
         </div>
@@ -110,7 +110,7 @@ black/40"
             <Input
               label="Número de documento"
               value={documentNumber}
-              onChange={(e) => setDocumentNumber(e.target.value)}
+              onChange={(e) => setdocumentNumber(e.target.value)}
               placeholder="Ingrese número de documento"
             />
           </div>

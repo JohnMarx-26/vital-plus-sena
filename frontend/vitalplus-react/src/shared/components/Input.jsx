@@ -7,6 +7,7 @@ export default function Input({
   id,
   name,
   error,
+  className = "",
   ...props
 }) {
   const inputId = id || name;
@@ -16,7 +17,7 @@ export default function Input({
   const inputType = isPassword && showPassword ? "text" : type;
 
   return (
-    <div className="w-full min-w-[320px]">
+    <div className="w-full">
       {label && (
         <label
           htmlFor={inputId}
@@ -40,7 +41,8 @@ export default function Input({
             text-base
             bg-background
             text-text-primary
-            placeholder:text-text-muted
+            placeholder:text-text-muted 
+            hover:ring
             focus:outline-none
             focus:ring-2
             focus:ring-brand
@@ -48,6 +50,7 @@ export default function Input({
             disabled:opacity-60
             ${isPassword ? "pr-12" : ""}
             ${error ? "border-red-500" : "border-border"}
+            ${className}
           `}
           {...props}
         />

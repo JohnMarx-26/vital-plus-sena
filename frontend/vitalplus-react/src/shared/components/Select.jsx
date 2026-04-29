@@ -27,13 +27,21 @@ export default function Select({
         value={value}
         onChange={onChange}
         className={`
-          w-full
-          h-12
-          rounded-md
-          border
-          px-4
-          bg-background
-          text-text-primary
+            w-80
+            h-12
+            rounded-md
+            border
+            px-4
+            text-base
+            bg-background
+            text-text-primary
+            placeholder:text-text-muted 
+            hover:ring
+            focus:outline-none
+            focus:ring-2
+            focus:ring-brand
+            focus:border-brand
+            disabled:opacity-60
           ${error ? "border-red-500" : "border-border"}
         `}
         {...props}

@@ -1,8 +1,8 @@
-export const suppliers = [ 
+export const suppliers = [
   {
     id: 1,
     name: "Laboratorio Bayer",
-    nit: 800250049,
+    nit: "800250049",
     razon_social: "Bayer S.A",
     contact: "Luis Peralta",
     phone: 3006556978,
@@ -13,7 +13,7 @@ export const suppliers = [
   {
     id: 2,
     name: "Laboratorios Genfar",
-    nit: 900123456,
+    nit: "900123456",
     razon_social: "Genfar S.A",
     contact: "María Gómez",
     phone: 3104567890,
@@ -24,7 +24,7 @@ export const suppliers = [
   {
     id: 3,
     name: "Laboratorios La Santé",
-    nit: 890456789,
+    nit: "890456789",
     razon_social: "La Santé Ltda",
     contact: "Carlos Rodríguez",
     phone: 3159876543,
@@ -35,7 +35,7 @@ export const suppliers = [
   {
     id: 4,
     name: "Tecnoquímicas",
-    nit: 890123987,
+    nit: "890123987",
     razon_social: "Tecnoquímicas S.A",
     contact: "Ana Martínez",
     phone: 3012345678,
@@ -46,7 +46,7 @@ export const suppliers = [
   {
     id: 5,
     name: "Laboratorios Procaps",
-    nit: 800456321,
+    nit: "800456321",
     razon_social: "Procaps S.A",
     contact: "Luis Fernández",
     phone: 3209876543,
@@ -57,7 +57,7 @@ export const suppliers = [
   {
     id: 6,
     name: "Laboratorios MK",
-    nit: 900654321,
+    nit: "900654321",
     razon_social: "MK S.A",
     contact: "Paola Ramírez",
     phone: 3224567890,
@@ -68,7 +68,7 @@ export const suppliers = [
   {
     id: 7,
     name: "Laboratorios Colmed",
-    nit: 901234567,
+    nit: "901234567",
     razon_social: "Colmed Ltda",
     contact: "Andrés Torres",
     phone: 3001234567,
@@ -79,7 +79,7 @@ export const suppliers = [
   {
     id: 8,
     name: "Laboratorios Vitalis",
-    nit: 890765432,
+    nit: "890765432",
     razon_social: "Vitalis S.A",
     contact: "Sofía Herrera",
     phone: 3112345678,
@@ -90,7 +90,7 @@ export const suppliers = [
   {
     id: 9,
     name: "Laboratorios Farmacol",
-    nit: 900876543,
+    nit: "900876543",
     razon_social: "Farmacol Ltda",
     contact: "Jorge Ramírez",
     phone: 3169876543,
@@ -101,7 +101,7 @@ export const suppliers = [
   {
     id: 10,
     name: "Laboratorios Andina",
-    nit: 901345678,
+    nit: "901345678",
     razon_social: "Andina S.A",
     contact: "Laura Castro",
     phone: 3174567890,
@@ -112,7 +112,7 @@ export const suppliers = [
   {
     id: 11,
     name: "Laboratorios FarmaVida",
-    nit: 901456789,
+    nit: "901456789",
     razon_social: "FarmaVida Ltda",
     contact: "Ricardo López",
     phone: 3182345678,
@@ -123,7 +123,7 @@ export const suppliers = [
   {
     id: 12,
     name: "Laboratorios SaludPlus",
-    nit: 901567890,
+    nit: "901567890",
     razon_social: "SaludPlus S.A",
     contact: "Natalia Ruiz",
     phone: 3198765432,
@@ -134,7 +134,7 @@ export const suppliers = [
   {
     id: 13,
     name: "Laboratorios BioPharma",
-    nit: 901678901,
+    nit: "901678901",
     razon_social: "BioPharma Ltda",
     contact: "Felipe Mendoza",
     phone: 3201234567,
@@ -145,7 +145,7 @@ export const suppliers = [
   {
     id: 14,
     name: "Laboratorios MedCol",
-    nit: 901789012,
+    nit: "901789012",
     razon_social: "MedCol S.A",
     contact: "Camila Torres",
     phone: 3212345678,
@@ -156,7 +156,7 @@ export const suppliers = [
   {
     id: 15,
     name: "Laboratorios PharmaAndes",
-    nit: 901890123,
+    nit: "901890123",
     razon_social: "PharmaAndes Ltda",
     contact: "Daniela Pérez",
     phone: 3223456789,
@@ -167,7 +167,7 @@ export const suppliers = [
   {
     id: 16,
     name: "Laboratorios NovaMed",
-    nit: 901901234,
+    nit: "901901234",
     razon_social: "NovaMed S.A",
     contact: "Esteban García",
     phone: 3234567890,
@@ -178,7 +178,7 @@ export const suppliers = [
   {
     id: 17,
     name: "Laboratorios FarmaColombia",
-    nit: 901912345,
+    nit: "901912345",
     razon_social: "FarmaColombia Ltda",
     contact: "Valentina Ríos",
     phone: 3245678901,
@@ -189,7 +189,7 @@ export const suppliers = [
   {
     id: 18,
     name: "Laboratorios SaludAndina",
-    nit: 901923456,
+    nit: "901923456",
     razon_social: "SaludAndina S.A",
     contact: "Sebastián Morales",
     phone: 3256789012,
@@ -200,7 +200,7 @@ export const suppliers = [
   {
     id: 19,
     name: "Laboratorios BioAndes",
-    nit: 901934567,
+    nit: "901934567",
     razon_social: "BioAndes Ltda",
     contact: "Andrea Castillo",
     phone: 3267890123,
@@ -211,7 +211,7 @@ export const suppliers = [
   {
     id: 20,
     name: "Laboratorios FarmaNorte",
-    nit: 901945678,
+    nit: "901945678",
     razon_social: "FarmaNorte S.A",
     contact: "Diego Ramírez",
     phone: 3278901234,
@@ -222,7 +222,7 @@ export const suppliers = [
   {
     id: 21,
     name: "Laboratorios PharmaSur",
-    nit: 901956789,
+    nit: "901956789",
     razon_social: "PharmaSur Ltda",
     contact: "Juliana López",
     phone: 3289012345,
@@ -233,7 +233,7 @@ export const suppliers = [
   {
     id: 22,
     name: "Laboratorios SaludCaribe",
-    nit: 901967890,
+    nit: "901967890",
     razon_social: "SaludCaribe S.A",
     contact: "Mauricio Díaz",
     phone: 3290123456,
@@ -244,7 +244,7 @@ export const suppliers = [
   {
     id: 23,
     name: "Laboratorios FarmaCentro",
-    nit: 901978901,
+    nit: "901978901",
     razon_social: "FarmaCentro Ltda",
     contact: "Tatiana Gómez",
     phone: 3301234567,
@@ -255,7 +255,7 @@ export const suppliers = [
   {
     id: 24,
     name: "Laboratorios BioSalud",
-    nit: 901989012,
+    nit: "901989012",
     razon_social: "BioSalud S.A",
     contact: "Hernán Castillo",
     phone: 3312345678,
@@ -266,7 +266,7 @@ export const suppliers = [
   {
     id: 25,
     name: "Laboratorios MedAndes",
-    nit: 901990123,
+    nit: "901990123",
     razon_social: "MedAndes Ltda",
     contact: "Patricia Ríos",
     phone: 3323456789,
@@ -277,7 +277,7 @@ export const suppliers = [
   {
     id: 26,
     name: "Laboratorios FarmaPacífico",
-    nit: 902001234,
+    nit: "902001234",
     razon_social: "FarmaPacífico S.A",
     contact: "Oscar Hernández",
     phone: 3334567890,
@@ -288,7 +288,7 @@ export const suppliers = [
   {
     id: 27,
     name: "Laboratorios SaludNorte",
-    nit: 902012345,
+    nit: "902012345",
     razon_social: "SaludNorte Ltda",
     contact: "Claudia Torres",
     phone: 3345678901,
@@ -299,7 +299,7 @@ export const suppliers = [
   {
     id: 28,
     name: "Laboratorios BioCentro",
-    nit: 902023456,
+    nit: "902023456",
     razon_social: "BioCentro S.A",
     contact: "Fernando Ruiz",
     phone: 3356789012,
@@ -310,7 +310,7 @@ export const suppliers = [
   {
     id: 29,
     name: "Laboratorios FarmaTolima",
-    nit: 902034567,
+    nit: "902034567",
     razon_social: "FarmaTolima Ltda",
     contact: "Gabriela Castro",
     phone: 3367890123,
@@ -321,7 +321,7 @@ export const suppliers = [
   {
     id: 30,
     name: "Laboratorios MedOriente",
-    nit: 902045678,
+    nit: "902045678",
     razon_social: "MedOriente S.A",
     contact: "Iván López",
     phone: 3378901234,
@@ -332,7 +332,7 @@ export const suppliers = [
   {
     id: 31,
     name: "Laboratorios FarmaMeta",
-    nit: 902056789,
+    nit: "902056789",
     razon_social: "FarmaMeta Ltda",
     contact: "Marcela Díaz",
     phone: 3389012345,
@@ -343,7 +343,7 @@ export const suppliers = [
   {
     id: 32,
     name: "Laboratorios BioPacífico",
-    nit: 902067890,
+    nit: "902067890",
     razon_social: "BioPacífico S.A",
     contact: "Santiago Ramírez",
     phone: 3390123456,
@@ -354,7 +354,7 @@ export const suppliers = [
   {
     id: 33,
     name: "Laboratorios SaludAmazonas",
-    nit: 902078901,
+    nit: "902078901",
     razon_social: "SaludAmazonas Ltda",
     contact: "Liliana Herrera",
     phone: 3401234567,
@@ -365,7 +365,7 @@ export const suppliers = [
   {
     id: 34,
     name: "Laboratorios FarmaOrinoquía",
-    nit: 902089012,
+    nit: "902089012",
     razon_social: "FarmaOrinoquía S.A",
     contact: "Julián Torres",
     phone: 3412345678,
@@ -376,7 +376,7 @@ export const suppliers = [
   {
     id: 35,
     name: "Laboratorios BioCaribe",
-    nit: 902090123,
+    nit: "902090123",
     razon_social: "BioCaribe Ltda",
     contact: "Mónica Pérez",
     phone: 3423456789,
@@ -387,7 +387,7 @@ export const suppliers = [
   {
     id: 36,
     name: "Laboratorios FarmaSantander",
-    nit: 902101234,
+    nit: "902101234",
     razon_social: "FarmaSantander S.A",
     contact: "Hugo Martínez",
     phone: 3434567890,
@@ -398,7 +398,7 @@ export const suppliers = [
   {
     id: 37,
     name: "Laboratorios MedValle",
-    nit: 902112345,
+    nit: "902112345",
     razon_social: "MedValle Ltda",
     contact: "Carolina Ríos",
     phone: 3445678901,
@@ -409,7 +409,7 @@ export const suppliers = [
   {
     id: 38,
     name: "Laboratorios BioOriente",
-    nit: 902123456,
+    nit: "902123456",
     razon_social: "BioOriente S.A",
     contact: "Pedro Castillo",
     phone: 3456789012,
@@ -420,7 +420,7 @@ export const suppliers = [
   {
     id: 39,
     name: "Laboratorios FarmaOccidente",
-    nit: 902134567,
+    nit: "902134567",
     razon_social: "FarmaOccidente Ltda",
     contact: "Daniel Ramírez",
     phone: 3467890123,
@@ -431,7 +431,7 @@ export const suppliers = [
   {
     id: 40,
     name: "Laboratorios MedNariño",
-    nit: 902145678,
+    nit: "902145678",
     razon_social: "MedNariño S.A",
     contact: "Sandra López",
     phone: 3478901234,
@@ -442,7 +442,7 @@ export const suppliers = [
   {
     id: 41,
     name: "Laboratorios BioTolima",
-    nit: 902156789,
+    nit: "902156789",
     razon_social: "BioTolima Ltda",
     contact: "Rodrigo Díaz",
     phone: 3489012345,
@@ -453,7 +453,7 @@ export const suppliers = [
   {
     id: 42,
     name: "Laboratorios FarmaCaldas",
-    nit: 902167890,
+    nit: "902167890",
     razon_social: "FarmaCaldas S.A",
     contact: "Angela Gómez",
     phone: 3490123456,
@@ -464,7 +464,7 @@ export const suppliers = [
   {
     id: 43,
     name: "Laboratorios BioSantander",
-    nit: 902178901,
+    nit: "902178901",
     razon_social: "BioSantander Ltda",
     contact: "Javier Ramírez",
     phone: 3501234567,
@@ -475,7 +475,7 @@ export const suppliers = [
   {
     id: 44,
     name: "Laboratorios MedAmazonas",
-    nit: 902189012,
+    nit: "902189012",
     razon_social: "MedAmazonas S.A",
     contact: "Paula Herrera",
     phone: 3512345678,
@@ -486,7 +486,7 @@ export const suppliers = [
   {
     id: 45,
     name: "Laboratorios FarmaOriente",
-    nit: 902190123,
+    nit: "902190123",
     razon_social: "FarmaOriente Ltda",
     contact: "Andrés López",
     phone: 3523456789,
@@ -497,7 +497,7 @@ export const suppliers = [
   {
     id: 46,
     name: "Laboratorios BioMeta",
-    nit: 902201234,
+    nit: "902201234",
     razon_social: "BioMeta S.A",
     contact: "Lorena Díaz",
     phone: 3534567890,
@@ -508,7 +508,7 @@ export const suppliers = [
   {
     id: 47,
     name: "Laboratorios MedPacífico",
-    nit: 902212345,
+    nit: "902212345",
     razon_social: "MedPacífico Ltda",
     contact: "Camilo Torres",
     phone: 3545678901,
@@ -519,7 +519,7 @@ export const suppliers = [
   {
     id: 48,
     name: "Laboratorios FarmaCaribe",
-    nit: 902223456,
+    nit: "902223456",
     razon_social: "FarmaCaribe S.A",
     contact: "Natalia Ruiz",
     phone: 3556789012,
@@ -530,7 +530,7 @@ export const suppliers = [
   {
     id: 49,
     name: "Laboratorios BioAndes",
-    nit: 902234567,
+    nit: "902234567",
     razon_social: "BioAndes Ltda",
     contact: "Felipe Mendoza",
     phone: 3567890123,
@@ -541,13 +541,12 @@ export const suppliers = [
   {
     id: 50,
     name: "Laboratorios MedColombia",
-    nit: 902245678,
+    nit: "902245678",
     razon_social: "MedColombia S.A",
     contact: "Valentina Ríos",
     phone: 3578901234,
     email: "valentina.rios@email.com",
     city: "Bogotá",
     address: "Carrera 7 #45-12, Bogotá",
-  },
-
-]
+  }
+];

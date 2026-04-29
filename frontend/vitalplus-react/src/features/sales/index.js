@@ -4,4 +4,3 @@ export { default as SaleDetailPage } from "./pages/SaleDetailPage";
 export { default as ListSalePage } from "./pages/ListSalePage";
 
 export { default as SaleForm } from "./components/SaleForm";
-export { default as ProductSectionPOS } from "./components/ProductSectionPOS";

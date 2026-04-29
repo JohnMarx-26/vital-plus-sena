@@ -6,7 +6,7 @@ import SupplierRowActions from "../components/SupplierRowActions";
 
 // Definición de las columnas de la tabla de usuarios
 // Este arreglo suele usarse en librerías de tablas como TanStack Table
-export const SupplierColumns = [
+export const SupplierColumns = [ 
   // Columna ID
   {
     accessorKey: "id", // Propiedad del objeto supplier que se mostrará en la columna
@@ -28,7 +28,7 @@ export const SupplierColumns = [
    // Columna Razon Social
   {
     accessorKey: "razon_social", 
-    header: "Razon social", 
+    header: "Razón social", 
   },
 
   // Columna Nombre Contacto
@@ -70,21 +70,21 @@ export const SupplierColumns = [
     // Permite mostrar un componente en lugar de solo texto
     cell: ({ row }) => {
       // Se obtiene el objeto completo del usuario de la fila
-      const user = row.original;
+      const supplier = row.original;
 
       // Función que se ejecuta cuando cambia el switch
       const handleChange = (value) => {
         // value representa el nuevo estado del switch (true o false)
-        console.log("Actualizar estado usuario:", user.user.id, value);
+        console.log("Actualizar estado usuario:", supplier.supplier.id, value);
 
         // Aquí normalmente se llamaría una API para actualizar el estado
-        // updateUserStatus(user.user_id, value)
+        // updateSupplierStatus(supplier.supplier_id, value)
       };
 
       return (
         // Componente reutilizable para mostrar el switch
         <StatusSwitch
-          checked={user.is_active} // Estado actual del usuario
+          checked={supplier.is_active} // Estado actual del usuario
           onChange={handleChange} // Función que maneja el cambio
         />
       );
@@ -96,6 +96,6 @@ export const SupplierColumns = [
     id: "actions", // No usa accessorKey porque no corresponde a un campo del usuario
 
     // Renderiza el componente de acciones pasando el usuario completo
-    cell: ({ row }) => <SupplierRowActions user={row.original} />,
+    cell: ({ row }) => <SupplierRowActions supplier={row.original} />,
   },
 ];

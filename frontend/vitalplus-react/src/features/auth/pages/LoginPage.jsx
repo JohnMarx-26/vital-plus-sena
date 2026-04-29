@@ -23,7 +23,7 @@ export default function LoginPage() {
         </h1>
       </div>
 
-      <div className={`w-full max-w-md rounded-xl border-2 ${outerBorder} p-2`}>
+      <div className={`w-full max-w-md rounded-xl border-2 ${outerBorder} `}>
         <div className={`rounded-lg border-2 ${innerBorder} p-8 bg-white`}>
           <LoginForm />
         </div>
